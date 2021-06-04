@@ -11,7 +11,7 @@ export FLAGS_allocator_strategy=naive_best_fit
 rm -rf *.prototxt
 rm -rf core.*
 
-task_name='gpt3-230B-32pp4dp2mp'
+task_name='gpt3-230B-1pp1dp1mp'
 output_dir=output/${task_name}
 rm -rf ${output_dir}
 
@@ -26,8 +26,8 @@ run_pretraining.py \
 	--ernie_config_file config/ernie_base_config.json \
 	--learning_rate 1e-4 \
 	--log_steps 1 \
-	--num_train_steps 2000 \
-	--save_steps 10 \
+	--num_train_steps 1000 \
+	--save_steps 500 \
 	--output_dir ${output_dir} \
 	--use_recompute true \
 	--use_sharding false \
