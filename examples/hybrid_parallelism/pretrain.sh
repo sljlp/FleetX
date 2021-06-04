@@ -11,13 +11,13 @@ export FLAGS_allocator_strategy=naive_best_fit
 rm -rf *.prototxt
 rm -rf core.*
 
-task_name='gpt3-230B-32pp4dp2mp'
+task_name='gpt3-230B-1pp1dp2mp'
 output_dir=output/${task_name}
 rm -rf ${output_dir}
 
-export CUDA_VISIBLE_DEVICES=0,1
+export CUDA_VISIBLE_DEVICES=6,7
 
-python -m paddle.distributed.fleet.launch \
+python3.7 -m paddle.distributed.fleet.launch \
 	--log_dir ${output_dir}/log \
 run_pretraining.py \
 	--global_bsz 64 \
@@ -26,8 +26,8 @@ run_pretraining.py \
 	--ernie_config_file config/ernie_base_config.json \
 	--learning_rate 1e-4 \
 	--log_steps 1 \
-	--num_train_steps 1000000 \
-	--save_steps 100000 \
+	--num_train_steps 1000 \
+	--save_steps 500 \
 	--output_dir ${output_dir} \
 	--use_recompute true \
 	--use_sharding true \
