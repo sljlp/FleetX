@@ -1,16 +1,16 @@
 nohup: ignoring input
-+ export PYTHONPATH=./atarashi/:
-+ export PADDLE_WITH_GLOO=0
-+ export GLOG_v=1
-+ export NCCL_DEBUG=INFO
-+ export FLAGS_call_stack_level=2
-+ export FLAGS_allocator_strategy=naive_best_fit
++ EXP PYTHONPATH=./atarashi/:
++ EXP PADDLE_WITH_GLOO=0
++ EXP GLOG_v=1
++ EXP NCCL_DEBUG=INFO
++ EXP FLAGS_call_stack_level=2
++ EXP FLAGS_allocator_strategy=naive_best_fit
 + rm -rf *.prototxt
 + rm -rf core.*
 + task_name=gpt3-230B-1pp1dp1mp
 + output_dir=output/gpt3-230B-1pp1dp1mp
 + rm -rf output/gpt3-230B-1pp1dp1mp
-+ export CUDA_VISIBLE_DEVICES=4
++ EXP CUDA_VISIBLE_DEVICES=4
 + python3.7 -m paddle.distributed.fleet.launch --log_dir output/gpt3-230B-1pp1dp1mp/log run_pretraining.py --global_bsz 64 --micro_bsz 64 --max_seq_len 512 --ernie_config_file config/ernie_base_config.json --learning_rate 1e-4 --log_steps 1 --num_train_steps 1000 --save_steps 500 --output_dir output/gpt3-230B-1pp1dp1mp --use_recompute true --use_sharding false --use_sop false --num_mp=1 --num_sharding=1 --num_pp=1 --num_dp=1
 WARNING: Logging before InitGoogleLogging() is written to STDERR
 I0604 16:30:55.464404 21200 init.cc:88] Before Parse: argc is 2, Init commandline: dummy --tryfromenv=check_nan_inf,benchmark,eager_delete_scope,fraction_of_cpu_memory_to_use,initial_cpu_memory_in_mb,init_allocated_mem,paddle_num_threads,dist_threadpool_size,eager_delete_tensor_gb,fast_eager_deletion_mode,memory_fraction_of_eager_deletion,allocator_strategy,reader_queue_speed_test_mode,print_sub_graph_dir,pe_profile_fname,inner_op_parallelism,enable_parallel_graph,fuse_parameter_groups_size,multiple_of_cupti_buffer_size,fuse_parameter_memory_size,tracer_profile_fname,dygraph_debug,use_system_allocator,enable_unused_var_check,free_idle_chunk,free_when_no_cache_hit,call_stack_level,sort_sum_gradient,max_inplace_grad_add,use_pinned_memory,cpu_deterministic,use_mkldnn,tracer_mkldnn_ops_on,tracer_mkldnn_ops_off,fraction_of_gpu_memory_to_use,initial_gpu_memory_in_mb,reallocate_gpu_memory_in_mb,cudnn_deterministic,enable_cublas_tensor_op_math,conv_workspace_size_limit,cudnn_exhaustive_search,selected_gpus,sync_nccl_allreduce,cudnn_batchnorm_spatial_persistent,gpu_allocator_retry_time,local_exe_sub_scope_limit,gpu_memory_limit_mb,conv2d_disable_cudnn 
