@@ -15,9 +15,9 @@ task_name='gpt3-230B-1pp1dp1mp'
 output_dir=output/${task_name}
 rm -rf ${output_dir}
 
-export CUDA_VISIBLE_DEVICES=0
+export CUDA_VISIBLE_DEVICES=4
 
-python -m paddle.distributed.fleet.launch \
+python3.7 -m paddle.distributed.fleet.launch \
 	--log_dir ${output_dir}/log \
 run_pretraining.py \
 	--global_bsz 64 \
