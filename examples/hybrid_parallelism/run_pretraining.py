@@ -355,6 +355,8 @@ def train(args):
     with fluid.program_guard(train_program, startup_program):
          with fluid.unique_name.guard():
             graph_vars = create_model(args, 'train', micro_bsz, dp_sharding_rank, dp_sharding_worldsize, topo, acc_steps)
+            import pdb
+            # pdb.set_trace()
             data_loader = graph_vars['data_loader']
             for op in train_program.global_block().ops:
                 if op.type == 'fill_constant':
@@ -435,15 +437,15 @@ def train(args):
         paddle.seed(2021 + int(os.environ.get('FLAGS_selected_gpus', 0)))
     exe.run(startup_program)
 
-    if args.num_pp == 1:
-        paddle.fluid.io.save_persistables(exe, './saved_model', main_program=train_program)
-    else:
-        def predicate(var):
-            #if var.persistable and train_program._pipeline_opt['section_program'].global_block().has_var(var.name) and "create_py_reader_0" not in var.name and "GRAD" not in var.name and "double_buffer_0" not in var.name and "stack_0.tmp_0" not in var.name and "softmax" not in var.name and 'loss' not in var.name:
-            if os.path.exists('./saved_model/%s'%var.name):
-                return True
-            return False
-        paddle.fluid.io.load_vars(exe, "./saved_model", main_program=train_program._pipeline_opt['section_program'], predicate=predicate)
+    # if args.num_pp == 1:
+    #     paddle.fluid.io.save_persistables(exe, './saved_model', main_program=train_program)
+    # else:
+    #     def predicate(var):
+    #         #if var.persistable and train_program._pipeline_opt['section_program'].global_block().has_var(var.name) and "create_py_reader_0" not in var.name and "GRAD" not in var.name and "double_buffer_0" not in var.name and "stack_0.tmp_0" not in var.name and "softmax" not in var.name and 'loss' not in var.name:
+    #         if os.path.exists('./saved_model/%s'%var.name):
+    #             return True
+    #         return False
+    #     paddle.fluid.io.load_vars(exe, "./saved_model", main_program=train_program._pipeline_opt['section_program'], predicate=predicate)
 
     if args.use_amp:
         optimizer.amp_init(place)
