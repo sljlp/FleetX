@@ -31,5 +31,9 @@ for name in sys.argv[1:]:
     # plt.plot(step, loss)
     plt.figure('align lr')
     plt.plot(step, lrs)
+plt.figure("align cost")
+plt.savefig("align_cost.png")
+plt.figure("align lr")
+plt.savefig("align_lr.png")
 plt.show()
 
