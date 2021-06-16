@@ -577,6 +577,7 @@ def train(args):
                 save_persistables(exe, save_path, train_program)
                 log.debug("saving final models to {}".format(save_path))
                 log.debug("end of training, total steps: {}".format(steps))
+                break
 
 
 if __name__ == "__main__":
