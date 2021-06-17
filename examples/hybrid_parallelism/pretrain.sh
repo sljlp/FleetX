@@ -18,7 +18,10 @@ MP=2
 MS=64
 BS=64
 
-task_name='gpt3-230B-'${PP}pp${DP}dp${MP}mp
+# task_name='gpt3-230B-'${PP}pp${DP}dp${MP}mp
+task_name='continue-gpu'
+
+
 output_dir=output/${task_name}
 # rm -rf ${output_dir}
 
@@ -33,7 +36,7 @@ run_pretraining.py \
 	--ernie_config_file config/ernie_base_config.json \
 	--learning_rate 1e-4 \
 	--log_steps 1 \
-	--num_train_steps 1600 \
+	--num_train_steps 600 \
 	--save_steps 500 \
 	--output_dir ${output_dir} \
 	--use_recompute true \
@@ -43,6 +46,6 @@ run_pretraining.py \
 	--num_sharding=1 \
 	--num_pp=$PP \
 	--num_dp=$DP \
-#         --init_checkpoint output/gpt3-230B-1pp1dp2mp/step_2
+         --init_checkpoint output/gpt3-230B-1pp1dp2mp/step_1000
 
 
