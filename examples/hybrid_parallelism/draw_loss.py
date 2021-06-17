@@ -16,6 +16,10 @@ def parse_line(line):
     lr = float(line[lr_idx + 14 : lsscale_idx])
     return step, cost, loss, lr
 
+
+c1, c2 = None, None
+cc = 0
+clen = 0
 for name in sys.argv[1:]:
     step, cost, loss, lrs = [], [], [], [] 
     for line in open(name):
@@ -27,10 +31,20 @@ for name in sys.argv[1:]:
             lrs.append(lr)
     plt.figure('align cost')
     plt.plot(step, cost)
+    if cc == 0:
+        c1 = cost
+    else:
+        c2 = cost
+    cc+=1
     # plt.figure('align loss')
     # plt.plot(step, loss)
     plt.figure('align lr')
     plt.plot(step, lrs)
+clen = min(len(c1), len(c2))
+c1 = c1[:clen]
+c2 = c2[:clen]
+plt.figure("diff")
+plt.plot(range(0,clen), [ l1 - l2 for (l1, l2) in zip(c1, c2) ])
 plt.figure("align cost")
 plt.savefig("align_cost.png")
 plt.figure("align lr")
