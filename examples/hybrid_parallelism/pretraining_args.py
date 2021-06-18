@@ -34,7 +34,7 @@ def define_args():
     parser.add_argument('--preln', type=str2bool, default=False)
 
     # Data Args
-    parser.add_argument('--data_dir', type=str, default='./data')
+    parser.add_argument('--data_dir', type=str, default='./data_bak')
     parser.add_argument('--eval_data_path', type=str, default='./data')
     parser.add_argument('--output_dir', type=str, default='./output')
 

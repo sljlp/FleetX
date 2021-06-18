@@ -23,7 +23,7 @@ import glob
 import random
 
 os.environ['FLAGS_enable_parallel_graph'] = "0"
-os.environ['FLAGS_fraction_of_gpu_memory_to_use'] = "0.1"
+os.environ['FLAGS_fraction_of_npu_memory_to_use'] = "0.1"
 os.environ['FLAGS_sync_nccl_allreduce'] = "1"
 os.environ['FLAGS_eager_delete_tensor_gb'] = "0"
 os.environ['FLAGS_fuse_parameter_memory_size'] = "32"
@@ -44,12 +44,24 @@ from utils.random import get_rng_state_tracker
 from propeller import log
 from model.ernie import ErnieModel, ErnieConfig
 
-try:
-    from tensorboardX import SummaryWriter as LogWriter
-    log.info('using tensorboard')
-except ImportError:
-    from visualdl import LogWriter
-    log.info('tensorboard not found, using visualdl')
+if paddle.is_compiled_with_cuda():
+    device = 'gpu'
+    ascend = False
+    int_type = 'int64'
+elif paddle.is_compiled_with_npu():
+    device = 'npu'
+    ascend = True
+    int_type = 'int32'
+else:
+    raise Exception('paddle must compiled with cuda or npu')
+
+
+# try:
+#     from tensorboardX import SummaryWriter as LogWriter
+#     log.info('using tensorboard')
+# except ImportError:
+#     from visualdl import LogWriter
+#     log.info('tensorboard not found, using visualdl')
 
 paddle.enable_static()
 fleet.init(is_collective=True)
@@ -105,19 +117,19 @@ def create_model(args, phase, micro_bsz, dp_sharding_rank, dp_sharding_worldsize
     if args.use_sop:
         input_fields = {
             'names': ['src_ids', 'sent_ids', 'mask_label', 'mask_pos', 'labels'],
-            'shapes': [[-1, args.max_seq_len, 1], [-1, args.max_seq_len, 1], [-1, 1], [-1, 1], [-1, 1]],
+            'shapes': [[-1, args.max_seq_len], [-1, args.max_seq_len], [-1, 1], [-1, 1], [-1, 1]],
             'dtypes': ['int64', 'int64', 'int64', 'int64', 'int64'],
             'lod_levels': [0, 0, 0, 0, 0],
         }
     else:
         input_fields = {
-            'names': ['src_ids', 'sent_ids', 'mask_label', 'mask_pos'],
-            'shapes': [[-1, args.max_seq_len, 1], [-1, args.max_seq_len, 1], [-1, 1], [-1, 1]],
-            'dtypes': ['int64', 'int64', 'int64', 'int64'],
-            'lod_levels': [0, 0, 0, 0],
+            'names': ['src_ids', 'sent_ids', 'pos_ids', 'mask_label', 'mask_pos'],
+            'shapes': [[-1, args.max_seq_len], [-1, args.max_seq_len], [-1, args.max_seq_len], [-1, 1], [-1, 1]],
+            'dtypes': ['int32', 'int32', 'int32', 'int32', 'int32'],
+            'lod_levels': [0, 0, 0, 0, 0],
         }
 
-    with fluid.device_guard("gpu:0"):
+    with fluid.device_guard("npu:0"):
         inputs = [fluid.data(name=input_fields['names'][i],
                       shape=input_fields['shapes'][i],
                       dtype=input_fields['dtypes'][i],
@@ -125,7 +137,7 @@ def create_model(args, phase, micro_bsz, dp_sharding_rank, dp_sharding_worldsize
     if args.use_sop:
         (src_ids, sent_ids, mask_label, mask_pos, labels) = inputs
     else:
-        (src_ids, sent_ids, mask_label, mask_pos) = inputs
+        (src_ids, sent_ids, pos_ids, mask_label, mask_pos) = inputs
     train_file_list = glob.glob(args.data_dir + "/*")
     vocab = {}
     with open(args.vocab_file) as r:
@@ -137,10 +149,13 @@ def create_model(args, phase, micro_bsz, dp_sharding_rank, dp_sharding_worldsize
 
     data_reader = make_pretrain_dataset('pt', train_file_list, True, vocab, micro_bsz, len(vocab),
             args.max_seq_len, dp_sharding_rank, dp_sharding_worldsize)
-    with fluid.device_guard("gpu:0"):
+    with fluid.device_guard("npu:0"):
         data_loader = fluid.io.DataLoader.from_generator(
             feed_list=inputs, capacity=70, iterable=False)
-    places = fluid.CUDAPlace(int(os.environ.get('FLAGS_selected_gpus', 0)))
+    if not ascend:
+        places = fluid.CUDAPlace(int(os.environ.get('FLAGS_selected_npus', 0)))
+    else:
+        places = fluid.NPUPlace(int(os.environ.get('FLAGS_selected_npus', 0)))
 
     """
     ### for debug data flow
@@ -166,16 +181,18 @@ def create_model(args, phase, micro_bsz, dp_sharding_rank, dp_sharding_worldsize
     # should disable weight share for non-parallelism-sinlge run
 
     weight_sharing = False
-    with fluid.device_guard("gpu:0"):
+    with fluid.device_guard("npu:0"):
         ernie = ErnieModel(src_ids,
                            sent_ids,
+                           pos_ids,
                            ernie_config,
+                           batch_size=micro_bsz,
                            weight_sharing=weight_sharing,
                            topo=topo)
     checkpoints = ernie._checkpoints
     checkpoints.pop(-1)
 
-    with fluid.device_guard(f'gpu:{args.num_pp-1}'):
+    with fluid.device_guard(f'npu:{args.num_pp-1}'):
         mask_lm_loss, mean_mask_lm_loss = ernie.get_lm_output(mask_label, mask_pos)
         total_loss = mean_mask_lm_loss
 
@@ -228,6 +245,9 @@ def create_model(args, phase, micro_bsz, dp_sharding_rank, dp_sharding_worldsize
             'pp_total_loss_name': pp_total_loss_name,
             'checkpoints': checkpoints,
         }
+        # for key, val in graph_vars.items():
+        #     if key == "mean_mask_lm_loss" or key == "total_loss":
+        #         val.persistable = True
     return graph_vars
 
 def create_broadcast_program(ref_program, ring_id = 0, root_rank = 0):
@@ -265,7 +285,10 @@ def train(args):
     log.info("pretraining start")
     profile = False
 
-    place = fluid.CUDAPlace(int(os.environ.get('FLAGS_selected_gpus', 0)))
+    if not ascend:
+        place = fluid.CUDAPlace(int(os.environ.get('FLAGS_selected_npus', 0)))
+    else:
+        place = fluid.NPUPlace(int(os.environ.get('FLAGS_selected_npus', 0)))
 
     # set seed
     random.seed(args.seed)
@@ -282,7 +305,7 @@ def train(args):
     # define distribution strategy
     dist_strategy = fleet.DistributedStrategy()
     dist_strategy.execution_strategy = exec_strategy
-    dist_strategy.nccl_comm_num = 3
+    # dist_strategy.nccl_comm_num = 3
     if args.use_recompute:
        log.info("using recompute.")
     dist_strategy.recompute = args.use_recompute
@@ -355,10 +378,12 @@ def train(args):
     with fluid.program_guard(train_program, startup_program):
          with fluid.unique_name.guard():
             graph_vars = create_model(args, 'train', micro_bsz, dp_sharding_rank, dp_sharding_worldsize, topo, acc_steps)
+            # import pdb
+            # pdb.set_trace()
             data_loader = graph_vars['data_loader']
             for op in train_program.global_block().ops:
                 if op.type == 'fill_constant':
-                    op._set_attr('op_device', "gpu:0") # XXX: hack: https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/layers/tensor.py#L1376
+                    op._set_attr('op_device', "npu:0") # XXX: hack: https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/layers/tensor.py#L1376
 
             if args.use_recompute:
                 dist_strategy.recompute_configs = {
@@ -386,7 +411,7 @@ def train(args):
                 for op in train_program.global_block().ops:
                     if op.type == "fill_constant" and op.desc.output_arg_names()[0] == pp_loss_name:
                         op._set_attr("op_role", 16)
-                        op._set_attr('op_device', "gpu:%d"%(args.num_pp-1)) # XXX: hack: https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/layers/tensor.py#L1376
+                        op._set_attr('op_device', "npu:%d"%(args.num_pp-1)) # XXX: hack: https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/layers/tensor.py#L1376
             optimizer = fluid.optimizer.Adam(learning_rate=scheduled_lr,
                                              grad_clip=fluid.clip.GradientClipByGlobalNorm(clip_norm=clip_norm_thres),
                                              #multi_precision=True,
@@ -394,13 +419,11 @@ def train(args):
                                              #exclude_from_weight_decay_fn=exclude_from_weight_decay
                                              )
             optimizer = fleet.distributed_optimizer(optimizer, dist_strategy)
-            log.info(f"using dist strategy: {dist_strategy}")
+            # log.info(f"using dist strategy: {dist_strategy}")
 
             optimizer.minimize(graph_vars['total_loss'])
 
-            final_strategy = fleet._final_strategy()
             applied_meta_list = fleet._get_applied_meta_list()
-            log.info("final strategy: {}".format(final_strategy))
             log.info("applied_meta_list: {}".format(applied_meta_list))
 
     if args.num_mp > 1:
@@ -409,44 +432,44 @@ def train(args):
     # save program
     program_desc_dir = os.path.join(args.output_dir, "program_desc")
     if not os.path.isdir(program_desc_dir):
-        os.mkdir(program_desc_dir)
-
+        os.makedirs(program_desc_dir)
     # save the true pp program
     if args.num_pp > 1 and args.num_sharding <= 1:
-        with open(program_desc_dir + "/main_program.txt.%d" % (int(os.environ.get('FLAGS_selected_gpus', 0))), 'w') as f:
+        with open(program_desc_dir + "/main_program.txt.%d" % (int(os.environ.get('FLAGS_selected_npus', 0))), 'w') as f:
             f.write(str(train_program._pipeline_opt['section_program']))
-
-        with open(program_desc_dir + "/startup_program.txt.%d" % (int(os.environ.get('FLAGS_selected_gpus', 0))), 'w') as f:
+    
+        with open(program_desc_dir + "/startup_program.txt.%d" % (int(os.environ.get('FLAGS_selected_npus', 0))), 'w') as f:
             f.write(str(startup_program._pipeline_opt['startup_program']))
     else:
-        with open(program_desc_dir + "/main_program.txt.%d" % (int(os.environ.get('FLAGS_selected_gpus', 0))), 'w') as f:
+        with open(program_desc_dir + "/main_program.txt.%d" % (int(os.environ.get('FLAGS_selected_npus', 0))), 'w') as f:
             f.write(str(train_program))
-
-        with open(program_desc_dir + "/startup_program.txt.%d" % (int(os.environ.get('FLAGS_selected_gpus', 0))), 'w') as f:
+    
+        with open(program_desc_dir + "/startup_program.txt.%d" % (int(os.environ.get('FLAGS_selected_npus', 0))), 'w') as f:
             f.write(str(startup_program))
-
+    
     if args.num_mp > 1:
-        with open(program_desc_dir + "/broadcast_program.txt.%d" % (int(os.environ.get('FLAGS_selected_gpus', 0))), 'w') as f:
+        with open(program_desc_dir + "/broadcast_program.txt.%d" % (int(os.environ.get('FLAGS_selected_npus', 0))), 'w') as f:
             f.write(str(broadcast_program))
 
     exe = fluid.Executor(place)
     # # TODO
     if args.num_mp > 1 :
-        paddle.seed(2021 + int(os.environ.get('FLAGS_selected_gpus', 0)))
+        paddle.seed(args.seed + int(os.environ.get('FLAGS_selected_npus', 0)))
     exe.run(startup_program)
 
-    if args.num_pp == 1:
-        paddle.fluid.io.save_persistables(exe, './saved_model', main_program=train_program)
-    else:
-        def predicate(var):
-            #if var.persistable and train_program._pipeline_opt['section_program'].global_block().has_var(var.name) and "create_py_reader_0" not in var.name and "GRAD" not in var.name and "double_buffer_0" not in var.name and "stack_0.tmp_0" not in var.name and "softmax" not in var.name and 'loss' not in var.name:
-            if os.path.exists('./saved_model/%s'%var.name):
-                return True
-            return False
-        paddle.fluid.io.load_vars(exe, "./saved_model", main_program=train_program._pipeline_opt['section_program'], predicate=predicate)
+    # if args.num_pp == 1:
+    #     paddle.fluid.io.save_persistables(exe, './saved_model', main_program=train_program)
+    # else:
+    #     def predicate(var):
+    #         #if var.persistable and train_program._pipeline_opt['section_program'].global_block().has_var(var.name) and "create_py_reader_0" not in var.name and "GRAD" not in var.name and "double_buffer_0" not in var.name and "stack_0.tmp_0" not in var.name and "softmax" not in var.name and 'loss' not in var.name:
+    #         if os.path.exists('./saved_model/%s'%var.name):
+    #             return True
+    #         return False
+    #     paddle.fluid.io.load_vars(exe, "./saved_model", main_program=train_program._pipeline_opt['section_program'], predicate=predicate)
 
     if args.use_amp:
         optimizer.amp_init(place)
+    
 
     #save_path = os.path.join(args.output_dir, 'step_0')
     #log.debug("saving models to {}".format(save_path))
@@ -472,10 +495,11 @@ def train(args):
     start_time = time.time()
 
     # # TODO
-    if args.num_mp > 1:
-        exe.run(broadcast_program, fetch_list=[])
-
-    with LogWriter(os.path.join(args.output_dir, log_path)) as swriter:
+    # if args.num_mp > 1:
+    #     exe.run(broadcast_program, fetch_list=[])
+    log.info(f"************start traing ...****************")
+    # with LogWriter(os.path.join(args.output_dir, log_path)) as swriter:
+    if True:
         data_loader.start()
         while True:
             #if steps < global_steps:
@@ -486,19 +510,20 @@ def train(args):
             else:
                 fetch_list = [graph_vars['total_loss'],
                               graph_vars['mean_mask_lm_loss'],
-                              scheduled_lr]
+                              scheduled_lr
+                              ]
                 if args.use_sop:
                     fetch_list.extend([graph_vars['sop_acc'], graph_vars['sop_loss']])
                 if args.use_amp:
                     loss_scaling = train_program.global_block().vars['loss_scaling_0']
                     fetch_list.append(loss_scaling)
-                    
             ret = exe.run(train_program, fetch_list=fetch_list) # run one mini-batch(=acc_steps micro-batch)
                 #use_program_cache=True)
 
             steps += 1
 
             if is_last:
+                # ret += [[1e-5]]
                 if args.use_sop and args.use_amp:
                     cost_val, lm_loss, lr, sop_acc, sop_loss, loss_scaling_0 = ret
                 elif args.use_sop:
@@ -516,24 +541,25 @@ def train(args):
                 if args.use_sop:
                     sop_accs.append(sop_acc[0])
 
-                if steps > 0 and (steps % args.log_steps)  == 0:
+                if steps > 0 and (steps % args.log_steps) == 0:
                     end_time = time.time()
                     total_time = end_time - start_time
                     cost_val = np.mean(cost_vals)
                     lm_loss = np.mean(lm_losses)
-                    swriter.add_scalar('loss/total_loss', cost_val, steps)
-                    swriter.add_scalar('loss/mlm_loss', lm_loss, steps)
-                    swriter.add_scalar('lr/scheduled_lr', lr[0], steps)
+                    # swriter.add_scalar('loss/total_loss', cost_val, steps)
+                    # swriter.add_scalar('loss/mlm_loss', lm_loss, steps)
+                    # swriter.add_scalar('lr/scheduled_lr', lr[0], steps)
 
                     if args.use_sop:
                         sop_acc = np.mean(sop_accs)
-                        swriter.add_scalar('loss/sop_loss', sop_loss, steps)
-                        swriter.add_scalar('train/sop_acc', sop_acc, steps)
+                        # swriter.add_scalar('loss/sop_loss', sop_loss, steps)
+                        # swriter.add_scalar('train/sop_acc', sop_acc, steps)
                     else:
                         sop_acc = 0.0
 
                     if args.use_amp:
-                        swriter.add_scalar('lr/loss_scaling', loss_scaling_0[0], steps)
+                        pass
+                        # swriter.add_scalar('lr/loss_scaling', loss_scaling_0[0], steps)
                     else:
                         loss_scaling_0 = [0.0]
                     if args.num_pp <= 1:
@@ -575,7 +601,7 @@ def train(args):
                 save_persistables(exe, save_path, train_program)
                 log.debug("saving final models to {}".format(save_path))
                 log.debug("end of training, total steps: {}".format(steps))
-
+                break
 
 if __name__ == "__main__":
     args = define_args()

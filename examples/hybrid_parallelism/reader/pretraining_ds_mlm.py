@@ -169,6 +169,8 @@ def make_pretrain_dataset(name, gz_files, is_train, vocab, batch_size, vocab_siz
         ex.ParseFromString(record_str)
         doc = [np.array(f.int64_list.value, dtype=np.int64) for f in ex.feature_lists.feature_list['txt'].feature]
         doc_seg = [np.array(f.int64_list.value, dtype=np.int64) for f in ex.feature_lists.feature_list['segs'].feature]
+        # doc = list(map(lambda x: x.astype(np.int32), doc))
+        # doc_seg = list(map(lambda x: x.astype(np.int32), doc_seg))
         return doc, doc_seg
 
     def _mereg_docseg(doc_seg): # ngram masking
@@ -241,15 +243,20 @@ def make_pretrain_dataset(name, gz_files, is_train, vocab, batch_size, vocab_siz
         batch_size, seqlen = sentence.shape
         sentence, mask_pos, mlm_label = apply_mask(sentence, seg_info, 1., 0.15, vocab_size, vocab)
         #return {'input_ids': sentence, 'token_type_ids': segments, 'sentence_order_label': label, 'labels': mlm_label, 'mlm_mask': mlm_mask}
-        sentence = sentence.reshape([-1, seqlen, 1])
-        segments = segments.reshape([-1, seqlen, 1])
+        sentence = sentence.reshape([-1, seqlen])
+        segments = segments.reshape([-1, seqlen])
         mlm_label = mlm_label.reshape([-1, 1])
         mask_pos_reshape = []
         for i, p in zip(mask_pos[0], mask_pos[1]):
             p += i * seqlen
             mask_pos_reshape.append(p)
         mask_pos = np.array(mask_pos_reshape).reshape([-1, 1])
-        return sentence, segments, mlm_label, mask_pos
+        output = list(map(lambda x: x.astype(np.int32), [sentence, segments, mlm_label, mask_pos]))
+        sentence, segments, mlm_label, mask_pos = output
+
+        position_ids = np.array(list(map(lambda x: np.arange(0, len(x), 1, "int32"), sentence.tolist()))).reshape([-1, seqlen])
+        
+        return sentence, segments, position_ids, mlm_label, mask_pos
 
     # pretrain pipeline
     dataset = Dataset.from_list(gz_files)
@@ -270,6 +277,7 @@ def make_pretrain_dataset(name, gz_files, is_train, vocab, batch_size, vocab_siz
 
     dataset = dataset.padded_batch(batch_size, (0, -1, 0), max_seqlen) \
                      .map(after)
+
     dataset.name = name
     return dataset
 

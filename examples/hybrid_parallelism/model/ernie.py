@@ -55,7 +55,9 @@ class ErnieModel(object):
     def __init__(self,
                  src_ids,
                  sentence_ids,
+                 pos_ids,
                  config,
+                 batch_size=None,
                  task_ids=None,
                  weight_sharing=True,
                  topo=None):
@@ -73,6 +75,7 @@ class ErnieModel(object):
         self._attention_dropout = config['attention_probs_dropout_prob']
         self._param_share = config['param_share']
         self._weight_sharing = weight_sharing
+        self._batch_size = batch_size
         self.config = config
         self.topo = topo
         self.preln = config['preln'] if 'preln' in config.keys() else False
@@ -92,7 +95,7 @@ class ErnieModel(object):
             scale=config['initializer_range'])
 
         self.src_ids = src_ids
-        self.position_ids = self._build_position_ids(src_ids) #position_ids
+        self.position_ids = pos_ids #self._build_position_ids(src_ids) #position_ids
         self.sentence_ids = sentence_ids
         self.task_ids = task_ids
         self.input_mask = self._build_input_mask(src_ids)
@@ -125,19 +128,20 @@ class ErnieModel(object):
             emb_out = fluid.layers.gather_nd(emb, self.src_ids)
             emb_out.stop_gradient = False
 
-        self.position_emb_out = fluid.layers.embedding(
-            input=self.position_ids,
-            size=[self._max_position_seq_len, self._emb_size],
-            dtype=self._emb_dtype,
-            param_attr=fluid.ParamAttr(
+        position_emb = paddle.nn.Embedding(
+            num_embeddings=self._max_position_seq_len,
+            embedding_dim=self._emb_size,
+            weight_attr=fluid.ParamAttr(
                 name=self._pos_emb_name, initializer=self._param_initializer))
+        self.position_emb_out = position_emb(self.position_ids)
 
-        self.sent_emb_out = fluid.layers.embedding(
-            self.sentence_ids,
-            size=[self._sent_types, self._emb_size],
-            dtype=self._emb_dtype,
-            param_attr=fluid.ParamAttr(
+        sent_emb = paddle.nn.Embedding(
+            num_embeddings=self._sent_types,
+            embedding_dim=self._emb_size,
+            weight_attr=fluid.ParamAttr(
                 name=self._sent_emb_name, initializer=self._param_initializer))
+        self.sent_emb_out = sent_emb(self.sentence_ids)
+
         """
         self.task_emb_out = fluid.layers.embedding(
             self.task_ids,
@@ -169,7 +173,7 @@ class ErnieModel(object):
                               initializer=self._param_initializer),
                           bias_attr='emb_hidden_mapping_bias')
 
-        self_attn_mask = fluid.layers.matmul(
+        self_attn_mask = paddle.matmul(
             x=self.input_mask, y=self.input_mask, transpose_y=True)
 
         self_attn_mask = fluid.layers.scale(
@@ -205,23 +209,29 @@ class ErnieModel(object):
             preln=self.preln)
 
     def _build_position_ids(self, src_ids):
-        d_shape = fluid.layers.shape(src_ids)
-        d_seqlen = d_shape[1]
-        d_batch = d_shape[0]
+        # d_shape = fluid.layers.shape(src_ids)
+        # d_seqlen = d_shape[1]
+        # d_batch = d_shape[0]
+        d_seqlen = src_ids.shape[1]
+        d_batch = self._batch_size
+        a = fluid.layers.range(
+            0, d_seqlen, 1, dtype='int32')
+        print(f"a{a.shape}")
         position_ids = fluid.layers.reshape(
-            fluid.layers.range(
-                0, d_seqlen, 1, dtype='int32'), [1, d_seqlen, 1],
-            inplace=True)
-        position_ids = fluid.layers.expand(position_ids, [d_batch, 1, 1])
-        position_ids = fluid.layers.cast(position_ids, 'int64')
+            a, shape=[1, d_seqlen])
+        print(f"position_ids.shape{position_ids.shape}")
+        position_ids = fluid.layers.expand(position_ids, [d_batch, 1])
+        position_ids = fluid.layers.cast(position_ids, 'int32')
         position_ids.stop_gradient = True
         return position_ids
 
     def _build_input_mask(self, src_ids):
-        zero = fluid.layers.fill_constant([1], dtype='int64', value=0)
+        zero = fluid.layers.fill_constant([1], dtype='int32', value=0)
         input_mask = fluid.layers.logical_not(fluid.layers.equal(src_ids, zero))  # assume pad id == 0
         input_mask = fluid.layers.cast(input_mask, 'float32')
+        input_mask = fluid.layers.unsqueeze(input_mask, [-1])
         input_mask.stop_gradient = True
+        print(f"input_mask{input_mask.shape}")
         return input_mask
 
     def get_sequence_output(self):
@@ -252,7 +262,7 @@ class ErnieModel(object):
                 name="next_sent_fc.w_0", initializer=self._param_initializer),
             bias_attr="next_sent_fc.b_0")
         next_sent_fc_out = fluid.layers.reshape(
-            next_sent_fc_out, [-1, 33], inplace=True)
+            next_sent_fc_out, shape=[-1, 33])
         next_sent_loss, next_sent_softmax = fluid.layers.softmax_with_cross_entropy(
             logits=next_sent_fc_out, label=labels, return_softmax=True)
         next_sent_acc = fluid.layers.accuracy(
@@ -385,7 +395,7 @@ class ErnieModel(object):
             initializer=fluid.initializer.Constant(value=0.0))
 
         if self._weight_sharing:
-            fc_out = fluid.layers.matmul(
+            fc_out = paddle.matmul(
                 x=mask_trans_feat,
                 y=fluid.default_main_program().global_block().var(
                     self._word_emb_name),
