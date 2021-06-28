@@ -3,7 +3,7 @@ set -x
 export PYTHONPATH=./atarashi/:$PYTHONPATH
 
 # export PYTHONPATH=/code_lp/paddle/Paddle/build/develop/python/:$PYTHONPATH
-export PYTHONPATH=/code_lp/paddle/Paddle/build/fix_pp/python:$PYTHONPATH
+export PYTHONPATH=/code_lp/paddle/Paddle/build/develop/python:$PYTHONPATH
 export GLOG_v=1
 export NCCL_DEBUG=INFO
 export FLAGS_call_stack_level=2
