@@ -8,7 +8,7 @@ export NCCL_DEBUG=INFO
 export FLAGS_call_stack_level=2
 export FLAGS_allocator_strategy=naive_best_fit
 
-export PYTHONPATH=/code_lp/paddle/Paddle/build/python:$PYTHONPATH
+export PYTHONPATH=/code_lp/paddle/Paddle/build/develop/python:$PYTHONPATH
 # export PYTHONPATH=/code_lp/paddle/paddle_2.1/Paddle/build/python:$PYTHONPATH
 
 PP=2
