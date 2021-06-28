@@ -405,8 +405,8 @@ def train(args):
             log.info("final strategy: {}".format(final_strategy))
             log.info("applied_meta_list: {}".format(applied_meta_list))
 
-    if args.num_mp > 1:
-        broadcast_program = create_broadcast_program(train_program)
+    # if args.num_mp > 1:
+    #     broadcast_program = create_broadcast_program(train_program)
 
     # save program
     program_desc_dir = os.path.join(args.output_dir, "program_desc")
@@ -427,9 +427,9 @@ def train(args):
         with open(program_desc_dir + "/startup_program.txt.%d" % (int(os.environ.get('FLAGS_selected_gpus', 0))), 'w') as f:
             f.write(str(startup_program))
 
-    if args.num_mp > 1:
-        with open(program_desc_dir + "/broadcast_program.txt.%d" % (int(os.environ.get('FLAGS_selected_gpus', 0))), 'w') as f:
-            f.write(str(broadcast_program))
+    # if args.num_mp > 1:
+    #     with open(program_desc_dir + "/broadcast_program.txt.%d" % (int(os.environ.get('FLAGS_selected_gpus', 0))), 'w') as f:
+    #         f.write(str(broadcast_program))
 
     exe = fluid.Executor(place)
     # # TODO
@@ -474,8 +474,8 @@ def train(args):
     start_time = time.time()
 
     # # TODO
-    if args.num_mp > 1:
-        exe.run(broadcast_program, fetch_list=[])
+    # if args.num_mp > 1:
+    #     exe.run(broadcast_program, fetch_list=[])
 
     with LogWriter(os.path.join(args.output_dir, log_path)) as swriter:
         data_loader.start()
@@ -494,6 +494,9 @@ def train(args):
                 if args.use_amp:
                     loss_scaling = train_program.global_block().vars['loss_scaling_0']
                     fetch_list.append(loss_scaling)
+                if args.num_pp > 1:
+                    pp_total_loss = graph_vars['pp_total_loss']
+                    fetch_list.append(pp_total_loss)
                     
             ret = exe.run(train_program, fetch_list=fetch_list) # run one mini-batch(=acc_steps micro-batch)
                 #use_program_cache=True)
