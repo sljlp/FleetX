@@ -7,7 +7,9 @@ import sys
 
 def parse_line(line):
     '''step: 1618, cost: 7.040180, mlm loss: 7.040180, sentence order acc:'''
-    step_idx, cost_idx, loss_idx, sen_idx = line.find('step:'), line.find(', cost:'), line.find(', mlm loss:'), line.find(', sentence order acc:')
+    last_key = ', sentence order acc:' if ', sentence order acc:' in line else ', speed:'
+    
+    step_idx, cost_idx, loss_idx, sen_idx = line.find('step:'), line.find(', cost:'), line.find(', mlm loss:'), line.find(last_key)
     '''learning rate: 1.617e-05, loss_scalings: '''
     lr_idx, lsscale_idx = line.find('learning rate: '), line.find(', loss_scalings:')
     step = int(line[step_idx + 5 : cost_idx])
@@ -30,7 +32,8 @@ for name in sys.argv[1:]:
             loss.append(l)
             lrs.append(lr)
     plt.figure('align cost')
-    plt.plot(step, cost)
+    plt.plot(step, cost, label=name)
+    plt.legend(loc=0,)
     if cc == 0:
         c1 = cost
     else:
@@ -39,15 +42,18 @@ for name in sys.argv[1:]:
     # plt.figure('align loss')
     # plt.plot(step, loss)
     plt.figure('align lr')
-    plt.plot(step, lrs)
+    plt.plot(step, lrs, label=name)
+    plt.legend(loc=0,)
 clen = min(len(c1), len(c2))
 c1 = c1[:clen]
 c2 = c2[:clen]
 plt.figure("diff")
 plt.plot(range(0,clen), [ l1 - l2 for (l1, l2) in zip(c1, c2) ])
+plt.plot(range(clen), [0 for _ in range(clen)])
 plt.figure("align cost")
 plt.savefig("align_cost.png")
 plt.figure("align lr")
 plt.savefig("align_lr.png")
+
 plt.show()
 
