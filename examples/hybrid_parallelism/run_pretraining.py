@@ -325,7 +325,7 @@ def train(args):
                                         "gradient_merge_acc_step": acc_steps,
                                         "optimize_offload": False,
                                         }
-        dist_strategy.pipeline_configs = {"schedule_mode": "F-then-B",
+        dist_strategy.pipeline_configs = {"schedule_mode": "1F1B", # "F-then-B",
                                         "micro_batch_size": micro_bsz,
                                         "accumulate_steps": acc_steps,
                                         }
