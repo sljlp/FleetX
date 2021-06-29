@@ -1,0 +1,1016 @@
+WARNING: AVX is not support on your machine. Hence, no_avx core will be imported, It has much worse preformance than avx core.
+/home/gongwb/.local/lib/python3.7/site-packages/setuptools/depends.py:2: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+I0628 22:26:10.141784 95252 init.cc:88] Before Parse: argc is 2, Init commandline: dummy --tryfromenv=check_nan_inf,benchmark,eager_delete_scope,fraction_of_cpu_memory_to_use,initial_cpu_memory_in_mb,init_allocated_mem,paddle_num_threads,dist_threadpool_size,eager_delete_tensor_gb,fast_eager_deletion_mode,memory_fraction_of_eager_deletion,allocator_strategy,reader_queue_speed_test_mode,print_sub_graph_dir,pe_profile_fname,inner_op_parallelism,enable_parallel_graph,fuse_parameter_groups_size,multiple_of_cupti_buffer_size,fuse_parameter_memory_size,tracer_profile_fname,dygraph_debug,use_system_allocator,enable_unused_var_check,free_idle_chunk,free_when_no_cache_hit,call_stack_level,sort_sum_gradient,max_inplace_grad_add,use_pinned_memory,cpu_deterministic,selected_npus,fraction_of_gpu_memory_to_use,initial_gpu_memory_in_mb,reallocate_gpu_memory_in_mb,gpu_memory_limit_mb 
+I0628 22:26:10.142004 95252 init.cc:95] After Parse: argc is 1
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/hapi/model.py:28: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3,and in 3.9 it will stop working
+  from collections import Iterable
+-----------  Configuration Arguments -----------
+data_dir: ./data_bak
+debug: False
+do_eval: True
+epoch: 100
+ernie_config_file: config/ernie_base_config.json
+eval_batch_size: 35
+eval_data_path: ./data
+eval_steps: -1
+global_bsz: 8
+global_steps: 0
+grad_merge: 0
+init_checkpoint: 
+learning_rate: 0.0001
+log_steps: 1
+max_seq_len: 512
+micro_bsz: 1
+num_dp: 1
+num_mp: 4
+num_pp: 2
+num_sharding: 1
+num_train_steps: 1600
+output_dir: output/npu-pp
+preln: False
+save_steps: 500
+seed: 2021
+use_amp: True
+use_hybrid_dp: True
+use_lamb: False
+use_offload: False
+use_recompute: True
+use_sharding: True
+use_sop: False
+vocab_file: ./config/30k-clean.vocab.albert
+warmup_steps: 10000
+weight_decay: 0.01
+------------------------------------------------
+[INFO] 2021-06-28 22:26:11,047 [run_pretraining.py:  285]:	pretraining start
+[INFO] 2021-06-28 22:26:11,047 [run_pretraining.py:  310]:	using recompute.
+[INFO] 2021-06-28 22:26:11,048 [run_pretraining.py:  355]:	using globa_bsz: 8 micro_bsz: 1, acc_steps: 8
+[DEBUG] 2021-06-28 22:26:11,112 [run_pretraining.py:  148]:	========= dp_sharding worker: 0 of 1 ==========
+[INFO] 2021-06-28 22:26:11,112 [pretraining_ds_mlm.py:  263]:	Apply sharding in distribution env 0/1
+[INFO] 2021-06-28 22:26:11,112 [pretraining_ds_mlm.py:  265]:	read from ./data_bak/part-00000.104,./data_bak/part-00000.100,./data_bak/part-00000.107,./data_bak/part-00000.103,./data_bak/part-00000.10,./data_bak/part-00000.105,./data_bak/part-00000.101,./data_bak/part-00000.102,./data_bak/part-00000.106,./data_bak/part-00000.109,./data_bak/part-00000.108
+I0628 22:26:11.113323 95252 reader_py.cc:387] init_lod_tensor_blocking_queue
+INFO:root:places would be ommited when DataLoader is not iterable
+input_mask(-1, 512, 1)
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/ernie.py:153
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/ernie.py:154
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:166
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:276
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:39
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:40
+The behavior of expression A * B has been unified with elementwise_mul(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_mul(X, Y, axis=0) instead of A * B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+[DEBUG] 2021-06-28 22:26:11,919 [run_pretraining.py:  395]:	base lr: 0.0001
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/distributed/fleet/base/fleet_base.py:813: UserWarning: It is recommended to use DistributedStrategy in fleet.init(). The strategy here is only for compatibility. If the strategy in fleet.distributed_optimizer() is not None, then it will overwrite the DistributedStrategy in fleet.init(), which will take effect in distributed training.
+  "It is recommended to use DistributedStrategy "
+2021-06-28 22:26:11 INFO     Gradient merge in [pp_gm], acc step = [8]
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:Gradient merge in [pp_gm], acc step = [8]
+Mon Jun 28 22:26:12-INFO: recompute segment[0]
+Mon Jun 28 22:26:12-INFO: segment start op: [squeeze2]: [['shard_index_0.tmp_0']]
+Mon Jun 28 22:26:12-INFO: segment end op: [layer_norm]: [['encoder_layer_0_post_ffn_layer_norm_bias', 'encoder_layer_0_post_ffn_layer_norm_scale', 'tmp_10']]
+Mon Jun 28 22:26:12-INFO: recompute segment[0]
+Mon Jun 28 22:26:12-INFO: segment start op: [squeeze2]: [['shard_index_0.tmp_0']]
+Mon Jun 28 22:26:12-INFO: segment end op: [layer_norm]: [['encoder_layer_0_post_ffn_layer_norm_bias', 'encoder_layer_0_post_ffn_layer_norm_scale', 'tmp_10']]
+Mon Jun 28 22:26:12-INFO: found [0] vars which cross recompute segment: [set()], better checkpoints might be set to reduce those vars
+pp_rank: 1
+2021-06-28 22:26:17 INFO     global word size: 8
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:global word size: 8
+2021-06-28 22:26:17 INFO     global rank: 4
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:global rank: 4
+2021-06-28 22:26:17 INFO     global endpoints: ['192.168.206.27:6170', '192.168.206.27:6171', '192.168.206.27:6172', '192.168.206.27:6173', '192.168.206.27:6174', '192.168.206.27:6175', '192.168.206.27:6176', '192.168.206.27:6177']
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:global endpoints: ['192.168.206.27:6170', '192.168.206.27:6171', '192.168.206.27:6172', '192.168.206.27:6173', '192.168.206.27:6174', '192.168.206.27:6175', '192.168.206.27:6176', '192.168.206.27:6177']
+2021-06-28 22:26:17 INFO     global ring id: 3
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:global ring id: 3
+2021-06-28 22:26:17 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+2021-06-28 22:26:17 INFO     mp group size: 4
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp group size: 4
+2021-06-28 22:26:17 INFO     mp rank: 0
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp rank: 0
+2021-06-28 22:26:17 INFO     mp group id: 1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp group id: 1
+2021-06-28 22:26:17 INFO     mp group endpoints: ['192.168.206.27:6174', '192.168.206.27:6175', '192.168.206.27:6176', '192.168.206.27:6177']
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp group endpoints: ['192.168.206.27:6174', '192.168.206.27:6175', '192.168.206.27:6176', '192.168.206.27:6177']
+2021-06-28 22:26:17 INFO     mp ring id: 0
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp ring id: 0
+2021-06-28 22:26:17 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+2021-06-28 22:26:17 INFO     sharding group size: 1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding group size: 1
+2021-06-28 22:26:17 INFO     sharding rank: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding rank: -1
+2021-06-28 22:26:17 INFO     sharding group id: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding group id: -1
+2021-06-28 22:26:17 INFO     sharding group endpoints: []
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding group endpoints: []
+2021-06-28 22:26:17 INFO     sharding ring id: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding ring id: -1
+2021-06-28 22:26:17 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+2021-06-28 22:26:17 INFO     pp group size: 2
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp group size: 2
+2021-06-28 22:26:17 INFO     pp rank: 1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp rank: 1
+2021-06-28 22:26:17 INFO     pp group id: 0
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp group id: 0
+2021-06-28 22:26:17 INFO     pp group endpoints: ['192.168.206.27:6170', '192.168.206.27:6174']
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp group endpoints: ['192.168.206.27:6170', '192.168.206.27:6174']
+2021-06-28 22:26:17 INFO     pp ring id: 20
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp ring id: 20
+2021-06-28 22:26:17 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+2021-06-28 22:26:17 INFO     pure dp group size: 1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pure dp group size: 1
+2021-06-28 22:26:17 INFO     pure dp rank: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pure dp rank: -1
+2021-06-28 22:26:17 INFO     pure dp group endpoints: []
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pure dp group endpoints: []
+2021-06-28 22:26:17 INFO     pure dp ring id: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pure dp ring id: -1
+2021-06-28 22:26:17 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+pp pair:(0, 1), ring_id: 20
+pp pair:(1, 0), ring_id: 21
+[INFO] 2021-06-28 22:26:22,763 [run_pretraining.py:  427]:	applied_meta_list: ['ShardingOptimizer', 'AMPOptimizer', 'RecomputeOptimizer']
+[INFO] 2021-06-28 22:26:22,764 [run_pretraining.py:  428]:	*******go out of gaurd
+I0628 22:26:35.919018 95252 gen_hccl_id_op_helper.cc:181] Server listening on: 192.168.206.27:6174 successful.
+I0628 22:26:36.820824 95252 collective_helper_npu.cc:83] initialized comm: 0xffffcaf608f0, nranks: 8, hccl_id: 0x1c74d084, rank: 4
+I0628 22:26:39.884356 95252 collective_helper_npu.cc:88] initialized comm: 0xffffcaf608f0, nranks: 8, hccl_id: 0x1c74d084, rank: 4
+I0628 22:26:39.884511 95252 collective_helper_npu.cc:93] hccl communicator of rank 4 in ring 3 has been created on device 4, with comm: 0x1c7c96e0
+I0628 22:26:43.052489 95252 collective_helper_npu.cc:83] initialized comm: 0xffffcaf608f0, nranks: 4, hccl_id: 0x1c78f114, rank: 0
+I0628 22:26:45.071727 95252 collective_helper_npu.cc:88] initialized comm: 0xffffcaf608f0, nranks: 4, hccl_id: 0x1c78f114, rank: 0
+I0628 22:26:45.071902 95252 collective_helper_npu.cc:93] hccl communicator of rank 0 in ring 0 has been created on device 4, with comm: 0x1c620be0
+I0628 22:26:46.220167 95252 gen_hccl_id_op_helper.cc:181] Server listening on: 192.168.206.27:6174 successful.
+I0628 22:26:46.222146 95252 collective_helper_npu.cc:83] initialized comm: 0xffffcaf608f0, nranks: 2, hccl_id: 0x1c471114, rank: 1
+I0628 22:26:47.436501 95252 collective_helper_npu.cc:88] initialized comm: 0xffffcaf608f0, nranks: 2, hccl_id: 0x1c471114, rank: 1
+I0628 22:26:47.436970 95252 collective_helper_npu.cc:93] hccl communicator of rank 1 in ring 20 has been created on device 4, with comm: 0x1c6dfc50
+W0628 22:26:47.693645 95252 gen_hccl_id_op_helper.cc:120] connect addr=192.168.206.27:6170 failed 1 times with reason: Connection refused retry after 0.5 seconds
+I0628 22:26:48.195242 95252 collective_helper_npu.cc:83] initialized comm: 0xffffcaf608f0, nranks: 2, hccl_id: 0x1c4ec664, rank: 0
+I0628 22:26:49.411437 95252 collective_helper_npu.cc:88] initialized comm: 0xffffcaf608f0, nranks: 2, hccl_id: 0x1c4ec664, rank: 0
+I0628 22:26:49.411614 95252 collective_helper_npu.cc:93] hccl communicator of rank 0 in ring 21 has been created on device 4, with comm: 0x1c6f4320
+[INFO] 2021-06-28 22:26:49,697 [run_pretraining.py:  474]:	************amp init ... use amp = True**********
+[INFO] 2021-06-28 22:26:49,698 [run_pretraining.py:  505]:	************start traing ...****************
+[INFO] 2021-06-28 22:26:49,699 [run_pretraining.py:  525]:	********exe.run******* 
+I0628 22:26:55.340669 98636 lod_tensor_blocking_queue.h:104] Init queue with size 1
+I0628 22:26:55.340831 98636 buffered_reader.cc:41] BufferedReader
+[INFO] 2021-06-28 22:31:21,161 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:31:21,163 [run_pretraining.py:  591]:	worker_index: 4, step: 1, cost: 10.386744, mlm loss: 10.386744, sentence order acc: 0.000000, speed: 0.003684 steps/s, speed: 0.029470 samples/s, speed: 15.088534 tokens/s, learning rate: 0.000e+00, loss_scalings: 32768.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:31:21,163 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:34:19,110 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:34:19,153 [run_pretraining.py:  591]:	worker_index: 4, step: 2, cost: 10.411065, mlm loss: 10.411065, sentence order acc: 0.000000, speed: 0.005618 steps/s, speed: 0.044946 samples/s, speed: 23.012543 tokens/s, learning rate: 1.000e-08, loss_scalings: 16384.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:34:19,153 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:36:28,829 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:36:28,831 [run_pretraining.py:  591]:	worker_index: 4, step: 3, cost: 10.721878, mlm loss: 10.721878, sentence order acc: 0.000000, speed: 0.007711 steps/s, speed: 0.061692 samples/s, speed: 31.586095 tokens/s, learning rate: 2.000e-08, loss_scalings: 16384.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:36:28,831 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:38:38,494 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:38:38,495 [run_pretraining.py:  591]:	worker_index: 4, step: 4, cost: 10.509363, mlm loss: 10.509363, sentence order acc: 0.000000, speed: 0.007712 steps/s, speed: 0.061698 samples/s, speed: 31.589337 tokens/s, learning rate: 3.000e-08, loss_scalings: 8192.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:38:38,495 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:40:47,948 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:40:47,949 [run_pretraining.py:  591]:	worker_index: 4, step: 5, cost: 10.466293, mlm loss: 10.466293, sentence order acc: 0.000000, speed: 0.007725 steps/s, speed: 0.061798 samples/s, speed: 31.640685 tokens/s, learning rate: 4.000e-08, loss_scalings: 8192.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:40:47,949 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:42:11,157 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:42:11,158 [run_pretraining.py:  591]:	worker_index: 4, step: 6, cost: 10.466574, mlm loss: 10.466574, sentence order acc: 0.000000, speed: 0.012018 steps/s, speed: 0.096144 samples/s, speed: 49.225921 tokens/s, learning rate: 5.000e-08, loss_scalings: 4096.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:42:11,158 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:43:57,114 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:43:57,115 [run_pretraining.py:  591]:	worker_index: 4, step: 7, cost: 10.468888, mlm loss: 10.468888, sentence order acc: 0.000000, speed: 0.009438 steps/s, speed: 0.075502 samples/s, speed: 38.657253 tokens/s, learning rate: 6.000e-08, loss_scalings: 4096.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:43:57,115 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:46:07,469 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:46:07,470 [run_pretraining.py:  591]:	worker_index: 4, step: 8, cost: 10.454447, mlm loss: 10.454447, sentence order acc: 0.000000, speed: 0.007671 steps/s, speed: 0.061371 samples/s, speed: 31.421877 tokens/s, learning rate: 7.000e-08, loss_scalings: 2048.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:46:07,470 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:47:03,002 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:47:03,004 [run_pretraining.py:  591]:	worker_index: 4, step: 9, cost: 10.403217, mlm loss: 10.403217, sentence order acc: 0.000000, speed: 0.018007 steps/s, speed: 0.144058 samples/s, speed: 73.757903 tokens/s, learning rate: 8.000e-08, loss_scalings: 2048.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:47:03,004 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:47:35,894 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:47:35,895 [run_pretraining.py:  591]:	worker_index: 4, step: 10, cost: 10.539168, mlm loss: 10.539168, sentence order acc: 0.000000, speed: 0.030403 steps/s, speed: 0.243226 samples/s, speed: 124.531589 tokens/s, learning rate: 9.000e-08, loss_scalings: 1024.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:47:35,895 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:48:33,845 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:48:33,846 [run_pretraining.py:  591]:	worker_index: 4, step: 11, cost: 10.622787, mlm loss: 10.622787, sentence order acc: 0.000000, speed: 0.017256 steps/s, speed: 0.138049 samples/s, speed: 70.680878 tokens/s, learning rate: 1.000e-07, loss_scalings: 1024.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:48:33,846 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:49:31,341 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:49:31,342 [run_pretraining.py:  591]:	worker_index: 4, step: 12, cost: 10.455939, mlm loss: 10.455939, sentence order acc: 0.000000, speed: 0.017393 steps/s, speed: 0.139142 samples/s, speed: 71.240822 tokens/s, learning rate: 1.100e-07, loss_scalings: 512.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:49:31,342 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:49:39,317 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:49:39,348 [run_pretraining.py:  591]:	worker_index: 4, step: 13, cost: 10.384289, mlm loss: 10.384289, sentence order acc: 0.000000, speed: 0.124918 steps/s, speed: 0.999345 samples/s, speed: 511.664694 tokens/s, learning rate: 1.200e-07, loss_scalings: 512.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:49:39,348 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:51:00,415 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:51:00,417 [run_pretraining.py:  591]:	worker_index: 4, step: 14, cost: 10.427299, mlm loss: 10.427299, sentence order acc: 0.000000, speed: 0.012335 steps/s, speed: 0.098682 samples/s, speed: 50.525256 tokens/s, learning rate: 1.300e-07, loss_scalings: 256.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:51:00,417 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:51:31,901 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:51:31,902 [run_pretraining.py:  591]:	worker_index: 4, step: 15, cost: 10.399506, mlm loss: 10.399506, sentence order acc: 0.000000, speed: 0.031761 steps/s, speed: 0.254091 samples/s, speed: 130.094352 tokens/s, learning rate: 1.400e-07, loss_scalings: 256.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:51:31,902 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:52:28,640 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:52:28,641 [run_pretraining.py:  591]:	worker_index: 4, step: 16, cost: 10.424143, mlm loss: 10.424143, sentence order acc: 0.000000, speed: 0.017625 steps/s, speed: 0.140998 samples/s, speed: 72.190843 tokens/s, learning rate: 1.500e-07, loss_scalings: 128.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:52:28,641 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:53:25,571 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:53:25,572 [run_pretraining.py:  591]:	worker_index: 4, step: 17, cost: 10.471506, mlm loss: 10.471506, sentence order acc: 0.000000, speed: 0.017565 steps/s, speed: 0.140521 samples/s, speed: 71.946589 tokens/s, learning rate: 1.600e-07, loss_scalings: 128.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:53:25,572 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:53:57,255 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:53:57,256 [run_pretraining.py:  591]:	worker_index: 4, step: 18, cost: 10.484093, mlm loss: 10.484093, sentence order acc: 0.000000, speed: 0.031562 steps/s, speed: 0.252497 samples/s, speed: 129.278336 tokens/s, learning rate: 1.700e-07, loss_scalings: 64.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:53:57,256 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:54:53,676 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:54:53,678 [run_pretraining.py:  591]:	worker_index: 4, step: 19, cost: 10.481771, mlm loss: 10.481771, sentence order acc: 0.000000, speed: 0.017724 steps/s, speed: 0.141793 samples/s, speed: 72.597936 tokens/s, learning rate: 1.800e-07, loss_scalings: 64.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:54:53,679 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:55:01,547 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:55:01,548 [run_pretraining.py:  591]:	worker_index: 4, step: 20, cost: 10.329316, mlm loss: 10.329316, sentence order acc: 0.000000, speed: 0.127085 steps/s, speed: 1.016678 samples/s, speed: 520.539237 tokens/s, learning rate: 1.900e-07, loss_scalings: 32.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:55:01,548 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:55:34,757 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:55:34,759 [run_pretraining.py:  591]:	worker_index: 4, step: 21, cost: 10.423975, mlm loss: 10.423975, sentence order acc: 0.000000, speed: 0.030111 steps/s, speed: 0.240888 samples/s, speed: 123.334480 tokens/s, learning rate: 2.000e-07, loss_scalings: 32.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:55:34,759 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:56:06,504 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:56:06,505 [run_pretraining.py:  591]:	worker_index: 4, step: 22, cost: 10.439791, mlm loss: 10.439791, sentence order acc: 0.000000, speed: 0.031500 steps/s, speed: 0.252001 samples/s, speed: 129.024716 tokens/s, learning rate: 2.100e-07, loss_scalings: 16.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:56:06,505 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:57:05,275 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:57:05,276 [run_pretraining.py:  591]:	worker_index: 4, step: 23, cost: 10.467773, mlm loss: 10.467773, sentence order acc: 0.000000, speed: 0.017015 steps/s, speed: 0.136122 samples/s, speed: 69.694469 tokens/s, learning rate: 2.200e-07, loss_scalings: 16.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:57:05,277 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:57:37,322 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:57:37,323 [run_pretraining.py:  591]:	worker_index: 4, step: 24, cost: 10.183453, mlm loss: 10.183453, sentence order acc: 0.000000, speed: 0.031205 steps/s, speed: 0.249641 samples/s, speed: 127.816257 tokens/s, learning rate: 2.300e-07, loss_scalings: 8.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:57:37,323 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:58:33,946 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:58:33,947 [run_pretraining.py:  591]:	worker_index: 4, step: 25, cost: 10.473508, mlm loss: 10.473508, sentence order acc: 0.000000, speed: 0.017660 steps/s, speed: 0.141282 samples/s, speed: 72.336531 tokens/s, learning rate: 2.400e-07, loss_scalings: 8.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:58:33,948 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:59:31,545 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:59:31,546 [run_pretraining.py:  591]:	worker_index: 4, step: 26, cost: 10.368725, mlm loss: 10.368725, sentence order acc: 0.000000, speed: 0.017362 steps/s, speed: 0.138893 samples/s, speed: 71.113148 tokens/s, learning rate: 2.500e-07, loss_scalings: 4.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 22:59:31,546 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:00:04,897 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:00:04,899 [run_pretraining.py:  591]:	worker_index: 4, step: 27, cost: 6.069781, mlm loss: 6.069781, sentence order acc: 0.000000, speed: 0.029983 steps/s, speed: 0.239862 samples/s, speed: 122.809436 tokens/s, learning rate: 2.600e-07, loss_scalings: 4.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:00:04,899 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:00:38,209 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:00:38,210 [run_pretraining.py:  591]:	worker_index: 4, step: 28, cost: 10.483936, mlm loss: 10.483936, sentence order acc: 0.000000, speed: 0.030021 steps/s, speed: 0.240166 samples/s, speed: 122.964869 tokens/s, learning rate: 2.700e-07, loss_scalings: 2.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:00:38,210 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:01:58,767 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:01:58,768 [run_pretraining.py:  591]:	worker_index: 4, step: 29, cost: 10.424004, mlm loss: 10.424004, sentence order acc: 0.000000, speed: 0.012413 steps/s, speed: 0.099308 samples/s, speed: 50.845536 tokens/s, learning rate: 2.800e-07, loss_scalings: 2.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:01:58,768 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:02:32,047 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:02:32,049 [run_pretraining.py:  591]:	worker_index: 4, step: 30, cost: 10.425243, mlm loss: 10.425243, sentence order acc: 0.000000, speed: 0.030047 steps/s, speed: 0.240376 samples/s, speed: 123.072505 tokens/s, learning rate: 2.900e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:02:32,049 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:03:54,375 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:03:54,376 [run_pretraining.py:  591]:	worker_index: 4, step: 31, cost: 10.426400, mlm loss: 10.426400, sentence order acc: 0.000000, speed: 0.012147 steps/s, speed: 0.097174 samples/s, speed: 49.753070 tokens/s, learning rate: 3.000e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:03:54,376 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:04:28,612 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:04:28,614 [run_pretraining.py:  591]:	worker_index: 4, step: 32, cost: 10.418614, mlm loss: 10.418614, sentence order acc: 0.000000, speed: 0.029208 steps/s, speed: 0.233661 samples/s, speed: 119.634178 tokens/s, learning rate: 3.100e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:04:28,615 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:04:59,999 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:05:00,000 [run_pretraining.py:  591]:	worker_index: 4, step: 33, cost: 10.478271, mlm loss: 10.478271, sentence order acc: 0.000000, speed: 0.031862 steps/s, speed: 0.254894 samples/s, speed: 130.505906 tokens/s, learning rate: 3.200e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:05:00,000 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:05:07,961 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:05:07,963 [run_pretraining.py:  591]:	worker_index: 4, step: 34, cost: 10.435109, mlm loss: 10.435109, sentence order acc: 0.000000, speed: 0.125598 steps/s, speed: 1.004786 samples/s, speed: 514.450639 tokens/s, learning rate: 3.300e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:05:07,963 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:05:15,953 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:05:15,954 [run_pretraining.py:  591]:	worker_index: 4, step: 35, cost: 10.415215, mlm loss: 10.415215, sentence order acc: 0.000000, speed: 0.125138 steps/s, speed: 1.001104 samples/s, speed: 512.565458 tokens/s, learning rate: 3.400e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:05:15,954 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:05:23,947 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:05:23,948 [run_pretraining.py:  591]:	worker_index: 4, step: 36, cost: 10.413168, mlm loss: 10.413168, sentence order acc: 0.000000, speed: 0.125099 steps/s, speed: 1.000791 samples/s, speed: 512.404968 tokens/s, learning rate: 3.500e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:05:23,948 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:05:56,996 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:05:56,997 [run_pretraining.py:  591]:	worker_index: 4, step: 37, cost: 10.494122, mlm loss: 10.494122, sentence order acc: 0.000000, speed: 0.030259 steps/s, speed: 0.242070 samples/s, speed: 123.939691 tokens/s, learning rate: 3.600e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:05:56,997 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:06:53,437 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:06:53,439 [run_pretraining.py:  591]:	worker_index: 4, step: 38, cost: 10.446566, mlm loss: 10.446566, sentence order acc: 0.000000, speed: 0.017717 steps/s, speed: 0.141738 samples/s, speed: 72.569761 tokens/s, learning rate: 3.700e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:06:53,439 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:07:01,415 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:07:01,416 [run_pretraining.py:  591]:	worker_index: 4, step: 39, cost: 10.346384, mlm loss: 10.346384, sentence order acc: 0.000000, speed: 0.125374 steps/s, speed: 1.002993 samples/s, speed: 513.532482 tokens/s, learning rate: 3.800e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:07:01,416 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:07:09,481 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:07:09,482 [run_pretraining.py:  591]:	worker_index: 4, step: 40, cost: 10.483036, mlm loss: 10.483036, sentence order acc: 0.000000, speed: 0.123973 steps/s, speed: 0.991788 samples/s, speed: 507.795449 tokens/s, learning rate: 3.900e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:07:09,482 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:07:17,435 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:07:17,436 [run_pretraining.py:  591]:	worker_index: 4, step: 41, cost: 10.264194, mlm loss: 10.264194, sentence order acc: 0.000000, speed: 0.125736 steps/s, speed: 1.005888 samples/s, speed: 515.014548 tokens/s, learning rate: 4.000e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:07:17,436 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:07:50,791 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:07:50,792 [run_pretraining.py:  591]:	worker_index: 4, step: 42, cost: 10.542456, mlm loss: 10.542456, sentence order acc: 0.000000, speed: 0.029980 steps/s, speed: 0.239837 samples/s, speed: 122.796293 tokens/s, learning rate: 4.100e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:07:50,792 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:07:58,740 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:07:58,741 [run_pretraining.py:  591]:	worker_index: 4, step: 43, cost: 10.247498, mlm loss: 10.247498, sentence order acc: 0.000000, speed: 0.125809 steps/s, speed: 1.006470 samples/s, speed: 515.312755 tokens/s, learning rate: 4.200e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:07:58,741 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:08:06,916 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:08:06,917 [run_pretraining.py:  591]:	worker_index: 4, step: 44, cost: 10.391928, mlm loss: 10.391928, sentence order acc: 0.000000, speed: 0.122310 steps/s, speed: 0.978481 samples/s, speed: 500.982119 tokens/s, learning rate: 4.300e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:08:06,918 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:08:41,437 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:08:41,439 [run_pretraining.py:  591]:	worker_index: 4, step: 45, cost: 10.518586, mlm loss: 10.518586, sentence order acc: 0.000000, speed: 0.028968 steps/s, speed: 0.231743 samples/s, speed: 118.652403 tokens/s, learning rate: 4.400e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:08:41,439 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:08:49,946 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:08:49,948 [run_pretraining.py:  591]:	worker_index: 4, step: 46, cost: 10.408150, mlm loss: 10.408150, sentence order acc: 0.000000, speed: 0.117530 steps/s, speed: 0.940243 samples/s, speed: 481.404238 tokens/s, learning rate: 4.500e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:08:49,948 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:08:58,748 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:08:58,750 [run_pretraining.py:  591]:	worker_index: 4, step: 47, cost: 10.434017, mlm loss: 10.434017, sentence order acc: 0.000000, speed: 0.113617 steps/s, speed: 0.908936 samples/s, speed: 465.375115 tokens/s, learning rate: 4.600e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:08:58,750 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:09:07,364 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:09:07,365 [run_pretraining.py:  591]:	worker_index: 4, step: 48, cost: 10.455120, mlm loss: 10.455120, sentence order acc: 0.000000, speed: 0.116082 steps/s, speed: 0.928654 samples/s, speed: 475.471100 tokens/s, learning rate: 4.700e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:09:07,365 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:09:41,248 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:09:41,249 [run_pretraining.py:  591]:	worker_index: 4, step: 49, cost: 10.452969, mlm loss: 10.452969, sentence order acc: 0.000000, speed: 0.029512 steps/s, speed: 0.236099 samples/s, speed: 120.882700 tokens/s, learning rate: 4.800e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:09:41,249 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:09:49,700 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:09:49,702 [run_pretraining.py:  591]:	worker_index: 4, step: 50, cost: 10.435250, mlm loss: 10.435250, sentence order acc: 0.000000, speed: 0.118313 steps/s, speed: 0.946504 samples/s, speed: 484.610159 tokens/s, learning rate: 4.900e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:09:49,702 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:09:58,201 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:09:58,202 [run_pretraining.py:  591]:	worker_index: 4, step: 51, cost: 10.330267, mlm loss: 10.330267, sentence order acc: 0.000000, speed: 0.117646 steps/s, speed: 0.941166 samples/s, speed: 481.876838 tokens/s, learning rate: 5.000e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:09:58,202 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:10:06,553 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:10:06,554 [run_pretraining.py:  591]:	worker_index: 4, step: 52, cost: 10.402161, mlm loss: 10.402161, sentence order acc: 0.000000, speed: 0.119743 steps/s, speed: 0.957942 samples/s, speed: 490.466511 tokens/s, learning rate: 5.100e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:10:06,554 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:10:14,910 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:10:14,912 [run_pretraining.py:  591]:	worker_index: 4, step: 53, cost: 10.567763, mlm loss: 10.567763, sentence order acc: 0.000000, speed: 0.119650 steps/s, speed: 0.957204 samples/s, speed: 490.088293 tokens/s, learning rate: 5.200e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:10:14,912 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:10:23,001 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:10:23,002 [run_pretraining.py:  591]:	worker_index: 4, step: 54, cost: 10.439255, mlm loss: 10.439255, sentence order acc: 0.000000, speed: 0.123609 steps/s, speed: 0.988869 samples/s, speed: 506.300742 tokens/s, learning rate: 5.300e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:10:23,002 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:10:31,124 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:10:31,125 [run_pretraining.py:  591]:	worker_index: 4, step: 55, cost: 10.525489, mlm loss: 10.525489, sentence order acc: 0.000000, speed: 0.123119 steps/s, speed: 0.984953 samples/s, speed: 504.295932 tokens/s, learning rate: 5.400e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:10:31,125 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:10:39,497 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:10:39,499 [run_pretraining.py:  591]:	worker_index: 4, step: 56, cost: 10.432644, mlm loss: 10.432644, sentence order acc: 0.000000, speed: 0.119419 steps/s, speed: 0.955356 samples/s, speed: 489.142260 tokens/s, learning rate: 5.500e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:10:39,499 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:10:47,472 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:10:47,473 [run_pretraining.py:  591]:	worker_index: 4, step: 57, cost: 10.500835, mlm loss: 10.500835, sentence order acc: 0.000000, speed: 0.125410 steps/s, speed: 1.003277 samples/s, speed: 513.678059 tokens/s, learning rate: 5.600e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:10:47,473 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:11:20,602 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:11:20,603 [run_pretraining.py:  591]:	worker_index: 4, step: 58, cost: 10.400748, mlm loss: 10.400748, sentence order acc: 0.000000, speed: 0.030185 steps/s, speed: 0.241478 samples/s, speed: 123.636522 tokens/s, learning rate: 5.700e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:11:20,603 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:11:28,678 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:11:28,679 [run_pretraining.py:  591]:	worker_index: 4, step: 59, cost: 10.539403, mlm loss: 10.539403, sentence order acc: 0.000000, speed: 0.123817 steps/s, speed: 0.990537 samples/s, speed: 507.155169 tokens/s, learning rate: 5.800e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:11:28,679 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:11:36,817 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:11:36,819 [run_pretraining.py:  591]:	worker_index: 4, step: 60, cost: 10.473528, mlm loss: 10.473528, sentence order acc: 0.000000, speed: 0.122856 steps/s, speed: 0.982850 samples/s, speed: 503.219153 tokens/s, learning rate: 5.900e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:11:36,819 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:11:44,905 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:11:44,907 [run_pretraining.py:  591]:	worker_index: 4, step: 61, cost: 10.494546, mlm loss: 10.494546, sentence order acc: 0.000000, speed: 0.123643 steps/s, speed: 0.989141 samples/s, speed: 506.440441 tokens/s, learning rate: 6.000e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:11:44,908 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:11:52,947 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:11:52,948 [run_pretraining.py:  591]:	worker_index: 4, step: 62, cost: 10.449603, mlm loss: 10.449603, sentence order acc: 0.000000, speed: 0.124369 steps/s, speed: 0.994950 samples/s, speed: 509.414188 tokens/s, learning rate: 6.100e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:11:52,948 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:12:00,966 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:12:00,967 [run_pretraining.py:  591]:	worker_index: 4, step: 63, cost: 10.511444, mlm loss: 10.511444, sentence order acc: 0.000000, speed: 0.124711 steps/s, speed: 0.997685 samples/s, speed: 510.814504 tokens/s, learning rate: 6.200e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:12:00,967 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:12:09,038 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:12:09,039 [run_pretraining.py:  591]:	worker_index: 4, step: 64, cost: 10.423009, mlm loss: 10.423009, sentence order acc: 0.000000, speed: 0.123888 steps/s, speed: 0.991102 samples/s, speed: 507.444147 tokens/s, learning rate: 6.300e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:12:09,040 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:12:17,136 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:12:17,137 [run_pretraining.py:  591]:	worker_index: 4, step: 65, cost: 10.425353, mlm loss: 10.425353, sentence order acc: 0.000000, speed: 0.123503 steps/s, speed: 0.988021 samples/s, speed: 505.866958 tokens/s, learning rate: 6.400e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:12:17,137 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:12:25,130 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:12:25,131 [run_pretraining.py:  591]:	worker_index: 4, step: 66, cost: 10.426766, mlm loss: 10.426766, sentence order acc: 0.000000, speed: 0.125091 steps/s, speed: 1.000725 samples/s, speed: 512.371225 tokens/s, learning rate: 6.500e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:12:25,131 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:12:33,145 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:12:33,146 [run_pretraining.py:  591]:	worker_index: 4, step: 67, cost: 10.513948, mlm loss: 10.513948, sentence order acc: 0.000000, speed: 0.124772 steps/s, speed: 0.998175 samples/s, speed: 511.065658 tokens/s, learning rate: 6.600e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:12:33,146 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:12:41,149 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:12:41,150 [run_pretraining.py:  591]:	worker_index: 4, step: 68, cost: 10.420100, mlm loss: 10.420100, sentence order acc: 0.000000, speed: 0.124950 steps/s, speed: 0.999600 samples/s, speed: 511.795095 tokens/s, learning rate: 6.700e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:12:41,150 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:12:49,136 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:12:49,137 [run_pretraining.py:  591]:	worker_index: 4, step: 69, cost: 10.500646, mlm loss: 10.500646, sentence order acc: 0.000000, speed: 0.125206 steps/s, speed: 1.001647 samples/s, speed: 512.843275 tokens/s, learning rate: 6.800e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:12:49,137 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:12:57,192 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:12:57,193 [run_pretraining.py:  591]:	worker_index: 4, step: 70, cost: 10.365432, mlm loss: 10.365432, sentence order acc: 0.000000, speed: 0.124135 steps/s, speed: 0.993083 samples/s, speed: 508.458475 tokens/s, learning rate: 6.900e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:12:57,193 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:13:05,250 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:13:05,251 [run_pretraining.py:  591]:	worker_index: 4, step: 71, cost: 10.529088, mlm loss: 10.529088, sentence order acc: 0.000000, speed: 0.124107 steps/s, speed: 0.992852 samples/s, speed: 508.340477 tokens/s, learning rate: 7.000e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:13:05,251 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:13:13,103 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:13:13,104 [run_pretraining.py:  591]:	worker_index: 4, step: 72, cost: 10.502769, mlm loss: 10.502769, sentence order acc: 0.000000, speed: 0.127338 steps/s, speed: 1.018708 samples/s, speed: 521.578428 tokens/s, learning rate: 7.100e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:13:13,104 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:13:21,129 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:13:21,130 [run_pretraining.py:  591]:	worker_index: 4, step: 73, cost: 10.430613, mlm loss: 10.430613, sentence order acc: 0.000000, speed: 0.124598 steps/s, speed: 0.996786 samples/s, speed: 510.354579 tokens/s, learning rate: 7.200e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:13:21,130 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:13:29,136 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:13:29,137 [run_pretraining.py:  591]:	worker_index: 4, step: 74, cost: 10.514088, mlm loss: 10.514088, sentence order acc: 0.000000, speed: 0.124900 steps/s, speed: 0.999198 samples/s, speed: 511.589121 tokens/s, learning rate: 7.300e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:13:29,137 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:13:37,091 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:13:37,093 [run_pretraining.py:  591]:	worker_index: 4, step: 75, cost: 10.649964, mlm loss: 10.649964, sentence order acc: 0.000000, speed: 0.125689 steps/s, speed: 1.005516 samples/s, speed: 514.824116 tokens/s, learning rate: 7.400e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:13:37,094 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:13:45,074 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:13:45,075 [run_pretraining.py:  591]:	worker_index: 4, step: 76, cost: 10.453542, mlm loss: 10.453542, sentence order acc: 0.000000, speed: 0.125297 steps/s, speed: 1.002378 samples/s, speed: 513.217764 tokens/s, learning rate: 7.500e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:13:45,075 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:13:53,077 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:13:53,078 [run_pretraining.py:  591]:	worker_index: 4, step: 77, cost: 10.505829, mlm loss: 10.505829, sentence order acc: 0.000000, speed: 0.124951 steps/s, speed: 0.999611 samples/s, speed: 511.800813 tokens/s, learning rate: 7.600e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:13:53,078 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:14:01,108 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:14:01,109 [run_pretraining.py:  591]:	worker_index: 4, step: 78, cost: 10.462451, mlm loss: 10.462451, sentence order acc: 0.000000, speed: 0.124522 steps/s, speed: 0.996179 samples/s, speed: 510.043819 tokens/s, learning rate: 7.700e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:14:01,109 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:14:08,987 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:14:08,988 [run_pretraining.py:  591]:	worker_index: 4, step: 79, cost: 10.443054, mlm loss: 10.443054, sentence order acc: 0.000000, speed: 0.126933 steps/s, speed: 1.015462 samples/s, speed: 519.916421 tokens/s, learning rate: 7.800e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:14:08,988 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:14:17,016 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:14:17,017 [run_pretraining.py:  591]:	worker_index: 4, step: 80, cost: 10.489840, mlm loss: 10.489840, sentence order acc: 0.000000, speed: 0.124545 steps/s, speed: 0.996357 samples/s, speed: 510.134689 tokens/s, learning rate: 7.900e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:14:17,017 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:14:25,039 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:14:25,040 [run_pretraining.py:  591]:	worker_index: 4, step: 81, cost: 10.428923, mlm loss: 10.428923, sentence order acc: 0.000000, speed: 0.124650 steps/s, speed: 0.997201 samples/s, speed: 510.567010 tokens/s, learning rate: 8.000e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:14:25,040 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:14:33,048 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:14:33,049 [run_pretraining.py:  591]:	worker_index: 4, step: 82, cost: 10.527152, mlm loss: 10.527152, sentence order acc: 0.000000, speed: 0.124859 steps/s, speed: 0.998871 samples/s, speed: 511.422070 tokens/s, learning rate: 8.100e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:14:33,050 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:14:41,029 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:14:41,030 [run_pretraining.py:  591]:	worker_index: 4, step: 83, cost: 10.607815, mlm loss: 10.607815, sentence order acc: 0.000000, speed: 0.125315 steps/s, speed: 1.002518 samples/s, speed: 513.289188 tokens/s, learning rate: 8.200e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:14:41,030 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:14:49,068 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:14:49,068 [run_pretraining.py:  591]:	worker_index: 4, step: 84, cost: 10.638518, mlm loss: 10.638518, sentence order acc: 0.000000, speed: 0.124404 steps/s, speed: 0.995234 samples/s, speed: 509.559600 tokens/s, learning rate: 8.300e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:14:49,068 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:14:57,274 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:14:57,276 [run_pretraining.py:  591]:	worker_index: 4, step: 85, cost: 10.453343, mlm loss: 10.453343, sentence order acc: 0.000000, speed: 0.121840 steps/s, speed: 0.974719 samples/s, speed: 499.055989 tokens/s, learning rate: 8.400e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:14:57,276 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:15:05,458 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:15:05,458 [run_pretraining.py:  591]:	worker_index: 4, step: 86, cost: 10.529814, mlm loss: 10.529814, sentence order acc: 0.000000, speed: 0.122220 steps/s, speed: 0.977758 samples/s, speed: 500.611919 tokens/s, learning rate: 8.500e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:15:05,459 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:15:13,528 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:15:13,529 [run_pretraining.py:  591]:	worker_index: 4, step: 87, cost: 10.502971, mlm loss: 10.502971, sentence order acc: 0.000000, speed: 0.123905 steps/s, speed: 0.991237 samples/s, speed: 507.513328 tokens/s, learning rate: 8.600e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:15:13,530 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:15:44,319 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:15:44,320 [run_pretraining.py:  591]:	worker_index: 4, step: 88, cost: 10.563733, mlm loss: 10.563733, sentence order acc: 0.000000, speed: 0.032478 steps/s, speed: 0.259820 samples/s, speed: 133.027953 tokens/s, learning rate: 8.700e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:15:44,320 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:15:52,302 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:15:52,303 [run_pretraining.py:  591]:	worker_index: 4, step: 89, cost: 10.473733, mlm loss: 10.473733, sentence order acc: 0.000000, speed: 0.125276 steps/s, speed: 1.002209 samples/s, speed: 513.131202 tokens/s, learning rate: 8.800e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:15:52,303 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:16:00,393 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:16:00,394 [run_pretraining.py:  591]:	worker_index: 4, step: 90, cost: 10.422155, mlm loss: 10.422155, sentence order acc: 0.000000, speed: 0.123593 steps/s, speed: 0.988746 samples/s, speed: 506.237813 tokens/s, learning rate: 8.900e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:16:00,394 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:16:08,704 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:16:08,705 [run_pretraining.py:  591]:	worker_index: 4, step: 91, cost: 10.370927, mlm loss: 10.370927, sentence order acc: 0.000000, speed: 0.120339 steps/s, speed: 0.962714 samples/s, speed: 492.909457 tokens/s, learning rate: 9.000e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:16:08,705 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:16:42,068 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:16:42,070 [run_pretraining.py:  591]:	worker_index: 4, step: 92, cost: 10.512674, mlm loss: 10.512674, sentence order acc: 0.000000, speed: 0.029972 steps/s, speed: 0.239773 samples/s, speed: 122.764013 tokens/s, learning rate: 9.100e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:16:42,070 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:16:50,167 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:16:50,169 [run_pretraining.py:  591]:	worker_index: 4, step: 93, cost: 10.427103, mlm loss: 10.427103, sentence order acc: 0.000000, speed: 0.123476 steps/s, speed: 0.987805 samples/s, speed: 505.756414 tokens/s, learning rate: 9.200e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:16:50,169 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:16:58,171 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:16:58,172 [run_pretraining.py:  591]:	worker_index: 4, step: 94, cost: 10.469931, mlm loss: 10.469931, sentence order acc: 0.000000, speed: 0.124957 steps/s, speed: 0.999652 samples/s, speed: 511.821931 tokens/s, learning rate: 9.300e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:16:58,172 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:17:06,217 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:17:06,218 [run_pretraining.py:  591]:	worker_index: 4, step: 95, cost: 10.401478, mlm loss: 10.401478, sentence order acc: 0.000000, speed: 0.124287 steps/s, speed: 0.994293 samples/s, speed: 509.077884 tokens/s, learning rate: 9.400e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:17:06,218 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:17:14,405 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:17:14,407 [run_pretraining.py:  591]:	worker_index: 4, step: 96, cost: 10.333261, mlm loss: 10.333261, sentence order acc: 0.000000, speed: 0.122122 steps/s, speed: 0.976977 samples/s, speed: 500.212000 tokens/s, learning rate: 9.500e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:17:14,407 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:17:22,470 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:17:22,470 [run_pretraining.py:  591]:	worker_index: 4, step: 97, cost: 10.514328, mlm loss: 10.514328, sentence order acc: 0.000000, speed: 0.124020 steps/s, speed: 0.992159 samples/s, speed: 507.985342 tokens/s, learning rate: 9.600e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:17:22,471 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:17:30,622 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:17:30,623 [run_pretraining.py:  591]:	worker_index: 4, step: 98, cost: 10.406061, mlm loss: 10.406061, sentence order acc: 0.000000, speed: 0.122667 steps/s, speed: 0.981340 samples/s, speed: 502.445836 tokens/s, learning rate: 9.700e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:17:30,623 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:17:38,627 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:17:38,628 [run_pretraining.py:  591]:	worker_index: 4, step: 99, cost: 10.337132, mlm loss: 10.337132, sentence order acc: 0.000000, speed: 0.124933 steps/s, speed: 0.999463 samples/s, speed: 511.724879 tokens/s, learning rate: 9.800e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:17:38,628 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:17:46,585 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:17:46,586 [run_pretraining.py:  591]:	worker_index: 4, step: 100, cost: 10.382386, mlm loss: 10.382386, sentence order acc: 0.000000, speed: 0.125664 steps/s, speed: 1.005309 samples/s, speed: 514.718212 tokens/s, learning rate: 9.900e-07, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:17:46,586 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:17:54,631 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:17:54,632 [run_pretraining.py:  591]:	worker_index: 4, step: 101, cost: 10.520562, mlm loss: 10.520562, sentence order acc: 0.000000, speed: 0.124289 steps/s, speed: 0.994312 samples/s, speed: 509.087615 tokens/s, learning rate: 1.000e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:17:54,632 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:18:02,640 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:18:02,641 [run_pretraining.py:  591]:	worker_index: 4, step: 102, cost: 10.408626, mlm loss: 10.408626, sentence order acc: 0.000000, speed: 0.124859 steps/s, speed: 0.998869 samples/s, speed: 511.420928 tokens/s, learning rate: 1.010e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:18:02,641 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:18:10,632 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:18:10,633 [run_pretraining.py:  591]:	worker_index: 4, step: 103, cost: 10.284971, mlm loss: 10.284971, sentence order acc: 0.000000, speed: 0.125130 steps/s, speed: 1.001039 samples/s, speed: 512.531756 tokens/s, learning rate: 1.020e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:18:10,633 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:18:18,613 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:18:18,614 [run_pretraining.py:  591]:	worker_index: 4, step: 104, cost: 10.468358, mlm loss: 10.468358, sentence order acc: 0.000000, speed: 0.125300 steps/s, speed: 1.002399 samples/s, speed: 513.228113 tokens/s, learning rate: 1.030e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:18:18,614 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:18:52,186 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:18:52,187 [run_pretraining.py:  591]:	worker_index: 4, step: 105, cost: 10.483560, mlm loss: 10.483560, sentence order acc: 0.000000, speed: 0.029786 steps/s, speed: 0.238290 samples/s, speed: 122.004266 tokens/s, learning rate: 1.040e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:18:52,187 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:19:00,173 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:19:00,174 [run_pretraining.py:  591]:	worker_index: 4, step: 106, cost: 10.440380, mlm loss: 10.440380, sentence order acc: 0.000000, speed: 0.125208 steps/s, speed: 1.001661 samples/s, speed: 512.850516 tokens/s, learning rate: 1.050e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:19:00,174 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:19:08,236 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:19:08,238 [run_pretraining.py:  591]:	worker_index: 4, step: 107, cost: 10.364769, mlm loss: 10.364769, sentence order acc: 0.000000, speed: 0.124012 steps/s, speed: 0.992095 samples/s, speed: 507.952689 tokens/s, learning rate: 1.060e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:19:08,238 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:19:16,328 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:19:16,329 [run_pretraining.py:  591]:	worker_index: 4, step: 108, cost: 10.433377, mlm loss: 10.433377, sentence order acc: 0.000000, speed: 0.123607 steps/s, speed: 0.988858 samples/s, speed: 506.295535 tokens/s, learning rate: 1.070e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:19:16,329 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:19:24,299 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:19:24,300 [run_pretraining.py:  591]:	worker_index: 4, step: 109, cost: 10.512204, mlm loss: 10.512204, sentence order acc: 0.000000, speed: 0.125451 steps/s, speed: 1.003605 samples/s, speed: 513.846003 tokens/s, learning rate: 1.080e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:19:24,300 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:19:32,370 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:19:32,371 [run_pretraining.py:  591]:	worker_index: 4, step: 110, cost: 10.471392, mlm loss: 10.471392, sentence order acc: 0.000000, speed: 0.123905 steps/s, speed: 0.991240 samples/s, speed: 507.514812 tokens/s, learning rate: 1.090e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:19:32,371 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:20:06,028 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:20:06,029 [run_pretraining.py:  591]:	worker_index: 4, step: 111, cost: 5.684268, mlm loss: 5.684268, sentence order acc: 0.000000, speed: 0.029711 steps/s, speed: 0.237691 samples/s, speed: 121.697871 tokens/s, learning rate: 1.100e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:20:06,029 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:20:14,029 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:20:14,030 [run_pretraining.py:  591]:	worker_index: 4, step: 112, cost: 10.503983, mlm loss: 10.503983, sentence order acc: 0.000000, speed: 0.124982 steps/s, speed: 0.999852 samples/s, speed: 511.924236 tokens/s, learning rate: 1.110e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:20:14,030 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:20:22,019 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:20:22,021 [run_pretraining.py:  591]:	worker_index: 4, step: 113, cost: 10.474894, mlm loss: 10.474894, sentence order acc: 0.000000, speed: 0.125158 steps/s, speed: 1.001265 samples/s, speed: 512.647455 tokens/s, learning rate: 1.120e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:20:22,021 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:20:29,885 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:20:29,886 [run_pretraining.py:  591]:	worker_index: 4, step: 114, cost: 10.517315, mlm loss: 10.517315, sentence order acc: 0.000000, speed: 0.127138 steps/s, speed: 1.017105 samples/s, speed: 520.757977 tokens/s, learning rate: 1.130e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:20:29,886 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:20:37,884 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:20:37,885 [run_pretraining.py:  591]:	worker_index: 4, step: 115, cost: 10.405334, mlm loss: 10.405334, sentence order acc: 0.000000, speed: 0.125031 steps/s, speed: 1.000249 samples/s, speed: 512.127412 tokens/s, learning rate: 1.140e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:20:37,885 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:21:12,010 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:21:12,011 [run_pretraining.py:  591]:	worker_index: 4, step: 116, cost: 10.417971, mlm loss: 10.417971, sentence order acc: 0.000000, speed: 0.029303 steps/s, speed: 0.234427 samples/s, speed: 120.026593 tokens/s, learning rate: 1.150e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:21:12,011 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:21:20,026 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:21:20,027 [run_pretraining.py:  591]:	worker_index: 4, step: 117, cost: 10.568475, mlm loss: 10.568475, sentence order acc: 0.000000, speed: 0.124758 steps/s, speed: 0.998060 samples/s, speed: 511.006798 tokens/s, learning rate: 1.160e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:21:20,027 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:21:27,924 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:21:27,925 [run_pretraining.py:  591]:	worker_index: 4, step: 118, cost: 10.383889, mlm loss: 10.383889, sentence order acc: 0.000000, speed: 0.126621 steps/s, speed: 1.012970 samples/s, speed: 518.640598 tokens/s, learning rate: 1.170e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:21:27,925 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:21:35,849 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:21:35,850 [run_pretraining.py:  591]:	worker_index: 4, step: 119, cost: 10.487892, mlm loss: 10.487892, sentence order acc: 0.000000, speed: 0.126177 steps/s, speed: 1.009418 samples/s, speed: 516.822029 tokens/s, learning rate: 1.180e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:21:35,850 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:21:43,811 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:21:43,812 [run_pretraining.py:  591]:	worker_index: 4, step: 120, cost: 10.458527, mlm loss: 10.458527, sentence order acc: 0.000000, speed: 0.125598 steps/s, speed: 1.004788 samples/s, speed: 514.451424 tokens/s, learning rate: 1.190e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:21:43,813 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:21:51,775 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:21:51,776 [run_pretraining.py:  591]:	worker_index: 4, step: 121, cost: 10.480819, mlm loss: 10.480819, sentence order acc: 0.000000, speed: 0.125573 steps/s, speed: 1.004585 samples/s, speed: 514.347722 tokens/s, learning rate: 1.200e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:21:51,776 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:21:59,687 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:21:59,688 [run_pretraining.py:  591]:	worker_index: 4, step: 122, cost: 10.602740, mlm loss: 10.602740, sentence order acc: 0.000000, speed: 0.126393 steps/s, speed: 1.011143 samples/s, speed: 517.705409 tokens/s, learning rate: 1.210e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:21:59,688 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:22:07,637 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:22:07,638 [run_pretraining.py:  591]:	worker_index: 4, step: 123, cost: 10.377958, mlm loss: 10.377958, sentence order acc: 0.000000, speed: 0.125802 steps/s, speed: 1.006413 samples/s, speed: 515.283605 tokens/s, learning rate: 1.220e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:22:07,638 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:22:15,621 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:22:15,622 [run_pretraining.py:  591]:	worker_index: 4, step: 124, cost: 10.421057, mlm loss: 10.421057, sentence order acc: 0.000000, speed: 0.125253 steps/s, speed: 1.002025 samples/s, speed: 513.036732 tokens/s, learning rate: 1.230e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:22:15,622 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:22:23,595 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:22:23,595 [run_pretraining.py:  591]:	worker_index: 4, step: 125, cost: 10.522739, mlm loss: 10.522739, sentence order acc: 0.000000, speed: 0.125420 steps/s, speed: 1.003363 samples/s, speed: 513.721958 tokens/s, learning rate: 1.240e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:22:23,596 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:22:31,604 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:22:31,605 [run_pretraining.py:  591]:	worker_index: 4, step: 126, cost: 10.399772, mlm loss: 10.399772, sentence order acc: 0.000000, speed: 0.124857 steps/s, speed: 0.998855 samples/s, speed: 511.413849 tokens/s, learning rate: 1.250e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:22:31,605 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:22:39,538 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:22:39,539 [run_pretraining.py:  591]:	worker_index: 4, step: 127, cost: 10.476422, mlm loss: 10.476422, sentence order acc: 0.000000, speed: 0.126043 steps/s, speed: 1.008345 samples/s, speed: 516.272510 tokens/s, learning rate: 1.260e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:22:39,539 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:22:47,559 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:22:47,560 [run_pretraining.py:  591]:	worker_index: 4, step: 128, cost: 10.504026, mlm loss: 10.504026, sentence order acc: 0.000000, speed: 0.124686 steps/s, speed: 0.997487 samples/s, speed: 510.713598 tokens/s, learning rate: 1.270e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:22:47,560 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:23:19,960 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:23:19,962 [run_pretraining.py:  591]:	worker_index: 4, step: 129, cost: 10.479755, mlm loss: 10.479755, sentence order acc: 0.000000, speed: 0.030862 steps/s, speed: 0.246900 samples/s, speed: 126.412745 tokens/s, learning rate: 1.280e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:23:19,962 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:23:27,953 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:23:27,954 [run_pretraining.py:  591]:	worker_index: 4, step: 130, cost: 10.312250, mlm loss: 10.312250, sentence order acc: 0.000000, speed: 0.125135 steps/s, speed: 1.001083 samples/s, speed: 512.554601 tokens/s, learning rate: 1.290e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:23:27,954 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:23:35,931 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:23:35,933 [run_pretraining.py:  591]:	worker_index: 4, step: 131, cost: 10.302047, mlm loss: 10.302047, sentence order acc: 0.000000, speed: 0.125325 steps/s, speed: 1.002602 samples/s, speed: 513.332392 tokens/s, learning rate: 1.300e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:23:35,933 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:23:43,936 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:23:43,937 [run_pretraining.py:  591]:	worker_index: 4, step: 132, cost: 10.477860, mlm loss: 10.477860, sentence order acc: 0.000000, speed: 0.124948 steps/s, speed: 0.999585 samples/s, speed: 511.787533 tokens/s, learning rate: 1.310e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:23:43,937 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:23:51,959 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:23:51,960 [run_pretraining.py:  591]:	worker_index: 4, step: 133, cost: 10.374424, mlm loss: 10.374424, sentence order acc: 0.000000, speed: 0.124643 steps/s, speed: 0.997140 samples/s, speed: 510.535785 tokens/s, learning rate: 1.320e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:23:51,960 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:24:00,002 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:24:00,003 [run_pretraining.py:  591]:	worker_index: 4, step: 134, cost: 10.451458, mlm loss: 10.451458, sentence order acc: 0.000000, speed: 0.124332 steps/s, speed: 0.994656 samples/s, speed: 509.263876 tokens/s, learning rate: 1.330e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:24:00,003 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:24:07,992 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:24:07,993 [run_pretraining.py:  591]:	worker_index: 4, step: 135, cost: 10.525942, mlm loss: 10.525942, sentence order acc: 0.000000, speed: 0.125163 steps/s, speed: 1.001306 samples/s, speed: 512.668444 tokens/s, learning rate: 1.340e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:24:07,993 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:24:15,968 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:24:15,969 [run_pretraining.py:  591]:	worker_index: 4, step: 136, cost: 10.537689, mlm loss: 10.537689, sentence order acc: 0.000000, speed: 0.125385 steps/s, speed: 1.003078 samples/s, speed: 513.575727 tokens/s, learning rate: 1.350e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:24:15,969 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:24:49,768 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:24:49,771 [run_pretraining.py:  591]:	worker_index: 4, step: 137, cost: 10.517612, mlm loss: 10.517612, sentence order acc: 0.000000, speed: 0.029585 steps/s, speed: 0.236678 samples/s, speed: 121.178998 tokens/s, learning rate: 1.360e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:24:49,771 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:24:57,794 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:24:57,795 [run_pretraining.py:  591]:	worker_index: 4, step: 138, cost: 10.550149, mlm loss: 10.550149, sentence order acc: 0.000000, speed: 0.124624 steps/s, speed: 0.996991 samples/s, speed: 510.459620 tokens/s, learning rate: 1.370e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:24:57,795 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:25:05,825 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:25:05,826 [run_pretraining.py:  591]:	worker_index: 4, step: 139, cost: 10.446921, mlm loss: 10.446921, sentence order acc: 0.000000, speed: 0.124521 steps/s, speed: 0.996164 samples/s, speed: 510.036111 tokens/s, learning rate: 1.380e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:25:05,826 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:25:14,036 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:25:14,037 [run_pretraining.py:  591]:	worker_index: 4, step: 140, cost: 10.516379, mlm loss: 10.516379, sentence order acc: 0.000000, speed: 0.121798 steps/s, speed: 0.974386 samples/s, speed: 498.885852 tokens/s, learning rate: 1.390e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:25:14,037 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:25:21,873 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:25:21,874 [run_pretraining.py:  591]:	worker_index: 4, step: 141, cost: 10.467491, mlm loss: 10.467491, sentence order acc: 0.000000, speed: 0.127606 steps/s, speed: 1.020850 samples/s, speed: 522.675153 tokens/s, learning rate: 1.400e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:25:21,874 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:25:29,786 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:25:29,787 [run_pretraining.py:  591]:	worker_index: 4, step: 142, cost: 7.691728, mlm loss: 7.691728, sentence order acc: 0.000000, speed: 0.126374 steps/s, speed: 1.010993 samples/s, speed: 517.628618 tokens/s, learning rate: 1.410e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:25:29,787 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:25:37,703 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:25:37,704 [run_pretraining.py:  591]:	worker_index: 4, step: 143, cost: 10.444750, mlm loss: 10.444750, sentence order acc: 0.000000, speed: 0.126319 steps/s, speed: 1.010548 samples/s, speed: 517.400578 tokens/s, learning rate: 1.420e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:25:37,704 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:25:45,631 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:25:45,632 [run_pretraining.py:  591]:	worker_index: 4, step: 144, cost: 10.362954, mlm loss: 10.362954, sentence order acc: 0.000000, speed: 0.126138 steps/s, speed: 1.009100 samples/s, speed: 516.659359 tokens/s, learning rate: 1.430e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:25:45,632 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:25:53,535 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:25:53,536 [run_pretraining.py:  591]:	worker_index: 4, step: 145, cost: 10.342206, mlm loss: 10.342206, sentence order acc: 0.000000, speed: 0.126518 steps/s, speed: 1.012141 samples/s, speed: 518.216432 tokens/s, learning rate: 1.440e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:25:53,537 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:26:01,480 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:26:01,481 [run_pretraining.py:  591]:	worker_index: 4, step: 146, cost: 10.412138, mlm loss: 10.412138, sentence order acc: 0.000000, speed: 0.125870 steps/s, speed: 1.006961 samples/s, speed: 515.563866 tokens/s, learning rate: 1.450e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:26:01,482 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:26:09,439 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:26:09,440 [run_pretraining.py:  591]:	worker_index: 4, step: 147, cost: 10.441241, mlm loss: 10.441241, sentence order acc: 0.000000, speed: 0.125658 steps/s, speed: 1.005267 samples/s, speed: 514.696824 tokens/s, learning rate: 1.460e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:26:09,440 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:26:17,598 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:26:17,599 [run_pretraining.py:  591]:	worker_index: 4, step: 148, cost: 10.442188, mlm loss: 10.442188, sentence order acc: 0.000000, speed: 0.122573 steps/s, speed: 0.980587 samples/s, speed: 502.060485 tokens/s, learning rate: 1.470e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:26:17,599 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:26:25,815 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:26:25,816 [run_pretraining.py:  591]:	worker_index: 4, step: 149, cost: 10.558016, mlm loss: 10.558016, sentence order acc: 0.000000, speed: 0.121694 steps/s, speed: 0.973552 samples/s, speed: 498.458515 tokens/s, learning rate: 1.480e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:26:25,816 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:26:33,839 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:26:33,840 [run_pretraining.py:  591]:	worker_index: 4, step: 150, cost: 10.364721, mlm loss: 10.364721, sentence order acc: 0.000000, speed: 0.124628 steps/s, speed: 0.997022 samples/s, speed: 510.475394 tokens/s, learning rate: 1.490e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:26:33,841 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:26:41,815 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:26:41,817 [run_pretraining.py:  591]:	worker_index: 4, step: 151, cost: 10.463629, mlm loss: 10.463629, sentence order acc: 0.000000, speed: 0.125376 steps/s, speed: 1.003007 samples/s, speed: 513.539435 tokens/s, learning rate: 1.500e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:26:41,817 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:26:49,785 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:26:49,786 [run_pretraining.py:  591]:	worker_index: 4, step: 152, cost: 10.398484, mlm loss: 10.398484, sentence order acc: 0.000000, speed: 0.125493 steps/s, speed: 1.003942 samples/s, speed: 514.018270 tokens/s, learning rate: 1.510e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:26:49,786 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:26:57,816 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:26:57,817 [run_pretraining.py:  591]:	worker_index: 4, step: 153, cost: 10.461841, mlm loss: 10.461841, sentence order acc: 0.000000, speed: 0.124521 steps/s, speed: 0.996170 samples/s, speed: 510.038928 tokens/s, learning rate: 1.520e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:26:57,817 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:27:05,608 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:27:05,609 [run_pretraining.py:  591]:	worker_index: 4, step: 154, cost: 10.466155, mlm loss: 10.466155, sentence order acc: 0.000000, speed: 0.128344 steps/s, speed: 1.026750 samples/s, speed: 525.696204 tokens/s, learning rate: 1.530e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:27:05,609 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:27:13,560 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:27:13,562 [run_pretraining.py:  591]:	worker_index: 4, step: 155, cost: 10.468713, mlm loss: 10.468713, sentence order acc: 0.000000, speed: 0.125744 steps/s, speed: 1.005950 samples/s, speed: 515.046447 tokens/s, learning rate: 1.540e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:27:13,562 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:27:21,525 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:27:21,526 [run_pretraining.py:  591]:	worker_index: 4, step: 156, cost: 10.466298, mlm loss: 10.466298, sentence order acc: 0.000000, speed: 0.125570 steps/s, speed: 1.004564 samples/s, speed: 514.336727 tokens/s, learning rate: 1.550e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:27:21,526 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:27:29,522 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:27:29,522 [run_pretraining.py:  591]:	worker_index: 4, step: 157, cost: 10.468562, mlm loss: 10.468562, sentence order acc: 0.000000, speed: 0.125056 steps/s, speed: 1.000448 samples/s, speed: 512.229122 tokens/s, learning rate: 1.560e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:27:29,523 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:28:02,872 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:28:02,873 [run_pretraining.py:  591]:	worker_index: 4, step: 158, cost: 10.457201, mlm loss: 10.457201, sentence order acc: 0.000000, speed: 0.029985 steps/s, speed: 0.239877 samples/s, speed: 122.816905 tokens/s, learning rate: 1.570e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:28:02,873 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:28:10,867 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:28:10,868 [run_pretraining.py:  591]:	worker_index: 4, step: 159, cost: 10.284143, mlm loss: 10.284143, sentence order acc: 0.000000, speed: 0.125093 steps/s, speed: 1.000748 samples/s, speed: 512.382946 tokens/s, learning rate: 1.580e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:28:10,868 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:28:18,940 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:28:18,941 [run_pretraining.py:  591]:	worker_index: 4, step: 160, cost: 10.448994, mlm loss: 10.448994, sentence order acc: 0.000000, speed: 0.123871 steps/s, speed: 0.990968 samples/s, speed: 507.375824 tokens/s, learning rate: 1.590e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:28:18,941 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:28:26,828 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:28:26,830 [run_pretraining.py:  591]:	worker_index: 4, step: 161, cost: 10.492523, mlm loss: 10.492523, sentence order acc: 0.000000, speed: 0.126759 steps/s, speed: 1.014075 samples/s, speed: 519.206344 tokens/s, learning rate: 1.600e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:28:26,830 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:28:35,123 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:28:35,124 [run_pretraining.py:  591]:	worker_index: 4, step: 162, cost: 10.360085, mlm loss: 10.360085, sentence order acc: 0.000000, speed: 0.120572 steps/s, speed: 0.964576 samples/s, speed: 493.863148 tokens/s, learning rate: 1.610e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:28:35,124 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:28:43,202 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:28:43,204 [run_pretraining.py:  591]:	worker_index: 4, step: 163, cost: 10.449930, mlm loss: 10.449930, sentence order acc: 0.000000, speed: 0.123776 steps/s, speed: 0.990205 samples/s, speed: 506.984792 tokens/s, learning rate: 1.620e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:28:43,204 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:28:51,300 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:28:51,301 [run_pretraining.py:  591]:	worker_index: 4, step: 164, cost: 6.142154, mlm loss: 6.142154, sentence order acc: 0.000000, speed: 0.123509 steps/s, speed: 0.988076 samples/s, speed: 505.894710 tokens/s, learning rate: 1.630e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:28:51,301 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:28:59,377 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:28:59,379 [run_pretraining.py:  591]:	worker_index: 4, step: 165, cost: 10.582110, mlm loss: 10.582110, sentence order acc: 0.000000, speed: 0.123792 steps/s, speed: 0.990336 samples/s, speed: 507.052112 tokens/s, learning rate: 1.640e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:28:59,379 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:29:07,182 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:29:07,183 [run_pretraining.py:  591]:	worker_index: 4, step: 166, cost: 10.459991, mlm loss: 10.459991, sentence order acc: 0.000000, speed: 0.128145 steps/s, speed: 1.025161 samples/s, speed: 524.882465 tokens/s, learning rate: 1.650e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:29:07,183 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:29:15,044 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:29:15,045 [run_pretraining.py:  591]:	worker_index: 4, step: 167, cost: 10.330817, mlm loss: 10.330817, sentence order acc: 0.000000, speed: 0.127197 steps/s, speed: 1.017578 samples/s, speed: 520.999872 tokens/s, learning rate: 1.660e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:29:15,045 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:29:23,102 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:29:23,103 [run_pretraining.py:  591]:	worker_index: 4, step: 168, cost: 10.502209, mlm loss: 10.502209, sentence order acc: 0.000000, speed: 0.124107 steps/s, speed: 0.992860 samples/s, speed: 508.344238 tokens/s, learning rate: 1.670e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:29:23,103 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:29:31,028 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:29:31,029 [run_pretraining.py:  591]:	worker_index: 4, step: 169, cost: 10.492656, mlm loss: 10.492656, sentence order acc: 0.000000, speed: 0.126180 steps/s, speed: 1.009441 samples/s, speed: 516.833954 tokens/s, learning rate: 1.680e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:29:31,029 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:29:39,072 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:29:39,073 [run_pretraining.py:  591]:	worker_index: 4, step: 170, cost: 10.458829, mlm loss: 10.458829, sentence order acc: 0.000000, speed: 0.124313 steps/s, speed: 0.994501 samples/s, speed: 509.184740 tokens/s, learning rate: 1.690e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:29:39,073 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:29:47,078 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:29:47,079 [run_pretraining.py:  591]:	worker_index: 4, step: 171, cost: 10.465099, mlm loss: 10.465099, sentence order acc: 0.000000, speed: 0.124918 steps/s, speed: 0.999344 samples/s, speed: 511.664130 tokens/s, learning rate: 1.700e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:29:47,079 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:29:55,041 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:29:55,042 [run_pretraining.py:  591]:	worker_index: 4, step: 172, cost: 10.488552, mlm loss: 10.488552, sentence order acc: 0.000000, speed: 0.125585 steps/s, speed: 1.004677 samples/s, speed: 514.394416 tokens/s, learning rate: 1.710e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:29:55,042 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:30:03,161 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:30:03,161 [run_pretraining.py:  591]:	worker_index: 4, step: 173, cost: 10.488148, mlm loss: 10.488148, sentence order acc: 0.000000, speed: 0.123166 steps/s, speed: 0.985331 samples/s, speed: 504.489630 tokens/s, learning rate: 1.720e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:30:03,161 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:30:11,290 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:30:11,291 [run_pretraining.py:  591]:	worker_index: 4, step: 174, cost: 10.369120, mlm loss: 10.369120, sentence order acc: 0.000000, speed: 0.123010 steps/s, speed: 0.984083 samples/s, speed: 503.850591 tokens/s, learning rate: 1.730e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:30:11,291 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:30:19,316 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:30:19,316 [run_pretraining.py:  591]:	worker_index: 4, step: 175, cost: 10.550095, mlm loss: 10.550095, sentence order acc: 0.000000, speed: 0.124608 steps/s, speed: 0.996864 samples/s, speed: 510.394136 tokens/s, learning rate: 1.740e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:30:19,317 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:30:27,181 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:30:27,183 [run_pretraining.py:  591]:	worker_index: 4, step: 176, cost: 10.481973, mlm loss: 10.481973, sentence order acc: 0.000000, speed: 0.127121 steps/s, speed: 1.016964 samples/s, speed: 520.685753 tokens/s, learning rate: 1.750e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:30:27,183 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:30:35,154 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:30:35,155 [run_pretraining.py:  591]:	worker_index: 4, step: 177, cost: 10.543038, mlm loss: 10.543038, sentence order acc: 0.000000, speed: 0.125451 steps/s, speed: 1.003605 samples/s, speed: 513.845588 tokens/s, learning rate: 1.760e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:30:35,155 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:30:43,180 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:30:43,181 [run_pretraining.py:  591]:	worker_index: 4, step: 178, cost: 10.537595, mlm loss: 10.537595, sentence order acc: 0.000000, speed: 0.124594 steps/s, speed: 0.996756 samples/s, speed: 510.338979 tokens/s, learning rate: 1.770e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:30:43,181 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:30:51,254 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:30:51,255 [run_pretraining.py:  591]:	worker_index: 4, step: 179, cost: 10.349615, mlm loss: 10.349615, sentence order acc: 0.000000, speed: 0.123860 steps/s, speed: 0.990877 samples/s, speed: 507.328777 tokens/s, learning rate: 1.780e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:30:51,255 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:30:59,256 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:30:59,257 [run_pretraining.py:  591]:	worker_index: 4, step: 180, cost: 10.324528, mlm loss: 10.324528, sentence order acc: 0.000000, speed: 0.124978 steps/s, speed: 0.999824 samples/s, speed: 511.909882 tokens/s, learning rate: 1.790e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:30:59,257 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:31:07,277 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:31:07,278 [run_pretraining.py:  591]:	worker_index: 4, step: 181, cost: 10.303096, mlm loss: 10.303096, sentence order acc: 0.000000, speed: 0.124678 steps/s, speed: 0.997427 samples/s, speed: 510.682431 tokens/s, learning rate: 1.800e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:31:07,278 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:31:15,206 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:31:15,206 [run_pretraining.py:  591]:	worker_index: 4, step: 182, cost: 10.413647, mlm loss: 10.413647, sentence order acc: 0.000000, speed: 0.126132 steps/s, speed: 1.009060 samples/s, speed: 516.638555 tokens/s, learning rate: 1.810e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:31:15,207 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:31:23,150 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:31:23,151 [run_pretraining.py:  591]:	worker_index: 4, step: 183, cost: 10.408833, mlm loss: 10.408833, sentence order acc: 0.000000, speed: 0.125877 steps/s, speed: 1.007019 samples/s, speed: 515.593945 tokens/s, learning rate: 1.820e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:31:23,151 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:31:31,122 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:31:31,123 [run_pretraining.py:  591]:	worker_index: 4, step: 184, cost: 10.532073, mlm loss: 10.532073, sentence order acc: 0.000000, speed: 0.125443 steps/s, speed: 1.003541 samples/s, speed: 513.813130 tokens/s, learning rate: 1.830e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:31:31,123 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:31:39,195 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:31:39,196 [run_pretraining.py:  591]:	worker_index: 4, step: 185, cost: 10.616259, mlm loss: 10.616259, sentence order acc: 0.000000, speed: 0.123873 steps/s, speed: 0.990984 samples/s, speed: 507.383810 tokens/s, learning rate: 1.840e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:31:39,196 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:32:11,554 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:32:11,555 [run_pretraining.py:  591]:	worker_index: 4, step: 186, cost: 10.331471, mlm loss: 10.331471, sentence order acc: 0.000000, speed: 0.030903 steps/s, speed: 0.247228 samples/s, speed: 126.580651 tokens/s, learning rate: 1.850e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:32:11,556 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:32:19,379 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:32:19,380 [run_pretraining.py:  591]:	worker_index: 4, step: 187, cost: 10.534172, mlm loss: 10.534172, sentence order acc: 0.000000, speed: 0.127806 steps/s, speed: 1.022450 samples/s, speed: 523.494499 tokens/s, learning rate: 1.860e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:32:19,380 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:32:27,326 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:32:27,327 [run_pretraining.py:  591]:	worker_index: 4, step: 188, cost: 5.985090, mlm loss: 5.985090, sentence order acc: 0.000000, speed: 0.125848 steps/s, speed: 1.006784 samples/s, speed: 515.473464 tokens/s, learning rate: 1.870e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:32:27,327 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:32:35,278 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:32:35,279 [run_pretraining.py:  591]:	worker_index: 4, step: 189, cost: 10.437181, mlm loss: 10.437181, sentence order acc: 0.000000, speed: 0.125748 steps/s, speed: 1.005982 samples/s, speed: 515.062675 tokens/s, learning rate: 1.880e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:32:35,279 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:32:43,311 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:32:43,312 [run_pretraining.py:  591]:	worker_index: 4, step: 190, cost: 10.360945, mlm loss: 10.360945, sentence order acc: 0.000000, speed: 0.124489 steps/s, speed: 0.995914 samples/s, speed: 509.908057 tokens/s, learning rate: 1.890e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:32:43,312 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:32:51,223 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:32:51,224 [run_pretraining.py:  591]:	worker_index: 4, step: 191, cost: 10.516714, mlm loss: 10.516714, sentence order acc: 0.000000, speed: 0.126402 steps/s, speed: 1.011218 samples/s, speed: 517.743618 tokens/s, learning rate: 1.900e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:32:51,224 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:32:59,586 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:32:59,586 [run_pretraining.py:  591]:	worker_index: 4, step: 192, cost: 10.422583, mlm loss: 10.422583, sentence order acc: 0.000000, speed: 0.119590 steps/s, speed: 0.956719 samples/s, speed: 489.839954 tokens/s, learning rate: 1.910e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:32:59,586 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:33:07,613 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:33:07,614 [run_pretraining.py:  591]:	worker_index: 4, step: 193, cost: 10.392480, mlm loss: 10.392480, sentence order acc: 0.000000, speed: 0.124578 steps/s, speed: 0.996625 samples/s, speed: 510.272026 tokens/s, learning rate: 1.920e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:33:07,614 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:33:15,646 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:33:15,647 [run_pretraining.py:  591]:	worker_index: 4, step: 194, cost: 10.390553, mlm loss: 10.390553, sentence order acc: 0.000000, speed: 0.124483 steps/s, speed: 0.995862 samples/s, speed: 509.881332 tokens/s, learning rate: 1.930e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:33:15,647 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:33:23,716 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:33:23,717 [run_pretraining.py:  591]:	worker_index: 4, step: 195, cost: 10.442805, mlm loss: 10.442805, sentence order acc: 0.000000, speed: 0.123922 steps/s, speed: 0.991373 samples/s, speed: 507.582798 tokens/s, learning rate: 1.940e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:33:23,717 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:33:31,700 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:33:31,700 [run_pretraining.py:  591]:	worker_index: 4, step: 196, cost: 10.535362, mlm loss: 10.535362, sentence order acc: 0.000000, speed: 0.125269 steps/s, speed: 1.002149 samples/s, speed: 513.100321 tokens/s, learning rate: 1.950e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:33:31,700 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:33:39,606 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:33:39,607 [run_pretraining.py:  591]:	worker_index: 4, step: 197, cost: 10.430047, mlm loss: 10.430047, sentence order acc: 0.000000, speed: 0.126478 steps/s, speed: 1.011821 samples/s, speed: 518.052134 tokens/s, learning rate: 1.960e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:33:39,607 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:33:47,537 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:33:47,538 [run_pretraining.py:  591]:	worker_index: 4, step: 198, cost: 10.390424, mlm loss: 10.390424, sentence order acc: 0.000000, speed: 0.126095 steps/s, speed: 1.008762 samples/s, speed: 516.485969 tokens/s, learning rate: 1.970e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:33:47,538 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:33:55,583 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:33:55,584 [run_pretraining.py:  591]:	worker_index: 4, step: 199, cost: 10.440111, mlm loss: 10.440111, sentence order acc: 0.000000, speed: 0.124285 steps/s, speed: 0.994282 samples/s, speed: 509.072243 tokens/s, learning rate: 1.980e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:33:55,584 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:34:03,637 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:34:03,638 [run_pretraining.py:  591]:	worker_index: 4, step: 200, cost: 10.415854, mlm loss: 10.415854, sentence order acc: 0.000000, speed: 0.124171 steps/s, speed: 0.993368 samples/s, speed: 508.604216 tokens/s, learning rate: 1.990e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:34:03,638 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:34:11,848 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:34:11,849 [run_pretraining.py:  591]:	worker_index: 4, step: 201, cost: 10.403376, mlm loss: 10.403376, sentence order acc: 0.000000, speed: 0.121789 steps/s, speed: 0.974314 samples/s, speed: 498.848609 tokens/s, learning rate: 2.000e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:34:11,849 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:34:19,889 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:34:19,890 [run_pretraining.py:  591]:	worker_index: 4, step: 202, cost: 10.449499, mlm loss: 10.449499, sentence order acc: 0.000000, speed: 0.124375 steps/s, speed: 0.995004 samples/s, speed: 509.441862 tokens/s, learning rate: 2.010e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:34:19,890 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:34:27,926 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:34:27,927 [run_pretraining.py:  591]:	worker_index: 4, step: 203, cost: 10.502202, mlm loss: 10.502202, sentence order acc: 0.000000, speed: 0.124423 steps/s, speed: 0.995387 samples/s, speed: 509.638203 tokens/s, learning rate: 2.020e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:34:27,927 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:34:35,827 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:34:35,828 [run_pretraining.py:  591]:	worker_index: 4, step: 204, cost: 10.390797, mlm loss: 10.390797, sentence order acc: 0.000000, speed: 0.126571 steps/s, speed: 1.012565 samples/s, speed: 518.433176 tokens/s, learning rate: 2.030e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:34:35,829 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:34:43,798 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:34:43,800 [run_pretraining.py:  591]:	worker_index: 4, step: 205, cost: 10.542526, mlm loss: 10.542526, sentence order acc: 0.000000, speed: 0.125453 steps/s, speed: 1.003624 samples/s, speed: 513.855332 tokens/s, learning rate: 2.040e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:34:43,800 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:34:51,778 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:34:51,779 [run_pretraining.py:  591]:	worker_index: 4, step: 206, cost: 10.475821, mlm loss: 10.475821, sentence order acc: 0.000000, speed: 0.125336 steps/s, speed: 1.002692 samples/s, speed: 513.378120 tokens/s, learning rate: 2.050e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:34:51,779 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:34:59,758 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:34:59,759 [run_pretraining.py:  591]:	worker_index: 4, step: 207, cost: 10.411997, mlm loss: 10.411997, sentence order acc: 0.000000, speed: 0.125317 steps/s, speed: 1.002536 samples/s, speed: 513.298297 tokens/s, learning rate: 2.060e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:34:59,759 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:35:33,799 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:35:33,800 [run_pretraining.py:  591]:	worker_index: 4, step: 208, cost: 10.330496, mlm loss: 10.330496, sentence order acc: 0.000000, speed: 0.029376 steps/s, speed: 0.235011 samples/s, speed: 120.325764 tokens/s, learning rate: 2.070e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:35:33,800 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:35:41,839 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:35:41,840 [run_pretraining.py:  591]:	worker_index: 4, step: 209, cost: 10.487171, mlm loss: 10.487171, sentence order acc: 0.000000, speed: 0.124389 steps/s, speed: 0.995109 samples/s, speed: 509.496025 tokens/s, learning rate: 2.080e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:35:41,840 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:35:49,927 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:35:49,928 [run_pretraining.py:  591]:	worker_index: 4, step: 210, cost: 10.573174, mlm loss: 10.573174, sentence order acc: 0.000000, speed: 0.123636 steps/s, speed: 0.989086 samples/s, speed: 506.412107 tokens/s, learning rate: 2.090e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:35:49,928 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:35:57,862 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:35:57,863 [run_pretraining.py:  591]:	worker_index: 4, step: 211, cost: 8.549296, mlm loss: 8.549296, sentence order acc: 0.000000, speed: 0.126039 steps/s, speed: 1.008312 samples/s, speed: 516.255708 tokens/s, learning rate: 2.100e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:35:57,863 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:36:06,011 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:36:06,012 [run_pretraining.py:  591]:	worker_index: 4, step: 212, cost: 10.400095, mlm loss: 10.400095, sentence order acc: 0.000000, speed: 0.122719 steps/s, speed: 0.981752 samples/s, speed: 502.656866 tokens/s, learning rate: 2.110e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:36:06,012 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:36:13,957 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:36:13,958 [run_pretraining.py:  591]:	worker_index: 4, step: 213, cost: 10.397936, mlm loss: 10.397936, sentence order acc: 0.000000, speed: 0.125855 steps/s, speed: 1.006844 samples/s, speed: 515.504074 tokens/s, learning rate: 2.120e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:36:13,958 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:36:21,963 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:36:21,964 [run_pretraining.py:  591]:	worker_index: 4, step: 214, cost: 10.552881, mlm loss: 10.552881, sentence order acc: 0.000000, speed: 0.124913 steps/s, speed: 0.999303 samples/s, speed: 511.642934 tokens/s, learning rate: 2.130e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:36:21,964 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:36:29,858 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:36:29,859 [run_pretraining.py:  591]:	worker_index: 4, step: 215, cost: 10.533252, mlm loss: 10.533252, sentence order acc: 0.000000, speed: 0.126660 steps/s, speed: 1.013283 samples/s, speed: 518.800820 tokens/s, learning rate: 2.140e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:36:29,859 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:36:38,066 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:36:38,067 [run_pretraining.py:  591]:	worker_index: 4, step: 216, cost: 10.403252, mlm loss: 10.403252, sentence order acc: 0.000000, speed: 0.121835 steps/s, speed: 0.974680 samples/s, speed: 499.036173 tokens/s, learning rate: 2.150e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:36:38,067 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:36:46,025 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:36:46,025 [run_pretraining.py:  591]:	worker_index: 4, step: 217, cost: 10.528312, mlm loss: 10.528312, sentence order acc: 0.000000, speed: 0.125659 steps/s, speed: 1.005276 samples/s, speed: 514.701234 tokens/s, learning rate: 2.160e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:36:46,026 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:37:19,406 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:37:19,407 [run_pretraining.py:  591]:	worker_index: 4, step: 218, cost: 10.412545, mlm loss: 10.412545, sentence order acc: 0.000000, speed: 0.029957 steps/s, speed: 0.239656 samples/s, speed: 122.703737 tokens/s, learning rate: 2.170e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:37:19,407 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:37:27,338 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:37:27,339 [run_pretraining.py:  591]:	worker_index: 4, step: 219, cost: 10.470606, mlm loss: 10.470606, sentence order acc: 0.000000, speed: 0.126083 steps/s, speed: 1.008663 samples/s, speed: 516.435557 tokens/s, learning rate: 2.180e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:37:27,339 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:37:35,153 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:37:35,154 [run_pretraining.py:  591]:	worker_index: 4, step: 220, cost: 10.484114, mlm loss: 10.484114, sentence order acc: 0.000000, speed: 0.127963 steps/s, speed: 1.023703 samples/s, speed: 524.135820 tokens/s, learning rate: 2.190e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:37:35,154 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:37:43,085 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:37:43,085 [run_pretraining.py:  591]:	worker_index: 4, step: 221, cost: 10.463421, mlm loss: 10.463421, sentence order acc: 0.000000, speed: 0.126081 steps/s, speed: 1.008647 samples/s, speed: 516.427034 tokens/s, learning rate: 2.200e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:37:43,086 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:37:51,043 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:37:51,043 [run_pretraining.py:  591]:	worker_index: 4, step: 222, cost: 10.411262, mlm loss: 10.411262, sentence order acc: 0.000000, speed: 0.125665 steps/s, speed: 1.005324 samples/s, speed: 514.725707 tokens/s, learning rate: 2.210e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:37:51,043 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:37:58,995 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:37:58,996 [run_pretraining.py:  591]:	worker_index: 4, step: 223, cost: 10.499800, mlm loss: 10.499800, sentence order acc: 0.000000, speed: 0.125745 steps/s, speed: 1.005960 samples/s, speed: 515.051465 tokens/s, learning rate: 2.220e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:37:58,996 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:38:06,887 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:38:06,888 [run_pretraining.py:  591]:	worker_index: 4, step: 224, cost: 10.505290, mlm loss: 10.505290, sentence order acc: 0.000000, speed: 0.126720 steps/s, speed: 1.013756 samples/s, speed: 519.043221 tokens/s, learning rate: 2.230e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:38:06,888 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:38:15,071 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:38:15,072 [run_pretraining.py:  591]:	worker_index: 4, step: 225, cost: 10.372696, mlm loss: 10.372696, sentence order acc: 0.000000, speed: 0.122190 steps/s, speed: 0.977520 samples/s, speed: 500.490245 tokens/s, learning rate: 2.240e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:38:15,072 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:38:23,017 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:38:23,018 [run_pretraining.py:  591]:	worker_index: 4, step: 226, cost: 10.447531, mlm loss: 10.447531, sentence order acc: 0.000000, speed: 0.125861 steps/s, speed: 1.006888 samples/s, speed: 515.526720 tokens/s, learning rate: 2.250e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:38:23,018 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:38:30,648 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:38:30,649 [run_pretraining.py:  591]:	worker_index: 4, step: 227, cost: 10.516296, mlm loss: 10.516296, sentence order acc: 0.000000, speed: 0.131054 steps/s, speed: 1.048434 samples/s, speed: 536.798058 tokens/s, learning rate: 2.260e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:38:30,649 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:38:38,526 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:38:38,527 [run_pretraining.py:  591]:	worker_index: 4, step: 228, cost: 10.440173, mlm loss: 10.440173, sentence order acc: 0.000000, speed: 0.126936 steps/s, speed: 1.015486 samples/s, speed: 519.929088 tokens/s, learning rate: 2.270e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:38:38,527 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:38:46,530 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:38:46,531 [run_pretraining.py:  591]:	worker_index: 4, step: 229, cost: 10.477008, mlm loss: 10.477008, sentence order acc: 0.000000, speed: 0.124947 steps/s, speed: 0.999579 samples/s, speed: 511.784316 tokens/s, learning rate: 2.280e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:38:46,531 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:38:54,364 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:38:54,364 [run_pretraining.py:  591]:	worker_index: 4, step: 230, cost: 10.483677, mlm loss: 10.483677, sentence order acc: 0.000000, speed: 0.127659 steps/s, speed: 1.021271 samples/s, speed: 522.890774 tokens/s, learning rate: 2.290e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:38:54,365 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:39:02,120 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:39:02,120 [run_pretraining.py:  591]:	worker_index: 4, step: 231, cost: 10.509960, mlm loss: 10.509960, sentence order acc: 0.000000, speed: 0.128939 steps/s, speed: 1.031511 samples/s, speed: 528.133683 tokens/s, learning rate: 2.300e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:39:02,120 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:39:10,032 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:39:10,033 [run_pretraining.py:  591]:	worker_index: 4, step: 232, cost: 10.376282, mlm loss: 10.376282, sentence order acc: 0.000000, speed: 0.126381 steps/s, speed: 1.011051 samples/s, speed: 517.658174 tokens/s, learning rate: 2.310e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:39:10,033 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:39:17,807 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:39:17,809 [run_pretraining.py:  591]:	worker_index: 4, step: 233, cost: 10.423399, mlm loss: 10.423399, sentence order acc: 0.000000, speed: 0.128604 steps/s, speed: 1.028832 samples/s, speed: 526.761987 tokens/s, learning rate: 2.320e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:39:17,810 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:39:25,501 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:39:25,502 [run_pretraining.py:  591]:	worker_index: 4, step: 234, cost: 10.469891, mlm loss: 10.469891, sentence order acc: 0.000000, speed: 0.129999 steps/s, speed: 1.039990 samples/s, speed: 532.474883 tokens/s, learning rate: 2.330e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:39:25,502 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:39:33,309 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:39:33,310 [run_pretraining.py:  591]:	worker_index: 4, step: 235, cost: 10.454868, mlm loss: 10.454868, sentence order acc: 0.000000, speed: 0.128085 steps/s, speed: 1.024684 samples/s, speed: 524.638010 tokens/s, learning rate: 2.340e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:39:33,310 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:39:41,155 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:39:41,156 [run_pretraining.py:  591]:	worker_index: 4, step: 236, cost: 10.451045, mlm loss: 10.451045, sentence order acc: 0.000000, speed: 0.127452 steps/s, speed: 1.019614 samples/s, speed: 522.042174 tokens/s, learning rate: 2.350e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:39:41,156 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:39:49,149 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:39:49,150 [run_pretraining.py:  591]:	worker_index: 4, step: 237, cost: 10.555378, mlm loss: 10.555378, sentence order acc: 0.000000, speed: 0.125107 steps/s, speed: 1.000855 samples/s, speed: 512.437538 tokens/s, learning rate: 2.360e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:39:49,150 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:39:56,804 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:39:56,806 [run_pretraining.py:  591]:	worker_index: 4, step: 238, cost: 10.435527, mlm loss: 10.435527, sentence order acc: 0.000000, speed: 0.130610 steps/s, speed: 1.044883 samples/s, speed: 534.979908 tokens/s, learning rate: 2.370e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:39:56,806 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:40:04,672 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:40:04,673 [run_pretraining.py:  591]:	worker_index: 4, step: 239, cost: 10.308170, mlm loss: 10.308170, sentence order acc: 0.000000, speed: 0.127121 steps/s, speed: 1.016966 samples/s, speed: 520.686732 tokens/s, learning rate: 2.380e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:40:04,673 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:40:12,523 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:40:12,524 [run_pretraining.py:  591]:	worker_index: 4, step: 240, cost: 10.351400, mlm loss: 10.351400, sentence order acc: 0.000000, speed: 0.127375 steps/s, speed: 1.019001 samples/s, speed: 521.728382 tokens/s, learning rate: 2.390e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:40:12,524 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:40:20,467 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:40:20,468 [run_pretraining.py:  591]:	worker_index: 4, step: 241, cost: 10.454578, mlm loss: 10.454578, sentence order acc: 0.000000, speed: 0.125895 steps/s, speed: 1.007158 samples/s, speed: 515.664886 tokens/s, learning rate: 2.400e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:40:20,468 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:40:28,331 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:40:28,332 [run_pretraining.py:  591]:	worker_index: 4, step: 242, cost: 8.396819, mlm loss: 8.396819, sentence order acc: 0.000000, speed: 0.127171 steps/s, speed: 1.017365 samples/s, speed: 520.890907 tokens/s, learning rate: 2.410e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:40:28,332 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:40:35,952 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:40:35,962 [run_pretraining.py:  591]:	worker_index: 4, step: 243, cost: 10.418196, mlm loss: 10.418196, sentence order acc: 0.000000, speed: 0.131064 steps/s, speed: 1.048515 samples/s, speed: 536.839809 tokens/s, learning rate: 2.420e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:40:35,962 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:40:43,690 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:40:43,726 [run_pretraining.py:  591]:	worker_index: 4, step: 244, cost: 10.496092, mlm loss: 10.496092, sentence order acc: 0.000000, speed: 0.128806 steps/s, speed: 1.030447 samples/s, speed: 527.588876 tokens/s, learning rate: 2.430e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:40:43,726 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:40:51,509 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:40:51,510 [run_pretraining.py:  591]:	worker_index: 4, step: 245, cost: 10.506521, mlm loss: 10.506521, sentence order acc: 0.000000, speed: 0.128463 steps/s, speed: 1.027706 samples/s, speed: 526.185644 tokens/s, learning rate: 2.440e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:40:51,511 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:40:59,419 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:40:59,419 [run_pretraining.py:  591]:	worker_index: 4, step: 246, cost: 10.454697, mlm loss: 10.454697, sentence order acc: 0.000000, speed: 0.126442 steps/s, speed: 1.011535 samples/s, speed: 517.905941 tokens/s, learning rate: 2.450e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:40:59,420 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:41:07,198 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:41:07,199 [run_pretraining.py:  591]:	worker_index: 4, step: 247, cost: 10.486652, mlm loss: 10.486652, sentence order acc: 0.000000, speed: 0.128553 steps/s, speed: 1.028425 samples/s, speed: 526.553459 tokens/s, learning rate: 2.460e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:41:07,199 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:41:15,030 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:41:15,031 [run_pretraining.py:  591]:	worker_index: 4, step: 248, cost: 10.411286, mlm loss: 10.411286, sentence order acc: 0.000000, speed: 0.127686 steps/s, speed: 1.021487 samples/s, speed: 523.001278 tokens/s, learning rate: 2.470e-06, loss_scalings: 1.000000, pp_loss: 0.000000
+[INFO] 2021-06-28 23:41:15,031 [run_pretraining.py:  525]:	********exe.run******* 
+I0628 23:41:39.430088 120540 op_call_stack.cc:61] 
+
+--------------------------------------
+C++ Traceback (most recent call last):
+--------------------------------------
+0   std::thread::_State_impl<std::thread::_Invoker<std::tuple<std::__future_base::_Async_state_impl<std::thread::_Invoker<std::tuple<void (paddle::framework::DeviceWorker::*)(), paddle::framework::DeviceWorker*> >, void>::_Async_state_impl(std::thread::_Invoker<std::tuple<void (paddle::framework::DeviceWorker::*)(), paddle::framework::DeviceWorker*> >&&)::{lambda()#1}> > >::_M_run()
+1   std::__future_base::_State_baseV2::_M_do_set(std::function<std::unique_ptr<std::__future_base::_Result_base, std::__future_base::_Result_base::_Deleter> ()>*, bool*)
+2   std::_Function_handler<std::unique_ptr<std::__future_base::_Result_base, std::__future_base::_Result_base::_Deleter> (), std::__future_base::_Task_setter<std::unique_ptr<std::__future_base::_Result<void>, std::__future_base::_Result_base::_Deleter>, std::thread::_Invoker<std::tuple<void (paddle::framework::DeviceWorker::*)(), paddle::framework::DeviceWorker*> >, void> >::_M_invoke(std::_Any_data const&)
+3   paddle::framework::SectionWorker::TrainFiles()
+4   paddle::framework::SectionWorker::RunBackward(int, std::unique_ptr<paddle::framework::GarbageCollector, std::default_delete<paddle::framework::GarbageCollector> >&, std::unordered_map<paddle::framework::OperatorBase const*, std::vector<std::string, std::allocator<std::string> >, std::hash<paddle::framework::OperatorBase const*>, std::equal_to<paddle::framework::OperatorBase const*>, std::allocator<std::pair<paddle::framework::OperatorBase const* const, std::vector<std::string, std::allocator<std::string> > > > >&)
+5   paddle::framework::OperatorBase::Run(paddle::framework::Scope const&, paddle::platform::Place const&)
+6   paddle::framework::OperatorWithKernel::RunImpl(paddle::framework::Scope const&, paddle::platform::Place const&) const
+7   paddle::framework::OperatorWithKernel::RunImpl(paddle::framework::Scope const&, paddle::platform::Place const&, paddle::framework::RuntimeContext*) const
+8   std::_Function_handler<void (paddle::framework::ExecutionContext const&), paddle::framework::OpKernelRegistrarFunctor<paddle::platform::NPUPlace, false, 1ul, paddle::operators::LayerNormGradNPUKernel<float>, paddle::operators::LayerNormGradNPUKernel<paddle::platform::float16> >::operator()(char const*, char const*, int) const::{lambda(paddle::framework::ExecutionContext const&)#1}>::_M_invoke(std::_Any_data const&, paddle::framework::ExecutionContext const&)
+9   paddle::operators::LayerNormGradNPUKernel<paddle::platform::float16>::Compute(paddle::framework::ExecutionContext const&) const
+10  paddle::operators::NpuOpRunner::Run(void*) const
+11  paddle::platform::EnforceNotMet::EnforceNotMet(paddle::platform::ErrorSummary const&, char const*, int)
+12  paddle::platform::GetCurrentTraceBackString()
+
+----------------------
+Error Message Summary:
+----------------------
+ExternalError:  ACL error, the error code is : 500002.  (at /home/liupeng51/github/Paddle/paddle/fluid/operators/npu_op_runner.cc:320)
+Traceback (most recent call last):
+  File "run_pretraining.py", line 618, in <module>
+    train(args)
+  File "run_pretraining.py", line 529, in train
+    ret = exe.run(train_program, fetch_list=fetch_list, use_program_cache=True) # run one mini-batch(=acc_steps micro-batch)
+  File "/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/executor.py", line 1110, in run
+    six.reraise(*sys.exc_info())
+  File "/home/gongwb/.local/lib/python3.7/site-packages/six.py", line 703, in reraise
+    raise value
+  File "/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/executor.py", line 1108, in run
+    return_merged=return_merged)
+  File "/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/executor.py", line 1138, in _run_impl
+    return self.train_from_dataset(program, fetch_list=fetch_list)
+  File "/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/executor.py", line 1728, in train_from_dataset
+    print_period, fetch_handler)
+  File "/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/executor.py", line 1528, in _run_from_dataset
+    self._default_executor.release_trainer(trainer_instance)
+OSError: 
+
+  Compile Traceback (most recent call last):
+    File "run_pretraining.py", line 618, in <module>
+      train(args)
+    File "run_pretraining.py", line 380, in train
+      graph_vars = create_model(args, 'train', micro_bsz, dp_sharding_rank, dp_sharding_worldsize, topo, acc_steps)
+    File "run_pretraining.py", line 196, in create_model
+      mask_lm_loss, mean_mask_lm_loss = ernie.get_lm_output(mask_label, mask_pos)
+    File "/home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/ernie.py", line 391, in get_lm_output
+      epsilon=self.config['epsilon'])
+    File "/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/nn.py", line 3545, in layer_norm
+      "begin_norm_axis": begin_norm_axis})
+    File "/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layer_helper.py", line 43, in append_op
+      return self.main_program.current_block().append_op(*args, **kwargs)
+    File "/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/framework.py", line 2947, in append_op
+      attrs=kwargs.get("attrs", None))
+    File "/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/framework.py", line 2019, in __init__
+      for frame in traceback.extract_stack():
+
+--------------------------------------
+C++ Traceback (most recent call last):
+--------------------------------------
+0   std::thread::_State_impl<std::thread::_Invoker<std::tuple<std::__future_base::_Async_state_impl<std::thread::_Invoker<std::tuple<void (paddle::framework::DeviceWorker::*)(), paddle::framework::DeviceWorker*> >, void>::_Async_state_impl(std::thread::_Invoker<std::tuple<void (paddle::framework::DeviceWorker::*)(), paddle::framework::DeviceWorker*> >&&)::{lambda()#1}> > >::_M_run()
+1   std::__future_base::_State_baseV2::_M_do_set(std::function<std::unique_ptr<std::__future_base::_Result_base, std::__future_base::_Result_base::_Deleter> ()>*, bool*)
+2   std::_Function_handler<std::unique_ptr<std::__future_base::_Result_base, std::__future_base::_Result_base::_Deleter> (), std::__future_base::_Task_setter<std::unique_ptr<std::__future_base::_Result<void>, std::__future_base::_Result_base::_Deleter>, std::thread::_Invoker<std::tuple<void (paddle::framework::DeviceWorker::*)(), paddle::framework::DeviceWorker*> >, void> >::_M_invoke(std::_Any_data const&)
+3   paddle::framework::SectionWorker::TrainFiles()
+4   paddle::framework::SectionWorker::RunBackward(int, std::unique_ptr<paddle::framework::GarbageCollector, std::default_delete<paddle::framework::GarbageCollector> >&, std::unordered_map<paddle::framework::OperatorBase const*, std::vector<std::string, std::allocator<std::string> >, std::hash<paddle::framework::OperatorBase const*>, std::equal_to<paddle::framework::OperatorBase const*>, std::allocator<std::pair<paddle::framework::OperatorBase const* const, std::vector<std::string, std::allocator<std::string> > > > >&)
+5   paddle::framework::OperatorBase::Run(paddle::framework::Scope const&, paddle::platform::Place const&)
+6   paddle::framework::OperatorWithKernel::RunImpl(paddle::framework::Scope const&, paddle::platform::Place const&) const
+7   paddle::framework::OperatorWithKernel::RunImpl(paddle::framework::Scope const&, paddle::platform::Place const&, paddle::framework::RuntimeContext*) const
+8   std::_Function_handler<void (paddle::framework::ExecutionContext const&), paddle::framework::OpKernelRegistrarFunctor<paddle::platform::NPUPlace, false, 1ul, paddle::operators::LayerNormGradNPUKernel<float>, paddle::operators::LayerNormGradNPUKernel<paddle::platform::float16> >::operator()(char const*, char const*, int) const::{lambda(paddle::framework::ExecutionContext const&)#1}>::_M_invoke(std::_Any_data const&, paddle::framework::ExecutionContext const&)
+9   paddle::operators::LayerNormGradNPUKernel<paddle::platform::float16>::Compute(paddle::framework::ExecutionContext const&) const
+10  paddle::operators::NpuOpRunner::Run(void*) const
+11  paddle::platform::EnforceNotMet::EnforceNotMet(paddle::platform::ErrorSummary const&, char const*, int)
+12  paddle::platform::GetCurrentTraceBackString()
+
+----------------------
+Error Message Summary:
+----------------------
+ExternalError:  ACL error, the error code is : 500002.  (at /home/liupeng51/github/Paddle/paddle/fluid/operators/npu_op_runner.cc:320)
+  [operator < layer_norm_grad > error]
+I0628 23:41:42.332651 95252 reader.h:164] ~ReaderHolder
+I0628 23:41:42.332734 95252 buffered_reader.cc:22] ~BufferedReader
+I0628 23:41:42.332743 95252 lod_tensor_blocking_queue.h:59] LoDTensorBlockingQueue close
+I0628 23:41:42.332751 95252 blocking_queue.h:132] close queue
+I0628 23:41:42.334502 95252 reader.cc:76] ~DecoratedReader
+I0628 23:41:42.334525 95252 lod_tensor_blocking_queue.h:59] LoDTensorBlockingQueue close
+I0628 23:41:42.334532 95252 blocking_queue.h:132] close queue
+I0628 23:41:42.338658 95252 reader.h:164] ~ReaderHolder
+I0628 23:41:42.338685 95252 lod_tensor_blocking_queue.h:59] LoDTensorBlockingQueue close
+I0628 23:41:42.338691 95252 blocking_queue.h:132] close queue
+terminate called without an active exception
+
+
+--------------------------------------
+C++ Traceback (most recent call last):
+--------------------------------------
+0   paddle::framework::SignalHandle(char const*, int)
+
+----------------------
+Error Message Summary:
+----------------------
+FatalError: `Process abort signal` is detected by the operating system.
+  [TimeInfo: *** Aborted at 1624894902 (unix time) try "date -d @1624894902" if you are using GNU date ***]
+  [SignalInfo: *** SIGABRT (@0x17414) received by PID 95252 (TID 0xffff309781e0) from PID 95252 ***]
+

@@ -1,0 +1,663 @@
+WARNING: AVX is not support on your machine. Hence, no_avx core will be imported, It has much worse preformance than avx core.
+/home/gongwb/.local/lib/python3.7/site-packages/setuptools/depends.py:2: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+I0628 22:26:10.076160 95245 init.cc:88] Before Parse: argc is 2, Init commandline: dummy --tryfromenv=check_nan_inf,benchmark,eager_delete_scope,fraction_of_cpu_memory_to_use,initial_cpu_memory_in_mb,init_allocated_mem,paddle_num_threads,dist_threadpool_size,eager_delete_tensor_gb,fast_eager_deletion_mode,memory_fraction_of_eager_deletion,allocator_strategy,reader_queue_speed_test_mode,print_sub_graph_dir,pe_profile_fname,inner_op_parallelism,enable_parallel_graph,fuse_parameter_groups_size,multiple_of_cupti_buffer_size,fuse_parameter_memory_size,tracer_profile_fname,dygraph_debug,use_system_allocator,enable_unused_var_check,free_idle_chunk,free_when_no_cache_hit,call_stack_level,sort_sum_gradient,max_inplace_grad_add,use_pinned_memory,cpu_deterministic,selected_npus,fraction_of_gpu_memory_to_use,initial_gpu_memory_in_mb,reallocate_gpu_memory_in_mb,gpu_memory_limit_mb 
+I0628 22:26:10.076390 95245 init.cc:95] After Parse: argc is 1
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/hapi/model.py:28: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3,and in 3.9 it will stop working
+  from collections import Iterable
+-----------  Configuration Arguments -----------
+data_dir: ./data_bak
+debug: False
+do_eval: True
+epoch: 100
+ernie_config_file: config/ernie_base_config.json
+eval_batch_size: 35
+eval_data_path: ./data
+eval_steps: -1
+global_bsz: 8
+global_steps: 0
+grad_merge: 0
+init_checkpoint: 
+learning_rate: 0.0001
+log_steps: 1
+max_seq_len: 512
+micro_bsz: 1
+num_dp: 1
+num_mp: 4
+num_pp: 2
+num_sharding: 1
+num_train_steps: 1600
+output_dir: output/npu-pp
+preln: False
+save_steps: 500
+seed: 2021
+use_amp: True
+use_hybrid_dp: True
+use_lamb: False
+use_offload: False
+use_recompute: True
+use_sharding: True
+use_sop: False
+vocab_file: ./config/30k-clean.vocab.albert
+warmup_steps: 10000
+weight_decay: 0.01
+------------------------------------------------
+[INFO] 2021-06-28 22:26:10,916 [run_pretraining.py:  285]:	pretraining start
+[INFO] 2021-06-28 22:26:10,917 [run_pretraining.py:  310]:	using recompute.
+[INFO] 2021-06-28 22:26:10,917 [run_pretraining.py:  355]:	using globa_bsz: 8 micro_bsz: 1, acc_steps: 8
+[DEBUG] 2021-06-28 22:26:10,982 [run_pretraining.py:  148]:	========= dp_sharding worker: 0 of 1 ==========
+[INFO] 2021-06-28 22:26:10,983 [pretraining_ds_mlm.py:  263]:	Apply sharding in distribution env 0/1
+[INFO] 2021-06-28 22:26:10,983 [pretraining_ds_mlm.py:  265]:	read from ./data_bak/part-00000.104,./data_bak/part-00000.100,./data_bak/part-00000.107,./data_bak/part-00000.103,./data_bak/part-00000.10,./data_bak/part-00000.105,./data_bak/part-00000.101,./data_bak/part-00000.102,./data_bak/part-00000.106,./data_bak/part-00000.109,./data_bak/part-00000.108
+I0628 22:26:10.983664 95245 reader_py.cc:387] init_lod_tensor_blocking_queue
+INFO:root:places would be ommited when DataLoader is not iterable
+input_mask(-1, 512, 1)
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/ernie.py:153
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/ernie.py:154
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:166
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:276
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:39
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:40
+The behavior of expression A * B has been unified with elementwise_mul(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_mul(X, Y, axis=0) instead of A * B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+[DEBUG] 2021-06-28 22:26:11,789 [run_pretraining.py:  395]:	base lr: 0.0001
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/distributed/fleet/base/fleet_base.py:813: UserWarning: It is recommended to use DistributedStrategy in fleet.init(). The strategy here is only for compatibility. If the strategy in fleet.distributed_optimizer() is not None, then it will overwrite the DistributedStrategy in fleet.init(), which will take effect in distributed training.
+  "It is recommended to use DistributedStrategy "
+2021-06-28 22:26:11 INFO     Gradient merge in [pp_gm], acc step = [8]
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:Gradient merge in [pp_gm], acc step = [8]
+Mon Jun 28 22:26:12-INFO: recompute segment[0]
+Mon Jun 28 22:26:12-INFO: segment start op: [squeeze2]: [['shard_index_0.tmp_0']]
+Mon Jun 28 22:26:12-INFO: segment end op: [layer_norm]: [['encoder_layer_0_post_ffn_layer_norm_bias', 'encoder_layer_0_post_ffn_layer_norm_scale', 'tmp_10']]
+Mon Jun 28 22:26:12-INFO: recompute segment[0]
+Mon Jun 28 22:26:12-INFO: segment start op: [squeeze2]: [['shard_index_0.tmp_0']]
+Mon Jun 28 22:26:12-INFO: segment end op: [layer_norm]: [['encoder_layer_0_post_ffn_layer_norm_bias', 'encoder_layer_0_post_ffn_layer_norm_scale', 'tmp_10']]
+Mon Jun 28 22:26:12-INFO: found [0] vars which cross recompute segment: [set()], better checkpoints might be set to reduce those vars
+pp_rank: 0
+2021-06-28 22:26:17 INFO     global word size: 8
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:global word size: 8
+2021-06-28 22:26:17 INFO     global rank: 2
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:global rank: 2
+2021-06-28 22:26:17 INFO     global endpoints: ['192.168.206.27:6170', '192.168.206.27:6171', '192.168.206.27:6172', '192.168.206.27:6173', '192.168.206.27:6174', '192.168.206.27:6175', '192.168.206.27:6176', '192.168.206.27:6177']
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:global endpoints: ['192.168.206.27:6170', '192.168.206.27:6171', '192.168.206.27:6172', '192.168.206.27:6173', '192.168.206.27:6174', '192.168.206.27:6175', '192.168.206.27:6176', '192.168.206.27:6177']
+2021-06-28 22:26:17 INFO     global ring id: 3
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:global ring id: 3
+2021-06-28 22:26:17 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+2021-06-28 22:26:17 INFO     mp group size: 4
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp group size: 4
+2021-06-28 22:26:17 INFO     mp rank: 2
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp rank: 2
+2021-06-28 22:26:17 INFO     mp group id: 0
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp group id: 0
+2021-06-28 22:26:17 INFO     mp group endpoints: ['192.168.206.27:6170', '192.168.206.27:6171', '192.168.206.27:6172', '192.168.206.27:6173']
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp group endpoints: ['192.168.206.27:6170', '192.168.206.27:6171', '192.168.206.27:6172', '192.168.206.27:6173']
+2021-06-28 22:26:17 INFO     mp ring id: 0
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp ring id: 0
+2021-06-28 22:26:17 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+2021-06-28 22:26:17 INFO     sharding group size: 1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding group size: 1
+2021-06-28 22:26:17 INFO     sharding rank: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding rank: -1
+2021-06-28 22:26:17 INFO     sharding group id: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding group id: -1
+2021-06-28 22:26:17 INFO     sharding group endpoints: []
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding group endpoints: []
+2021-06-28 22:26:17 INFO     sharding ring id: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding ring id: -1
+2021-06-28 22:26:17 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+2021-06-28 22:26:17 INFO     pp group size: 2
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp group size: 2
+2021-06-28 22:26:17 INFO     pp rank: 0
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp rank: 0
+2021-06-28 22:26:17 INFO     pp group id: 0
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp group id: 0
+2021-06-28 22:26:17 INFO     pp group endpoints: ['192.168.206.27:6172', '192.168.206.27:6176']
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp group endpoints: ['192.168.206.27:6172', '192.168.206.27:6176']
+2021-06-28 22:26:17 INFO     pp ring id: 20
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp ring id: 20
+2021-06-28 22:26:17 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+2021-06-28 22:26:17 INFO     pure dp group size: 1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pure dp group size: 1
+2021-06-28 22:26:17 INFO     pure dp rank: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pure dp rank: -1
+2021-06-28 22:26:17 INFO     pure dp group endpoints: []
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pure dp group endpoints: []
+2021-06-28 22:26:17 INFO     pure dp ring id: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pure dp ring id: -1
+2021-06-28 22:26:17 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+pp pair:(0, 1), ring_id: 20
+pp pair:(1, 0), ring_id: 21
+[INFO] 2021-06-28 22:26:22,867 [run_pretraining.py:  427]:	applied_meta_list: ['ShardingOptimizer', 'AMPOptimizer', 'RecomputeOptimizer']
+[INFO] 2021-06-28 22:26:22,870 [run_pretraining.py:  428]:	*******go out of gaurd
+I0628 22:26:35.390538 95245 gen_hccl_id_op_helper.cc:181] Server listening on: 192.168.206.27:6172 successful.
+I0628 22:26:36.820798 95245 collective_helper_npu.cc:83] initialized comm: 0xffffdd2be570, nranks: 8, hccl_id: 0x1109a034, rank: 2
+I0628 22:26:39.483809 95245 collective_helper_npu.cc:88] initialized comm: 0xffffdd2be570, nranks: 8, hccl_id: 0x1109a034, rank: 2
+I0628 22:26:39.484037 95245 collective_helper_npu.cc:93] hccl communicator of rank 2 in ring 3 has been created on device 2, with comm: 0x110ba240
+I0628 22:26:43.050619 95245 gen_hccl_id_op_helper.cc:181] Server listening on: 192.168.206.27:6172 successful.
+I0628 22:26:43.552816 95245 collective_helper_npu.cc:83] initialized comm: 0xffffdd2be570, nranks: 4, hccl_id: 0x112b2114, rank: 2
+I0628 22:26:45.376396 95245 collective_helper_npu.cc:88] initialized comm: 0xffffdd2be570, nranks: 4, hccl_id: 0x112b2114, rank: 2
+I0628 22:26:45.376628 95245 collective_helper_npu.cc:93] hccl communicator of rank 2 in ring 0 has been created on device 2, with comm: 0x1122f190
+I0628 22:26:46.222095 95245 collective_helper_npu.cc:83] initialized comm: 0xffffdd2be570, nranks: 2, hccl_id: 0x112bf4d4, rank: 0
+I0628 22:26:47.442458 95245 collective_helper_npu.cc:88] initialized comm: 0xffffdd2be570, nranks: 2, hccl_id: 0x112bf4d4, rank: 0
+I0628 22:26:47.442804 95245 collective_helper_npu.cc:93] hccl communicator of rank 0 in ring 20 has been created on device 2, with comm: 0x1120c900
+I0628 22:26:47.695582 95245 gen_hccl_id_op_helper.cc:181] Server listening on: 192.168.206.27:6172 successful.
+I0628 22:26:47.697504 95245 collective_helper_npu.cc:83] initialized comm: 0xffffdd2be570, nranks: 2, hccl_id: 0x112c0654, rank: 1
+I0628 22:26:48.920497 95245 collective_helper_npu.cc:88] initialized comm: 0xffffdd2be570, nranks: 2, hccl_id: 0x112c0654, rank: 1
+I0628 22:26:48.920718 95245 collective_helper_npu.cc:93] hccl communicator of rank 1 in ring 21 has been created on device 2, with comm: 0x111eb9c0
+[INFO] 2021-06-28 22:26:49,303 [run_pretraining.py:  474]:	************amp init ... use amp = True**********
+[INFO] 2021-06-28 22:26:49,304 [run_pretraining.py:  505]:	************start traing ...****************
+[INFO] 2021-06-28 22:26:49,304 [run_pretraining.py:  525]:	********exe.run******* 
+I0628 22:26:55.067173 98586 lod_tensor_blocking_queue.h:104] Init queue with size 1
+I0628 22:26:55.067646 98586 buffered_reader.cc:41] BufferedReader
+[INFO] 2021-06-28 22:31:24,382 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:31:24,383 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:34:19,122 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:34:19,151 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:36:28,766 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:36:28,767 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:38:38,425 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:38:38,426 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:40:47,910 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:40:47,911 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:42:11,099 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:42:11,099 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:43:57,060 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:43:57,060 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:46:07,375 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:46:07,376 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:47:02,955 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:47:02,955 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:47:35,862 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:47:35,863 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:48:33,797 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:48:33,797 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:49:31,295 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:49:31,296 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:49:39,315 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:49:39,315 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:51:00,382 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:51:00,383 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:51:31,890 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:51:31,890 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:52:28,616 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:52:28,616 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:53:25,566 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:53:25,567 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:53:57,248 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:53:57,248 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:54:53,643 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:54:53,644 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:55:01,538 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:55:01,539 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:55:34,737 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:55:34,738 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:56:06,501 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:56:06,503 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:57:05,252 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:57:05,252 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:57:37,321 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:57:37,322 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:58:33,915 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:58:33,916 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 22:59:31,527 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 22:59:31,527 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:00:04,878 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:00:04,880 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:00:38,211 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:00:38,213 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:01:58,752 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:01:58,754 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:02:32,022 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:02:32,023 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:03:54,354 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:03:54,355 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:04:28,611 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:04:28,612 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:04:59,989 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:04:59,989 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:05:07,944 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:05:07,945 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:05:15,942 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:05:15,943 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:05:23,929 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:05:23,930 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:05:56,980 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:05:56,980 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:06:53,424 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:06:53,425 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:07:01,405 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:07:01,405 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:07:09,473 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:07:09,474 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:07:17,422 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:07:17,422 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:07:50,768 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:07:50,769 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:07:58,725 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:07:58,726 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:08:06,823 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:08:06,824 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:08:41,324 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:08:41,325 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:08:49,845 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:08:49,846 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:08:58,649 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:08:58,650 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:09:07,324 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:09:07,325 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:09:41,168 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:09:41,169 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:09:49,619 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:09:49,647 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:09:58,164 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:09:58,165 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:10:06,509 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:10:06,510 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:10:14,868 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:10:14,869 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:10:22,988 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:10:22,989 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:10:31,114 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:10:31,115 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:10:39,474 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:10:39,474 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:10:47,457 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:10:47,458 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:11:20,574 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:11:20,574 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:11:28,670 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:11:28,670 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:11:36,808 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:11:36,809 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:11:44,888 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:11:44,889 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:11:52,905 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:11:52,905 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:12:00,953 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:12:00,953 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:12:09,028 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:12:09,030 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:12:17,128 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:12:17,130 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:12:25,120 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:12:25,121 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:12:33,130 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:12:33,131 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:12:41,134 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:12:41,135 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:12:49,121 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:12:49,122 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:12:57,178 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:12:57,179 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:13:05,241 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:13:05,242 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:13:13,099 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:13:13,100 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:13:21,123 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:13:21,123 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:13:29,124 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:13:29,125 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:13:37,076 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:13:37,078 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:13:45,062 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:13:45,063 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:13:53,061 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:13:53,061 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:14:01,092 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:14:01,093 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:14:08,975 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:14:08,976 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:14:17,000 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:14:17,000 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:14:25,026 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:14:25,027 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:14:33,035 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:14:33,037 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:14:41,021 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:14:41,021 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:14:49,051 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:14:49,051 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:14:57,245 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:14:57,246 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:15:05,445 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:15:05,446 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:15:13,510 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:15:13,511 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:15:44,315 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:15:44,315 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:15:52,288 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:15:52,289 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:16:00,379 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:16:00,380 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:16:08,692 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:16:08,693 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:16:42,053 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:16:42,054 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:16:50,155 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:16:50,156 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:16:58,161 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:16:58,161 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:17:06,206 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:17:06,206 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:17:14,393 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:17:14,395 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:17:22,455 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:17:22,456 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:17:30,606 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:17:30,606 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:17:38,613 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:17:38,614 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:17:46,573 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:17:46,574 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:17:54,617 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:17:54,617 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:18:02,623 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:18:02,625 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:18:10,619 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:18:10,620 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:18:18,600 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:18:18,601 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:18:52,177 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:18:52,178 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:19:00,159 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:19:00,160 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:19:08,223 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:19:08,224 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:19:16,315 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:19:16,316 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:19:24,288 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:19:24,289 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:19:32,360 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:19:32,360 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:20:06,008 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:20:06,009 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:20:14,017 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:20:14,018 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:20:22,011 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:20:22,011 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:20:29,879 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:20:29,880 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:20:37,872 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:20:37,873 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:21:11,990 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:21:11,991 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:21:20,002 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:21:20,003 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:21:27,908 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:21:27,908 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:21:35,836 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:21:35,837 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:21:43,795 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:21:43,796 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:21:51,764 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:21:51,765 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:21:59,675 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:21:59,675 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:22:07,626 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:22:07,626 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:22:15,608 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:22:15,610 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:22:23,582 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:22:23,583 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:22:31,594 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:22:31,594 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:22:39,524 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:22:39,525 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:22:47,545 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:22:47,545 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:23:19,937 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:23:19,938 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:23:27,942 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:23:27,944 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:23:35,929 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:23:35,930 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:23:43,924 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:23:43,925 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:23:51,947 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:23:51,948 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:23:59,983 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:23:59,983 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:24:07,980 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:24:07,981 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:24:15,950 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:24:15,951 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:24:49,750 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:24:49,751 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:24:57,780 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:24:57,781 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:25:05,821 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:25:05,821 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:25:14,012 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:25:14,013 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:25:21,863 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:25:21,863 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:25:29,769 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:25:29,770 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:25:37,693 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:25:37,693 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:25:45,611 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:25:45,612 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:25:53,527 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:25:53,527 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:26:01,472 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:26:01,472 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:26:09,424 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:26:09,425 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:26:17,555 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:26:17,555 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:26:25,796 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:26:25,797 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:26:33,830 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:26:33,831 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:26:41,802 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:26:41,803 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:26:49,768 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:26:49,769 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:26:57,802 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:26:57,803 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:27:05,604 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:27:05,605 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:27:13,548 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:27:13,549 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:27:21,512 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:27:21,514 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:27:29,501 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:27:29,502 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:28:02,858 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:28:02,859 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:28:10,848 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:28:10,848 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:28:18,929 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:28:18,930 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:28:26,820 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:28:26,821 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:28:35,106 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:28:35,107 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:28:43,191 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:28:43,192 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:28:51,283 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:28:51,283 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:28:59,367 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:28:59,368 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:29:07,167 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:29:07,168 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:29:15,032 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:29:15,033 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:29:23,088 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:29:23,089 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:29:31,017 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:29:31,018 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:29:39,061 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:29:39,062 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:29:47,071 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:29:47,071 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:29:55,022 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:29:55,023 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:30:03,137 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:30:03,137 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:30:11,280 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:30:11,281 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:30:19,304 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:30:19,305 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:30:27,167 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:30:27,168 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:30:35,143 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:30:35,144 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:30:43,167 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:30:43,167 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:30:51,239 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:30:51,240 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:30:59,243 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:30:59,244 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:31:07,264 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:31:07,265 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:31:15,191 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:31:15,192 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:31:23,138 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:31:23,139 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:31:31,115 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:31:31,116 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:31:39,185 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:31:39,185 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:32:11,528 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:32:11,530 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:32:19,363 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:32:19,364 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:32:27,311 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:32:27,312 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:32:35,265 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:32:35,265 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:32:43,299 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:32:43,300 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:32:51,208 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:32:51,209 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:32:59,561 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:32:59,563 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:33:07,599 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:33:07,600 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:33:15,632 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:33:15,633 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:33:23,686 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:33:23,687 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:33:31,681 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:33:31,682 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:33:39,591 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:33:39,591 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:33:47,523 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:33:47,523 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:33:55,574 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:33:55,575 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:34:03,622 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:34:03,623 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:34:11,836 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:34:11,836 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:34:19,873 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:34:19,875 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:34:27,914 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:34:27,914 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:34:35,813 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:34:35,814 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:34:43,783 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:34:43,784 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:34:51,763 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:34:51,765 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:34:59,745 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:34:59,746 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:35:33,769 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:35:33,770 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:35:41,819 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:35:41,820 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:35:49,890 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:35:49,892 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:35:57,846 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:35:57,846 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:36:05,989 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:36:05,990 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:36:13,944 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:36:13,944 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:36:21,945 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:36:21,946 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:36:29,843 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:36:29,844 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:36:38,038 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:36:38,038 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:36:46,004 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:36:46,006 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:37:19,389 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:37:19,389 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:37:27,326 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:37:27,327 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:37:35,149 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:37:35,150 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:37:43,068 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:37:43,069 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:37:51,014 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:37:51,015 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:37:58,981 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:37:58,981 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:38:06,872 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:38:06,872 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:38:15,058 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:38:15,059 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:38:23,011 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:38:23,012 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:38:30,635 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:38:30,636 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:38:38,536 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:38:38,539 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:38:46,515 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:38:46,516 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:38:54,352 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:38:54,353 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:39:02,105 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:39:02,105 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:39:10,003 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:39:10,004 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:39:17,797 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:39:17,798 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:39:25,488 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:39:25,488 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:39:33,296 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:39:33,296 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:39:41,139 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:39:41,140 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:39:49,127 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:39:49,128 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:39:56,787 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:39:56,787 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:40:04,654 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:40:04,655 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:40:12,511 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:40:12,511 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:40:20,443 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:40:20,444 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:40:28,317 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:40:28,318 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:40:35,943 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:40:35,943 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:40:43,701 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:40:43,703 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:40:51,499 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:40:51,500 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:40:59,407 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:40:59,409 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:41:07,190 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:41:07,191 [run_pretraining.py:  525]:	********exe.run******* 
+[INFO] 2021-06-28 23:41:15,003 [run_pretraining.py:  531]:	*******exe .run .end ******
+[INFO] 2021-06-28 23:41:15,004 [run_pretraining.py:  525]:	********exe.run******* 
+/home/gongwb/.local/lib/python3.7/multiprocessing/semaphore_tracker.py:144: UserWarning: semaphore_tracker: There appear to be 91 leaked semaphores to clean up at shutdown
+  len(cache))
