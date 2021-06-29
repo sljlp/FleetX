@@ -12,7 +12,7 @@ export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/:$LD_LIBRARY_PATH
 rm -rf *.prototxt
 rm -rf core.*
 
-task_name='pp-test-1f1b'
+task_name='pp-test-1f1b-fromstep1'
 output_dir=output/${task_name}
 rm -rf ${output_dir}
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
@@ -20,8 +20,8 @@ python3 -m paddle.distributed.fleet.launch \
         --gpus="0,1,2,3,4,5,6,7" \
 	--log_dir ${output_dir}/log \
 run_pretraining.py \
-	--global_bsz 8 \
-	--micro_bsz 1 \
+	--global_bsz 64 \
+	--micro_bsz 8 \
 	--max_seq_len 512 \
 	--ernie_config_file config/ernie_base_config.json \
 	--learning_rate 1e-4 \
@@ -35,4 +35,5 @@ run_pretraining.py \
 	--num_sharding=1 \
 	--num_pp=2 \
 	--num_dp=1 \
+        --init_checkpoint output/pp-test-1f1b/step_1 \
     --debug false \
