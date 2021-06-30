@@ -2,47 +2,37 @@ set -x
 
 export PYTHONPATH=./atarashi/:$PYTHONPATH
 
-export PADDLE_WITH_GLOO=0
+# export PYTHONPATH=/code_lp/paddle/Paddle/build/develop/python/:$PYTHONPATH
+export PYTHONPATH=/code_lp/paddle/Paddle/build/develop/python:$PYTHONPATH
 export GLOG_v=1
 export NCCL_DEBUG=INFO
 export FLAGS_call_stack_level=2
 export FLAGS_allocator_strategy=naive_best_fit
+export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/:$LD_LIBRARY_PATH
+rm -rf *.prototxt
+rm -rf core.*
 
-export PYTHONPATH=/code_lp/paddle/Paddle/build/develop/python:$PYTHONPATH
-# export PYTHONPATH=/code_lp/paddle/paddle_2.1/Paddle/build/python:$PYTHONPATH
-
-PP=2
-DP=1
-MP=4
-
-MS=1
-BS=8
-
-task_name='gpt3-230B-'${PP}pp${DP}dp${MP}mp
+task_name='newest-ppmp-1f1b'
 output_dir=output/${task_name}
-# rm -rf ${output_dir}
-
+rm -rf ${output_dir}
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
-
-python3.7 -m paddle.distributed.fleet.launch \
+python3 -m paddle.distributed.fleet.launch \
+        --gpus="0,1,2,3,4,5,,6,7" \
 	--log_dir ${output_dir}/log \
 run_pretraining.py \
-	--global_bsz $BS \
-	--micro_bsz $MS \
+	--global_bsz 64 \
+	--micro_bsz 8 \
 	--max_seq_len 512 \
 	--ernie_config_file config/ernie_base_config.json \
 	--learning_rate 1e-4 \
 	--log_steps 1 \
-	--num_train_steps 700 \
-	--save_steps 200 \
+	--num_train_steps 250 \
+	--save_steps 100 \
 	--output_dir ${output_dir} \
 	--use_recompute true \
 	--use_sharding true \
-	--use_sop false \
-	--num_mp=$MP \
+	--num_mp=4 \
 	--num_sharding=1 \
-	--num_pp=$PP \
-	--num_dp=$DP \
-#         --init_checkpoint output/gpt3-230B-1pp1dp2mp/step_2
-
-
+	--num_pp=2 \
+	--num_dp=1 \
+    --debug false
