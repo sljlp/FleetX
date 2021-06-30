@@ -373,6 +373,7 @@ def train(args):
         optimizer.amp_init(place)
 
     # output_dir = args.output_dir + '_' + str(fleet.worker_index())
+    output_dir = args.output_dir
     save_steps = args.save_steps
     total_time = 0
     cost_vals, lm_losses, sop_accs = [], [], []
