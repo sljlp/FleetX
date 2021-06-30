@@ -566,7 +566,7 @@ def train(args):
             if steps > 0 and args.eval_steps > 0 and steps % args.eval_steps == 0:
                 pass
 
-            if (steps > 0 and args.save_steps > 0 and steps % args.save_steps == 0) or steps == 1 or steps == 247:
+            if (steps > 0 and args.save_steps > 0 and steps % args.save_steps == 0): # or steps == 1 or steps == 247:
                 if args.use_hybrid_dp and fleet.worker_index() > 8:
                     continue
                 save_path = os.path.join(output_dir, 'step_' + str(steps))
