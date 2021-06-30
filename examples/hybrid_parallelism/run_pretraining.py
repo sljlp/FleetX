@@ -254,7 +254,7 @@ def train(args):
                                           "gradient_merge_acc_step": acc_steps,
                                           "optimize_offload": False,
                                          }
-        dist_strategy.pipeline_configs = {"schedule_mode": "F-then-B",
+        dist_strategy.pipeline_configs = {"schedule_mode": "1F1B", #"F-then-B",
                                           "micro_batch_size": micro_bsz,
                                           "accumulate_steps": acc_steps,
                                          }
@@ -372,7 +372,7 @@ def train(args):
     if args.use_amp:
         optimizer.amp_init(place)
 
-    output_dir = args.output_dir + '_' + str(fleet.worker_index())
+    # output_dir = args.output_dir + '_' + str(fleet.worker_index())
     save_steps = args.save_steps
     total_time = 0
     cost_vals, lm_losses, sop_accs = [], [], []
