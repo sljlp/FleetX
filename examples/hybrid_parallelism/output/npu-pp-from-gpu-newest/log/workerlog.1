@@ -1,0 +1,105 @@
+WARNING: AVX is not support on your machine. Hence, no_avx core will be imported, It has much worse preformance than avx core.
+/home/gongwb/.local/lib/python3.7/site-packages/setuptools/depends.py:2: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+I0630 20:26:06.421278 149610 init.cc:88] Before Parse: argc is 2, Init commandline: dummy --tryfromenv=check_nan_inf,benchmark,eager_delete_scope,fraction_of_cpu_memory_to_use,initial_cpu_memory_in_mb,init_allocated_mem,paddle_num_threads,dist_threadpool_size,eager_delete_tensor_gb,fast_eager_deletion_mode,memory_fraction_of_eager_deletion,allocator_strategy,reader_queue_speed_test_mode,print_sub_graph_dir,pe_profile_fname,inner_op_parallelism,enable_parallel_graph,fuse_parameter_groups_size,multiple_of_cupti_buffer_size,fuse_parameter_memory_size,tracer_profile_fname,dygraph_debug,use_system_allocator,enable_unused_var_check,free_idle_chunk,free_when_no_cache_hit,call_stack_level,sort_sum_gradient,max_inplace_grad_add,use_pinned_memory,cpu_deterministic,selected_npus,fraction_of_gpu_memory_to_use,initial_gpu_memory_in_mb,reallocate_gpu_memory_in_mb,gpu_memory_limit_mb 
+I0630 20:26:06.421439 149610 init.cc:95] After Parse: argc is 1
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/hapi/model.py:28: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3,and in 3.9 it will stop working
+  from collections import Iterable
+[INFO] 2021-06-30 20:26:07,182 [run_pretraining.py:   49]:	using tensorboard
+-----------  Configuration Arguments -----------
+data_dir: ./data_bak
+debug: False
+do_eval: True
+epoch: 100
+ernie_config_file: config/ernie_base_config.json
+eval_batch_size: 35
+eval_data_path: ./data
+eval_steps: -1
+global_bsz: 64
+global_steps: 0
+grad_merge: 0
+init_checkpoint: output/step_1
+learning_rate: 0.0001
+log_steps: 1
+max_seq_len: 512
+micro_bsz: 8
+num_dp: 1
+num_mp: 1
+num_pp: 2
+num_sharding: 1
+num_train_steps: 1600
+output_dir: output/npu-pp-from-gpu-newest
+preln: False
+save_steps: 500
+seed: 2021
+use_amp: True
+use_hybrid_dp: True
+use_lamb: False
+use_offload: False
+use_recompute: True
+use_sharding: True
+use_sop: False
+vocab_file: ./config/30k-clean.vocab.albert
+warmup_steps: 10000
+weight_decay: 0.01
+------------------------------------------------
+to run startup
+[INFO] 2021-06-30 20:26:07,186 [run_pretraining.py:  201]:	pretraining start
+[INFO] 2021-06-30 20:26:07,186 [run_pretraining.py:  216]:	using recompute.
+[INFO] 2021-06-30 20:26:07,186 [run_pretraining.py:  261]:	using globa_bsz: 64 micro_bsz: 8, acc_steps: 8
+[DEBUG] 2021-06-30 20:26:07,239 [run_pretraining.py:  108]:	========= dp_sharding worker: 0 of 1 ==========
+[INFO] 2021-06-30 20:26:07,239 [pretraining_ds_mlm.py:  255]:	Apply sharding in distribution env 0/1
+[INFO] 2021-06-30 20:26:07,239 [pretraining_ds_mlm.py:  257]:	read from ./data_bak/part-00000.104,./data_bak/part-00000.100,./data_bak/part-00000.107,./data_bak/part-00000.103,./data_bak/part-00000.10,./data_bak/part-00000.105,./data_bak/part-00000.101,./data_bak/part-00000.102,./data_bak/part-00000.106,./data_bak/part-00000.109,./data_bak/part-00000.108
+I0630 20:26:07.240129 149610 reader_py.cc:387] init_lod_tensor_blocking_queue
+INFO:root:places would be ommited when DataLoader is not iterable
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/framework.py:2048: UserWarning: The Attr(force_cpu) of Op(fill_constant) will be deprecated in the future, please use 'device_guard' instead. 'device_guard' has higher priority when they are used at the same time.
+  "used at the same time." % type)
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/ernie.py:149
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/ernie.py:150
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:166
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:276
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:39
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:40
+The behavior of expression A * B has been unified with elementwise_mul(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_mul(X, Y, axis=0) instead of A * B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+[DEBUG] 2021-06-30 20:26:07,957 [run_pretraining.py:  295]:	base lr: 0.0001
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/distributed/fleet/base/fleet_base.py:813: UserWarning: It is recommended to use DistributedStrategy in fleet.init(). The strategy here is only for compatibility. If the strategy in fleet.distributed_optimizer() is not None, then it will overwrite the DistributedStrategy in fleet.init(), which will take effect in distributed training.
+  "It is recommended to use DistributedStrategy "
+2021-06-30 20:26:07 INFO     Gradient merge in [pp_gm], acc step = [8]
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:Gradient merge in [pp_gm], acc step = [8]
+Wed Jun 30 20:26:08-INFO: recompute segment[0]
+Wed Jun 30 20:26:08-INFO: segment start op: [lookup_table]: [['src_ids', 'word_embedding']]
+Wed Jun 30 20:26:08-INFO: segment end op: [layer_norm]: [['encoder_layer_0_post_ffn_layer_norm_bias', 'encoder_layer_0_post_ffn_layer_norm_scale', 'tmp_10']]
+Wed Jun 30 20:26:08-INFO: recompute segment[0]
+Wed Jun 30 20:26:08-INFO: segment start op: [lookup_table]: [['src_ids', 'word_embedding']]
+Wed Jun 30 20:26:08-INFO: segment end op: [layer_norm]: [['encoder_layer_0_post_ffn_layer_norm_bias', 'encoder_layer_0_post_ffn_layer_norm_scale', 'tmp_10']]
+Wed Jun 30 20:26:08-INFO: found [0] vars which cross recompute segment: [set()], better checkpoints might be set to reduce those vars
+Traceback (most recent call last):
+  File "run_pretraining.py", line 474, in <module>
+    train(args)
+  File "run_pretraining.py", line 321, in train
+    optimizer.minimize(graph_vars['total_loss'])
+  File "/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/distributed/fleet/base/fleet_base.py", line 1429, in minimize
+    loss, startup_program, parameter_list, no_grad_set=no_grad_set)
+  File "/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/distributed/fleet/meta_optimizers/meta_optimizer_base.py", line 95, in minimize
+    loss, startup_program, parameter_list, no_grad_set)
+  File "/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/distributed/fleet/meta_optimizers/sharding_optimizer.py", line 217, in minimize_impl
+    loss, startup_program, parameter_list, no_grad_set)
+  File "/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/optimizer.py", line 5223, in minimize
+    self._insert_sendrecv_ops_for_boundaries(main_block)
+  File "/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/optimizer.py", line 4872, in _insert_sendrecv_ops_for_boundaries
+    int(prev_device.split(':')[1]))
+  File "/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/optimizer.py", line 4759, in _insert_send_recv
+    assert abs(cur_id - prev_id) == 1
+AssertionError
