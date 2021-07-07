@@ -1,0 +1,469 @@
+grep: warning: GREP_OPTIONS is deprecated; please use an alias or script
+/usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/pyparsing.py:943: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  collections.MutableMapping.register(ParseResults)
+/usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/pyparsing.py:3226: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  elif isinstance( exprs, collections.Iterable ):
+/usr/local/lib/python3.7/site-packages/setuptools/depends.py:2: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+I0707 19:56:42.846746 26668 init.cc:88] Before Parse: argc is 2, Init commandline: dummy --tryfromenv=check_nan_inf,benchmark,eager_delete_scope,fraction_of_cpu_memory_to_use,initial_cpu_memory_in_mb,init_allocated_mem,paddle_num_threads,dist_threadpool_size,eager_delete_tensor_gb,fast_eager_deletion_mode,memory_fraction_of_eager_deletion,allocator_strategy,reader_queue_speed_test_mode,print_sub_graph_dir,pe_profile_fname,inner_op_parallelism,enable_parallel_graph,fuse_parameter_groups_size,multiple_of_cupti_buffer_size,fuse_parameter_memory_size,tracer_profile_fname,dygraph_debug,use_system_allocator,enable_unused_var_check,free_idle_chunk,free_when_no_cache_hit,call_stack_level,sort_sum_gradient,max_inplace_grad_add,use_pinned_memory,cpu_deterministic,use_mkldnn,tracer_mkldnn_ops_on,tracer_mkldnn_ops_off,fraction_of_gpu_memory_to_use,initial_gpu_memory_in_mb,reallocate_gpu_memory_in_mb,cudnn_deterministic,enable_cublas_tensor_op_math,conv_workspace_size_limit,cudnn_exhaustive_search,selected_gpus,sync_nccl_allreduce,cudnn_batchnorm_spatial_persistent,gpu_allocator_retry_time,local_exe_sub_scope_limit,gpu_memory_limit_mb,conv2d_disable_cudnn 
+I0707 19:56:42.847004 26668 init.cc:95] After Parse: argc is 1
+[INFO] 2021-07-07 19:56:44,393 [run_pretraining.py:   52]:	tensorboard not found, using visualdl
+-----------  Configuration Arguments -----------
+data_dir: ./data
+debug: False
+do_eval: True
+epoch: 100
+ernie_config_file: config/ernie_base_config.json
+eval_batch_size: 35
+eval_data_path: ./data
+eval_steps: -1
+global_bsz: 8
+global_steps: 0
+grad_merge: 0
+init_checkpoint: output/step_1
+learning_rate: 0.0001
+log_steps: 1
+max_seq_len: 512
+micro_bsz: 1
+num_dp: 2
+num_mp: 2
+num_pp: 2
+num_sharding: 1
+num_train_steps: 2000
+output_dir: output/gpt3-test-2mp2pp2dp-init-from-step1
+preln: False
+save_steps: 400
+seed: 2021
+use_amp: True
+use_hybrid_dp: True
+use_lamb: False
+use_offload: False
+use_recompute: True
+use_sharding: True
+vocab_file: ./config/30k-clean.vocab.albert
+warmup_steps: 10000
+weight_decay: 0.01
+------------------------------------------------
+to run startup
+[INFO] 2021-07-07 19:56:44,397 [run_pretraining.py:  201]:	pretraining start
+[INFO] 2021-07-07 19:56:44,398 [run_pretraining.py:  216]:	using recompute.
+[INFO] 2021-07-07 19:56:44,399 [run_pretraining.py:  261]:	using globa_bsz: 8 micro_bsz: 1, acc_steps: 4
+[DEBUG] 2021-07-07 19:56:44,438 [run_pretraining.py:  108]:	========= dp_sharding worker: 1 of 2 ==========
+[INFO] 2021-07-07 19:56:44,439 [pretraining_ds_mlm.py:  255]:	Apply sharding in distribution env 1/2
+[INFO] 2021-07-07 19:56:44,439 [pretraining_ds_mlm.py:  257]:	read from ./data/part-00000.106,./data/part-00000.109,./data/part-00000.108,./data/part-00000.104,./data/part-00000.10
+I0707 19:56:44.439637 26668 reader_py.cc:387] init_lod_tensor_blocking_queue
+INFO:root:places would be ommited when DataLoader is not iterable
+/usr/local/lib/python3.7/site-packages/paddle/fluid/framework.py:2049: UserWarning: The Attr(force_cpu) of Op(fill_constant) will be deprecated in the future, please use 'device_guard' instead. 'device_guard' has higher priority when they are used at the same time.
+  "used at the same time." % type)
+/usr/local/lib/python3.7/site-packages/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /root/paddlejob/workspace/env_run/liupeng/FleetX/examples/hybrid_parallelism/model/ernie.py:149
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/usr/local/lib/python3.7/site-packages/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /root/paddlejob/workspace/env_run/liupeng/FleetX/examples/hybrid_parallelism/model/ernie.py:150
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/usr/local/lib/python3.7/site-packages/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /root/paddlejob/workspace/env_run/liupeng/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:166
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/usr/local/lib/python3.7/site-packages/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /root/paddlejob/workspace/env_run/liupeng/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:276
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/usr/local/lib/python3.7/site-packages/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /root/paddlejob/workspace/env_run/liupeng/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:39
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/usr/local/lib/python3.7/site-packages/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /root/paddlejob/workspace/env_run/liupeng/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:40
+The behavior of expression A * B has been unified with elementwise_mul(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_mul(X, Y, axis=0) instead of A * B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+[DEBUG] 2021-07-07 19:56:44,974 [run_pretraining.py:  295]:	base lr: 0.0001
+/usr/local/lib/python3.7/site-packages/paddle/distributed/fleet/base/fleet_base.py:818: UserWarning: It is recommended to use DistributedStrategy in fleet.init(). The strategy here is only for compatibility. If the strategy in fleet.distributed_optimizer() is not None, then it will overwrite the DistributedStrategy in fleet.init(), which will take effect in distributed training.
+  "It is recommended to use DistributedStrategy "
+[INFO] 2021-07-07 19:56:44,984 [run_pretraining.py:  319]:	using dist strategy:     +==============================================================================+
+    |                                                                              |
+    |                         DistributedStrategy Overview                         |
+    |                                                                              |
+    +==============================================================================+
+    |                           amp=True <-> amp_configs                           |
+    +------------------------------------------------------------------------------+
+    |                     init_loss_scaling                 32768.0                |
+    |                    incr_every_n_steps                   1000                 |
+    |               decr_every_n_nan_or_inf                    2                   |
+    |                            incr_ratio                   2.0                  |
+    |                            decr_ratio            0.800000011920929           |
+    |              use_dynamic_loss_scaling                   True                 |
+    |                     custom_white_list                 softmax                |
+    |                                                      layer_norm              |
+    |                                                         gelu                 |
+    |                         use_pure_fp16                  False                 |
+    |                        use_fp16_guard                  False                 |
+    +==============================================================================+
+    |                     recompute=True <-> recompute_configs                     |
+    +------------------------------------------------------------------------------+
+    |                           checkpoints            layer_norm_2.tmp_2          |
+    |                        enable_offload                  False                 |
+    +==============================================================================+
+    |                      pipeline=True <-> pipeline_configs                      |
+    +------------------------------------------------------------------------------+
+    |                      micro_batch_size                    1                   |
+    |                      accumulate_steps                    4                   |
+    |                         schedule_mode                   1F1B                 |
+    +==============================================================================+
+    |                        a_sync=True <-> a_sync_configs                        |
+    +------------------------------------------------------------------------------+
+    |                               k_steps                    -1                  |
+    |                     max_merge_var_num                    1                   |
+    |                       send_queue_size                    16                  |
+    |               independent_recv_thread                  False                 |
+    |         min_send_grad_num_before_recv                    1                   |
+    |                      thread_pool_size                    1                   |
+    |                       send_wait_times                    1                   |
+    |               runtime_split_send_recv                  False                 |
+    |                        launch_barrier                   True                 |
+    |             heter_worker_device_guard                   cpu                  |
+    |                        lr_decay_steps                    10                  |
+    |                            use_ps_gpu                    0                   |
+    +==============================================================================+
+    |                      sharding=True <-> sharding_configs                      |
+    +------------------------------------------------------------------------------+
+    |             sharding_segment_strategy           segment_broadcast_MB         |
+    |                  segment_broadcast_MB                   32.0                 |
+    |                       sharding_degree                    1                   |
+    |                             mp_degree                    2                   |
+    |                             dp_degree                    2                   |
+    |                             hybrid_dp                  False                 |
+    |               gradient_merge_acc_step                    4                   |
+    |                      optimize_offload                  False                 |
+    |              pp_allreduce_in_optimize                  False                 |
+    |                             pp_degree                    2                   |
+    +==============================================================================+
+    |                    Environment Flags, Communication Flags                    |
+    +------------------------------------------------------------------------------+
+    |                                  mode                    1                   |
+    |                               elastic                  False                 |
+    |                                  auto                  False                 |
+    |                   sync_nccl_allreduce                   True                 |
+    |                         nccl_comm_num                    1                   |
+    |            use_hierarchical_allreduce                  False                 |
+    |   hierarchical_allreduce_inter_nranks                    1                   |
+    |                       sync_batch_norm                  False                 |
+    |                   fuse_all_reduce_ops                   True                 |
+    |                  fuse_grad_size_in_MB                    32                  |
+    |              fuse_grad_size_in_TFLOPS                   50.0                 |
+    |               cudnn_exhaustive_search                  False                 |
+    |             conv_workspace_size_limit                   512                  |
+    |    cudnn_batchnorm_spatial_persistent                  False                 |
+    |                        fp16_allreduce                  False                 |
+    |               last_comm_group_size_MB                   1.0                  |
+    |                find_unused_parameters                  False                 |
+    |            without_graph_optimization                  False                 |
+    |                 fuse_grad_size_in_num                    1                   |
+    |                 calc_comm_same_stream                  False                 |
+    +==============================================================================+
+    |                                Build Strategy                                |
+    +------------------------------------------------------------------------------+
+    |           enable_sequential_execution                  False                 |
+    |              fuse_elewise_add_act_ops                  False                 |
+    |                       fuse_bn_act_ops                  False                 |
+    |              fuse_relu_depthwise_conv                  False                 |
+    |                    fuse_broadcast_ops                  False                 |
+    |                fuse_all_optimizer_ops                  False                 |
+    |                        enable_inplace                  False                 |
+    |     enable_backward_optimizer_op_deps                   True                 |
+    |                 cache_runtime_context                  False                 |
+    |                   fuse_bn_add_act_ops                   True                 |
+    |                    enable_auto_fusion                  False                 |
+    |                          enable_addto                  False                 |
+    +==============================================================================+
+    |                              Execution Strategy                              |
+    +------------------------------------------------------------------------------+
+    |                           num_threads                    1                   |
+    |          num_iteration_per_drop_scope                    10                  |
+    |                 num_iteration_per_run                    1                   |
+    |                    use_thread_barrier                  False                 |
+    +==============================================================================+
+
+2021-07-07 19:56:45 INFO     Gradient merge in [pp_gm], acc step = [4]
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:Gradient merge in [pp_gm], acc step = [4]
+Wed Jul 07 19:56:45-INFO: recompute segment[0]
+Wed Jul 07 19:56:45-INFO: segment start op: [squeeze2]: [['src_ids']]
+Wed Jul 07 19:56:45-INFO: segment end op: [layer_norm]: [['encoder_layer_0_post_ffn_layer_norm_bias', 'encoder_layer_0_post_ffn_layer_norm_scale', 'tmp_10']]
+Wed Jul 07 19:56:45-INFO: recompute segment[0]
+Wed Jul 07 19:56:45-INFO: segment start op: [squeeze2]: [['src_ids']]
+Wed Jul 07 19:56:45-INFO: segment end op: [layer_norm]: [['encoder_layer_0_post_ffn_layer_norm_bias', 'encoder_layer_0_post_ffn_layer_norm_scale', 'tmp_10']]
+Wed Jul 07 19:56:45-INFO: found [0] vars which cross recompute segment: [set()], better checkpoints might be set to reduce those vars
+pp_rank: 0
+2021-07-07 19:56:48 INFO     Hybrid DP mode turn on !
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:Hybrid DP mode turn on !
+2021-07-07 19:56:48 INFO     global word size: 8
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:global word size: 8
+2021-07-07 19:56:48 INFO     global rank: 5
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:global rank: 5
+2021-07-07 19:56:48 INFO     global endpoints: ['127.0.0.1:60001', '127.0.0.1:60002', '127.0.0.1:60003', '127.0.0.1:60004', '127.0.0.1:60005', '127.0.0.1:60006', '127.0.0.1:60007', '127.0.0.1:60008']
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:global endpoints: ['127.0.0.1:60001', '127.0.0.1:60002', '127.0.0.1:60003', '127.0.0.1:60004', '127.0.0.1:60005', '127.0.0.1:60006', '127.0.0.1:60007', '127.0.0.1:60008']
+2021-07-07 19:56:48 INFO     global ring id: 3
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:global ring id: 3
+2021-07-07 19:56:48 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+2021-07-07 19:56:48 INFO     mp group size: 2
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp group size: 2
+2021-07-07 19:56:48 INFO     mp rank: 1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp rank: 1
+2021-07-07 19:56:48 INFO     mp group id: 2
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp group id: 2
+2021-07-07 19:56:48 INFO     mp group endpoints: ['127.0.0.1:60005', '127.0.0.1:60006']
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp group endpoints: ['127.0.0.1:60005', '127.0.0.1:60006']
+2021-07-07 19:56:48 INFO     mp ring id: 0
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp ring id: 0
+2021-07-07 19:56:48 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+2021-07-07 19:56:48 INFO     sharding group size: 1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding group size: 1
+2021-07-07 19:56:48 INFO     sharding rank: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding rank: -1
+2021-07-07 19:56:48 INFO     sharding group id: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding group id: -1
+2021-07-07 19:56:48 INFO     sharding group endpoints: []
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding group endpoints: []
+2021-07-07 19:56:48 INFO     sharding ring id: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding ring id: -1
+2021-07-07 19:56:48 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+2021-07-07 19:56:48 INFO     pp group size: 2
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp group size: 2
+2021-07-07 19:56:48 INFO     pp rank: 0
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp rank: 0
+2021-07-07 19:56:48 INFO     pp group id: 1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp group id: 1
+2021-07-07 19:56:48 INFO     pp group endpoints: ['127.0.0.1:60006', '127.0.0.1:60008']
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp group endpoints: ['127.0.0.1:60006', '127.0.0.1:60008']
+2021-07-07 19:56:48 INFO     pp ring id: 20
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp ring id: 20
+2021-07-07 19:56:48 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+2021-07-07 19:56:48 INFO     pure dp group size: 2
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pure dp group size: 2
+2021-07-07 19:56:48 INFO     pure dp rank: 1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pure dp rank: 1
+2021-07-07 19:56:48 INFO     pure dp group endpoints: ['127.0.0.1:60002', '127.0.0.1:60006']
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pure dp group endpoints: ['127.0.0.1:60002', '127.0.0.1:60006']
+2021-07-07 19:56:48 INFO     pure dp ring id: 2
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pure dp ring id: 2
+2021-07-07 19:56:48 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+pp pair:(0, 1), ring_id: 20
+pp pair:(1, 0), ring_id: 21
+[INFO] 2021-07-07 19:56:52,573 [run_pretraining.py:  325]:	final strategy:     +==============================================================================+
+    |                                                                              |
+    |                         DistributedStrategy Overview                         |
+    |                                                                              |
+    +==============================================================================+
+    |                           amp=True <-> amp_configs                           |
+    +------------------------------------------------------------------------------+
+    |                     init_loss_scaling                 32768.0                |
+    |                    incr_every_n_steps                   1000                 |
+    |               decr_every_n_nan_or_inf                    2                   |
+    |                            incr_ratio                   2.0                  |
+    |                            decr_ratio            0.800000011920929           |
+    |              use_dynamic_loss_scaling                   True                 |
+    |                     custom_white_list                 softmax                |
+    |                                                      layer_norm              |
+    |                                                         gelu                 |
+    |                         use_pure_fp16                  False                 |
+    |                        use_fp16_guard                  False                 |
+    +==============================================================================+
+    |                     recompute=True <-> recompute_configs                     |
+    +------------------------------------------------------------------------------+
+    |                           checkpoints            layer_norm_2.tmp_2          |
+    |                        enable_offload                  False                 |
+    +==============================================================================+
+    |                      sharding=True <-> sharding_configs                      |
+    +------------------------------------------------------------------------------+
+    |             sharding_segment_strategy           segment_broadcast_MB         |
+    |                  segment_broadcast_MB                   32.0                 |
+    |                       sharding_degree                    1                   |
+    |                             mp_degree                    2                   |
+    |                             dp_degree                    2                   |
+    |                             hybrid_dp                  False                 |
+    |               gradient_merge_acc_step                    4                   |
+    |                      optimize_offload                  False                 |
+    |              pp_allreduce_in_optimize                  False                 |
+    |                             pp_degree                    2                   |
+    +==============================================================================+
+    |                    Environment Flags, Communication Flags                    |
+    +------------------------------------------------------------------------------+
+    |                                  mode                    1                   |
+    |                               elastic                  False                 |
+    |                                  auto                  False                 |
+    |                   sync_nccl_allreduce                   True                 |
+    |                         nccl_comm_num                    1                   |
+    |            use_hierarchical_allreduce                  False                 |
+    |   hierarchical_allreduce_inter_nranks                    1                   |
+    |                       sync_batch_norm                  False                 |
+    |                   fuse_all_reduce_ops                   True                 |
+    |                  fuse_grad_size_in_MB                    32                  |
+    |              fuse_grad_size_in_TFLOPS                   50.0                 |
+    |               cudnn_exhaustive_search                  False                 |
+    |             conv_workspace_size_limit                   512                  |
+    |    cudnn_batchnorm_spatial_persistent                  False                 |
+    |                        fp16_allreduce                  False                 |
+    |               last_comm_group_size_MB                   1.0                  |
+    |                find_unused_parameters                  False                 |
+    |            without_graph_optimization                  False                 |
+    |                 fuse_grad_size_in_num                    1                   |
+    |                 calc_comm_same_stream                  False                 |
+    +==============================================================================+
+    |                                Build Strategy                                |
+    +------------------------------------------------------------------------------+
+    |           enable_sequential_execution                  False                 |
+    |              fuse_elewise_add_act_ops                  False                 |
+    |                       fuse_bn_act_ops                  False                 |
+    |              fuse_relu_depthwise_conv                  False                 |
+    |                    fuse_broadcast_ops                  False                 |
+    |                fuse_all_optimizer_ops                  False                 |
+    |                        enable_inplace                  False                 |
+    |     enable_backward_optimizer_op_deps                   True                 |
+    |                 cache_runtime_context                  False                 |
+    |                   fuse_bn_add_act_ops                   True                 |
+    |                    enable_auto_fusion                  False                 |
+    |                          enable_addto                  False                 |
+    +==============================================================================+
+    |                              Execution Strategy                              |
+    +------------------------------------------------------------------------------+
+    |                           num_threads                    1                   |
+    |          num_iteration_per_drop_scope                    10                  |
+    |                 num_iteration_per_run                    1                   |
+    |                    use_thread_barrier                  False                 |
+    +==============================================================================+
+
+[INFO] 2021-07-07 19:56:52,573 [run_pretraining.py:  326]:	applied_meta_list: ['ShardingOptimizer', 'AMPOptimizer', 'RecomputeOptimizer']
+W0707 19:56:52.982053 26668 device_context.cc:430] Please NOTE: device: 5, GPU Compute Capability: 7.0, Driver API Version: 11.0, Runtime API Version: 10.1
+W0707 19:56:52.988087 26668 device_context.cc:448] device: 5, cuDNN Version: 7.6.
+I0707 19:56:56.968516 26668 gen_comm_id_helper.cc:181] Server listening on: 127.0.0.1:60006 successful.
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Bootstrap : Using xgbe0:10.127.44.139<0>
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] misc/ibvwrap.cc:212 NCCL WARN Call to ibv_open_device failed
+
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] transport/net_ib.cc:149 NCCL WARN NET/IB : Unable to open device mlx5_0
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO NET/IB : No device found.
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO NET/Socket : Using [0]xgbe0:10.127.44.139<0>
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Using network Socket
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Trees [0] 4/-1/-1->5->1 [1] 4/-1/-1->5->1 [2] 1/-1/-1->5->4 [3] 1/-1/-1->5->4 [4] 7/-1/-1->5->6 [5] 6/-1/-1->5->7 [6] 4/-1/-1->5->1 [7] 4/-1/-1->5->1 [8] 1/-1/-1->5->4 [9] 1/-1/-1->5->4 [10] 7/-1/-1->5->6 [11] 6/-1/-1->5->7
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Setting affinity for GPU 5 to ffffff
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 05 : 5[63000] -> 6[64000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 11 : 5[63000] -> 6[64000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 04 : 5[63000] -> 7[65000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 10 : 5[63000] -> 7[65000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 02 : 5[63000] -> 1[40000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 03 : 5[63000] -> 1[40000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 08 : 5[63000] -> 1[40000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 09 : 5[63000] -> 1[40000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 00 : 5[63000] -> 4[62000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 01 : 5[63000] -> 4[62000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 06 : 5[63000] -> 4[62000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 07 : 5[63000] -> 4[62000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Connected all rings
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 04 : 5[63000] -> 6[64000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 10 : 5[63000] -> 6[64000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 05 : 5[63000] -> 7[65000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 11 : 5[63000] -> 7[65000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 00 : 5[63000] -> 1[40000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 01 : 5[63000] -> 1[40000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 06 : 5[63000] -> 1[40000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 07 : 5[63000] -> 1[40000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 02 : 5[63000] -> 4[62000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 03 : 5[63000] -> 4[62000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 08 : 5[63000] -> 4[62000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 09 : 5[63000] -> 4[62000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Connected all trees
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/64
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO 12 coll channels, 16 p2p channels, 2 p2p channels per peer
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO comm 0x692e1370 rank 5 nranks 8 cudaDev 5 busId 63000 - Init COMPLETE
+I0707 19:57:03.084659 26668 collective_helper.cc:104] nccl communicator of rank 5 in ring 3 has been created on device 5
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] -1/-1/-1->1->0 [2] -1/-1/-1->1->0 [3] -1/-1/-1->1->0
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Setting affinity for GPU 5 to ffffff
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 00 : 1[63000] -> 0[62000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 01 : 1[63000] -> 0[62000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 02 : 1[63000] -> 0[62000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 03 : 1[63000] -> 0[62000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Connected all rings
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Connected all trees
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 8/8/64
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO 4 coll channels, 4 p2p channels, 4 p2p channels per peer
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO comm 0x6970f3e0 rank 1 nranks 2 cudaDev 5 busId 63000 - Init COMPLETE
+I0707 19:57:03.187705 26668 collective_helper.cc:104] nccl communicator of rank 1 in ring 0 has been created on device 5
+NCCL version 2.8.3+cuda10.1
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 00/02 :    0   1
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 01/02 :    0   1
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Setting affinity for GPU 5 to ffffff
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 00 : 0[63000] -> 1[65000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 01 : 0[63000] -> 1[65000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Connected all rings
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Connected all trees
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 8/8/64
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO comm 0x6aa2c4f0 rank 0 nranks 2 cudaDev 5 busId 63000 - Init COMPLETE
+I0707 19:57:03.254488 26668 collective_helper.cc:104] nccl communicator of rank 0 in ring 20 has been created on device 5
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] -1/-1/-1->1->0
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Setting affinity for GPU 5 to ffffff
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 00 : 1[63000] -> 0[65000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 01 : 1[63000] -> 0[65000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Connected all rings
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Connected all trees
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 8/8/64
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO comm 0x6989bf30 rank 1 nranks 2 cudaDev 5 busId 63000 - Init COMPLETE
+I0707 19:57:03.331434 26668 collective_helper.cc:104] nccl communicator of rank 1 in ring 21 has been created on device 5
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] -1/-1/-1->1->0 [2] -1/-1/-1->1->0 [3] -1/-1/-1->1->0
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Setting affinity for GPU 5 to ffffff
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 00 : 1[63000] -> 0[40000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 01 : 1[63000] -> 0[40000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 02 : 1[63000] -> 0[40000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Channel 03 : 1[63000] -> 0[40000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Connected all rings
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Connected all trees
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 8/8/64
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO 4 coll channels, 4 p2p channels, 4 p2p channels per peer
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO comm 0x69ba7ff0 rank 1 nranks 2 cudaDev 5 busId 63000 - Init COMPLETE
+I0707 19:57:03.426043 26668 collective_helper.cc:104] nccl communicator of rank 1 in ring 2 has been created on device 5
+/usr/local/lib/python3.7/site-packages/paddle/fluid/executor.py:1153: UserWarning: There are no operators in the program to be executed. If you pass Program manually, please use fluid.program_guard to ensure the current Program is being used.
+  warnings.warn(error_info)
+Done broadcast
+[INFO] 2021-07-07 19:57:03,447 [run_pretraining.py:  391]:	init from output/step_1
+Load model from output/step_1
+I0707 19:57:04.165983 26668 lod_tensor_blocking_queue.h:104] Init queue with size 1
+I0707 19:57:04.166204 26668 buffered_reader.cc:41] BufferedReader
+yq01-sys-hic-k8s-v100-box-a225-0770:26668:26668 [5] NCCL INFO Launch mode Parallel
+[DEBUG] 2021-07-07 20:01:20,963 [run_pretraining.py:  463]:	saving models to output/gpt3-test-2mp2pp2dp-init-from-step1/step_400
+[DEBUG] 2021-07-07 20:05:45,941 [run_pretraining.py:  463]:	saving models to output/gpt3-test-2mp2pp2dp-init-from-step1/step_800
+[DEBUG] 2021-07-07 20:10:15,837 [run_pretraining.py:  463]:	saving models to output/gpt3-test-2mp2pp2dp-init-from-step1/step_1200
+[DEBUG] 2021-07-07 20:14:54,081 [run_pretraining.py:  463]:	saving models to output/gpt3-test-2mp2pp2dp-init-from-step1/step_1600
+[DEBUG] 2021-07-07 20:19:32,969 [run_pretraining.py:  463]:	saving models to output/gpt3-test-2mp2pp2dp-init-from-step1/step_2000
+[DEBUG] 2021-07-07 20:19:34,303 [run_pretraining.py:  471]:	saving final models to output/gpt3-test-2mp2pp2dp-init-from-step1/final_step_2000
+[DEBUG] 2021-07-07 20:19:34,305 [run_pretraining.py:  472]:	end of training, total steps: 2000
+I0707 20:19:34.573904 26668 reader.h:164] ~ReaderHolder
+I0707 20:19:34.573938 26668 buffered_reader.cc:22] ~BufferedReader
+I0707 20:19:34.573946 26668 lod_tensor_blocking_queue.h:59] LoDTensorBlockingQueue close
+I0707 20:19:34.573951 26668 blocking_queue.h:132] close queue
+I0707 20:19:34.574141 26668 reader.cc:76] ~DecoratedReader
+I0707 20:19:34.574147 26668 lod_tensor_blocking_queue.h:59] LoDTensorBlockingQueue close
+I0707 20:19:34.574151 26668 blocking_queue.h:132] close queue
+I0707 20:19:34.574793 26668 reader.h:164] ~ReaderHolder
+I0707 20:19:34.574805 26668 lod_tensor_blocking_queue.h:59] LoDTensorBlockingQueue close
+I0707 20:19:34.574810 26668 blocking_queue.h:132] close queue
+terminate called without an active exception
+
+
+--------------------------------------
+C++ Traceback (most recent call last):
+--------------------------------------
+0   paddle::framework::SignalHandle(char const*, int)
+1   paddle::platform::GetCurrentTraceBackString[abi:cxx11]()
+
+----------------------
+Error Message Summary:
+----------------------
+FatalError: `Process abort signal` is detected by the operating system.
+  [TimeInfo: *** Aborted at 1625660374 (unix time) try "date -d @1625660374" if you are using GNU date ***]
+  [SignalInfo: *** SIGABRT (@0x682c) received by PID 26668 (TID 0x7fc8e35fe700) from PID 26668 ***]
+
