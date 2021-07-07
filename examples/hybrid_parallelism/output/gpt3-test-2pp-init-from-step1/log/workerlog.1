@@ -1,0 +1,671 @@
+grep: warning: GREP_OPTIONS is deprecated; please use an alias or script
+/usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/pyparsing.py:943: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  collections.MutableMapping.register(ParseResults)
+/usr/local/lib/python3.7/site-packages/pkg_resources/_vendor/pyparsing.py:3226: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+  elif isinstance( exprs, collections.Iterable ):
+/usr/local/lib/python3.7/site-packages/setuptools/depends.py:2: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+I0707 18:03:04.653614 24542 init.cc:88] Before Parse: argc is 2, Init commandline: dummy --tryfromenv=check_nan_inf,benchmark,eager_delete_scope,fraction_of_cpu_memory_to_use,initial_cpu_memory_in_mb,init_allocated_mem,paddle_num_threads,dist_threadpool_size,eager_delete_tensor_gb,fast_eager_deletion_mode,memory_fraction_of_eager_deletion,allocator_strategy,reader_queue_speed_test_mode,print_sub_graph_dir,pe_profile_fname,inner_op_parallelism,enable_parallel_graph,fuse_parameter_groups_size,multiple_of_cupti_buffer_size,fuse_parameter_memory_size,tracer_profile_fname,dygraph_debug,use_system_allocator,enable_unused_var_check,free_idle_chunk,free_when_no_cache_hit,call_stack_level,sort_sum_gradient,max_inplace_grad_add,use_pinned_memory,cpu_deterministic,use_mkldnn,tracer_mkldnn_ops_on,tracer_mkldnn_ops_off,fraction_of_gpu_memory_to_use,initial_gpu_memory_in_mb,reallocate_gpu_memory_in_mb,cudnn_deterministic,enable_cublas_tensor_op_math,conv_workspace_size_limit,cudnn_exhaustive_search,selected_gpus,sync_nccl_allreduce,cudnn_batchnorm_spatial_persistent,gpu_allocator_retry_time,local_exe_sub_scope_limit,gpu_memory_limit_mb,conv2d_disable_cudnn 
+I0707 18:03:04.653868 24542 init.cc:95] After Parse: argc is 1
+[INFO] 2021-07-07 18:03:05,708 [run_pretraining.py:   52]:	tensorboard not found, using visualdl
+-----------  Configuration Arguments -----------
+data_dir: ./data
+debug: False
+do_eval: True
+epoch: 100
+ernie_config_file: config/ernie_base_config.json
+eval_batch_size: 35
+eval_data_path: ./data
+eval_steps: -1
+global_bsz: 8
+global_steps: 0
+grad_merge: 0
+init_checkpoint: output/step_1
+learning_rate: 0.0001
+log_steps: 1
+max_seq_len: 512
+micro_bsz: 1
+num_dp: 1
+num_mp: 1
+num_pp: 2
+num_sharding: 1
+num_train_steps: 250
+output_dir: output/gpt3-test-2pp-init-from-step1
+preln: False
+save_steps: 500
+seed: 2021
+use_amp: True
+use_hybrid_dp: True
+use_lamb: False
+use_offload: False
+use_recompute: True
+use_sharding: True
+vocab_file: ./config/30k-clean.vocab.albert
+warmup_steps: 10000
+weight_decay: 0.01
+------------------------------------------------
+to run startup
+[INFO] 2021-07-07 18:03:05,714 [run_pretraining.py:  201]:	pretraining start
+[INFO] 2021-07-07 18:03:05,715 [run_pretraining.py:  216]:	using recompute.
+[INFO] 2021-07-07 18:03:05,715 [run_pretraining.py:  261]:	using globa_bsz: 8 micro_bsz: 1, acc_steps: 8
+[DEBUG] 2021-07-07 18:03:05,769 [run_pretraining.py:  108]:	========= dp_sharding worker: 0 of 1 ==========
+[INFO] 2021-07-07 18:03:05,769 [pretraining_ds_mlm.py:  255]:	Apply sharding in distribution env 0/1
+[INFO] 2021-07-07 18:03:05,769 [pretraining_ds_mlm.py:  257]:	read from ./data/part-00000.101,./data/part-00000.106,./data/part-00000.107,./data/part-00000.109,./data/part-00000.100,./data/part-00000.108,./data/part-00000.102,./data/part-00000.104,./data/part-00000.105,./data/part-00000.10,./data/part-00000.103
+I0707 18:03:05.770190 24542 reader_py.cc:387] init_lod_tensor_blocking_queue
+INFO:root:places would be ommited when DataLoader is not iterable
+/usr/local/lib/python3.7/site-packages/paddle/fluid/framework.py:2049: UserWarning: The Attr(force_cpu) of Op(fill_constant) will be deprecated in the future, please use 'device_guard' instead. 'device_guard' has higher priority when they are used at the same time.
+  "used at the same time." % type)
+/usr/local/lib/python3.7/site-packages/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /root/paddlejob/workspace/env_run/liupeng/FleetX/examples/hybrid_parallelism/model/ernie.py:149
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/usr/local/lib/python3.7/site-packages/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /root/paddlejob/workspace/env_run/liupeng/FleetX/examples/hybrid_parallelism/model/ernie.py:150
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/usr/local/lib/python3.7/site-packages/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /root/paddlejob/workspace/env_run/liupeng/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:166
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/usr/local/lib/python3.7/site-packages/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /root/paddlejob/workspace/env_run/liupeng/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:276
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/usr/local/lib/python3.7/site-packages/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /root/paddlejob/workspace/env_run/liupeng/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:39
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/usr/local/lib/python3.7/site-packages/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /root/paddlejob/workspace/env_run/liupeng/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:40
+The behavior of expression A * B has been unified with elementwise_mul(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_mul(X, Y, axis=0) instead of A * B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+[DEBUG] 2021-07-07 18:03:06,243 [run_pretraining.py:  295]:	base lr: 0.0001
+/usr/local/lib/python3.7/site-packages/paddle/distributed/fleet/base/fleet_base.py:818: UserWarning: It is recommended to use DistributedStrategy in fleet.init(). The strategy here is only for compatibility. If the strategy in fleet.distributed_optimizer() is not None, then it will overwrite the DistributedStrategy in fleet.init(), which will take effect in distributed training.
+  "It is recommended to use DistributedStrategy "
+[INFO] 2021-07-07 18:03:06,253 [run_pretraining.py:  319]:	using dist strategy:     +==============================================================================+
+    |                                                                              |
+    |                         DistributedStrategy Overview                         |
+    |                                                                              |
+    +==============================================================================+
+    |                           amp=True <-> amp_configs                           |
+    +------------------------------------------------------------------------------+
+    |                     init_loss_scaling                 32768.0                |
+    |                    incr_every_n_steps                   1000                 |
+    |               decr_every_n_nan_or_inf                    2                   |
+    |                            incr_ratio                   2.0                  |
+    |                            decr_ratio            0.800000011920929           |
+    |              use_dynamic_loss_scaling                   True                 |
+    |                     custom_white_list                 softmax                |
+    |                                                      layer_norm              |
+    |                                                         gelu                 |
+    |                         use_pure_fp16                  False                 |
+    |                        use_fp16_guard                  False                 |
+    +==============================================================================+
+    |                     recompute=True <-> recompute_configs                     |
+    +------------------------------------------------------------------------------+
+    |                           checkpoints            layer_norm_2.tmp_2          |
+    |                        enable_offload                  False                 |
+    +==============================================================================+
+    |                      pipeline=True <-> pipeline_configs                      |
+    +------------------------------------------------------------------------------+
+    |                      micro_batch_size                    1                   |
+    |                      accumulate_steps                    8                   |
+    |                         schedule_mode                   1F1B                 |
+    +==============================================================================+
+    |                        a_sync=True <-> a_sync_configs                        |
+    +------------------------------------------------------------------------------+
+    |                               k_steps                    -1                  |
+    |                     max_merge_var_num                    1                   |
+    |                       send_queue_size                    16                  |
+    |               independent_recv_thread                  False                 |
+    |         min_send_grad_num_before_recv                    1                   |
+    |                      thread_pool_size                    1                   |
+    |                       send_wait_times                    1                   |
+    |               runtime_split_send_recv                  False                 |
+    |                        launch_barrier                   True                 |
+    |             heter_worker_device_guard                   cpu                  |
+    |                        lr_decay_steps                    10                  |
+    |                            use_ps_gpu                    0                   |
+    +==============================================================================+
+    |                      sharding=True <-> sharding_configs                      |
+    +------------------------------------------------------------------------------+
+    |             sharding_segment_strategy           segment_broadcast_MB         |
+    |                  segment_broadcast_MB                   32.0                 |
+    |                       sharding_degree                    1                   |
+    |                             mp_degree                    1                   |
+    |                             dp_degree                    1                   |
+    |                             hybrid_dp                  False                 |
+    |               gradient_merge_acc_step                    8                   |
+    |                      optimize_offload                  False                 |
+    |              pp_allreduce_in_optimize                  False                 |
+    |                             pp_degree                    2                   |
+    +==============================================================================+
+    |                    Environment Flags, Communication Flags                    |
+    +------------------------------------------------------------------------------+
+    |                                  mode                    1                   |
+    |                               elastic                  False                 |
+    |                                  auto                  False                 |
+    |                   sync_nccl_allreduce                   True                 |
+    |                         nccl_comm_num                    1                   |
+    |            use_hierarchical_allreduce                  False                 |
+    |   hierarchical_allreduce_inter_nranks                    1                   |
+    |                       sync_batch_norm                  False                 |
+    |                   fuse_all_reduce_ops                   True                 |
+    |                  fuse_grad_size_in_MB                    32                  |
+    |              fuse_grad_size_in_TFLOPS                   50.0                 |
+    |               cudnn_exhaustive_search                  False                 |
+    |             conv_workspace_size_limit                   512                  |
+    |    cudnn_batchnorm_spatial_persistent                  False                 |
+    |                        fp16_allreduce                  False                 |
+    |               last_comm_group_size_MB                   1.0                  |
+    |                find_unused_parameters                  False                 |
+    |            without_graph_optimization                  False                 |
+    |                 fuse_grad_size_in_num                    1                   |
+    |                 calc_comm_same_stream                  False                 |
+    +==============================================================================+
+    |                                Build Strategy                                |
+    +------------------------------------------------------------------------------+
+    |           enable_sequential_execution                  False                 |
+    |              fuse_elewise_add_act_ops                  False                 |
+    |                       fuse_bn_act_ops                  False                 |
+    |              fuse_relu_depthwise_conv                  False                 |
+    |                    fuse_broadcast_ops                  False                 |
+    |                fuse_all_optimizer_ops                  False                 |
+    |                        enable_inplace                  False                 |
+    |     enable_backward_optimizer_op_deps                   True                 |
+    |                 cache_runtime_context                  False                 |
+    |                   fuse_bn_add_act_ops                   True                 |
+    |                    enable_auto_fusion                  False                 |
+    |                          enable_addto                  False                 |
+    +==============================================================================+
+    |                              Execution Strategy                              |
+    +------------------------------------------------------------------------------+
+    |                           num_threads                    1                   |
+    |          num_iteration_per_drop_scope                    10                  |
+    |                 num_iteration_per_run                    1                   |
+    |                    use_thread_barrier                  False                 |
+    +==============================================================================+
+
+2021-07-07 18:03:06 INFO     Gradient merge in [pp_gm], acc step = [8]
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:Gradient merge in [pp_gm], acc step = [8]
+Wed Jul 07 18:03:06-INFO: recompute segment[0]
+Wed Jul 07 18:03:06-INFO: segment start op: [lookup_table]: [['src_ids', 'word_embedding']]
+Wed Jul 07 18:03:06-INFO: segment end op: [layer_norm]: [['encoder_layer_0_post_ffn_layer_norm_bias', 'encoder_layer_0_post_ffn_layer_norm_scale', 'tmp_10']]
+Wed Jul 07 18:03:06-INFO: recompute segment[0]
+Wed Jul 07 18:03:06-INFO: segment start op: [lookup_table]: [['src_ids', 'word_embedding']]
+Wed Jul 07 18:03:06-INFO: segment end op: [layer_norm]: [['encoder_layer_0_post_ffn_layer_norm_bias', 'encoder_layer_0_post_ffn_layer_norm_scale', 'tmp_10']]
+Wed Jul 07 18:03:06-INFO: found [0] vars which cross recompute segment: [set()], better checkpoints might be set to reduce those vars
+pp_rank: 1
+2021-07-07 18:03:09 INFO     global word size: 2
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:global word size: 2
+2021-07-07 18:03:09 INFO     global rank: 1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:global rank: 1
+2021-07-07 18:03:09 INFO     global endpoints: ['127.0.0.1:60001', '127.0.0.1:60002']
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:global endpoints: ['127.0.0.1:60001', '127.0.0.1:60002']
+2021-07-07 18:03:09 INFO     global ring id: 3
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:global ring id: 3
+2021-07-07 18:03:09 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+2021-07-07 18:03:09 INFO     mp group size: 1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp group size: 1
+2021-07-07 18:03:09 INFO     mp rank: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp rank: -1
+2021-07-07 18:03:09 INFO     mp group id: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp group id: -1
+2021-07-07 18:03:09 INFO     mp group endpoints: []
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp group endpoints: []
+2021-07-07 18:03:09 INFO     mp ring id: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp ring id: -1
+2021-07-07 18:03:09 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+2021-07-07 18:03:09 INFO     sharding group size: 1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding group size: 1
+2021-07-07 18:03:09 INFO     sharding rank: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding rank: -1
+2021-07-07 18:03:09 INFO     sharding group id: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding group id: -1
+2021-07-07 18:03:09 INFO     sharding group endpoints: []
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding group endpoints: []
+2021-07-07 18:03:09 INFO     sharding ring id: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding ring id: -1
+2021-07-07 18:03:09 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+2021-07-07 18:03:09 INFO     pp group size: 2
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp group size: 2
+2021-07-07 18:03:09 INFO     pp rank: 1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp rank: 1
+2021-07-07 18:03:09 INFO     pp group id: 0
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp group id: 0
+2021-07-07 18:03:09 INFO     pp group endpoints: ['127.0.0.1:60001', '127.0.0.1:60002']
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp group endpoints: ['127.0.0.1:60001', '127.0.0.1:60002']
+2021-07-07 18:03:09 INFO     pp ring id: 20
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp ring id: 20
+2021-07-07 18:03:09 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+2021-07-07 18:03:09 INFO     pure dp group size: 1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pure dp group size: 1
+2021-07-07 18:03:09 INFO     pure dp rank: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pure dp rank: -1
+2021-07-07 18:03:09 INFO     pure dp group endpoints: []
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pure dp group endpoints: []
+2021-07-07 18:03:09 INFO     pure dp ring id: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pure dp ring id: -1
+2021-07-07 18:03:09 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+pp pair:(0, 1), ring_id: 20
+pp pair:(1, 0), ring_id: 21
+[INFO] 2021-07-07 18:03:13,160 [run_pretraining.py:  325]:	final strategy:     +==============================================================================+
+    |                                                                              |
+    |                         DistributedStrategy Overview                         |
+    |                                                                              |
+    +==============================================================================+
+    |                           amp=True <-> amp_configs                           |
+    +------------------------------------------------------------------------------+
+    |                     init_loss_scaling                 32768.0                |
+    |                    incr_every_n_steps                   1000                 |
+    |               decr_every_n_nan_or_inf                    2                   |
+    |                            incr_ratio                   2.0                  |
+    |                            decr_ratio            0.800000011920929           |
+    |              use_dynamic_loss_scaling                   True                 |
+    |                     custom_white_list                 softmax                |
+    |                                                      layer_norm              |
+    |                                                         gelu                 |
+    |                         use_pure_fp16                  False                 |
+    |                        use_fp16_guard                  False                 |
+    +==============================================================================+
+    |                     recompute=True <-> recompute_configs                     |
+    +------------------------------------------------------------------------------+
+    |                           checkpoints            layer_norm_2.tmp_2          |
+    |                        enable_offload                  False                 |
+    +==============================================================================+
+    |                      sharding=True <-> sharding_configs                      |
+    +------------------------------------------------------------------------------+
+    |             sharding_segment_strategy           segment_broadcast_MB         |
+    |                  segment_broadcast_MB                   32.0                 |
+    |                       sharding_degree                    1                   |
+    |                             mp_degree                    1                   |
+    |                             dp_degree                    1                   |
+    |                             hybrid_dp                  False                 |
+    |               gradient_merge_acc_step                    8                   |
+    |                      optimize_offload                  False                 |
+    |              pp_allreduce_in_optimize                  False                 |
+    |                             pp_degree                    2                   |
+    +==============================================================================+
+    |                    Environment Flags, Communication Flags                    |
+    +------------------------------------------------------------------------------+
+    |                                  mode                    1                   |
+    |                               elastic                  False                 |
+    |                                  auto                  False                 |
+    |                   sync_nccl_allreduce                   True                 |
+    |                         nccl_comm_num                    1                   |
+    |            use_hierarchical_allreduce                  False                 |
+    |   hierarchical_allreduce_inter_nranks                    1                   |
+    |                       sync_batch_norm                  False                 |
+    |                   fuse_all_reduce_ops                   True                 |
+    |                  fuse_grad_size_in_MB                    32                  |
+    |              fuse_grad_size_in_TFLOPS                   50.0                 |
+    |               cudnn_exhaustive_search                  False                 |
+    |             conv_workspace_size_limit                   512                  |
+    |    cudnn_batchnorm_spatial_persistent                  False                 |
+    |                        fp16_allreduce                  False                 |
+    |               last_comm_group_size_MB                   1.0                  |
+    |                find_unused_parameters                  False                 |
+    |            without_graph_optimization                  False                 |
+    |                 fuse_grad_size_in_num                    1                   |
+    |                 calc_comm_same_stream                  False                 |
+    +==============================================================================+
+    |                                Build Strategy                                |
+    +------------------------------------------------------------------------------+
+    |           enable_sequential_execution                  False                 |
+    |              fuse_elewise_add_act_ops                  False                 |
+    |                       fuse_bn_act_ops                  False                 |
+    |              fuse_relu_depthwise_conv                  False                 |
+    |                    fuse_broadcast_ops                  False                 |
+    |                fuse_all_optimizer_ops                  False                 |
+    |                        enable_inplace                  False                 |
+    |     enable_backward_optimizer_op_deps                   True                 |
+    |                 cache_runtime_context                  False                 |
+    |                   fuse_bn_add_act_ops                   True                 |
+    |                    enable_auto_fusion                  False                 |
+    |                          enable_addto                  False                 |
+    +==============================================================================+
+    |                              Execution Strategy                              |
+    +------------------------------------------------------------------------------+
+    |                           num_threads                    1                   |
+    |          num_iteration_per_drop_scope                    10                  |
+    |                 num_iteration_per_run                    1                   |
+    |                    use_thread_barrier                  False                 |
+    +==============================================================================+
+
+[INFO] 2021-07-07 18:03:13,160 [run_pretraining.py:  326]:	applied_meta_list: ['ShardingOptimizer', 'AMPOptimizer', 'RecomputeOptimizer']
+W0707 18:03:13.521539 24542 device_context.cc:430] Please NOTE: device: 1, GPU Compute Capability: 7.0, Driver API Version: 11.0, Runtime API Version: 10.1
+W0707 18:03:13.527086 24542 device_context.cc:448] device: 1, cuDNN Version: 7.6.
+I0707 18:03:16.899524 24542 gen_comm_id_helper.cc:181] Server listening on: 127.0.0.1:60002 successful.
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Bootstrap : Using xgbe0:10.127.44.139<0>
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] misc/ibvwrap.cc:212 NCCL WARN Call to ibv_open_device failed
+
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] transport/net_ib.cc:149 NCCL WARN NET/IB : Unable to open device mlx5_0
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO NET/IB : No device found.
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO NET/Socket : Using [0]xgbe0:10.127.44.139<0>
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Using network Socket
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] -1/-1/-1->1->0 [2] -1/-1/-1->1->0 [3] -1/-1/-1->1->0
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Setting affinity for GPU 1 to ffffff
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Channel 00 : 1[40000] -> 0[3f000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Channel 01 : 1[40000] -> 0[3f000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Channel 02 : 1[40000] -> 0[3f000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Channel 03 : 1[40000] -> 0[3f000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Connected all rings
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Connected all trees
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 8/8/64
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO 4 coll channels, 4 p2p channels, 4 p2p channels per peer
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO comm 0x6919b570 rank 1 nranks 2 cudaDev 1 busId 40000 - Init COMPLETE
+I0707 18:03:23.243652 24542 collective_helper.cc:104] nccl communicator of rank 1 in ring 3 has been created on device 1
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] -1/-1/-1->1->0 [2] -1/-1/-1->1->0 [3] -1/-1/-1->1->0
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Setting affinity for GPU 1 to ffffff
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Channel 00 : 1[40000] -> 0[3f000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Channel 01 : 1[40000] -> 0[3f000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Channel 02 : 1[40000] -> 0[3f000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Channel 03 : 1[40000] -> 0[3f000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Connected all rings
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Connected all trees
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 8/8/64
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO 4 coll channels, 4 p2p channels, 4 p2p channels per peer
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO comm 0x69f0ee90 rank 1 nranks 2 cudaDev 1 busId 40000 - Init COMPLETE
+I0707 18:03:23.289762 24542 collective_helper.cc:104] nccl communicator of rank 1 in ring 20 has been created on device 1
+NCCL version 2.8.3+cuda10.1
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Channel 00/04 :    0   1
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Channel 01/04 :    0   1
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Channel 02/04 :    0   1
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Channel 03/04 :    0   1
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1 [2] 1/-1/-1->0->-1 [3] 1/-1/-1->0->-1
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Setting affinity for GPU 1 to ffffff
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Channel 00 : 0[40000] -> 1[3f000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Channel 01 : 0[40000] -> 1[3f000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Channel 02 : 0[40000] -> 1[3f000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Channel 03 : 0[40000] -> 1[3f000] via P2P/IPC
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Connected all rings
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Connected all trees
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 8/8/64
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO 4 coll channels, 4 p2p channels, 4 p2p channels per peer
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO comm 0x6b403340 rank 0 nranks 2 cudaDev 1 busId 40000 - Init COMPLETE
+I0707 18:03:23.330745 24542 collective_helper.cc:104] nccl communicator of rank 0 in ring 21 has been created on device 1
+[INFO] 2021-07-07 18:03:23,333 [run_pretraining.py:  391]:	init from output/step_1
+Load model from output/step_1
+I0707 18:03:25.048125 24542 lod_tensor_blocking_queue.h:104] Init queue with size 1
+I0707 18:03:25.048316 24542 buffered_reader.cc:41] BufferedReader
+yq01-sys-hic-k8s-v100-box-a225-0770:24542:24542 [1] NCCL INFO Launch mode Parallel
+[INFO] 2021-07-07 18:03:25,730 [run_pretraining.py:  454]:	worker_index: 1, step: 1, cost: 10.408951, mlm loss: 10.408951, speed: 0.417268 steps/s, speed: 3.338140 samples/s, speed: 1709.127825 tokens/s, learning rate: 1.000e-08, loss_scalings: 32768.000000, pp_loss: 10.428634
+[INFO] 2021-07-07 18:03:26,271 [run_pretraining.py:  454]:	worker_index: 1, step: 2, cost: 10.490582, mlm loss: 10.490582, speed: 1.850588 steps/s, speed: 14.804704 samples/s, speed: 7580.008385 tokens/s, learning rate: 2.000e-08, loss_scalings: 32768.000000, pp_loss: 10.422680
+[INFO] 2021-07-07 18:03:26,788 [run_pretraining.py:  454]:	worker_index: 1, step: 3, cost: 10.354202, mlm loss: 10.354202, speed: 1.937268 steps/s, speed: 15.498146 samples/s, speed: 7935.050876 tokens/s, learning rate: 3.000e-08, loss_scalings: 32768.000000, pp_loss: 10.396791
+[INFO] 2021-07-07 18:03:27,351 [run_pretraining.py:  454]:	worker_index: 1, step: 4, cost: 10.503298, mlm loss: 10.503298, speed: 1.863084 steps/s, speed: 14.904675 samples/s, speed: 7631.193422 tokens/s, learning rate: 4.000e-08, loss_scalings: 32768.000000, pp_loss: 10.431188
+[INFO] 2021-07-07 18:03:27,891 [run_pretraining.py:  454]:	worker_index: 1, step: 5, cost: 10.469556, mlm loss: 10.469556, speed: 1.856295 steps/s, speed: 14.850360 samples/s, speed: 7603.384100 tokens/s, learning rate: 5.000e-08, loss_scalings: 32768.000000, pp_loss: 10.414758
+[INFO] 2021-07-07 18:03:28,427 [run_pretraining.py:  454]:	worker_index: 1, step: 6, cost: 10.592952, mlm loss: 10.592952, speed: 1.866454 steps/s, speed: 14.931636 samples/s, speed: 7644.997599 tokens/s, learning rate: 6.000e-08, loss_scalings: 32768.000000, pp_loss: 10.476171
+[INFO] 2021-07-07 18:03:28,977 [run_pretraining.py:  454]:	worker_index: 1, step: 7, cost: 10.532685, mlm loss: 10.532685, speed: 1.822283 steps/s, speed: 14.578260 samples/s, speed: 7464.069306 tokens/s, learning rate: 7.000e-08, loss_scalings: 32768.000000, pp_loss: 10.446870
+[INFO] 2021-07-07 18:03:29,797 [run_pretraining.py:  454]:	worker_index: 1, step: 8, cost: 10.381619, mlm loss: 10.381619, speed: 1.221057 steps/s, speed: 9.768459 samples/s, speed: 5001.451009 tokens/s, learning rate: 8.000e-08, loss_scalings: 32768.000000, pp_loss: 10.374236
+[INFO] 2021-07-07 18:03:30,291 [run_pretraining.py:  454]:	worker_index: 1, step: 9, cost: 10.564127, mlm loss: 10.564127, speed: 2.027686 steps/s, speed: 16.221484 samples/s, speed: 8305.399897 tokens/s, learning rate: 9.000e-08, loss_scalings: 32768.000000, pp_loss: 10.413059
+[INFO] 2021-07-07 18:03:30,811 [run_pretraining.py:  454]:	worker_index: 1, step: 10, cost: 10.367229, mlm loss: 10.367229, speed: 2.024488 steps/s, speed: 16.195904 samples/s, speed: 8292.303103 tokens/s, learning rate: 1.000e-07, loss_scalings: 32768.000000, pp_loss: 10.420985
+[INFO] 2021-07-07 18:03:31,365 [run_pretraining.py:  454]:	worker_index: 1, step: 11, cost: 10.301394, mlm loss: 10.301394, speed: 1.892663 steps/s, speed: 15.141304 samples/s, speed: 7752.347690 tokens/s, learning rate: 1.100e-07, loss_scalings: 32768.000000, pp_loss: 10.364943
+[INFO] 2021-07-07 18:03:31,887 [run_pretraining.py:  454]:	worker_index: 1, step: 12, cost: 10.281769, mlm loss: 10.281769, speed: 1.919456 steps/s, speed: 15.355644 samples/s, speed: 7862.089833 tokens/s, learning rate: 1.200e-07, loss_scalings: 32768.000000, pp_loss: 10.396699
+[INFO] 2021-07-07 18:03:32,414 [run_pretraining.py:  454]:	worker_index: 1, step: 13, cost: 10.392634, mlm loss: 10.392634, speed: 1.901728 steps/s, speed: 15.213821 samples/s, speed: 7789.476321 tokens/s, learning rate: 1.300e-07, loss_scalings: 32768.000000, pp_loss: 10.418458
+[INFO] 2021-07-07 18:03:32,946 [run_pretraining.py:  454]:	worker_index: 1, step: 14, cost: 10.377217, mlm loss: 10.377217, speed: 1.883123 steps/s, speed: 15.064983 samples/s, speed: 7713.271186 tokens/s, learning rate: 1.400e-07, loss_scalings: 32768.000000, pp_loss: 10.320615
+[INFO] 2021-07-07 18:03:33,478 [run_pretraining.py:  454]:	worker_index: 1, step: 15, cost: 10.394900, mlm loss: 10.394900, speed: 1.880335 steps/s, speed: 15.042682 samples/s, speed: 7701.853159 tokens/s, learning rate: 1.500e-07, loss_scalings: 32768.000000, pp_loss: 10.401145
+[INFO] 2021-07-07 18:03:34,015 [run_pretraining.py:  454]:	worker_index: 1, step: 16, cost: 10.377007, mlm loss: 10.377007, speed: 1.864968 steps/s, speed: 14.919745 samples/s, speed: 7638.909461 tokens/s, learning rate: 1.600e-07, loss_scalings: 32768.000000, pp_loss: 10.399186
+[INFO] 2021-07-07 18:03:34,548 [run_pretraining.py:  454]:	worker_index: 1, step: 17, cost: 10.301833, mlm loss: 10.301833, speed: 1.879050 steps/s, speed: 15.032398 samples/s, speed: 7696.587798 tokens/s, learning rate: 1.700e-07, loss_scalings: 32768.000000, pp_loss: 10.362997
+[INFO] 2021-07-07 18:03:35,083 [run_pretraining.py:  454]:	worker_index: 1, step: 18, cost: 10.395214, mlm loss: 10.395214, speed: 1.871880 steps/s, speed: 14.975038 samples/s, speed: 7667.219257 tokens/s, learning rate: 1.800e-07, loss_scalings: 32768.000000, pp_loss: 10.415228
+[INFO] 2021-07-07 18:03:35,632 [run_pretraining.py:  454]:	worker_index: 1, step: 19, cost: 10.387470, mlm loss: 10.387470, speed: 1.821863 steps/s, speed: 14.574904 samples/s, speed: 7462.350973 tokens/s, learning rate: 1.900e-07, loss_scalings: 32768.000000, pp_loss: 10.380167
+[INFO] 2021-07-07 18:03:36,172 [run_pretraining.py:  454]:	worker_index: 1, step: 20, cost: 10.301915, mlm loss: 10.301915, speed: 1.856860 steps/s, speed: 14.854883 samples/s, speed: 7605.699973 tokens/s, learning rate: 2.000e-07, loss_scalings: 32768.000000, pp_loss: 10.331985
+[INFO] 2021-07-07 18:03:36,709 [run_pretraining.py:  454]:	worker_index: 1, step: 21, cost: 10.271483, mlm loss: 10.271483, speed: 1.864598 steps/s, speed: 14.916780 samples/s, speed: 7637.391488 tokens/s, learning rate: 2.100e-07, loss_scalings: 32768.000000, pp_loss: 10.393144
+[INFO] 2021-07-07 18:03:37,779 [run_pretraining.py:  454]:	worker_index: 1, step: 22, cost: 10.565331, mlm loss: 10.565331, speed: 0.935088 steps/s, speed: 7.480701 samples/s, speed: 3830.119141 tokens/s, learning rate: 2.200e-07, loss_scalings: 32768.000000, pp_loss: 10.343410
+[INFO] 2021-07-07 18:03:38,264 [run_pretraining.py:  454]:	worker_index: 1, step: 23, cost: 10.529402, mlm loss: 10.529402, speed: 2.064568 steps/s, speed: 16.516544 samples/s, speed: 8456.470349 tokens/s, learning rate: 2.300e-07, loss_scalings: 32768.000000, pp_loss: 10.433212
+[INFO] 2021-07-07 18:03:38,754 [run_pretraining.py:  454]:	worker_index: 1, step: 24, cost: 10.435479, mlm loss: 10.435479, speed: 2.042483 steps/s, speed: 16.339863 samples/s, speed: 8366.009969 tokens/s, learning rate: 2.400e-07, loss_scalings: 32768.000000, pp_loss: 10.448807
+[INFO] 2021-07-07 18:03:39,257 [run_pretraining.py:  454]:	worker_index: 1, step: 25, cost: 10.403540, mlm loss: 10.403540, speed: 1.992197 steps/s, speed: 15.937577 samples/s, speed: 8160.039244 tokens/s, learning rate: 2.500e-07, loss_scalings: 32768.000000, pp_loss: 10.435572
+[INFO] 2021-07-07 18:03:39,730 [run_pretraining.py:  454]:	worker_index: 1, step: 26, cost: 10.380307, mlm loss: 10.380307, speed: 2.116315 steps/s, speed: 16.930522 samples/s, speed: 8668.427200 tokens/s, learning rate: 2.600e-07, loss_scalings: 32768.000000, pp_loss: 10.358741
+[INFO] 2021-07-07 18:03:40,275 [run_pretraining.py:  454]:	worker_index: 1, step: 27, cost: 10.362477, mlm loss: 10.362477, speed: 1.927837 steps/s, speed: 15.422695 samples/s, speed: 7896.419688 tokens/s, learning rate: 2.700e-07, loss_scalings: 32768.000000, pp_loss: 10.327420
+[INFO] 2021-07-07 18:03:40,787 [run_pretraining.py:  454]:	worker_index: 1, step: 28, cost: 10.391328, mlm loss: 10.391328, speed: 1.954708 steps/s, speed: 15.637661 samples/s, speed: 8006.482217 tokens/s, learning rate: 2.800e-07, loss_scalings: 32768.000000, pp_loss: 10.423909
+[INFO] 2021-07-07 18:03:41,327 [run_pretraining.py:  454]:	worker_index: 1, step: 29, cost: 10.395251, mlm loss: 10.395251, speed: 1.948354 steps/s, speed: 15.586834 samples/s, speed: 7980.458961 tokens/s, learning rate: 2.900e-07, loss_scalings: 32768.000000, pp_loss: 10.359241
+[INFO] 2021-07-07 18:03:41,821 [run_pretraining.py:  454]:	worker_index: 1, step: 30, cost: 10.403387, mlm loss: 10.403387, speed: 2.027094 steps/s, speed: 16.216749 samples/s, speed: 8302.975457 tokens/s, learning rate: 3.000e-07, loss_scalings: 32768.000000, pp_loss: 10.371947
+[INFO] 2021-07-07 18:03:42,300 [run_pretraining.py:  454]:	worker_index: 1, step: 31, cost: 10.395371, mlm loss: 10.395371, speed: 2.094197 steps/s, speed: 16.753577 samples/s, speed: 8577.831272 tokens/s, learning rate: 3.100e-07, loss_scalings: 32768.000000, pp_loss: 10.308245
+[INFO] 2021-07-07 18:03:42,827 [run_pretraining.py:  454]:	worker_index: 1, step: 32, cost: 10.356826, mlm loss: 10.356826, speed: 1.996390 steps/s, speed: 15.971122 samples/s, speed: 8177.214235 tokens/s, learning rate: 3.200e-07, loss_scalings: 32768.000000, pp_loss: 10.310614
+[INFO] 2021-07-07 18:03:43,300 [run_pretraining.py:  454]:	worker_index: 1, step: 33, cost: 10.319510, mlm loss: 10.319510, speed: 2.116559 steps/s, speed: 16.932470 samples/s, speed: 8669.424546 tokens/s, learning rate: 3.300e-07, loss_scalings: 32768.000000, pp_loss: 10.380491
+[INFO] 2021-07-07 18:03:43,829 [run_pretraining.py:  454]:	worker_index: 1, step: 34, cost: 10.384976, mlm loss: 10.384976, speed: 1.989193 steps/s, speed: 15.913540 samples/s, speed: 8147.732695 tokens/s, learning rate: 3.400e-07, loss_scalings: 32768.000000, pp_loss: 10.385878
+[INFO] 2021-07-07 18:03:44,349 [run_pretraining.py:  454]:	worker_index: 1, step: 35, cost: 10.433150, mlm loss: 10.433150, speed: 2.022855 steps/s, speed: 16.182837 samples/s, speed: 8285.612336 tokens/s, learning rate: 3.500e-07, loss_scalings: 32768.000000, pp_loss: 10.355391
+[INFO] 2021-07-07 18:03:45,363 [run_pretraining.py:  454]:	worker_index: 1, step: 36, cost: 10.193869, mlm loss: 10.193869, speed: 0.987129 steps/s, speed: 7.897032 samples/s, speed: 4043.280181 tokens/s, learning rate: 3.600e-07, loss_scalings: 32768.000000, pp_loss: 10.417512
+[INFO] 2021-07-07 18:03:45,885 [run_pretraining.py:  454]:	worker_index: 1, step: 37, cost: 10.350761, mlm loss: 10.350761, speed: 1.922083 steps/s, speed: 15.376663 samples/s, speed: 7872.851646 tokens/s, learning rate: 3.700e-07, loss_scalings: 32768.000000, pp_loss: 10.348826
+[INFO] 2021-07-07 18:03:46,376 [run_pretraining.py:  454]:	worker_index: 1, step: 38, cost: 10.452506, mlm loss: 10.452506, speed: 2.038426 steps/s, speed: 16.307408 samples/s, speed: 8349.392761 tokens/s, learning rate: 3.800e-07, loss_scalings: 32768.000000, pp_loss: 10.386975
+[INFO] 2021-07-07 18:03:46,870 [run_pretraining.py:  454]:	worker_index: 1, step: 39, cost: 10.311605, mlm loss: 10.311605, speed: 2.025106 steps/s, speed: 16.200847 samples/s, speed: 8294.833450 tokens/s, learning rate: 3.900e-07, loss_scalings: 32768.000000, pp_loss: 10.341792
+[INFO] 2021-07-07 18:03:47,362 [run_pretraining.py:  454]:	worker_index: 1, step: 40, cost: 10.292587, mlm loss: 10.292587, speed: 2.034679 steps/s, speed: 16.277434 samples/s, speed: 8334.046042 tokens/s, learning rate: 4.000e-07, loss_scalings: 32768.000000, pp_loss: 10.349006
+[INFO] 2021-07-07 18:03:47,863 [run_pretraining.py:  454]:	worker_index: 1, step: 41, cost: 10.400211, mlm loss: 10.400211, speed: 2.000266 steps/s, speed: 16.002129 samples/s, speed: 8193.089989 tokens/s, learning rate: 4.100e-07, loss_scalings: 32768.000000, pp_loss: 10.375772
+[INFO] 2021-07-07 18:03:48,329 [run_pretraining.py:  454]:	worker_index: 1, step: 42, cost: 10.268174, mlm loss: 10.268174, speed: 2.146625 steps/s, speed: 17.173002 samples/s, speed: 8792.577117 tokens/s, learning rate: 4.200e-07, loss_scalings: 32768.000000, pp_loss: 10.313730
+[INFO] 2021-07-07 18:03:48,827 [run_pretraining.py:  454]:	worker_index: 1, step: 43, cost: 10.403955, mlm loss: 10.403955, speed: 2.124177 steps/s, speed: 16.993415 samples/s, speed: 8700.628336 tokens/s, learning rate: 4.300e-07, loss_scalings: 32768.000000, pp_loss: 10.351980
+[INFO] 2021-07-07 18:03:49,358 [run_pretraining.py:  454]:	worker_index: 1, step: 44, cost: 10.247703, mlm loss: 10.247703, speed: 1.979122 steps/s, speed: 15.832977 samples/s, speed: 8106.484144 tokens/s, learning rate: 4.400e-07, loss_scalings: 32768.000000, pp_loss: 10.293719
+[INFO] 2021-07-07 18:03:49,869 [run_pretraining.py:  454]:	worker_index: 1, step: 45, cost: 10.315146, mlm loss: 10.315146, speed: 2.061101 steps/s, speed: 16.488810 samples/s, speed: 8442.270833 tokens/s, learning rate: 4.500e-07, loss_scalings: 32768.000000, pp_loss: 10.294789
+[INFO] 2021-07-07 18:03:50,379 [run_pretraining.py:  454]:	worker_index: 1, step: 46, cost: 10.185179, mlm loss: 10.185179, speed: 2.068945 steps/s, speed: 16.551560 samples/s, speed: 8474.398875 tokens/s, learning rate: 4.600e-07, loss_scalings: 32768.000000, pp_loss: 10.343244
+[INFO] 2021-07-07 18:03:50,903 [run_pretraining.py:  454]:	worker_index: 1, step: 47, cost: 10.250388, mlm loss: 10.250388, speed: 2.005252 steps/s, speed: 16.042018 samples/s, speed: 8213.513381 tokens/s, learning rate: 4.700e-07, loss_scalings: 32768.000000, pp_loss: 10.309007
+[INFO] 2021-07-07 18:03:51,397 [run_pretraining.py:  454]:	worker_index: 1, step: 48, cost: 10.317228, mlm loss: 10.317228, speed: 2.027785 steps/s, speed: 16.222276 samples/s, speed: 8305.805446 tokens/s, learning rate: 4.800e-07, loss_scalings: 32768.000000, pp_loss: 10.392067
+[INFO] 2021-07-07 18:03:52,329 [run_pretraining.py:  454]:	worker_index: 1, step: 49, cost: 10.257071, mlm loss: 10.257071, speed: 1.073195 steps/s, speed: 8.585563 samples/s, speed: 4395.808236 tokens/s, learning rate: 4.900e-07, loss_scalings: 32768.000000, pp_loss: 10.321541
+[INFO] 2021-07-07 18:03:53,275 [run_pretraining.py:  454]:	worker_index: 1, step: 50, cost: 10.346723, mlm loss: 10.346723, speed: 1.058246 steps/s, speed: 8.465966 samples/s, speed: 4334.574470 tokens/s, learning rate: 5.000e-07, loss_scalings: 32768.000000, pp_loss: 10.301134
+[INFO] 2021-07-07 18:03:53,784 [run_pretraining.py:  454]:	worker_index: 1, step: 51, cost: 10.194963, mlm loss: 10.194963, speed: 1.968416 steps/s, speed: 15.747325 samples/s, speed: 8062.630495 tokens/s, learning rate: 5.100e-07, loss_scalings: 32768.000000, pp_loss: 10.250391
+[INFO] 2021-07-07 18:03:54,303 [run_pretraining.py:  454]:	worker_index: 1, step: 52, cost: 10.354479, mlm loss: 10.354479, speed: 2.031683 steps/s, speed: 16.253464 samples/s, speed: 8321.773755 tokens/s, learning rate: 5.200e-07, loss_scalings: 32768.000000, pp_loss: 10.300029
+[INFO] 2021-07-07 18:03:54,796 [run_pretraining.py:  454]:	worker_index: 1, step: 53, cost: 10.258814, mlm loss: 10.258814, speed: 2.047180 steps/s, speed: 16.377443 samples/s, speed: 8385.250624 tokens/s, learning rate: 5.300e-07, loss_scalings: 32768.000000, pp_loss: 10.270575
+[INFO] 2021-07-07 18:03:55,320 [run_pretraining.py:  454]:	worker_index: 1, step: 54, cost: 10.297480, mlm loss: 10.297480, speed: 1.909405 steps/s, speed: 15.275240 samples/s, speed: 7820.922805 tokens/s, learning rate: 5.400e-07, loss_scalings: 32768.000000, pp_loss: 10.310766
+[INFO] 2021-07-07 18:03:55,806 [run_pretraining.py:  454]:	worker_index: 1, step: 55, cost: 10.220051, mlm loss: 10.220051, speed: 2.061160 steps/s, speed: 16.489280 samples/s, speed: 8442.511457 tokens/s, learning rate: 5.500e-07, loss_scalings: 32768.000000, pp_loss: 10.229097
+[INFO] 2021-07-07 18:03:56,310 [run_pretraining.py:  454]:	worker_index: 1, step: 56, cost: 10.353544, mlm loss: 10.353544, speed: 2.093217 steps/s, speed: 16.745734 samples/s, speed: 8573.815818 tokens/s, learning rate: 5.600e-07, loss_scalings: 32768.000000, pp_loss: 10.269722
+[INFO] 2021-07-07 18:03:56,796 [run_pretraining.py:  454]:	worker_index: 1, step: 57, cost: 10.284459, mlm loss: 10.284459, speed: 2.171783 steps/s, speed: 17.374265 samples/s, speed: 8895.623809 tokens/s, learning rate: 5.700e-07, loss_scalings: 32768.000000, pp_loss: 10.290270
+[INFO] 2021-07-07 18:03:57,315 [run_pretraining.py:  454]:	worker_index: 1, step: 58, cost: 10.249197, mlm loss: 10.249197, speed: 2.028507 steps/s, speed: 16.228059 samples/s, speed: 8308.765952 tokens/s, learning rate: 5.800e-07, loss_scalings: 32768.000000, pp_loss: 10.257585
+[INFO] 2021-07-07 18:03:57,780 [run_pretraining.py:  454]:	worker_index: 1, step: 59, cost: 10.292273, mlm loss: 10.292273, speed: 2.153740 steps/s, speed: 17.229924 samples/s, speed: 8821.720898 tokens/s, learning rate: 5.900e-07, loss_scalings: 32768.000000, pp_loss: 10.290578
+[INFO] 2021-07-07 18:03:58,297 [run_pretraining.py:  454]:	worker_index: 1, step: 60, cost: 10.227756, mlm loss: 10.227756, speed: 2.035638 steps/s, speed: 16.285105 samples/s, speed: 8337.973539 tokens/s, learning rate: 6.000e-07, loss_scalings: 32768.000000, pp_loss: 10.193679
+[INFO] 2021-07-07 18:03:58,789 [run_pretraining.py:  454]:	worker_index: 1, step: 61, cost: 10.411137, mlm loss: 10.411137, speed: 2.037826 steps/s, speed: 16.302606 samples/s, speed: 8346.934462 tokens/s, learning rate: 6.100e-07, loss_scalings: 32768.000000, pp_loss: 10.239162
+[INFO] 2021-07-07 18:03:59,307 [run_pretraining.py:  454]:	worker_index: 1, step: 62, cost: 10.267528, mlm loss: 10.267528, speed: 1.930902 steps/s, speed: 15.447218 samples/s, speed: 7908.975736 tokens/s, learning rate: 6.200e-07, loss_scalings: 32768.000000, pp_loss: 10.245564
+[INFO] 2021-07-07 18:04:00,279 [run_pretraining.py:  454]:	worker_index: 1, step: 63, cost: 10.304688, mlm loss: 10.304688, speed: 1.029416 steps/s, speed: 8.235330 samples/s, speed: 4216.488950 tokens/s, learning rate: 6.300e-07, loss_scalings: 32768.000000, pp_loss: 10.225243
+[INFO] 2021-07-07 18:04:01,279 [run_pretraining.py:  454]:	worker_index: 1, step: 64, cost: 10.283468, mlm loss: 10.283468, speed: 1.001536 steps/s, speed: 8.012291 samples/s, speed: 4102.292856 tokens/s, learning rate: 6.400e-07, loss_scalings: 32768.000000, pp_loss: 10.211272
+[INFO] 2021-07-07 18:04:01,777 [run_pretraining.py:  454]:	worker_index: 1, step: 65, cost: 10.298572, mlm loss: 10.298572, speed: 2.008849 steps/s, speed: 16.070792 samples/s, speed: 8228.245600 tokens/s, learning rate: 6.500e-07, loss_scalings: 32768.000000, pp_loss: 10.182038
+[INFO] 2021-07-07 18:04:02,272 [run_pretraining.py:  454]:	worker_index: 1, step: 66, cost: 10.391895, mlm loss: 10.391895, speed: 2.023173 steps/s, speed: 16.185381 samples/s, speed: 8286.915249 tokens/s, learning rate: 6.600e-07, loss_scalings: 32768.000000, pp_loss: 10.232399
+[INFO] 2021-07-07 18:04:02,765 [run_pretraining.py:  454]:	worker_index: 1, step: 67, cost: 10.232090, mlm loss: 10.232090, speed: 2.033793 steps/s, speed: 16.270346 samples/s, speed: 8330.417108 tokens/s, learning rate: 6.700e-07, loss_scalings: 32768.000000, pp_loss: 10.123650
+[INFO] 2021-07-07 18:04:03,266 [run_pretraining.py:  454]:	worker_index: 1, step: 68, cost: 10.170064, mlm loss: 10.170064, speed: 1.998507 steps/s, speed: 15.988054 samples/s, speed: 8185.883477 tokens/s, learning rate: 6.800e-07, loss_scalings: 32768.000000, pp_loss: 10.196085
+[INFO] 2021-07-07 18:04:03,794 [run_pretraining.py:  454]:	worker_index: 1, step: 69, cost: 10.238522, mlm loss: 10.238522, speed: 1.895727 steps/s, speed: 15.165818 samples/s, speed: 7764.898587 tokens/s, learning rate: 6.900e-07, loss_scalings: 32768.000000, pp_loss: 10.210897
+[INFO] 2021-07-07 18:04:04,312 [run_pretraining.py:  454]:	worker_index: 1, step: 70, cost: 10.241607, mlm loss: 10.241607, speed: 1.936521 steps/s, speed: 15.492164 samples/s, speed: 7931.988079 tokens/s, learning rate: 7.000e-07, loss_scalings: 32768.000000, pp_loss: 10.211837
+[INFO] 2021-07-07 18:04:04,803 [run_pretraining.py:  454]:	worker_index: 1, step: 71, cost: 10.138268, mlm loss: 10.138268, speed: 2.036252 steps/s, speed: 16.290014 samples/s, speed: 8340.487298 tokens/s, learning rate: 7.100e-07, loss_scalings: 32768.000000, pp_loss: 10.127764
+[INFO] 2021-07-07 18:04:05,273 [run_pretraining.py:  454]:	worker_index: 1, step: 72, cost: 10.170498, mlm loss: 10.170498, speed: 2.129450 steps/s, speed: 17.035604 samples/s, speed: 8722.229000 tokens/s, learning rate: 7.200e-07, loss_scalings: 32768.000000, pp_loss: 10.052940
+[INFO] 2021-07-07 18:04:05,804 [run_pretraining.py:  454]:	worker_index: 1, step: 73, cost: 10.110124, mlm loss: 10.110124, speed: 1.980559 steps/s, speed: 15.844475 samples/s, speed: 8112.371453 tokens/s, learning rate: 7.300e-07, loss_scalings: 32768.000000, pp_loss: 10.108944
+[INFO] 2021-07-07 18:04:06,298 [run_pretraining.py:  454]:	worker_index: 1, step: 74, cost: 10.058245, mlm loss: 10.058245, speed: 2.027222 steps/s, speed: 16.217776 samples/s, speed: 8303.501167 tokens/s, learning rate: 7.400e-07, loss_scalings: 32768.000000, pp_loss: 10.143121
+[INFO] 2021-07-07 18:04:06,788 [run_pretraining.py:  454]:	worker_index: 1, step: 75, cost: 10.201145, mlm loss: 10.201145, speed: 2.045730 steps/s, speed: 16.365836 samples/s, speed: 8379.308114 tokens/s, learning rate: 7.500e-07, loss_scalings: 32768.000000, pp_loss: 10.150389
+[INFO] 2021-07-07 18:04:07,285 [run_pretraining.py:  454]:	worker_index: 1, step: 76, cost: 10.069783, mlm loss: 10.069783, speed: 2.015809 steps/s, speed: 16.126473 samples/s, speed: 8256.753929 tokens/s, learning rate: 7.600e-07, loss_scalings: 32768.000000, pp_loss: 10.087954
+[INFO] 2021-07-07 18:04:08,230 [run_pretraining.py:  454]:	worker_index: 1, step: 77, cost: 10.077425, mlm loss: 10.077425, speed: 1.058642 steps/s, speed: 8.469137 samples/s, speed: 4336.198035 tokens/s, learning rate: 7.700e-07, loss_scalings: 32768.000000, pp_loss: 10.061396
+[INFO] 2021-07-07 18:04:09,212 [run_pretraining.py:  454]:	worker_index: 1, step: 78, cost: 10.163882, mlm loss: 10.163882, speed: 1.045972 steps/s, speed: 8.367774 samples/s, speed: 4284.300459 tokens/s, learning rate: 7.800e-07, loss_scalings: 32768.000000, pp_loss: 10.088191
+[INFO] 2021-07-07 18:04:09,712 [run_pretraining.py:  454]:	worker_index: 1, step: 79, cost: 9.912769, mlm loss: 9.912769, speed: 2.005439 steps/s, speed: 16.043514 samples/s, speed: 8214.279177 tokens/s, learning rate: 7.900e-07, loss_scalings: 32768.000000, pp_loss: 10.126465
+[INFO] 2021-07-07 18:04:10,184 [run_pretraining.py:  454]:	worker_index: 1, step: 80, cost: 10.108814, mlm loss: 10.108814, speed: 2.123035 steps/s, speed: 16.984280 samples/s, speed: 8695.951282 tokens/s, learning rate: 8.000e-07, loss_scalings: 32768.000000, pp_loss: 10.117905
+[INFO] 2021-07-07 18:04:10,704 [run_pretraining.py:  454]:	worker_index: 1, step: 81, cost: 10.063154, mlm loss: 10.063154, speed: 2.024776 steps/s, speed: 16.198211 samples/s, speed: 8293.484006 tokens/s, learning rate: 8.100e-07, loss_scalings: 32768.000000, pp_loss: 10.101847
+[INFO] 2021-07-07 18:04:11,172 [run_pretraining.py:  454]:	worker_index: 1, step: 82, cost: 10.078278, mlm loss: 10.078278, speed: 2.139610 steps/s, speed: 17.116883 samples/s, speed: 8763.844319 tokens/s, learning rate: 8.200e-07, loss_scalings: 32768.000000, pp_loss: 10.046177
+[INFO] 2021-07-07 18:04:11,689 [run_pretraining.py:  454]:	worker_index: 1, step: 83, cost: 10.073121, mlm loss: 10.073121, speed: 2.034165 steps/s, speed: 16.273321 samples/s, speed: 8331.940229 tokens/s, learning rate: 8.300e-07, loss_scalings: 32768.000000, pp_loss: 10.067714
+[INFO] 2021-07-07 18:04:12,187 [run_pretraining.py:  454]:	worker_index: 1, step: 84, cost: 10.160168, mlm loss: 10.160168, speed: 2.012758 steps/s, speed: 16.102064 samples/s, speed: 8244.257017 tokens/s, learning rate: 8.400e-07, loss_scalings: 32768.000000, pp_loss: 10.125542
+[INFO] 2021-07-07 18:04:12,679 [run_pretraining.py:  454]:	worker_index: 1, step: 85, cost: 10.121989, mlm loss: 10.121989, speed: 2.034558 steps/s, speed: 16.276462 samples/s, speed: 8333.548797 tokens/s, learning rate: 8.500e-07, loss_scalings: 32768.000000, pp_loss: 10.122019
+[INFO] 2021-07-07 18:04:13,175 [run_pretraining.py:  454]:	worker_index: 1, step: 86, cost: 10.174972, mlm loss: 10.174972, speed: 2.020112 steps/s, speed: 16.160896 samples/s, speed: 8274.378747 tokens/s, learning rate: 8.600e-07, loss_scalings: 32768.000000, pp_loss: 10.067982
+[INFO] 2021-07-07 18:04:13,671 [run_pretraining.py:  454]:	worker_index: 1, step: 87, cost: 9.985229, mlm loss: 9.985229, speed: 2.017816 steps/s, speed: 16.142532 samples/s, speed: 8264.976383 tokens/s, learning rate: 8.700e-07, loss_scalings: 32768.000000, pp_loss: 9.989202
+[INFO] 2021-07-07 18:04:14,165 [run_pretraining.py:  454]:	worker_index: 1, step: 88, cost: 10.093277, mlm loss: 10.093277, speed: 2.026522 steps/s, speed: 16.212173 samples/s, speed: 8300.632643 tokens/s, learning rate: 8.800e-07, loss_scalings: 32768.000000, pp_loss: 10.067557
+[INFO] 2021-07-07 18:04:14,661 [run_pretraining.py:  454]:	worker_index: 1, step: 89, cost: 10.004122, mlm loss: 10.004122, speed: 2.018840 steps/s, speed: 16.150721 samples/s, speed: 8269.169377 tokens/s, learning rate: 8.900e-07, loss_scalings: 32768.000000, pp_loss: 10.005308
+[INFO] 2021-07-07 18:04:15,136 [run_pretraining.py:  454]:	worker_index: 1, step: 90, cost: 9.795403, mlm loss: 9.795403, speed: 2.107399 steps/s, speed: 16.859194 samples/s, speed: 8631.907241 tokens/s, learning rate: 9.000e-07, loss_scalings: 32768.000000, pp_loss: 10.051005
+[INFO] 2021-07-07 18:04:16,149 [run_pretraining.py:  454]:	worker_index: 1, step: 91, cost: 10.060653, mlm loss: 10.060653, speed: 1.013197 steps/s, speed: 8.105574 samples/s, speed: 4150.053648 tokens/s, learning rate: 9.100e-07, loss_scalings: 32768.000000, pp_loss: 10.016347
+[INFO] 2021-07-07 18:04:16,640 [run_pretraining.py:  454]:	worker_index: 1, step: 92, cost: 9.940603, mlm loss: 9.940603, speed: 2.038779 steps/s, speed: 16.310230 samples/s, speed: 8350.837586 tokens/s, learning rate: 9.200e-07, loss_scalings: 32768.000000, pp_loss: 10.005287
+[INFO] 2021-07-07 18:04:17,613 [run_pretraining.py:  454]:	worker_index: 1, step: 93, cost: 9.943510, mlm loss: 9.943510, speed: 1.028792 steps/s, speed: 8.230339 samples/s, speed: 4213.933358 tokens/s, learning rate: 9.300e-07, loss_scalings: 32768.000000, pp_loss: 10.035253
+[INFO] 2021-07-07 18:04:18,129 [run_pretraining.py:  454]:	worker_index: 1, step: 94, cost: 10.029194, mlm loss: 10.029194, speed: 1.939756 steps/s, speed: 15.518050 samples/s, speed: 7945.241783 tokens/s, learning rate: 9.400e-07, loss_scalings: 32768.000000, pp_loss: 10.039211
+[INFO] 2021-07-07 18:04:18,629 [run_pretraining.py:  454]:	worker_index: 1, step: 95, cost: 10.050778, mlm loss: 10.050778, speed: 2.006182 steps/s, speed: 16.049454 samples/s, speed: 8217.320207 tokens/s, learning rate: 9.500e-07, loss_scalings: 32768.000000, pp_loss: 9.998384
+[INFO] 2021-07-07 18:04:19,101 [run_pretraining.py:  454]:	worker_index: 1, step: 96, cost: 9.807129, mlm loss: 9.807129, speed: 2.119899 steps/s, speed: 16.959188 samples/s, speed: 8683.104301 tokens/s, learning rate: 9.600e-07, loss_scalings: 32768.000000, pp_loss: 9.930743
+[INFO] 2021-07-07 18:04:19,637 [run_pretraining.py:  454]:	worker_index: 1, step: 97, cost: 9.754639, mlm loss: 9.754639, speed: 1.959283 steps/s, speed: 15.674265 samples/s, speed: 8025.223677 tokens/s, learning rate: 9.700e-07, loss_scalings: 32768.000000, pp_loss: 9.970238
+[INFO] 2021-07-07 18:04:20,101 [run_pretraining.py:  454]:	worker_index: 1, step: 98, cost: 9.880576, mlm loss: 9.880576, speed: 2.159284 steps/s, speed: 17.274275 samples/s, speed: 8844.428603 tokens/s, learning rate: 9.800e-07, loss_scalings: 32768.000000, pp_loss: 9.816711
+[INFO] 2021-07-07 18:04:20,619 [run_pretraining.py:  454]:	worker_index: 1, step: 99, cost: 9.802176, mlm loss: 9.802176, speed: 2.034410 steps/s, speed: 16.275278 samples/s, speed: 8332.942479 tokens/s, learning rate: 9.900e-07, loss_scalings: 32768.000000, pp_loss: 9.939928
+[INFO] 2021-07-07 18:04:21,139 [run_pretraining.py:  454]:	worker_index: 1, step: 100, cost: 9.930861, mlm loss: 9.930861, speed: 2.019680 steps/s, speed: 16.157441 samples/s, speed: 8272.609693 tokens/s, learning rate: 1.000e-06, loss_scalings: 32768.000000, pp_loss: 9.925009
+[INFO] 2021-07-07 18:04:21,635 [run_pretraining.py:  454]:	worker_index: 1, step: 101, cost: 10.105101, mlm loss: 10.105101, speed: 2.020954 steps/s, speed: 16.167632 samples/s, speed: 8277.827388 tokens/s, learning rate: 1.010e-06, loss_scalings: 32768.000000, pp_loss: 10.015985
+[INFO] 2021-07-07 18:04:22,104 [run_pretraining.py:  454]:	worker_index: 1, step: 102, cost: 9.945148, mlm loss: 9.945148, speed: 2.134041 steps/s, speed: 17.072328 samples/s, speed: 8741.032072 tokens/s, learning rate: 1.020e-06, loss_scalings: 32768.000000, pp_loss: 9.933464
+[INFO] 2021-07-07 18:04:22,618 [run_pretraining.py:  454]:	worker_index: 1, step: 103, cost: 10.080685, mlm loss: 10.080685, speed: 2.046233 steps/s, speed: 16.369860 samples/s, speed: 8381.368429 tokens/s, learning rate: 1.030e-06, loss_scalings: 32768.000000, pp_loss: 9.941427
+[INFO] 2021-07-07 18:04:23,115 [run_pretraining.py:  454]:	worker_index: 1, step: 104, cost: 9.762975, mlm loss: 9.762975, speed: 2.017823 steps/s, speed: 16.142586 samples/s, speed: 8265.004216 tokens/s, learning rate: 1.040e-06, loss_scalings: 32768.000000, pp_loss: 9.899068
+[INFO] 2021-07-07 18:04:24,105 [run_pretraining.py:  454]:	worker_index: 1, step: 105, cost: 9.663712, mlm loss: 9.663712, speed: 1.010468 steps/s, speed: 8.083742 samples/s, speed: 4138.875803 tokens/s, learning rate: 1.050e-06, loss_scalings: 32768.000000, pp_loss: 9.925026
+[INFO] 2021-07-07 18:04:24,595 [run_pretraining.py:  454]:	worker_index: 1, step: 106, cost: 9.851250, mlm loss: 9.851250, speed: 2.045033 steps/s, speed: 16.360266 samples/s, speed: 8376.456412 tokens/s, learning rate: 1.060e-06, loss_scalings: 32768.000000, pp_loss: 9.936626
+[INFO] 2021-07-07 18:04:25,568 [run_pretraining.py:  454]:	worker_index: 1, step: 107, cost: 9.935000, mlm loss: 9.935000, speed: 1.027763 steps/s, speed: 8.222104 samples/s, speed: 4209.717362 tokens/s, learning rate: 1.070e-06, loss_scalings: 32768.000000, pp_loss: 9.781284
+[INFO] 2021-07-07 18:04:26,091 [run_pretraining.py:  454]:	worker_index: 1, step: 108, cost: 10.012003, mlm loss: 10.012003, speed: 2.012313 steps/s, speed: 16.098503 samples/s, speed: 8242.433592 tokens/s, learning rate: 1.080e-06, loss_scalings: 32768.000000, pp_loss: 9.927407
+[INFO] 2021-07-07 18:04:26,582 [run_pretraining.py:  454]:	worker_index: 1, step: 109, cost: 9.424250, mlm loss: 9.424250, speed: 2.041758 steps/s, speed: 16.334065 samples/s, speed: 8363.041105 tokens/s, learning rate: 1.090e-06, loss_scalings: 32768.000000, pp_loss: 9.843893
+[INFO] 2021-07-07 18:04:27,065 [run_pretraining.py:  454]:	worker_index: 1, step: 110, cost: 9.791797, mlm loss: 9.791797, speed: 2.070211 steps/s, speed: 16.561690 samples/s, speed: 8479.585506 tokens/s, learning rate: 1.100e-06, loss_scalings: 32768.000000, pp_loss: 9.777647
+[INFO] 2021-07-07 18:04:27,581 [run_pretraining.py:  454]:	worker_index: 1, step: 111, cost: 9.981200, mlm loss: 9.981200, speed: 2.065970 steps/s, speed: 16.527762 samples/s, speed: 8462.214390 tokens/s, learning rate: 1.110e-06, loss_scalings: 32768.000000, pp_loss: 9.987658
+[INFO] 2021-07-07 18:04:28,076 [run_pretraining.py:  454]:	worker_index: 1, step: 112, cost: 9.863419, mlm loss: 9.863419, speed: 2.025073 steps/s, speed: 16.200581 samples/s, speed: 8294.697284 tokens/s, learning rate: 1.120e-06, loss_scalings: 32768.000000, pp_loss: 9.851209
+[INFO] 2021-07-07 18:04:28,581 [run_pretraining.py:  454]:	worker_index: 1, step: 113, cost: 9.816504, mlm loss: 9.816504, speed: 1.979825 steps/s, speed: 15.838597 samples/s, speed: 8109.361656 tokens/s, learning rate: 1.130e-06, loss_scalings: 32768.000000, pp_loss: 9.880052
+[INFO] 2021-07-07 18:04:29,069 [run_pretraining.py:  454]:	worker_index: 1, step: 114, cost: 9.753711, mlm loss: 9.753711, speed: 2.056317 steps/s, speed: 16.450533 samples/s, speed: 8422.672941 tokens/s, learning rate: 1.140e-06, loss_scalings: 32768.000000, pp_loss: 9.734436
+[INFO] 2021-07-07 18:04:29,570 [run_pretraining.py:  454]:	worker_index: 1, step: 115, cost: 9.684312, mlm loss: 9.684312, speed: 1.995132 steps/s, speed: 15.961055 samples/s, speed: 8172.060371 tokens/s, learning rate: 1.150e-06, loss_scalings: 32768.000000, pp_loss: 9.754103
+[INFO] 2021-07-07 18:04:30,071 [run_pretraining.py:  454]:	worker_index: 1, step: 116, cost: 9.872102, mlm loss: 9.872102, speed: 2.000264 steps/s, speed: 16.002114 samples/s, speed: 8193.082174 tokens/s, learning rate: 1.160e-06, loss_scalings: 32768.000000, pp_loss: 9.835750
+[INFO] 2021-07-07 18:04:30,554 [run_pretraining.py:  454]:	worker_index: 1, step: 117, cost: 9.752736, mlm loss: 9.752736, speed: 2.074445 steps/s, speed: 16.595561 samples/s, speed: 8496.927227 tokens/s, learning rate: 1.170e-06, loss_scalings: 32768.000000, pp_loss: 9.784451
+[INFO] 2021-07-07 18:04:31,080 [run_pretraining.py:  454]:	worker_index: 1, step: 118, cost: 9.856165, mlm loss: 9.856165, speed: 2.002126 steps/s, speed: 16.017009 samples/s, speed: 8200.708466 tokens/s, learning rate: 1.180e-06, loss_scalings: 32768.000000, pp_loss: 9.773709
+[INFO] 2021-07-07 18:04:32,086 [run_pretraining.py:  454]:	worker_index: 1, step: 119, cost: 9.989637, mlm loss: 9.989637, speed: 0.994144 steps/s, speed: 7.953151 samples/s, speed: 4072.013366 tokens/s, learning rate: 1.190e-06, loss_scalings: 32768.000000, pp_loss: 9.909729
+[INFO] 2021-07-07 18:04:32,584 [run_pretraining.py:  454]:	worker_index: 1, step: 120, cost: 9.595952, mlm loss: 9.595952, speed: 2.012034 steps/s, speed: 16.096271 samples/s, speed: 8241.290901 tokens/s, learning rate: 1.200e-06, loss_scalings: 32768.000000, pp_loss: 9.682209
+[INFO] 2021-07-07 18:04:33,539 [run_pretraining.py:  454]:	worker_index: 1, step: 121, cost: 9.716275, mlm loss: 9.716275, speed: 1.047547 steps/s, speed: 8.380378 samples/s, speed: 4290.753776 tokens/s, learning rate: 1.210e-06, loss_scalings: 32768.000000, pp_loss: 9.645371
+[INFO] 2021-07-07 18:04:34,057 [run_pretraining.py:  454]:	worker_index: 1, step: 122, cost: 9.909002, mlm loss: 9.909002, speed: 2.033842 steps/s, speed: 16.270733 samples/s, speed: 8330.615042 tokens/s, learning rate: 1.220e-06, loss_scalings: 32768.000000, pp_loss: 9.826941
+[INFO] 2021-07-07 18:04:34,563 [run_pretraining.py:  454]:	worker_index: 1, step: 123, cost: 9.775335, mlm loss: 9.775335, speed: 1.980506 steps/s, speed: 15.844049 samples/s, speed: 8112.153110 tokens/s, learning rate: 1.230e-06, loss_scalings: 32768.000000, pp_loss: 9.797359
+[INFO] 2021-07-07 18:04:35,081 [run_pretraining.py:  454]:	worker_index: 1, step: 124, cost: 9.753455, mlm loss: 9.753455, speed: 2.034164 steps/s, speed: 16.273313 samples/s, speed: 8331.936188 tokens/s, learning rate: 1.240e-06, loss_scalings: 32768.000000, pp_loss: 9.765071
+[INFO] 2021-07-07 18:04:35,549 [run_pretraining.py:  454]:	worker_index: 1, step: 125, cost: 9.855137, mlm loss: 9.855137, speed: 2.139215 steps/s, speed: 17.113723 samples/s, speed: 8762.226247 tokens/s, learning rate: 1.250e-06, loss_scalings: 32768.000000, pp_loss: 9.716959
+[INFO] 2021-07-07 18:04:36,079 [run_pretraining.py:  454]:	worker_index: 1, step: 126, cost: 9.748865, mlm loss: 9.748865, speed: 1.984475 steps/s, speed: 15.875796 samples/s, speed: 8128.407669 tokens/s, learning rate: 1.260e-06, loss_scalings: 32768.000000, pp_loss: 9.758132
+[INFO] 2021-07-07 18:04:36,536 [run_pretraining.py:  454]:	worker_index: 1, step: 127, cost: 9.925560, mlm loss: 9.925560, speed: 2.192341 steps/s, speed: 17.538730 samples/s, speed: 8979.829823 tokens/s, learning rate: 1.270e-06, loss_scalings: 32768.000000, pp_loss: 9.785320
+[INFO] 2021-07-07 18:04:37,051 [run_pretraining.py:  454]:	worker_index: 1, step: 128, cost: 9.443398, mlm loss: 9.443398, speed: 2.043953 steps/s, speed: 16.351624 samples/s, speed: 8372.031541 tokens/s, learning rate: 1.280e-06, loss_scalings: 32768.000000, pp_loss: 9.861871
+[INFO] 2021-07-07 18:04:37,524 [run_pretraining.py:  454]:	worker_index: 1, step: 129, cost: 9.089179, mlm loss: 9.089179, speed: 2.114690 steps/s, speed: 16.917521 samples/s, speed: 8661.770990 tokens/s, learning rate: 1.290e-06, loss_scalings: 32768.000000, pp_loss: 9.585958
+[INFO] 2021-07-07 18:04:38,034 [run_pretraining.py:  454]:	worker_index: 1, step: 130, cost: 9.486429, mlm loss: 9.486429, speed: 2.068048 steps/s, speed: 16.544387 samples/s, speed: 8470.726064 tokens/s, learning rate: 1.300e-06, loss_scalings: 32768.000000, pp_loss: 9.722667
+[INFO] 2021-07-07 18:04:38,503 [run_pretraining.py:  454]:	worker_index: 1, step: 131, cost: 9.890340, mlm loss: 9.890340, speed: 2.135873 steps/s, speed: 17.086986 samples/s, speed: 8748.536816 tokens/s, learning rate: 1.310e-06, loss_scalings: 32768.000000, pp_loss: 9.683778
+[INFO] 2021-07-07 18:04:38,994 [run_pretraining.py:  454]:	worker_index: 1, step: 132, cost: 9.468205, mlm loss: 9.468205, speed: 2.146580 steps/s, speed: 17.172642 samples/s, speed: 8792.392621 tokens/s, learning rate: 1.320e-06, loss_scalings: 32768.000000, pp_loss: 9.750014
+[INFO] 2021-07-07 18:04:40,000 [run_pretraining.py:  454]:	worker_index: 1, step: 133, cost: 9.829424, mlm loss: 9.829424, speed: 1.024614 steps/s, speed: 8.196911 samples/s, speed: 4196.818402 tokens/s, learning rate: 1.330e-06, loss_scalings: 32768.000000, pp_loss: 9.763436
+[INFO] 2021-07-07 18:04:40,480 [run_pretraining.py:  454]:	worker_index: 1, step: 134, cost: 9.827461, mlm loss: 9.827461, speed: 2.083490 steps/s, speed: 16.667916 samples/s, speed: 8533.973064 tokens/s, learning rate: 1.340e-06, loss_scalings: 32768.000000, pp_loss: 9.790229
+[INFO] 2021-07-07 18:04:41,477 [run_pretraining.py:  454]:	worker_index: 1, step: 135, cost: 9.855714, mlm loss: 9.855714, speed: 1.029882 steps/s, speed: 8.239057 samples/s, speed: 4218.397062 tokens/s, learning rate: 1.350e-06, loss_scalings: 32768.000000, pp_loss: 9.688223
+[INFO] 2021-07-07 18:04:41,977 [run_pretraining.py:  454]:	worker_index: 1, step: 136, cost: 9.764417, mlm loss: 9.764417, speed: 2.004051 steps/s, speed: 16.032407 samples/s, speed: 8208.592132 tokens/s, learning rate: 1.360e-06, loss_scalings: 32768.000000, pp_loss: 9.675039
+[INFO] 2021-07-07 18:04:42,462 [run_pretraining.py:  454]:	worker_index: 1, step: 137, cost: 9.460732, mlm loss: 9.460732, speed: 2.070021 steps/s, speed: 16.560170 samples/s, speed: 8478.807107 tokens/s, learning rate: 1.370e-06, loss_scalings: 32768.000000, pp_loss: 9.754055
+[INFO] 2021-07-07 18:04:42,957 [run_pretraining.py:  454]:	worker_index: 1, step: 138, cost: 9.517902, mlm loss: 9.517902, speed: 2.022557 steps/s, speed: 16.180456 samples/s, speed: 8284.393725 tokens/s, learning rate: 1.380e-06, loss_scalings: 32768.000000, pp_loss: 9.578075
+[INFO] 2021-07-07 18:04:43,425 [run_pretraining.py:  454]:	worker_index: 1, step: 139, cost: 9.715466, mlm loss: 9.715466, speed: 2.135991 steps/s, speed: 17.087926 samples/s, speed: 8749.017986 tokens/s, learning rate: 1.390e-06, loss_scalings: 32768.000000, pp_loss: 9.683463
+[INFO] 2021-07-07 18:04:43,920 [run_pretraining.py:  454]:	worker_index: 1, step: 140, cost: 9.738052, mlm loss: 9.738052, speed: 2.134185 steps/s, speed: 17.073484 samples/s, speed: 8741.623616 tokens/s, learning rate: 1.400e-06, loss_scalings: 32768.000000, pp_loss: 9.772407
+[INFO] 2021-07-07 18:04:44,436 [run_pretraining.py:  454]:	worker_index: 1, step: 141, cost: 9.888686, mlm loss: 9.888686, speed: 2.041153 steps/s, speed: 16.329224 samples/s, speed: 8360.562558 tokens/s, learning rate: 1.410e-06, loss_scalings: 32768.000000, pp_loss: 9.630344
+[INFO] 2021-07-07 18:04:44,941 [run_pretraining.py:  454]:	worker_index: 1, step: 142, cost: 9.849647, mlm loss: 9.849647, speed: 1.982958 steps/s, speed: 15.863667 samples/s, speed: 8122.197541 tokens/s, learning rate: 1.420e-06, loss_scalings: 32768.000000, pp_loss: 9.651123
+[INFO] 2021-07-07 18:04:45,405 [run_pretraining.py:  454]:	worker_index: 1, step: 143, cost: 9.687672, mlm loss: 9.687672, speed: 2.158719 steps/s, speed: 17.269749 samples/s, speed: 8842.111615 tokens/s, learning rate: 1.430e-06, loss_scalings: 32768.000000, pp_loss: 9.538576
+[INFO] 2021-07-07 18:04:45,911 [run_pretraining.py:  454]:	worker_index: 1, step: 144, cost: 9.524712, mlm loss: 9.524712, speed: 2.080770 steps/s, speed: 16.646161 samples/s, speed: 8522.834317 tokens/s, learning rate: 1.440e-06, loss_scalings: 32768.000000, pp_loss: 9.643752
+[INFO] 2021-07-07 18:04:46,424 [run_pretraining.py:  454]:	worker_index: 1, step: 145, cost: 9.706731, mlm loss: 9.706731, speed: 2.054835 steps/s, speed: 16.438678 samples/s, speed: 8416.603068 tokens/s, learning rate: 1.450e-06, loss_scalings: 32768.000000, pp_loss: 9.626806
+[INFO] 2021-07-07 18:04:47,380 [run_pretraining.py:  454]:	worker_index: 1, step: 146, cost: 9.802243, mlm loss: 9.802243, speed: 1.047670 steps/s, speed: 8.381360 samples/s, speed: 4291.256432 tokens/s, learning rate: 1.460e-06, loss_scalings: 32768.000000, pp_loss: 9.677238
+[INFO] 2021-07-07 18:04:47,847 [run_pretraining.py:  454]:	worker_index: 1, step: 147, cost: 9.466948, mlm loss: 9.466948, speed: 2.139985 steps/s, speed: 17.119879 samples/s, speed: 8765.378016 tokens/s, learning rate: 1.470e-06, loss_scalings: 32768.000000, pp_loss: 9.534534
+[INFO] 2021-07-07 18:04:48,360 [run_pretraining.py:  454]:	worker_index: 1, step: 148, cost: 9.505054, mlm loss: 9.505054, speed: 2.054712 steps/s, speed: 16.437695 samples/s, speed: 8416.100046 tokens/s, learning rate: 1.480e-06, loss_scalings: 32768.000000, pp_loss: 9.596701
+[INFO] 2021-07-07 18:04:49,383 [run_pretraining.py:  454]:	worker_index: 1, step: 149, cost: 9.583650, mlm loss: 9.583650, speed: 1.004551 steps/s, speed: 8.036410 samples/s, speed: 4114.642078 tokens/s, learning rate: 1.490e-06, loss_scalings: 32768.000000, pp_loss: 9.611923
+[INFO] 2021-07-07 18:04:49,891 [run_pretraining.py:  454]:	worker_index: 1, step: 150, cost: 9.012053, mlm loss: 9.012053, speed: 1.973850 steps/s, speed: 15.790797 samples/s, speed: 8084.887820 tokens/s, learning rate: 1.500e-06, loss_scalings: 32768.000000, pp_loss: 9.588221
+[INFO] 2021-07-07 18:04:50,374 [run_pretraining.py:  454]:	worker_index: 1, step: 151, cost: 9.712718, mlm loss: 9.712718, speed: 2.071535 steps/s, speed: 16.572283 samples/s, speed: 8485.008971 tokens/s, learning rate: 1.510e-06, loss_scalings: 32768.000000, pp_loss: 9.675474
+[INFO] 2021-07-07 18:04:50,869 [run_pretraining.py:  454]:	worker_index: 1, step: 152, cost: 9.571226, mlm loss: 9.571226, speed: 2.156385 steps/s, speed: 17.251077 samples/s, speed: 8832.551534 tokens/s, learning rate: 1.520e-06, loss_scalings: 32768.000000, pp_loss: 9.576396
+[INFO] 2021-07-07 18:04:51,402 [run_pretraining.py:  454]:	worker_index: 1, step: 153, cost: 9.556618, mlm loss: 9.556618, speed: 1.972921 steps/s, speed: 15.783369 samples/s, speed: 8081.084842 tokens/s, learning rate: 1.530e-06, loss_scalings: 32768.000000, pp_loss: 9.597472
+[INFO] 2021-07-07 18:04:51,893 [run_pretraining.py:  454]:	worker_index: 1, step: 154, cost: 9.170814, mlm loss: 9.170814, speed: 2.040903 steps/s, speed: 16.327221 samples/s, speed: 8359.537382 tokens/s, learning rate: 1.540e-06, loss_scalings: 32768.000000, pp_loss: 9.529375
+[INFO] 2021-07-07 18:04:52,364 [run_pretraining.py:  454]:	worker_index: 1, step: 155, cost: 9.517685, mlm loss: 9.517685, speed: 2.128285 steps/s, speed: 17.026276 samples/s, speed: 8717.453502 tokens/s, learning rate: 1.550e-06, loss_scalings: 32768.000000, pp_loss: 9.521000
+[INFO] 2021-07-07 18:04:52,863 [run_pretraining.py:  454]:	worker_index: 1, step: 156, cost: 9.556271, mlm loss: 9.556271, speed: 2.111466 steps/s, speed: 16.891725 samples/s, speed: 8648.563202 tokens/s, learning rate: 1.560e-06, loss_scalings: 32768.000000, pp_loss: 9.473003
+[INFO] 2021-07-07 18:04:53,388 [run_pretraining.py:  454]:	worker_index: 1, step: 157, cost: 9.560529, mlm loss: 9.560529, speed: 2.005208 steps/s, speed: 16.041666 samples/s, speed: 8213.332752 tokens/s, learning rate: 1.570e-06, loss_scalings: 32768.000000, pp_loss: 9.614742
+[INFO] 2021-07-07 18:04:53,900 [run_pretraining.py:  454]:	worker_index: 1, step: 158, cost: 9.509027, mlm loss: 9.509027, speed: 1.956632 steps/s, speed: 15.653053 samples/s, speed: 8014.363072 tokens/s, learning rate: 1.580e-06, loss_scalings: 32768.000000, pp_loss: 9.596437
+[INFO] 2021-07-07 18:04:54,388 [run_pretraining.py:  454]:	worker_index: 1, step: 159, cost: 9.500840, mlm loss: 9.500840, speed: 2.052890 steps/s, speed: 16.423117 samples/s, speed: 8408.635991 tokens/s, learning rate: 1.590e-06, loss_scalings: 32768.000000, pp_loss: 9.559288
+[INFO] 2021-07-07 18:04:55,383 [run_pretraining.py:  454]:	worker_index: 1, step: 160, cost: 9.096208, mlm loss: 9.096208, speed: 1.005254 steps/s, speed: 8.042029 samples/s, speed: 4117.518710 tokens/s, learning rate: 1.600e-06, loss_scalings: 32768.000000, pp_loss: 9.373902
+[INFO] 2021-07-07 18:04:55,887 [run_pretraining.py:  454]:	worker_index: 1, step: 161, cost: 9.475473, mlm loss: 9.475473, speed: 1.991617 steps/s, speed: 15.932938 samples/s, speed: 8157.664053 tokens/s, learning rate: 1.610e-06, loss_scalings: 32768.000000, pp_loss: 9.389220
+[INFO] 2021-07-07 18:04:56,378 [run_pretraining.py:  454]:	worker_index: 1, step: 162, cost: 9.981603, mlm loss: 9.981603, speed: 2.043796 steps/s, speed: 16.350365 samples/s, speed: 8371.386978 tokens/s, learning rate: 1.620e-06, loss_scalings: 32768.000000, pp_loss: 9.597279
+[INFO] 2021-07-07 18:04:57,363 [run_pretraining.py:  454]:	worker_index: 1, step: 163, cost: 9.395365, mlm loss: 9.395365, speed: 1.015952 steps/s, speed: 8.127614 samples/s, speed: 4161.338397 tokens/s, learning rate: 1.630e-06, loss_scalings: 32768.000000, pp_loss: 9.595970
+[INFO] 2021-07-07 18:04:57,839 [run_pretraining.py:  454]:	worker_index: 1, step: 164, cost: 9.394433, mlm loss: 9.394433, speed: 2.112555 steps/s, speed: 16.900437 samples/s, speed: 8653.023788 tokens/s, learning rate: 1.640e-06, loss_scalings: 32768.000000, pp_loss: 9.465508
+[INFO] 2021-07-07 18:04:58,331 [run_pretraining.py:  454]:	worker_index: 1, step: 165, cost: 9.693138, mlm loss: 9.693138, speed: 2.148312 steps/s, speed: 17.186495 samples/s, speed: 8799.485541 tokens/s, learning rate: 1.650e-06, loss_scalings: 32768.000000, pp_loss: 9.613790
+[INFO] 2021-07-07 18:04:58,849 [run_pretraining.py:  454]:	worker_index: 1, step: 166, cost: 9.323953, mlm loss: 9.323953, speed: 2.039733 steps/s, speed: 16.317860 samples/s, speed: 8354.744361 tokens/s, learning rate: 1.660e-06, loss_scalings: 32768.000000, pp_loss: 9.558120
+[INFO] 2021-07-07 18:04:59,346 [run_pretraining.py:  454]:	worker_index: 1, step: 167, cost: 9.368349, mlm loss: 9.368349, speed: 2.015629 steps/s, speed: 16.125031 samples/s, speed: 8256.015901 tokens/s, learning rate: 1.670e-06, loss_scalings: 32768.000000, pp_loss: 9.524178
+[INFO] 2021-07-07 18:04:59,837 [run_pretraining.py:  454]:	worker_index: 1, step: 168, cost: 9.508755, mlm loss: 9.508755, speed: 2.044657 steps/s, speed: 16.357260 samples/s, speed: 8374.916974 tokens/s, learning rate: 1.680e-06, loss_scalings: 32768.000000, pp_loss: 9.469509
+[INFO] 2021-07-07 18:05:00,330 [run_pretraining.py:  454]:	worker_index: 1, step: 169, cost: 9.587386, mlm loss: 9.587386, speed: 2.034409 steps/s, speed: 16.275270 samples/s, speed: 8332.938438 tokens/s, learning rate: 1.690e-06, loss_scalings: 32768.000000, pp_loss: 9.505614
+[INFO] 2021-07-07 18:05:00,822 [run_pretraining.py:  454]:	worker_index: 1, step: 170, cost: 9.478437, mlm loss: 9.478437, speed: 2.033356 steps/s, speed: 16.266852 samples/s, speed: 8328.628051 tokens/s, learning rate: 1.700e-06, loss_scalings: 32768.000000, pp_loss: 9.460294
+[INFO] 2021-07-07 18:05:01,322 [run_pretraining.py:  454]:	worker_index: 1, step: 171, cost: 9.825677, mlm loss: 9.825677, speed: 2.005055 steps/s, speed: 16.040439 samples/s, speed: 8212.704541 tokens/s, learning rate: 1.710e-06, loss_scalings: 32768.000000, pp_loss: 9.427231
+[INFO] 2021-07-07 18:05:01,813 [run_pretraining.py:  454]:	worker_index: 1, step: 172, cost: 9.392744, mlm loss: 9.392744, speed: 2.049349 steps/s, speed: 16.394791 samples/s, speed: 8394.133045 tokens/s, learning rate: 1.720e-06, loss_scalings: 32768.000000, pp_loss: 9.487332
+[INFO] 2021-07-07 18:05:02,277 [run_pretraining.py:  454]:	worker_index: 1, step: 173, cost: 9.269813, mlm loss: 9.269813, speed: 2.159328 steps/s, speed: 17.274621 samples/s, speed: 8844.606182 tokens/s, learning rate: 1.730e-06, loss_scalings: 32768.000000, pp_loss: 9.380116
+[INFO] 2021-07-07 18:05:03,290 [run_pretraining.py:  454]:	worker_index: 1, step: 174, cost: 9.044298, mlm loss: 9.044298, speed: 1.013741 steps/s, speed: 8.109927 samples/s, speed: 4152.282415 tokens/s, learning rate: 1.740e-06, loss_scalings: 32768.000000, pp_loss: 9.393846
+[INFO] 2021-07-07 18:05:03,778 [run_pretraining.py:  454]:	worker_index: 1, step: 175, cost: 9.655417, mlm loss: 9.655417, speed: 2.051383 steps/s, speed: 16.411061 samples/s, speed: 8402.463038 tokens/s, learning rate: 1.750e-06, loss_scalings: 32768.000000, pp_loss: 9.626755
+[INFO] 2021-07-07 18:05:04,269 [run_pretraining.py:  454]:	worker_index: 1, step: 176, cost: 9.627447, mlm loss: 9.627447, speed: 2.042756 steps/s, speed: 16.342052 samples/s, speed: 8367.130459 tokens/s, learning rate: 1.760e-06, loss_scalings: 32768.000000, pp_loss: 9.276240
+[INFO] 2021-07-07 18:05:05,230 [run_pretraining.py:  454]:	worker_index: 1, step: 177, cost: 9.387300, mlm loss: 9.387300, speed: 1.040367 steps/s, speed: 8.322938 samples/s, speed: 4261.344225 tokens/s, learning rate: 1.770e-06, loss_scalings: 32768.000000, pp_loss: 9.352169
+[INFO] 2021-07-07 18:05:05,728 [run_pretraining.py:  454]:	worker_index: 1, step: 178, cost: 9.230197, mlm loss: 9.230197, speed: 2.013496 steps/s, speed: 16.107970 samples/s, speed: 8247.280697 tokens/s, learning rate: 1.780e-06, loss_scalings: 32768.000000, pp_loss: 9.466477
+[INFO] 2021-07-07 18:05:06,192 [run_pretraining.py:  454]:	worker_index: 1, step: 179, cost: 9.640753, mlm loss: 9.640753, speed: 2.163257 steps/s, speed: 17.306054 samples/s, speed: 8860.699858 tokens/s, learning rate: 1.790e-06, loss_scalings: 32768.000000, pp_loss: 9.474935
+[INFO] 2021-07-07 18:05:06,683 [run_pretraining.py:  454]:	worker_index: 1, step: 180, cost: 9.603926, mlm loss: 9.603926, speed: 2.146656 steps/s, speed: 17.173248 samples/s, speed: 8792.703119 tokens/s, learning rate: 1.800e-06, loss_scalings: 32768.000000, pp_loss: 9.423042
+[INFO] 2021-07-07 18:05:07,218 [run_pretraining.py:  454]:	worker_index: 1, step: 181, cost: 9.164484, mlm loss: 9.164484, speed: 1.967645 steps/s, speed: 15.741157 samples/s, speed: 8059.472220 tokens/s, learning rate: 1.810e-06, loss_scalings: 32768.000000, pp_loss: 9.409131
+[INFO] 2021-07-07 18:05:07,711 [run_pretraining.py:  454]:	worker_index: 1, step: 182, cost: 9.403963, mlm loss: 9.403963, speed: 2.031479 steps/s, speed: 16.251835 samples/s, speed: 8320.939423 tokens/s, learning rate: 1.820e-06, loss_scalings: 32768.000000, pp_loss: 9.420136
+[INFO] 2021-07-07 18:05:08,189 [run_pretraining.py:  454]:	worker_index: 1, step: 183, cost: 9.217164, mlm loss: 9.217164, speed: 2.095501 steps/s, speed: 16.764006 samples/s, speed: 8583.171053 tokens/s, learning rate: 1.830e-06, loss_scalings: 32768.000000, pp_loss: 9.441495
+[INFO] 2021-07-07 18:05:08,734 [run_pretraining.py:  454]:	worker_index: 1, step: 184, cost: 9.574244, mlm loss: 9.574244, speed: 1.932192 steps/s, speed: 15.457537 samples/s, speed: 7914.258712 tokens/s, learning rate: 1.840e-06, loss_scalings: 32768.000000, pp_loss: 9.491283
+[INFO] 2021-07-07 18:05:09,200 [run_pretraining.py:  454]:	worker_index: 1, step: 185, cost: 9.446201, mlm loss: 9.446201, speed: 2.148815 steps/s, speed: 17.190519 samples/s, speed: 8801.545756 tokens/s, learning rate: 1.850e-06, loss_scalings: 32768.000000, pp_loss: 9.388794
+[INFO] 2021-07-07 18:05:09,726 [run_pretraining.py:  454]:	worker_index: 1, step: 186, cost: 9.490533, mlm loss: 9.490533, speed: 2.003020 steps/s, speed: 16.024161 samples/s, speed: 8204.370214 tokens/s, learning rate: 1.860e-06, loss_scalings: 32768.000000, pp_loss: 9.432653
+[INFO] 2021-07-07 18:05:10,229 [run_pretraining.py:  454]:	worker_index: 1, step: 187, cost: 9.450495, mlm loss: 9.450495, speed: 1.991970 steps/s, speed: 15.935760 samples/s, speed: 8159.109151 tokens/s, learning rate: 1.870e-06, loss_scalings: 32768.000000, pp_loss: 9.424478
+[INFO] 2021-07-07 18:05:11,195 [run_pretraining.py:  454]:	worker_index: 1, step: 188, cost: 9.760092, mlm loss: 9.760092, speed: 1.034994 steps/s, speed: 8.279948 samples/s, speed: 4239.333463 tokens/s, learning rate: 1.880e-06, loss_scalings: 32768.000000, pp_loss: 9.374026
+[INFO] 2021-07-07 18:05:11,710 [run_pretraining.py:  454]:	worker_index: 1, step: 189, cost: 9.951393, mlm loss: 9.951393, speed: 2.045918 steps/s, speed: 16.367345 samples/s, speed: 8380.080613 tokens/s, learning rate: 1.890e-06, loss_scalings: 32768.000000, pp_loss: 9.530401
+[INFO] 2021-07-07 18:05:12,201 [run_pretraining.py:  454]:	worker_index: 1, step: 190, cost: 9.337177, mlm loss: 9.337177, speed: 2.040326 steps/s, speed: 16.322607 samples/s, speed: 8357.174740 tokens/s, learning rate: 1.900e-06, loss_scalings: 32768.000000, pp_loss: 9.424200
+[INFO] 2021-07-07 18:05:13,218 [run_pretraining.py:  454]:	worker_index: 1, step: 191, cost: 9.294851, mlm loss: 9.294851, speed: 0.983768 steps/s, speed: 7.870143 samples/s, speed: 4029.513050 tokens/s, learning rate: 1.910e-06, loss_scalings: 32768.000000, pp_loss: 9.338755
+[INFO] 2021-07-07 18:05:13,732 [run_pretraining.py:  454]:	worker_index: 1, step: 192, cost: 9.252887, mlm loss: 9.252887, speed: 1.953685 steps/s, speed: 15.629481 samples/s, speed: 8002.294125 tokens/s, learning rate: 1.920e-06, loss_scalings: 32768.000000, pp_loss: 9.434756
+[INFO] 2021-07-07 18:05:14,229 [run_pretraining.py:  454]:	worker_index: 1, step: 193, cost: 9.453304, mlm loss: 9.453304, speed: 2.015686 steps/s, speed: 16.125488 samples/s, speed: 8256.249992 tokens/s, learning rate: 1.930e-06, loss_scalings: 32768.000000, pp_loss: 9.351126
+[INFO] 2021-07-07 18:05:14,734 [run_pretraining.py:  454]:	worker_index: 1, step: 194, cost: 8.873636, mlm loss: 8.873636, speed: 1.984876 steps/s, speed: 15.879012 samples/s, speed: 8130.054021 tokens/s, learning rate: 1.940e-06, loss_scalings: 32768.000000, pp_loss: 9.255973
+[INFO] 2021-07-07 18:05:15,211 [run_pretraining.py:  454]:	worker_index: 1, step: 195, cost: 9.689225, mlm loss: 9.689225, speed: 2.098249 steps/s, speed: 16.785995 samples/s, speed: 8594.429479 tokens/s, learning rate: 1.950e-06, loss_scalings: 32768.000000, pp_loss: 9.435854
+[INFO] 2021-07-07 18:05:15,711 [run_pretraining.py:  454]:	worker_index: 1, step: 196, cost: 9.567280, mlm loss: 9.567280, speed: 2.111798 steps/s, speed: 16.894387 samples/s, speed: 8649.926155 tokens/s, learning rate: 1.960e-06, loss_scalings: 32768.000000, pp_loss: 9.398142
+[INFO] 2021-07-07 18:05:16,252 [run_pretraining.py:  454]:	worker_index: 1, step: 197, cost: 9.195877, mlm loss: 9.195877, speed: 1.948385 steps/s, speed: 15.587080 samples/s, speed: 7980.585005 tokens/s, learning rate: 1.970e-06, loss_scalings: 32768.000000, pp_loss: 9.378314
+[INFO] 2021-07-07 18:05:16,732 [run_pretraining.py:  454]:	worker_index: 1, step: 198, cost: 9.073493, mlm loss: 9.073493, speed: 2.088678 steps/s, speed: 16.709426 samples/s, speed: 8555.226040 tokens/s, learning rate: 1.980e-06, loss_scalings: 32768.000000, pp_loss: 9.238427
+[INFO] 2021-07-07 18:05:17,254 [run_pretraining.py:  454]:	worker_index: 1, step: 199, cost: 9.211901, mlm loss: 9.211901, speed: 2.014973 steps/s, speed: 16.119787 samples/s, speed: 8253.330751 tokens/s, learning rate: 1.990e-06, loss_scalings: 32768.000000, pp_loss: 9.254672
+[INFO] 2021-07-07 18:05:17,754 [run_pretraining.py:  454]:	worker_index: 1, step: 200, cost: 9.208345, mlm loss: 9.208345, speed: 2.002683 steps/s, speed: 16.021467 samples/s, speed: 8202.991290 tokens/s, learning rate: 2.000e-06, loss_scalings: 32768.000000, pp_loss: 9.257541
+[INFO] 2021-07-07 18:05:18,253 [run_pretraining.py:  454]:	worker_index: 1, step: 201, cost: 9.144818, mlm loss: 9.144818, speed: 2.006339 steps/s, speed: 16.050713 samples/s, speed: 8217.964849 tokens/s, learning rate: 2.010e-06, loss_scalings: 32768.000000, pp_loss: 9.470257
+[INFO] 2021-07-07 18:05:19,256 [run_pretraining.py:  454]:	worker_index: 1, step: 202, cost: 9.520378, mlm loss: 9.520378, speed: 0.998188 steps/s, speed: 7.985502 samples/s, speed: 4088.576954 tokens/s, learning rate: 2.020e-06, loss_scalings: 32768.000000, pp_loss: 9.490892
+[INFO] 2021-07-07 18:05:19,743 [run_pretraining.py:  454]:	worker_index: 1, step: 203, cost: 9.096872, mlm loss: 9.096872, speed: 2.055889 steps/s, speed: 16.447114 samples/s, speed: 8420.922468 tokens/s, learning rate: 2.030e-06, loss_scalings: 32768.000000, pp_loss: 9.359331
+[INFO] 2021-07-07 18:05:20,238 [run_pretraining.py:  454]:	worker_index: 1, step: 204, cost: 9.143866, mlm loss: 9.143866, speed: 2.024113 steps/s, speed: 16.192903 samples/s, speed: 8290.766431 tokens/s, learning rate: 2.040e-06, loss_scalings: 32768.000000, pp_loss: 9.322225
+[INFO] 2021-07-07 18:05:21,201 [run_pretraining.py:  454]:	worker_index: 1, step: 205, cost: 9.332378, mlm loss: 9.332378, speed: 1.039427 steps/s, speed: 8.315418 samples/s, speed: 4257.493899 tokens/s, learning rate: 2.050e-06, loss_scalings: 32768.000000, pp_loss: 9.297245
+[INFO] 2021-07-07 18:05:21,716 [run_pretraining.py:  454]:	worker_index: 1, step: 206, cost: 9.323060, mlm loss: 9.323060, speed: 2.048341 steps/s, speed: 16.386728 samples/s, speed: 8390.004969 tokens/s, learning rate: 2.060e-06, loss_scalings: 32768.000000, pp_loss: 9.320029
+[INFO] 2021-07-07 18:05:22,211 [run_pretraining.py:  454]:	worker_index: 1, step: 207, cost: 9.256889, mlm loss: 9.256889, speed: 2.022753 steps/s, speed: 16.182025 samples/s, speed: 8285.196770 tokens/s, learning rate: 2.070e-06, loss_scalings: 32768.000000, pp_loss: 9.300385
+[INFO] 2021-07-07 18:05:22,688 [run_pretraining.py:  454]:	worker_index: 1, step: 208, cost: 9.294345, mlm loss: 9.294345, speed: 2.106115 steps/s, speed: 16.848917 samples/s, speed: 8626.645281 tokens/s, learning rate: 2.080e-06, loss_scalings: 32768.000000, pp_loss: 9.437913
+[INFO] 2021-07-07 18:05:23,212 [run_pretraining.py:  454]:	worker_index: 1, step: 209, cost: 9.134207, mlm loss: 9.134207, speed: 2.014749 steps/s, speed: 16.117990 samples/s, speed: 8252.410983 tokens/s, learning rate: 2.090e-06, loss_scalings: 32768.000000, pp_loss: 9.318473
+[INFO] 2021-07-07 18:05:23,675 [run_pretraining.py:  454]:	worker_index: 1, step: 210, cost: 8.999025, mlm loss: 8.999025, speed: 2.166841 steps/s, speed: 17.334727 samples/s, speed: 8875.380130 tokens/s, learning rate: 2.100e-06, loss_scalings: 32768.000000, pp_loss: 9.206112
+[INFO] 2021-07-07 18:05:24,206 [run_pretraining.py:  454]:	worker_index: 1, step: 211, cost: 9.182948, mlm loss: 9.182948, speed: 1.979793 steps/s, speed: 15.838343 samples/s, speed: 8109.231512 tokens/s, learning rate: 2.110e-06, loss_scalings: 32768.000000, pp_loss: 9.233491
+[INFO] 2021-07-07 18:05:24,671 [run_pretraining.py:  454]:	worker_index: 1, step: 212, cost: 9.330326, mlm loss: 9.330326, speed: 2.154945 steps/s, speed: 17.239564 samples/s, speed: 8826.656698 tokens/s, learning rate: 2.120e-06, loss_scalings: 32768.000000, pp_loss: 9.286982
+[INFO] 2021-07-07 18:05:25,197 [run_pretraining.py:  454]:	worker_index: 1, step: 213, cost: 9.346330, mlm loss: 9.346330, speed: 1.999808 steps/s, speed: 15.998467 samples/s, speed: 8191.214919 tokens/s, learning rate: 2.130e-06, loss_scalings: 32768.000000, pp_loss: 9.194532
+[INFO] 2021-07-07 18:05:25,691 [run_pretraining.py:  454]:	worker_index: 1, step: 214, cost: 9.101069, mlm loss: 9.101069, speed: 2.025846 steps/s, speed: 16.206770 samples/s, speed: 8297.866294 tokens/s, learning rate: 2.140e-06, loss_scalings: 32768.000000, pp_loss: 9.392791
+[INFO] 2021-07-07 18:05:26,169 [run_pretraining.py:  454]:	worker_index: 1, step: 215, cost: 9.357752, mlm loss: 9.357752, speed: 2.093823 steps/s, speed: 16.750583 samples/s, speed: 8576.298278 tokens/s, learning rate: 2.150e-06, loss_scalings: 32768.000000, pp_loss: 9.134770
+[INFO] 2021-07-07 18:05:27,173 [run_pretraining.py:  454]:	worker_index: 1, step: 216, cost: 9.620727, mlm loss: 9.620727, speed: 1.022896 steps/s, speed: 8.183168 samples/s, speed: 4189.781777 tokens/s, learning rate: 2.160e-06, loss_scalings: 32768.000000, pp_loss: 9.295353
+[INFO] 2021-07-07 18:05:27,668 [run_pretraining.py:  454]:	worker_index: 1, step: 217, cost: 9.192275, mlm loss: 9.192275, speed: 2.022868 steps/s, speed: 16.182946 samples/s, speed: 8285.668281 tokens/s, learning rate: 2.170e-06, loss_scalings: 32768.000000, pp_loss: 9.159682
+[INFO] 2021-07-07 18:05:28,133 [run_pretraining.py:  454]:	worker_index: 1, step: 218, cost: 8.848811, mlm loss: 8.848811, speed: 2.154955 steps/s, speed: 17.239644 samples/s, speed: 8826.697513 tokens/s, learning rate: 2.180e-06, loss_scalings: 32768.000000, pp_loss: 9.204494
+[INFO] 2021-07-07 18:05:29,136 [run_pretraining.py:  454]:	worker_index: 1, step: 219, cost: 8.922649, mlm loss: 8.922649, speed: 1.024365 steps/s, speed: 8.194923 samples/s, speed: 4195.800598 tokens/s, learning rate: 2.190e-06, loss_scalings: 32768.000000, pp_loss: 9.287914
+[INFO] 2021-07-07 18:05:29,630 [run_pretraining.py:  454]:	worker_index: 1, step: 220, cost: 9.106485, mlm loss: 9.106485, speed: 2.030858 steps/s, speed: 16.246862 samples/s, speed: 8318.393126 tokens/s, learning rate: 2.200e-06, loss_scalings: 32768.000000, pp_loss: 9.274605
+[INFO] 2021-07-07 18:05:30,122 [run_pretraining.py:  454]:	worker_index: 1, step: 221, cost: 9.199341, mlm loss: 9.199341, speed: 2.034183 steps/s, speed: 16.273463 samples/s, speed: 8332.012965 tokens/s, learning rate: 2.210e-06, loss_scalings: 32768.000000, pp_loss: 9.251458
+[INFO] 2021-07-07 18:05:30,612 [run_pretraining.py:  454]:	worker_index: 1, step: 222, cost: 9.260672, mlm loss: 9.260672, speed: 2.043955 steps/s, speed: 16.351640 samples/s, speed: 8372.039701 tokens/s, learning rate: 2.220e-06, loss_scalings: 32768.000000, pp_loss: 9.260822
+[INFO] 2021-07-07 18:05:31,080 [run_pretraining.py:  454]:	worker_index: 1, step: 223, cost: 9.233082, mlm loss: 9.233082, speed: 2.140990 steps/s, speed: 17.127919 samples/s, speed: 8769.494374 tokens/s, learning rate: 2.230e-06, loss_scalings: 32768.000000, pp_loss: 9.261038
+[INFO] 2021-07-07 18:05:31,597 [run_pretraining.py:  454]:	worker_index: 1, step: 224, cost: 9.779403, mlm loss: 9.779403, speed: 2.039547 steps/s, speed: 16.316376 samples/s, speed: 8353.984650 tokens/s, learning rate: 2.240e-06, loss_scalings: 32768.000000, pp_loss: 9.258580
+[INFO] 2021-07-07 18:05:32,089 [run_pretraining.py:  454]:	worker_index: 1, step: 225, cost: 9.006205, mlm loss: 9.006205, speed: 2.033841 steps/s, speed: 16.270725 samples/s, speed: 8330.611002 tokens/s, learning rate: 2.250e-06, loss_scalings: 32768.000000, pp_loss: 9.263390
+[INFO] 2021-07-07 18:05:32,583 [run_pretraining.py:  454]:	worker_index: 1, step: 226, cost: 9.442973, mlm loss: 9.442973, speed: 2.025719 steps/s, speed: 16.205753 samples/s, speed: 8297.345305 tokens/s, learning rate: 2.260e-06, loss_scalings: 32768.000000, pp_loss: 9.212031
+[INFO] 2021-07-07 18:05:33,050 [run_pretraining.py:  454]:	worker_index: 1, step: 227, cost: 8.923457, mlm loss: 8.923457, speed: 2.147902 steps/s, speed: 17.183212 samples/s, speed: 8797.804723 tokens/s, learning rate: 2.270e-06, loss_scalings: 32768.000000, pp_loss: 9.147125
+[INFO] 2021-07-07 18:05:33,551 [run_pretraining.py:  454]:	worker_index: 1, step: 228, cost: 8.946685, mlm loss: 8.946685, speed: 2.107742 steps/s, speed: 16.861939 samples/s, speed: 8633.312672 tokens/s, learning rate: 2.280e-06, loss_scalings: 32768.000000, pp_loss: 9.171559
+[INFO] 2021-07-07 18:05:34,524 [run_pretraining.py:  454]:	worker_index: 1, step: 229, cost: 9.014530, mlm loss: 9.014530, speed: 1.055302 steps/s, speed: 8.442418 samples/s, speed: 4322.517945 tokens/s, learning rate: 2.290e-06, loss_scalings: 32768.000000, pp_loss: 9.211473
+[INFO] 2021-07-07 18:05:35,024 [run_pretraining.py:  454]:	worker_index: 1, step: 230, cost: 8.946303, mlm loss: 8.946303, speed: 2.004501 steps/s, speed: 16.036008 samples/s, speed: 8210.435928 tokens/s, learning rate: 2.300e-06, loss_scalings: 32768.000000, pp_loss: 9.284018
+[INFO] 2021-07-07 18:05:35,509 [run_pretraining.py:  454]:	worker_index: 1, step: 231, cost: 9.089839, mlm loss: 9.089839, speed: 2.064913 steps/s, speed: 16.519300 samples/s, speed: 8457.881685 tokens/s, learning rate: 2.310e-06, loss_scalings: 32768.000000, pp_loss: 9.189615
+[INFO] 2021-07-07 18:05:35,978 [run_pretraining.py:  454]:	worker_index: 1, step: 232, cost: 9.136956, mlm loss: 9.136956, speed: 2.132358 steps/s, speed: 17.058866 samples/s, speed: 8734.139604 tokens/s, learning rate: 2.320e-06, loss_scalings: 32768.000000, pp_loss: 9.226160
+[INFO] 2021-07-07 18:05:36,985 [run_pretraining.py:  454]:	worker_index: 1, step: 233, cost: 8.953583, mlm loss: 8.953583, speed: 1.019875 steps/s, speed: 8.158999 samples/s, speed: 4177.407732 tokens/s, learning rate: 2.330e-06, loss_scalings: 32768.000000, pp_loss: 9.451349
+[INFO] 2021-07-07 18:05:37,493 [run_pretraining.py:  454]:	worker_index: 1, step: 234, cost: 9.108225, mlm loss: 9.108225, speed: 1.975197 steps/s, speed: 15.801579 samples/s, speed: 8090.408500 tokens/s, learning rate: 2.340e-06, loss_scalings: 32768.000000, pp_loss: 9.260512
+[INFO] 2021-07-07 18:05:38,001 [run_pretraining.py:  454]:	worker_index: 1, step: 235, cost: 9.151951, mlm loss: 9.151951, speed: 1.972087 steps/s, speed: 15.776697 samples/s, speed: 8077.669017 tokens/s, learning rate: 2.350e-06, loss_scalings: 32768.000000, pp_loss: 9.112823
+[INFO] 2021-07-07 18:05:38,477 [run_pretraining.py:  454]:	worker_index: 1, step: 236, cost: 9.272568, mlm loss: 9.272568, speed: 2.103099 steps/s, speed: 16.824788 samples/s, speed: 8614.291501 tokens/s, learning rate: 2.360e-06, loss_scalings: 32768.000000, pp_loss: 9.071033
+[INFO] 2021-07-07 18:05:38,971 [run_pretraining.py:  454]:	worker_index: 1, step: 237, cost: 9.015744, mlm loss: 9.015744, speed: 2.146270 steps/s, speed: 17.170164 samples/s, speed: 8791.123857 tokens/s, learning rate: 2.370e-06, loss_scalings: 32768.000000, pp_loss: 9.164784
+[INFO] 2021-07-07 18:05:39,472 [run_pretraining.py:  454]:	worker_index: 1, step: 238, cost: 9.126207, mlm loss: 9.126207, speed: 2.105801 steps/s, speed: 16.846404 samples/s, speed: 8625.358941 tokens/s, learning rate: 2.380e-06, loss_scalings: 32768.000000, pp_loss: 9.116168
+[INFO] 2021-07-07 18:05:39,993 [run_pretraining.py:  454]:	worker_index: 1, step: 239, cost: 9.371047, mlm loss: 9.371047, speed: 2.021423 steps/s, speed: 16.171387 samples/s, speed: 8279.750306 tokens/s, learning rate: 2.390e-06, loss_scalings: 32768.000000, pp_loss: 9.189654
+[INFO] 2021-07-07 18:05:40,526 [run_pretraining.py:  454]:	worker_index: 1, step: 240, cost: 9.150755, mlm loss: 9.150755, speed: 1.977530 steps/s, speed: 15.820242 samples/s, speed: 8099.963736 tokens/s, learning rate: 2.400e-06, loss_scalings: 32768.000000, pp_loss: 9.301888
+[INFO] 2021-07-07 18:05:41,088 [run_pretraining.py:  454]:	worker_index: 1, step: 241, cost: 8.919864, mlm loss: 8.919864, speed: 1.866873 steps/s, speed: 14.934986 samples/s, speed: 7646.712594 tokens/s, learning rate: 2.410e-06, loss_scalings: 32768.000000, pp_loss: 9.153068
+[INFO] 2021-07-07 18:05:41,624 [run_pretraining.py:  454]:	worker_index: 1, step: 242, cost: 9.079926, mlm loss: 9.079926, speed: 1.868299 steps/s, speed: 14.946395 samples/s, speed: 7652.554108 tokens/s, learning rate: 2.420e-06, loss_scalings: 32768.000000, pp_loss: 9.270385
+[INFO] 2021-07-07 18:05:42,668 [run_pretraining.py:  454]:	worker_index: 1, step: 243, cost: 9.044309, mlm loss: 9.044309, speed: 0.959208 steps/s, speed: 7.673664 samples/s, speed: 3928.916078 tokens/s, learning rate: 2.430e-06, loss_scalings: 32768.000000, pp_loss: 9.308828
+[INFO] 2021-07-07 18:05:43,181 [run_pretraining.py:  454]:	worker_index: 1, step: 244, cost: 9.280870, mlm loss: 9.280870, speed: 1.949496 steps/s, speed: 15.595969 samples/s, speed: 7985.136371 tokens/s, learning rate: 2.440e-06, loss_scalings: 32768.000000, pp_loss: 9.227071
+[INFO] 2021-07-07 18:05:43,680 [run_pretraining.py:  454]:	worker_index: 1, step: 245, cost: 9.613321, mlm loss: 9.613321, speed: 2.009333 steps/s, speed: 16.074665 samples/s, speed: 8230.228347 tokens/s, learning rate: 2.450e-06, loss_scalings: 32768.000000, pp_loss: 9.332082
+[INFO] 2021-07-07 18:05:44,172 [run_pretraining.py:  454]:	worker_index: 1, step: 246, cost: 9.472015, mlm loss: 9.472015, speed: 2.036610 steps/s, speed: 16.292878 samples/s, speed: 8341.953345 tokens/s, learning rate: 2.460e-06, loss_scalings: 32768.000000, pp_loss: 9.121931
+[INFO] 2021-07-07 18:05:45,186 [run_pretraining.py:  454]:	worker_index: 1, step: 247, cost: 9.350117, mlm loss: 9.350117, speed: 0.986986 steps/s, speed: 7.895885 samples/s, speed: 4042.693137 tokens/s, learning rate: 2.470e-06, loss_scalings: 32768.000000, pp_loss: 9.269201
+[INFO] 2021-07-07 18:05:45,678 [run_pretraining.py:  454]:	worker_index: 1, step: 248, cost: 9.485792, mlm loss: 9.485792, speed: 2.037625 steps/s, speed: 16.300999 samples/s, speed: 8346.111297 tokens/s, learning rate: 2.480e-06, loss_scalings: 32768.000000, pp_loss: 9.212072
+[INFO] 2021-07-07 18:05:46,169 [run_pretraining.py:  454]:	worker_index: 1, step: 249, cost: 9.592722, mlm loss: 9.592722, speed: 2.041096 steps/s, speed: 16.328771 samples/s, speed: 8360.330651 tokens/s, learning rate: 2.490e-06, loss_scalings: 32768.000000, pp_loss: 9.236224
+[INFO] 2021-07-07 18:05:46,670 [run_pretraining.py:  454]:	worker_index: 1, step: 250, cost: 9.343927, mlm loss: 9.343927, speed: 1.999331 steps/s, speed: 15.994646 samples/s, speed: 8189.258730 tokens/s, learning rate: 2.500e-06, loss_scalings: 32768.000000, pp_loss: 9.297467
+[DEBUG] 2021-07-07 18:05:47,636 [run_pretraining.py:  471]:	saving final models to output/gpt3-test-2pp-init-from-step1/final_step_250
+[DEBUG] 2021-07-07 18:05:47,637 [run_pretraining.py:  472]:	end of training, total steps: 250
+I0707 18:05:47.844379 24542 reader.h:164] ~ReaderHolder
+I0707 18:05:47.844460 24542 reader.h:164] ~ReaderHolder
+I0707 18:05:47.844471 24542 buffered_reader.cc:22] ~BufferedReader
+I0707 18:05:47.844481 24542 lod_tensor_blocking_queue.h:59] LoDTensorBlockingQueue close
+I0707 18:05:47.844488 24542 blocking_queue.h:132] close queue
+I0707 18:05:47.844595 24542 reader.cc:76] ~DecoratedReader
+I0707 18:05:47.844604 24542 lod_tensor_blocking_queue.h:59] LoDTensorBlockingQueue close
+I0707 18:05:47.844612 24542 blocking_queue.h:132] close queue
+I0707 18:05:47.844621 24542 lod_tensor_blocking_queue.h:59] LoDTensorBlockingQueue close
+I0707 18:05:47.844626 24542 blocking_queue.h:132] close queue
+terminate called without an active exception
+
+
+--------------------------------------
+C++ Traceback (most recent call last):
+--------------------------------------
+0   paddle::framework::SignalHandle(char const*, int)
+1   paddle::platform::GetCurrentTraceBackString[abi:cxx11]()
+
+----------------------
+Error Message Summary:
+----------------------
+FatalError: `Process abort signal` is detected by the operating system.
+  [TimeInfo: *** Aborted at 1625652347 (unix time) try "date -d @1625652347" if you are using GNU date ***]
+  [SignalInfo: *** SIGABRT (@0x5fde) received by PID 24542 (TID 0x7f70d5fff700) from PID 24542 ***]
+
