@@ -15,7 +15,7 @@ export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/:$LD_LIBRARY_PATH
 rm -rf *.prototxt
 rm -rf core.*
 
-task_name='newest-pp-1f1b-fixed'
+task_name='newest-pp-1f1b-fixed-bs8'
 output_dir=output/${task_name}
 rm -rf ${output_dir}
 export CUDA_VISIBLE_DEVICES=0,1 #,2,3,4,5,6,7
@@ -23,8 +23,8 @@ python3.7 -m paddle.distributed.fleet.launch \
         --gpus="0,1" \
 	--log_dir ${output_dir}/log \
 run_pretraining.py \
-	--global_bsz 64 \
-	--micro_bsz 8 \
+	--global_bsz 8 \
+	--micro_bsz 1 \
 	--max_seq_len 512 \
 	--ernie_config_file config/ernie_base_config.json \
 	--learning_rate 1e-4 \
