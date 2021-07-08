@@ -15,7 +15,7 @@ export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/:$LD_LIBRARY_PATH
 rm -rf *.prototxt
 rm -rf core.*
 
-task_name='newest-pp-1f1b-fixed-bs8'
+task_name='newest-pp-from-step1'
 output_dir=output/${task_name}
 rm -rf ${output_dir}
 export CUDA_VISIBLE_DEVICES=0,1 #,2,3,4,5,6,7
@@ -29,8 +29,8 @@ run_pretraining.py \
 	--ernie_config_file config/ernie_base_config.json \
 	--learning_rate 1e-4 \
 	--log_steps 1 \
-	--num_train_steps 250 \
-	--save_steps 100 \
+	--num_train_steps 1600 \
+	--save_steps 2000 \
 	--output_dir ${output_dir} \
 	--use_recompute true \
 	--use_sharding true \
@@ -38,6 +38,6 @@ run_pretraining.py \
 	--num_sharding=1 \
 	--num_pp=2 \
 	--num_dp=1 \
-	--debug false
-        # --init_checkpoint output/pp-test-1f1b/step_1 \
+	--debug false \
+        --init_checkpoint output/step_1
     # --debug false \

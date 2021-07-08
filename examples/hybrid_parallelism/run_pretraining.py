@@ -387,6 +387,11 @@ def train(args):
         exe.run(broadcast_program, fetch_list=[])
         print("Done broadcast")
 
+    if args.init_checkpoint and args.init_checkpoint != "":
+        log.info(f"init from {args.init_checkpoint}")
+        # exe.run()
+        init_checkpoint(exe, args.init_checkpoint, train_program)
+        
     with LogWriter(os.path.join(args.output_dir, log_path)) as swriter:
         data_loader.start()
         while True:
@@ -453,7 +458,7 @@ def train(args):
                     cost_vals, lm_losses, sop_accs = [], [], []
                     start_time = time.time()
 
-            if (steps > 0 and args.save_steps > 0 and steps % args.save_steps == 0) or steps == 1:
+            if (steps > 0 and args.save_steps > 0 and steps % args.save_steps == 0):
                 if args.use_hybrid_dp and fleet.worker_index() > 8:
                     continue
                 save_path = os.path.join(output_dir, 'step_' + str(steps))
