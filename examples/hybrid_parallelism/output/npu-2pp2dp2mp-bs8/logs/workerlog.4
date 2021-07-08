@@ -1,0 +1,193 @@
+WARNING: AVX is not support on your machine. Hence, no_avx core will be imported, It has much worse preformance than avx core.
+/home/gongwb/.local/lib/python3.7/site-packages/setuptools/depends.py:2: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+I0707 23:07:11.040444 39663 init.cc:88] Before Parse: argc is 2, Init commandline: dummy --tryfromenv=check_nan_inf,benchmark,eager_delete_scope,fraction_of_cpu_memory_to_use,initial_cpu_memory_in_mb,init_allocated_mem,paddle_num_threads,dist_threadpool_size,eager_delete_tensor_gb,fast_eager_deletion_mode,memory_fraction_of_eager_deletion,allocator_strategy,reader_queue_speed_test_mode,print_sub_graph_dir,pe_profile_fname,inner_op_parallelism,enable_parallel_graph,fuse_parameter_groups_size,multiple_of_cupti_buffer_size,fuse_parameter_memory_size,tracer_profile_fname,dygraph_debug,use_system_allocator,enable_unused_var_check,free_idle_chunk,free_when_no_cache_hit,call_stack_level,sort_sum_gradient,max_inplace_grad_add,use_pinned_memory,cpu_deterministic,selected_npus,fraction_of_gpu_memory_to_use,initial_gpu_memory_in_mb,reallocate_gpu_memory_in_mb,gpu_memory_limit_mb 
+I0707 23:07:11.040688 39663 init.cc:95] After Parse: argc is 1
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/hapi/model.py:28: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3,and in 3.9 it will stop working
+  from collections import Iterable
+-----------  Configuration Arguments -----------
+data_dir: ./data_bak
+debug: False
+do_eval: True
+epoch: 100
+ernie_config_file: config/ernie_base_config.json
+eval_batch_size: 35
+eval_data_path: ./data
+eval_steps: -1
+global_bsz: 8
+global_steps: 0
+grad_merge: 0
+init_checkpoint: 
+learning_rate: 0.0001
+log_steps: 1
+max_seq_len: 512
+micro_bsz: 1
+num_dp: 2
+num_mp: 2
+num_pp: 2
+num_sharding: 1
+num_train_steps: 1600
+output_dir: output/npu-2pp2dp2mp-bs8
+preln: False
+save_steps: 2000
+seed: 2021
+use_amp: True
+use_hybrid_dp: True
+use_lamb: False
+use_offload: False
+use_recompute: True
+use_sharding: True
+use_sop: False
+vocab_file: ./config/30k-clean.vocab.albert
+warmup_steps: 10000
+weight_decay: 0.01
+------------------------------------------------
+[INFO] 2021-07-07 23:07:11,887 [run_pretraining.py:  285]:	pretraining start
+[INFO] 2021-07-07 23:07:11,887 [run_pretraining.py:  310]:	using recompute.
+[INFO] 2021-07-07 23:07:11,888 [run_pretraining.py:  355]:	using globa_bsz: 8 micro_bsz: 1, acc_steps: 4
+[DEBUG] 2021-07-07 23:07:11,952 [run_pretraining.py:  148]:	========= dp_sharding worker: 1 of 2 ==========
+[INFO] 2021-07-07 23:07:11,952 [pretraining_ds_mlm.py:  280]:	Apply sharding in distribution env 1/2
+[INFO] 2021-07-07 23:07:11,952 [pretraining_ds_mlm.py:  282]:	read from ./data_bak/part-00000.100,./data_bak/part-00000.103,./data_bak/part-00000.105,./data_bak/part-00000.102,./data_bak/part-00000.109
+I0707 23:07:11.952978 39663 reader_py.cc:387] init_lod_tensor_blocking_queue
+INFO:root:places would be ommited when DataLoader is not iterable
+input_mask(-1, 512, 1)
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/ernie.py:153
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/ernie.py:154
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:166
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:276
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:39
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:40
+The behavior of expression A * B has been unified with elementwise_mul(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_mul(X, Y, axis=0) instead of A * B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+[DEBUG] 2021-07-07 23:07:12,763 [run_pretraining.py:  395]:	base lr: 0.0001
+/home/liupeng51/github/Paddle/build/build_ubuntu_develop_release_ascend_y_none_3.7.5/python/paddle/distributed/fleet/base/fleet_base.py:813: UserWarning: It is recommended to use DistributedStrategy in fleet.init(). The strategy here is only for compatibility. If the strategy in fleet.distributed_optimizer() is not None, then it will overwrite the DistributedStrategy in fleet.init(), which will take effect in distributed training.
+  "It is recommended to use DistributedStrategy "
+2021-07-07 23:07:12 INFO     Gradient merge in [pp_gm], acc step = [4]
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:Gradient merge in [pp_gm], acc step = [4]
+Wed Jul 07 23:07:13-INFO: recompute segment[0]
+Wed Jul 07 23:07:13-INFO: segment start op: [squeeze2]: [['shard_index_0.tmp_0']]
+Wed Jul 07 23:07:13-INFO: segment end op: [layer_norm]: [['encoder_layer_0_post_ffn_layer_norm_bias', 'encoder_layer_0_post_ffn_layer_norm_scale', 'tmp_10']]
+Wed Jul 07 23:07:13-INFO: recompute segment[0]
+Wed Jul 07 23:07:13-INFO: segment start op: [squeeze2]: [['shard_index_0.tmp_0']]
+Wed Jul 07 23:07:13-INFO: segment end op: [layer_norm]: [['encoder_layer_0_post_ffn_layer_norm_bias', 'encoder_layer_0_post_ffn_layer_norm_scale', 'tmp_10']]
+Wed Jul 07 23:07:13-INFO: found [0] vars which cross recompute segment: [set()], better checkpoints might be set to reduce those vars
+pp_rank: 0
+2021-07-07 23:07:18 INFO     Hybrid DP mode turn on !
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:Hybrid DP mode turn on !
+2021-07-07 23:07:18 INFO     global word size: 8
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:global word size: 8
+2021-07-07 23:07:18 INFO     global rank: 4
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:global rank: 4
+2021-07-07 23:07:18 INFO     global endpoints: ['192.168.206.27:6170', '192.168.206.27:6171', '192.168.206.27:6172', '192.168.206.27:6173', '192.168.206.27:6174', '192.168.206.27:6175', '192.168.206.27:6176', '192.168.206.27:6177']
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:global endpoints: ['192.168.206.27:6170', '192.168.206.27:6171', '192.168.206.27:6172', '192.168.206.27:6173', '192.168.206.27:6174', '192.168.206.27:6175', '192.168.206.27:6176', '192.168.206.27:6177']
+2021-07-07 23:07:18 INFO     global ring id: 3
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:global ring id: 3
+2021-07-07 23:07:18 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+2021-07-07 23:07:18 INFO     mp group size: 2
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp group size: 2
+2021-07-07 23:07:18 INFO     mp rank: 0
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp rank: 0
+2021-07-07 23:07:18 INFO     mp group id: 2
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp group id: 2
+2021-07-07 23:07:18 INFO     mp group endpoints: ['192.168.206.27:6174', '192.168.206.27:6175']
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp group endpoints: ['192.168.206.27:6174', '192.168.206.27:6175']
+2021-07-07 23:07:18 INFO     mp ring id: 0
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp ring id: 0
+2021-07-07 23:07:18 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+2021-07-07 23:07:18 INFO     sharding group size: 1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding group size: 1
+2021-07-07 23:07:18 INFO     sharding rank: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding rank: -1
+2021-07-07 23:07:18 INFO     sharding group id: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding group id: -1
+2021-07-07 23:07:18 INFO     sharding group endpoints: []
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding group endpoints: []
+2021-07-07 23:07:18 INFO     sharding ring id: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding ring id: -1
+2021-07-07 23:07:18 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+2021-07-07 23:07:18 INFO     pp group size: 2
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp group size: 2
+2021-07-07 23:07:18 INFO     pp rank: 0
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp rank: 0
+2021-07-07 23:07:18 INFO     pp group id: 1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp group id: 1
+2021-07-07 23:07:18 INFO     pp group endpoints: ['192.168.206.27:6174', '192.168.206.27:6176']
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp group endpoints: ['192.168.206.27:6174', '192.168.206.27:6176']
+2021-07-07 23:07:18 INFO     pp ring id: 20
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp ring id: 20
+2021-07-07 23:07:18 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+2021-07-07 23:07:18 INFO     pure dp group size: 2
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pure dp group size: 2
+2021-07-07 23:07:18 INFO     pure dp rank: 1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pure dp rank: 1
+2021-07-07 23:07:18 INFO     pure dp group endpoints: ['192.168.206.27:6170', '192.168.206.27:6174']
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pure dp group endpoints: ['192.168.206.27:6170', '192.168.206.27:6174']
+2021-07-07 23:07:18 INFO     pure dp ring id: 2
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pure dp ring id: 2
+2021-07-07 23:07:18 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+pp pair:(0, 1), ring_id: 20
+pp pair:(1, 0), ring_id: 21
+[INFO] 2021-07-07 23:07:23,915 [run_pretraining.py:  427]:	applied_meta_list: ['ShardingOptimizer', 'AMPOptimizer', 'RecomputeOptimizer']
+I0707 23:07:38.251320 39663 gen_hccl_id_op_helper.cc:181] Server listening on: 192.168.206.27:6174 successful.
+I0707 23:07:40.245301 39663 collective_helper_npu.cc:83] initialized comm: 0xffffd78bdef0, nranks: 8, hccl_id: 0x3a3c8394, rank: 4
+I0707 23:07:43.307520 39663 collective_helper_npu.cc:88] initialized comm: 0xffffd78bdef0, nranks: 8, hccl_id: 0x3a3c8394, rank: 4
+I0707 23:07:43.307723 39663 collective_helper_npu.cc:93] hccl communicator of rank 4 in ring 3 has been created on device 4, with comm: 0x3a3b3ea0
+I0707 23:07:46.229032 39663 collective_helper_npu.cc:83] initialized comm: 0xffffd78bdef0, nranks: 2, hccl_id: 0x3a7ca114, rank: 0
+I0707 23:07:47.445775 39663 collective_helper_npu.cc:88] initialized comm: 0xffffd78bdef0, nranks: 2, hccl_id: 0x3a7ca114, rank: 0
+I0707 23:07:47.445919 39663 collective_helper_npu.cc:93] hccl communicator of rank 0 in ring 0 has been created on device 4, with comm: 0x3a535190
+I0707 23:07:47.798965 39663 collective_helper_npu.cc:83] initialized comm: 0xffffd78bdef0, nranks: 2, hccl_id: 0x3a7ce544, rank: 0
+I0707 23:07:49.014050 39663 collective_helper_npu.cc:88] initialized comm: 0xffffd78bdef0, nranks: 2, hccl_id: 0x3a7ce544, rank: 0
+I0707 23:07:49.014195 39663 collective_helper_npu.cc:93] hccl communicator of rank 0 in ring 20 has been created on device 4, with comm: 0x3a5024d0
+I0707 23:07:49.313954 39663 gen_hccl_id_op_helper.cc:181] Server listening on: 192.168.206.27:6174 successful.
+I0707 23:07:49.815760 39663 collective_helper_npu.cc:83] initialized comm: 0xffffd78bdef0, nranks: 2, hccl_id: 0x3a7cf654, rank: 1
+I0707 23:07:51.032743 39663 collective_helper_npu.cc:88] initialized comm: 0xffffd78bdef0, nranks: 2, hccl_id: 0x3a7cf654, rank: 1
+I0707 23:07:51.032878 39663 collective_helper_npu.cc:93] hccl communicator of rank 1 in ring 21 has been created on device 4, with comm: 0x3a4e4c50
+I0707 23:07:51.316995 39663 gen_hccl_id_op_helper.cc:181] Server listening on: 192.168.206.27:6174 successful.
+I0707 23:07:51.393959 39663 collective_helper_npu.cc:83] initialized comm: 0xffffd78bdef0, nranks: 2, hccl_id: 0x3a5cf664, rank: 1
+I0707 23:07:52.609480 39663 collective_helper_npu.cc:88] initialized comm: 0xffffd78bdef0, nranks: 2, hccl_id: 0x3a5cf664, rank: 1
+I0707 23:07:52.609622 39663 collective_helper_npu.cc:93] hccl communicator of rank 1 in ring 2 has been created on device 4, with comm: 0x3a4fa4f0
+I0707 23:07:59.310232 43376 lod_tensor_blocking_queue.h:104] Init queue with size 1
+I0707 23:07:59.310431 43376 buffered_reader.cc:41] BufferedReader
+[DEBUG] 2021-07-08 03:14:21,480 [run_pretraining.py:  608]:	saving final models to output/npu-2pp2dp2mp-bs8/final_step_1600
+[DEBUG] 2021-07-08 03:14:21,480 [run_pretraining.py:  609]:	end of training, total steps: 1600
+I0708 03:14:24.025430 39663 reader.h:164] ~ReaderHolder
+I0708 03:14:24.025610 39663 reader.h:164] ~ReaderHolder
+I0708 03:14:24.025625 39663 buffered_reader.cc:22] ~BufferedReader
+I0708 03:14:24.025635 39663 lod_tensor_blocking_queue.h:59] LoDTensorBlockingQueue close
+I0708 03:14:24.025641 39663 blocking_queue.h:132] close queue
+I0708 03:14:24.025796 39663 reader.cc:76] ~DecoratedReader
+I0708 03:14:24.025808 39663 lod_tensor_blocking_queue.h:59] LoDTensorBlockingQueue close
+I0708 03:14:24.025815 39663 blocking_queue.h:132] close queue
+I0708 03:14:24.025820 39663 lod_tensor_blocking_queue.h:59] LoDTensorBlockingQueue close
+I0708 03:14:24.025826 39663 blocking_queue.h:132] close queue
+terminate called without an active exception
+
+
+--------------------------------------
+C++ Traceback (most recent call last):
+--------------------------------------
+0   paddle::framework::SignalHandle(char const*, int)
+
+----------------------
+Error Message Summary:
+----------------------
+FatalError: `Process abort signal` is detected by the operating system.
+  [TimeInfo: *** Aborted at 1625685264 (unix time) try "date -d @1625685264" if you are using GNU date ***]
+  [SignalInfo: *** SIGABRT (@0x9aef) received by PID 39663 (TID 0xffff38af81e0) from PID 39663 ***]
+
