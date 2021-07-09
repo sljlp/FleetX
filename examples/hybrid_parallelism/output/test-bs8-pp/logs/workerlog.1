@@ -1,0 +1,799 @@
+/home/gongwb/.local/lib/python3.7/site-packages/setuptools/depends.py:2: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+I0709 16:32:10.580657 22427 init.cc:88] Before Parse: argc is 2, Init commandline: dummy --tryfromenv=check_nan_inf,benchmark,eager_delete_scope,fraction_of_cpu_memory_to_use,initial_cpu_memory_in_mb,init_allocated_mem,paddle_num_threads,dist_threadpool_size,eager_delete_tensor_gb,fast_eager_deletion_mode,memory_fraction_of_eager_deletion,allocator_strategy,reader_queue_speed_test_mode,print_sub_graph_dir,pe_profile_fname,inner_op_parallelism,enable_parallel_graph,fuse_parameter_groups_size,multiple_of_cupti_buffer_size,fuse_parameter_memory_size,tracer_profile_fname,dygraph_debug,use_system_allocator,enable_unused_var_check,free_idle_chunk,free_when_no_cache_hit,call_stack_level,sort_sum_gradient,max_inplace_grad_add,use_pinned_memory,cpu_deterministic,selected_npus,fraction_of_gpu_memory_to_use,initial_gpu_memory_in_mb,reallocate_gpu_memory_in_mb,gpu_memory_limit_mb 
+I0709 16:32:10.580869 22427 init.cc:95] After Parse: argc is 1
+-----------  Configuration Arguments -----------
+data_dir: ./data
+debug: False
+do_eval: True
+epoch: 100
+ernie_config_file: config/ernie_base_config.json
+eval_batch_size: 35
+eval_data_path: ./data
+eval_steps: -1
+global_bsz: 8
+global_steps: 0
+grad_merge: 0
+init_checkpoint: 
+learning_rate: 0.0001
+log_steps: 1
+max_seq_len: 512
+micro_bsz: 1
+num_dp: 1
+num_mp: 1
+num_pp: 2
+num_sharding: 1
+num_train_steps: 1600
+output_dir: output/test-bs8
+preln: False
+save_steps: 500
+seed: 2021
+use_amp: True
+use_hybrid_dp: True
+use_lamb: False
+use_offload: False
+use_recompute: True
+use_sharding: True
+vocab_file: ./config/30k-clean.vocab.albert
+warmup_steps: 10000
+weight_decay: 0.01
+------------------------------------------------
+to run startup
+[INFO] 2021-07-09 16:32:11,316 [run_pretraining.py:  216]:	pretraining start
+[INFO] 2021-07-09 16:32:11,316 [run_pretraining.py:  234]:	using recompute.
+[INFO] 2021-07-09 16:32:11,316 [run_pretraining.py:  279]:	using globa_bsz: 8 micro_bsz: 1, acc_steps: 8
+[DEBUG] 2021-07-09 16:32:11,384 [run_pretraining.py:  118]:	========= dp_sharding worker: 0 of 1 ==========
+[INFO] 2021-07-09 16:32:11,384 [pretraining_ds_mlm.py:  293]:	Apply sharding in distribution env 0/1
+[INFO] 2021-07-09 16:32:11,384 [pretraining_ds_mlm.py:  295]:	read from ./data/part-00000.104,./data/part-00000.100,./data/part-00000.107,./data/part-00000.103,./data/part-00000.10,./data/part-00000.105,./data/part-00000.101,./data/part-00000.102,./data/part-00000.106,./data/part-00000.109,./data/part-00000.108
+I0709 16:32:11.384752 22427 reader_py.cc:387] init_lod_tensor_blocking_queue
+INFO:root:places would be ommited when DataLoader is not iterable
+/home/liupeng51/github/Paddle/build/build_ubuntu_optimizer_checkinf_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/ernie.py:158
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/home/liupeng51/github/Paddle/build/build_ubuntu_optimizer_checkinf_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/ernie.py:159
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/home/liupeng51/github/Paddle/build/build_ubuntu_optimizer_checkinf_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:170
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/home/liupeng51/github/Paddle/build/build_ubuntu_optimizer_checkinf_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:280
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/home/liupeng51/github/Paddle/build/build_ubuntu_optimizer_checkinf_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:43
+The behavior of expression A + B has been unified with elementwise_add(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_add(X, Y, axis=0) instead of A + B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+/home/liupeng51/github/Paddle/build/build_ubuntu_optimizer_checkinf_release_ascend_y_none_3.7.5/python/paddle/fluid/layers/math_op_patch.py:320: UserWarning: /home/liupeng51/github/FleetX/examples/hybrid_parallelism/model/transformer_encoder.py:44
+The behavior of expression A * B has been unified with elementwise_mul(X, Y, axis=-1) from Paddle 2.0. If your code works well in the older versions but crashes in this version, try to use elementwise_mul(X, Y, axis=0) instead of A * B. This transitional warning will be dropped in the future.
+  op_type, op_type, EXPRESSION_MAP[method_name]))
+[DEBUG] 2021-07-09 16:32:12,098 [run_pretraining.py:  315]:	base lr: 0.0001
+/home/liupeng51/github/Paddle/build/build_ubuntu_optimizer_checkinf_release_ascend_y_none_3.7.5/python/paddle/distributed/fleet/base/fleet_base.py:818: UserWarning: It is recommended to use DistributedStrategy in fleet.init(). The strategy here is only for compatibility. If the strategy in fleet.distributed_optimizer() is not None, then it will overwrite the DistributedStrategy in fleet.init(), which will take effect in distributed training.
+  "It is recommended to use DistributedStrategy "
+2021-07-09 16:32:12 INFO     Gradient merge in [pp_gm], acc step = [8]
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:Gradient merge in [pp_gm], acc step = [8]
+Fri Jul 09 16:32:12-INFO: recompute segment[0]
+Fri Jul 09 16:32:12-INFO: segment start op: [lookup_table_v2]: [['src_ids', 'word_embedding']]
+Fri Jul 09 16:32:12-INFO: segment end op: [layer_norm]: [['encoder_layer_0_post_ffn_layer_norm_bias', 'encoder_layer_0_post_ffn_layer_norm_scale', 'tmp_10']]
+Fri Jul 09 16:32:12-INFO: recompute segment[0]
+Fri Jul 09 16:32:12-INFO: segment start op: [lookup_table_v2]: [['src_ids', 'word_embedding']]
+Fri Jul 09 16:32:12-INFO: segment end op: [layer_norm]: [['encoder_layer_0_post_ffn_layer_norm_bias', 'encoder_layer_0_post_ffn_layer_norm_scale', 'tmp_10']]
+Fri Jul 09 16:32:12-INFO: found [0] vars which cross recompute segment: [set()], better checkpoints might be set to reduce those vars
+pp_rank: 1
+2021-07-09 16:32:17 INFO     global word size: 2
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:global word size: 2
+2021-07-09 16:32:17 INFO     global rank: 1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:global rank: 1
+2021-07-09 16:32:17 INFO     global endpoints: ['192.168.206.27:6170', '192.168.206.27:6171']
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:global endpoints: ['192.168.206.27:6170', '192.168.206.27:6171']
+2021-07-09 16:32:17 INFO     global ring id: 3
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:global ring id: 3
+2021-07-09 16:32:17 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+2021-07-09 16:32:17 INFO     mp group size: 1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp group size: 1
+2021-07-09 16:32:17 INFO     mp rank: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp rank: -1
+2021-07-09 16:32:17 INFO     mp group id: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp group id: -1
+2021-07-09 16:32:17 INFO     mp group endpoints: []
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp group endpoints: []
+2021-07-09 16:32:17 INFO     mp ring id: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:mp ring id: -1
+2021-07-09 16:32:17 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+2021-07-09 16:32:17 INFO     sharding group size: 1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding group size: 1
+2021-07-09 16:32:17 INFO     sharding rank: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding rank: -1
+2021-07-09 16:32:17 INFO     sharding group id: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding group id: -1
+2021-07-09 16:32:17 INFO     sharding group endpoints: []
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding group endpoints: []
+2021-07-09 16:32:17 INFO     sharding ring id: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:sharding ring id: -1
+2021-07-09 16:32:17 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+2021-07-09 16:32:17 INFO     pp group size: 2
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp group size: 2
+2021-07-09 16:32:17 INFO     pp rank: 1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp rank: 1
+2021-07-09 16:32:17 INFO     pp group id: 0
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp group id: 0
+2021-07-09 16:32:17 INFO     pp group endpoints: ['192.168.206.27:6170', '192.168.206.27:6171']
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp group endpoints: ['192.168.206.27:6170', '192.168.206.27:6171']
+2021-07-09 16:32:17 INFO     pp ring id: 20
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pp ring id: 20
+2021-07-09 16:32:17 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+2021-07-09 16:32:17 INFO     pure dp group size: 1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pure dp group size: 1
+2021-07-09 16:32:17 INFO     pure dp rank: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pure dp rank: -1
+2021-07-09 16:32:17 INFO     pure dp group endpoints: []
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pure dp group endpoints: []
+2021-07-09 16:32:17 INFO     pure dp ring id: -1
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:pure dp ring id: -1
+2021-07-09 16:32:17 INFO     ##############################
+INFO:paddle.distributed.fleet.meta_optimizers.sharding_optimizer:##############################
+pp pair:(0, 1), ring_id: 20
+pp pair:(1, 0), ring_id: 21
+I0709 16:32:36.867637 22427 gen_hccl_id_op_helper.cc:181] Server listening on: 192.168.206.27:6171 successful.
+I0709 16:32:37.691025 22427 collective_helper_npu.cc:83] initialized comm: 0xffffc8625620, nranks: 2, hccl_id: 0x3238b084, rank: 1
+I0709 16:32:39.115484 22427 collective_helper_npu.cc:88] initialized comm: 0xffffc8625620, nranks: 2, hccl_id: 0x3238b084, rank: 1
+I0709 16:32:39.115754 22427 collective_helper_npu.cc:93] hccl communicator of rank 1 in ring 3 has been created on device 1, with comm: 0x32192f10
+I0709 16:32:39.910679 22427 gen_hccl_id_op_helper.cc:181] Server listening on: 192.168.206.27:6171 successful.
+I0709 16:32:40.411909 22427 collective_helper_npu.cc:83] initialized comm: 0xffffc8625620, nranks: 2, hccl_id: 0x32389034, rank: 1
+I0709 16:32:41.629309 22427 collective_helper_npu.cc:88] initialized comm: 0xffffc8625620, nranks: 2, hccl_id: 0x32389034, rank: 1
+I0709 16:32:41.631433 22427 collective_helper_npu.cc:93] hccl communicator of rank 1 in ring 20 has been created on device 1, with comm: 0x322e3bf0
+I0709 16:32:41.882880 22427 collective_helper_npu.cc:83] initialized comm: 0xffffc8625620, nranks: 2, hccl_id: 0x31f4c084, rank: 0
+I0709 16:32:43.103855 22427 collective_helper_npu.cc:88] initialized comm: 0xffffc8625620, nranks: 2, hccl_id: 0x31f4c084, rank: 0
+I0709 16:32:43.104029 22427 collective_helper_npu.cc:93] hccl communicator of rank 0 in ring 21 has been created on device 1, with comm: 0x322f7850
+[INFO] 2021-07-09 16:32:43,489 [run_pretraining.py:  512]:	********exe.run_0******* 
+I0709 16:32:46.201086 23481 lod_tensor_blocking_queue.h:104] Init queue with size 1
+I0709 16:32:46.201297 23481 buffered_reader.cc:41] BufferedReader
+[INFO] 2021-07-09 16:35:07,641 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:07,642 [run_pretraining.py:  534]:	loss/total_loss, 10.300559043884277, 1
+[INFO] 2021-07-09 16:35:07,642 [run_pretraining.py:  535]:	loss/mlm_loss, 10.300559043884277, 1
+[INFO] 2021-07-09 16:35:07,642 [run_pretraining.py:  536]:	lr/scheduled_lr, 0.0, 1
+[INFO] 2021-07-09 16:35:07,643 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 1
+[INFO] 2021-07-09 16:35:07,643 [run_pretraining.py:  558]:	worker_index: 1, step: 1, cost: 10.300559, mlm loss: 10.300559, speed: 0.006937 steps/s, speed: 0.055496 samples/s, speed: 28.414091 tokens/s, learning rate: 0.000e+00, loss_scalings: 32768.000000, pp_loss: 10.397097
+[INFO] 2021-07-09 16:35:07,643 [run_pretraining.py:  512]:	********exe.run_1******* 
+[INFO] 2021-07-09 16:35:12,325 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:12,326 [run_pretraining.py:  534]:	loss/total_loss, 10.217952728271484, 2
+[INFO] 2021-07-09 16:35:12,326 [run_pretraining.py:  535]:	loss/mlm_loss, 10.217952728271484, 2
+[INFO] 2021-07-09 16:35:12,326 [run_pretraining.py:  536]:	lr/scheduled_lr, 9.99999905104687e-09, 2
+[INFO] 2021-07-09 16:35:12,326 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 2
+[INFO] 2021-07-09 16:35:12,326 [run_pretraining.py:  558]:	worker_index: 1, step: 2, cost: 10.217953, mlm loss: 10.217953, speed: 0.213541 steps/s, speed: 1.708326 samples/s, speed: 874.663137 tokens/s, learning rate: 1.000e-08, loss_scalings: 32768.000000, pp_loss: 10.352282
+[INFO] 2021-07-09 16:35:12,326 [run_pretraining.py:  512]:	********exe.run_2******* 
+[INFO] 2021-07-09 16:35:13,339 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:13,340 [run_pretraining.py:  534]:	loss/total_loss, 10.353214263916016, 3
+[INFO] 2021-07-09 16:35:13,340 [run_pretraining.py:  535]:	loss/mlm_loss, 10.353214263916016, 3
+[INFO] 2021-07-09 16:35:13,340 [run_pretraining.py:  536]:	lr/scheduled_lr, 1.999999810209374e-08, 3
+[INFO] 2021-07-09 16:35:13,340 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 3
+[INFO] 2021-07-09 16:35:13,340 [run_pretraining.py:  558]:	worker_index: 1, step: 3, cost: 10.353214, mlm loss: 10.353214, speed: 0.986737 steps/s, speed: 7.893897 samples/s, speed: 4041.675493 tokens/s, learning rate: 2.000e-08, loss_scalings: 32768.000000, pp_loss: 10.337666
+[INFO] 2021-07-09 16:35:13,341 [run_pretraining.py:  512]:	********exe.run_3******* 
+[INFO] 2021-07-09 16:35:14,797 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:14,797 [run_pretraining.py:  534]:	loss/total_loss, 10.38827896118164, 4
+[INFO] 2021-07-09 16:35:14,797 [run_pretraining.py:  535]:	loss/mlm_loss, 10.38827896118164, 4
+[INFO] 2021-07-09 16:35:14,798 [run_pretraining.py:  536]:	lr/scheduled_lr, 2.999999892949745e-08, 4
+[INFO] 2021-07-09 16:35:14,798 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 4
+[INFO] 2021-07-09 16:35:14,798 [run_pretraining.py:  558]:	worker_index: 1, step: 4, cost: 10.388279, mlm loss: 10.388279, speed: 0.686579 steps/s, speed: 5.492633 samples/s, speed: 2812.228340 tokens/s, learning rate: 3.000e-08, loss_scalings: 32768.000000, pp_loss: 10.352869
+[INFO] 2021-07-09 16:35:14,798 [run_pretraining.py:  512]:	********exe.run_4******* 
+[INFO] 2021-07-09 16:35:15,815 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:15,815 [run_pretraining.py:  534]:	loss/total_loss, 10.349870681762695, 5
+[INFO] 2021-07-09 16:35:15,815 [run_pretraining.py:  535]:	loss/mlm_loss, 10.349870681762695, 5
+[INFO] 2021-07-09 16:35:15,816 [run_pretraining.py:  536]:	lr/scheduled_lr, 3.999999620418748e-08, 5
+[INFO] 2021-07-09 16:35:15,816 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 5
+[INFO] 2021-07-09 16:35:15,816 [run_pretraining.py:  558]:	worker_index: 1, step: 5, cost: 10.349871, mlm loss: 10.349871, speed: 0.983074 steps/s, speed: 7.864592 samples/s, speed: 4026.671201 tokens/s, learning rate: 4.000e-08, loss_scalings: 32768.000000, pp_loss: 10.344645
+[INFO] 2021-07-09 16:35:15,816 [run_pretraining.py:  512]:	********exe.run_5******* 
+[INFO] 2021-07-09 16:35:16,864 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:16,876 [run_pretraining.py:  534]:	loss/total_loss, 10.339790344238281, 6
+[INFO] 2021-07-09 16:35:16,881 [run_pretraining.py:  535]:	loss/mlm_loss, 10.339790344238281, 6
+[INFO] 2021-07-09 16:35:16,884 [run_pretraining.py:  536]:	lr/scheduled_lr, 5.000000058430487e-08, 6
+[INFO] 2021-07-09 16:35:16,890 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 6
+[INFO] 2021-07-09 16:35:16,899 [run_pretraining.py:  558]:	worker_index: 1, step: 6, cost: 10.339790, mlm loss: 10.339790, speed: 0.943365 steps/s, speed: 7.546922 samples/s, speed: 3864.024262 tokens/s, learning rate: 5.000e-08, loss_scalings: 32768.000000, pp_loss: 10.356113
+[INFO] 2021-07-09 16:35:16,904 [run_pretraining.py:  512]:	********exe.run_6******* 
+[INFO] 2021-07-09 16:35:17,931 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:17,932 [run_pretraining.py:  534]:	loss/total_loss, 10.468862533569336, 7
+[INFO] 2021-07-09 16:35:17,932 [run_pretraining.py:  535]:	loss/mlm_loss, 10.468862533569336, 7
+[INFO] 2021-07-09 16:35:17,932 [run_pretraining.py:  536]:	lr/scheduled_lr, 5.99999978589949e-08, 7
+[INFO] 2021-07-09 16:35:17,932 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 7
+[INFO] 2021-07-09 16:35:17,932 [run_pretraining.py:  558]:	worker_index: 1, step: 7, cost: 10.468863, mlm loss: 10.468863, speed: 0.973425 steps/s, speed: 7.787399 samples/s, speed: 3987.148469 tokens/s, learning rate: 6.000e-08, loss_scalings: 32768.000000, pp_loss: 10.356369
+[INFO] 2021-07-09 16:35:17,932 [run_pretraining.py:  512]:	********exe.run_7******* 
+[INFO] 2021-07-09 16:35:18,960 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:18,961 [run_pretraining.py:  534]:	loss/total_loss, 10.388418197631836, 8
+[INFO] 2021-07-09 16:35:18,961 [run_pretraining.py:  535]:	loss/mlm_loss, 10.388418197631836, 8
+[INFO] 2021-07-09 16:35:18,961 [run_pretraining.py:  536]:	lr/scheduled_lr, 6.999999868639861e-08, 8
+[INFO] 2021-07-09 16:35:18,961 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 8
+[INFO] 2021-07-09 16:35:18,961 [run_pretraining.py:  558]:	worker_index: 1, step: 8, cost: 10.388418, mlm loss: 10.388418, speed: 0.972189 steps/s, speed: 7.777511 samples/s, speed: 3982.085851 tokens/s, learning rate: 7.000e-08, loss_scalings: 32768.000000, pp_loss: 10.330223
+[INFO] 2021-07-09 16:35:18,961 [run_pretraining.py:  512]:	********exe.run_8******* 
+[INFO] 2021-07-09 16:35:19,982 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:19,983 [run_pretraining.py:  534]:	loss/total_loss, 10.387337684631348, 9
+[INFO] 2021-07-09 16:35:19,983 [run_pretraining.py:  535]:	loss/mlm_loss, 10.387337684631348, 9
+[INFO] 2021-07-09 16:35:19,983 [run_pretraining.py:  536]:	lr/scheduled_lr, 7.999999240837496e-08, 9
+[INFO] 2021-07-09 16:35:19,983 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 9
+[INFO] 2021-07-09 16:35:19,983 [run_pretraining.py:  558]:	worker_index: 1, step: 9, cost: 10.387338, mlm loss: 10.387338, speed: 0.979478 steps/s, speed: 7.835826 samples/s, speed: 4011.942786 tokens/s, learning rate: 8.000e-08, loss_scalings: 32768.000000, pp_loss: 10.352416
+[INFO] 2021-07-09 16:35:19,983 [run_pretraining.py:  512]:	********exe.run_9******* 
+[INFO] 2021-07-09 16:35:21,010 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:21,010 [run_pretraining.py:  534]:	loss/total_loss, 10.54000186920166, 10
+[INFO] 2021-07-09 16:35:21,010 [run_pretraining.py:  535]:	loss/mlm_loss, 10.54000186920166, 10
+[INFO] 2021-07-09 16:35:21,011 [run_pretraining.py:  536]:	lr/scheduled_lr, 8.999999323577867e-08, 10
+[INFO] 2021-07-09 16:35:21,011 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 10
+[INFO] 2021-07-09 16:35:21,011 [run_pretraining.py:  558]:	worker_index: 1, step: 10, cost: 10.540002, mlm loss: 10.540002, speed: 0.973730 steps/s, speed: 7.789844 samples/s, speed: 3988.399932 tokens/s, learning rate: 9.000e-08, loss_scalings: 32768.000000, pp_loss: 10.378266
+[INFO] 2021-07-09 16:35:21,011 [run_pretraining.py:  512]:	********exe.run_10******* 
+[INFO] 2021-07-09 16:35:22,039 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:22,039 [run_pretraining.py:  534]:	loss/total_loss, 10.347230911254883, 11
+[INFO] 2021-07-09 16:35:22,039 [run_pretraining.py:  535]:	loss/mlm_loss, 10.347230911254883, 11
+[INFO] 2021-07-09 16:35:22,040 [run_pretraining.py:  536]:	lr/scheduled_lr, 1.0000000116860974e-07, 11
+[INFO] 2021-07-09 16:35:22,040 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 11
+[INFO] 2021-07-09 16:35:22,040 [run_pretraining.py:  558]:	worker_index: 1, step: 11, cost: 10.347231, mlm loss: 10.347231, speed: 0.972537 steps/s, speed: 7.780294 samples/s, speed: 3983.510548 tokens/s, learning rate: 1.000e-07, loss_scalings: 32768.000000, pp_loss: 10.295824
+[INFO] 2021-07-09 16:35:22,040 [run_pretraining.py:  512]:	********exe.run_11******* 
+[INFO] 2021-07-09 16:35:23,098 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:23,098 [run_pretraining.py:  534]:	loss/total_loss, 10.364240646362305, 12
+[INFO] 2021-07-09 16:35:23,098 [run_pretraining.py:  535]:	loss/mlm_loss, 10.364240646362305, 12
+[INFO] 2021-07-09 16:35:23,098 [run_pretraining.py:  536]:	lr/scheduled_lr, 1.099999948905861e-07, 12
+[INFO] 2021-07-09 16:35:23,099 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 12
+[INFO] 2021-07-09 16:35:23,099 [run_pretraining.py:  558]:	worker_index: 1, step: 12, cost: 10.364241, mlm loss: 10.364241, speed: 0.944981 steps/s, speed: 7.559848 samples/s, speed: 3870.642325 tokens/s, learning rate: 1.100e-07, loss_scalings: 32768.000000, pp_loss: 10.320417
+[INFO] 2021-07-09 16:35:23,099 [run_pretraining.py:  512]:	********exe.run_12******* 
+[INFO] 2021-07-09 16:35:24,121 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:24,122 [run_pretraining.py:  534]:	loss/total_loss, 10.311046600341797, 13
+[INFO] 2021-07-09 16:35:24,122 [run_pretraining.py:  535]:	loss/mlm_loss, 10.311046600341797, 13
+[INFO] 2021-07-09 16:35:24,122 [run_pretraining.py:  536]:	lr/scheduled_lr, 1.199999957179898e-07, 13
+[INFO] 2021-07-09 16:35:24,122 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 13
+[INFO] 2021-07-09 16:35:24,122 [run_pretraining.py:  558]:	worker_index: 1, step: 13, cost: 10.311047, mlm loss: 10.311047, speed: 0.977908 steps/s, speed: 7.823260 samples/s, speed: 4005.509175 tokens/s, learning rate: 1.200e-07, loss_scalings: 32768.000000, pp_loss: 10.248003
+[INFO] 2021-07-09 16:35:24,122 [run_pretraining.py:  512]:	********exe.run_13******* 
+[INFO] 2021-07-09 16:35:25,147 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:25,148 [run_pretraining.py:  534]:	loss/total_loss, 10.233366966247559, 14
+[INFO] 2021-07-09 16:35:25,148 [run_pretraining.py:  535]:	loss/mlm_loss, 10.233366966247559, 14
+[INFO] 2021-07-09 16:35:25,148 [run_pretraining.py:  536]:	lr/scheduled_lr, 1.3000000365082087e-07, 14
+[INFO] 2021-07-09 16:35:25,148 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 14
+[INFO] 2021-07-09 16:35:25,148 [run_pretraining.py:  558]:	worker_index: 1, step: 14, cost: 10.233367, mlm loss: 10.233367, speed: 0.975079 steps/s, speed: 7.800633 samples/s, speed: 3993.924257 tokens/s, learning rate: 1.300e-07, loss_scalings: 32768.000000, pp_loss: 10.334479
+[INFO] 2021-07-09 16:35:25,148 [run_pretraining.py:  512]:	********exe.run_14******* 
+[INFO] 2021-07-09 16:35:26,173 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:26,174 [run_pretraining.py:  534]:	loss/total_loss, 10.166234970092773, 15
+[INFO] 2021-07-09 16:35:26,174 [run_pretraining.py:  535]:	loss/mlm_loss, 10.166234970092773, 15
+[INFO] 2021-07-09 16:35:26,174 [run_pretraining.py:  536]:	lr/scheduled_lr, 1.3999999737279722e-07, 15
+[INFO] 2021-07-09 16:35:26,174 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 15
+[INFO] 2021-07-09 16:35:26,174 [run_pretraining.py:  558]:	worker_index: 1, step: 15, cost: 10.166235, mlm loss: 10.166235, speed: 0.975436 steps/s, speed: 7.803489 samples/s, speed: 3995.386244 tokens/s, learning rate: 1.400e-07, loss_scalings: 32768.000000, pp_loss: 10.235616
+[INFO] 2021-07-09 16:35:26,174 [run_pretraining.py:  512]:	********exe.run_15******* 
+[INFO] 2021-07-09 16:35:27,248 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:27,248 [run_pretraining.py:  534]:	loss/total_loss, 10.252204895019531, 16
+[INFO] 2021-07-09 16:35:27,248 [run_pretraining.py:  535]:	loss/mlm_loss, 10.252204895019531, 16
+[INFO] 2021-07-09 16:35:27,249 [run_pretraining.py:  536]:	lr/scheduled_lr, 1.4999999109477358e-07, 16
+[INFO] 2021-07-09 16:35:27,249 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 16
+[INFO] 2021-07-09 16:35:27,249 [run_pretraining.py:  558]:	worker_index: 1, step: 16, cost: 10.252205, mlm loss: 10.252205, speed: 0.931248 steps/s, speed: 7.449988 samples/s, speed: 3814.393736 tokens/s, learning rate: 1.500e-07, loss_scalings: 32768.000000, pp_loss: 10.241592
+[INFO] 2021-07-09 16:35:27,249 [run_pretraining.py:  512]:	********exe.run_16******* 
+[INFO] 2021-07-09 16:35:28,274 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:28,274 [run_pretraining.py:  534]:	loss/total_loss, 10.36011028289795, 17
+[INFO] 2021-07-09 16:35:28,274 [run_pretraining.py:  535]:	loss/mlm_loss, 10.36011028289795, 17
+[INFO] 2021-07-09 16:35:28,274 [run_pretraining.py:  536]:	lr/scheduled_lr, 1.5999998481674993e-07, 17
+[INFO] 2021-07-09 16:35:28,275 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 17
+[INFO] 2021-07-09 16:35:28,275 [run_pretraining.py:  558]:	worker_index: 1, step: 17, cost: 10.360110, mlm loss: 10.360110, speed: 0.975386 steps/s, speed: 7.803084 samples/s, speed: 3995.179048 tokens/s, learning rate: 1.600e-07, loss_scalings: 32768.000000, pp_loss: 10.206884
+[INFO] 2021-07-09 16:35:28,275 [run_pretraining.py:  512]:	********exe.run_17******* 
+[INFO] 2021-07-09 16:35:29,303 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:29,303 [run_pretraining.py:  534]:	loss/total_loss, 10.313762664794922, 18
+[INFO] 2021-07-09 16:35:29,304 [run_pretraining.py:  535]:	loss/mlm_loss, 10.313762664794922, 18
+[INFO] 2021-07-09 16:35:29,304 [run_pretraining.py:  536]:	lr/scheduled_lr, 1.69999992749581e-07, 18
+[INFO] 2021-07-09 16:35:29,304 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 18
+[INFO] 2021-07-09 16:35:29,304 [run_pretraining.py:  558]:	worker_index: 1, step: 18, cost: 10.313763, mlm loss: 10.313763, speed: 0.972321 steps/s, speed: 7.778564 samples/s, speed: 3982.624956 tokens/s, learning rate: 1.700e-07, loss_scalings: 32768.000000, pp_loss: 10.251989
+[INFO] 2021-07-09 16:35:29,304 [run_pretraining.py:  512]:	********exe.run_18******* 
+[INFO] 2021-07-09 16:35:30,333 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:30,333 [run_pretraining.py:  534]:	loss/total_loss, 10.084098815917969, 19
+[INFO] 2021-07-09 16:35:30,333 [run_pretraining.py:  535]:	loss/mlm_loss, 10.084098815917969, 19
+[INFO] 2021-07-09 16:35:30,334 [run_pretraining.py:  536]:	lr/scheduled_lr, 1.7999998647155735e-07, 19
+[INFO] 2021-07-09 16:35:30,334 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 19
+[INFO] 2021-07-09 16:35:30,334 [run_pretraining.py:  558]:	worker_index: 1, step: 19, cost: 10.084099, mlm loss: 10.084099, speed: 0.971630 steps/s, speed: 7.773036 samples/s, speed: 3979.794440 tokens/s, learning rate: 1.800e-07, loss_scalings: 32768.000000, pp_loss: 10.091116
+[INFO] 2021-07-09 16:35:30,334 [run_pretraining.py:  512]:	********exe.run_19******* 
+[INFO] 2021-07-09 16:35:31,395 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:31,395 [run_pretraining.py:  534]:	loss/total_loss, 10.028279304504395, 20
+[INFO] 2021-07-09 16:35:31,395 [run_pretraining.py:  535]:	loss/mlm_loss, 10.028279304504395, 20
+[INFO] 2021-07-09 16:35:31,396 [run_pretraining.py:  536]:	lr/scheduled_lr, 1.8999999440438842e-07, 20
+[INFO] 2021-07-09 16:35:31,396 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 20
+[INFO] 2021-07-09 16:35:31,396 [run_pretraining.py:  558]:	worker_index: 1, step: 20, cost: 10.028279, mlm loss: 10.028279, speed: 0.942278 steps/s, speed: 7.538223 samples/s, speed: 3859.570152 tokens/s, learning rate: 1.900e-07, loss_scalings: 32768.000000, pp_loss: 10.174583
+[INFO] 2021-07-09 16:35:31,396 [run_pretraining.py:  512]:	********exe.run_20******* 
+[INFO] 2021-07-09 16:35:32,435 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:32,436 [run_pretraining.py:  534]:	loss/total_loss, 10.095208168029785, 21
+[INFO] 2021-07-09 16:35:32,436 [run_pretraining.py:  535]:	loss/mlm_loss, 10.095208168029785, 21
+[INFO] 2021-07-09 16:35:32,436 [run_pretraining.py:  536]:	lr/scheduled_lr, 2.0000000233721948e-07, 21
+[INFO] 2021-07-09 16:35:32,436 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 21
+[INFO] 2021-07-09 16:35:32,436 [run_pretraining.py:  558]:	worker_index: 1, step: 21, cost: 10.095208, mlm loss: 10.095208, speed: 0.961616 steps/s, speed: 7.692929 samples/s, speed: 3938.779525 tokens/s, learning rate: 2.000e-07, loss_scalings: 32768.000000, pp_loss: 10.064144
+[INFO] 2021-07-09 16:35:32,436 [run_pretraining.py:  512]:	********exe.run_21******* 
+[INFO] 2021-07-09 16:35:33,488 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:33,488 [run_pretraining.py:  534]:	loss/total_loss, 10.006684303283691, 22
+[INFO] 2021-07-09 16:35:33,489 [run_pretraining.py:  535]:	loss/mlm_loss, 10.006684303283691, 22
+[INFO] 2021-07-09 16:35:33,489 [run_pretraining.py:  536]:	lr/scheduled_lr, 2.0999998184834112e-07, 22
+[INFO] 2021-07-09 16:35:33,489 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 22
+[INFO] 2021-07-09 16:35:33,489 [run_pretraining.py:  558]:	worker_index: 1, step: 22, cost: 10.006684, mlm loss: 10.006684, speed: 0.950784 steps/s, speed: 7.606272 samples/s, speed: 3894.411496 tokens/s, learning rate: 2.100e-07, loss_scalings: 32768.000000, pp_loss: 10.021221
+[INFO] 2021-07-09 16:35:33,489 [run_pretraining.py:  512]:	********exe.run_22******* 
+[INFO] 2021-07-09 16:35:34,531 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:34,532 [run_pretraining.py:  534]:	loss/total_loss, 10.175498962402344, 23
+[INFO] 2021-07-09 16:35:34,532 [run_pretraining.py:  535]:	loss/mlm_loss, 10.175498962402344, 23
+[INFO] 2021-07-09 16:35:34,532 [run_pretraining.py:  536]:	lr/scheduled_lr, 2.199999897811722e-07, 23
+[INFO] 2021-07-09 16:35:34,532 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 23
+[INFO] 2021-07-09 16:35:34,532 [run_pretraining.py:  558]:	worker_index: 1, step: 23, cost: 10.175499, mlm loss: 10.175499, speed: 0.958991 steps/s, speed: 7.671927 samples/s, speed: 3928.026749 tokens/s, learning rate: 2.200e-07, loss_scalings: 32768.000000, pp_loss: 10.066512
+[INFO] 2021-07-09 16:35:34,532 [run_pretraining.py:  512]:	********exe.run_23******* 
+[INFO] 2021-07-09 16:35:35,569 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:35,570 [run_pretraining.py:  534]:	loss/total_loss, 9.926163673400879, 24
+[INFO] 2021-07-09 16:35:35,570 [run_pretraining.py:  535]:	loss/mlm_loss, 9.926163673400879, 24
+[INFO] 2021-07-09 16:35:35,570 [run_pretraining.py:  536]:	lr/scheduled_lr, 2.2999999771400326e-07, 24
+[INFO] 2021-07-09 16:35:35,570 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 24
+[INFO] 2021-07-09 16:35:35,570 [run_pretraining.py:  558]:	worker_index: 1, step: 24, cost: 9.926164, mlm loss: 9.926164, speed: 0.964165 steps/s, speed: 7.713320 samples/s, speed: 3949.219996 tokens/s, learning rate: 2.300e-07, loss_scalings: 32768.000000, pp_loss: 10.066565
+[INFO] 2021-07-09 16:35:35,570 [run_pretraining.py:  512]:	********exe.run_24******* 
+[INFO] 2021-07-09 16:35:36,640 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:36,640 [run_pretraining.py:  534]:	loss/total_loss, 9.86221694946289, 25
+[INFO] 2021-07-09 16:35:36,640 [run_pretraining.py:  535]:	loss/mlm_loss, 9.86221694946289, 25
+[INFO] 2021-07-09 16:35:36,641 [run_pretraining.py:  536]:	lr/scheduled_lr, 2.399999914359796e-07, 25
+[INFO] 2021-07-09 16:35:36,641 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 25
+[INFO] 2021-07-09 16:35:36,641 [run_pretraining.py:  558]:	worker_index: 1, step: 25, cost: 9.862217, mlm loss: 9.862217, speed: 0.934822 steps/s, speed: 7.478579 samples/s, speed: 3829.032441 tokens/s, learning rate: 2.400e-07, loss_scalings: 32768.000000, pp_loss: 9.987053
+[INFO] 2021-07-09 16:35:36,641 [run_pretraining.py:  512]:	********exe.run_25******* 
+[INFO] 2021-07-09 16:35:37,724 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:37,725 [run_pretraining.py:  534]:	loss/total_loss, 9.841082572937012, 26
+[INFO] 2021-07-09 16:35:37,725 [run_pretraining.py:  535]:	loss/mlm_loss, 9.841082572937012, 26
+[INFO] 2021-07-09 16:35:37,725 [run_pretraining.py:  536]:	lr/scheduled_lr, 2.499999993688107e-07, 26
+[INFO] 2021-07-09 16:35:37,725 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 26
+[INFO] 2021-07-09 16:35:37,726 [run_pretraining.py:  558]:	worker_index: 1, step: 26, cost: 9.841083, mlm loss: 9.841083, speed: 0.922461 steps/s, speed: 7.379692 samples/s, speed: 3778.402107 tokens/s, learning rate: 2.500e-07, loss_scalings: 32768.000000, pp_loss: 9.935457
+[INFO] 2021-07-09 16:35:37,726 [run_pretraining.py:  512]:	********exe.run_26******* 
+[INFO] 2021-07-09 16:35:38,769 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:38,769 [run_pretraining.py:  534]:	loss/total_loss, 10.017271995544434, 27
+[INFO] 2021-07-09 16:35:38,769 [run_pretraining.py:  535]:	loss/mlm_loss, 10.017271995544434, 27
+[INFO] 2021-07-09 16:35:38,770 [run_pretraining.py:  536]:	lr/scheduled_lr, 2.6000000730164174e-07, 27
+[INFO] 2021-07-09 16:35:38,770 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 27
+[INFO] 2021-07-09 16:35:38,770 [run_pretraining.py:  558]:	worker_index: 1, step: 27, cost: 10.017272, mlm loss: 10.017272, speed: 0.958360 steps/s, speed: 7.666884 samples/s, speed: 3925.444588 tokens/s, learning rate: 2.600e-07, loss_scalings: 32768.000000, pp_loss: 9.965475
+[INFO] 2021-07-09 16:35:38,770 [run_pretraining.py:  512]:	********exe.run_27******* 
+[INFO] 2021-07-09 16:35:39,870 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:39,871 [run_pretraining.py:  534]:	loss/total_loss, 9.744331359863281, 28
+[INFO] 2021-07-09 16:35:39,871 [run_pretraining.py:  535]:	loss/mlm_loss, 9.744331359863281, 28
+[INFO] 2021-07-09 16:35:39,871 [run_pretraining.py:  536]:	lr/scheduled_lr, 2.699999868127634e-07, 28
+[INFO] 2021-07-09 16:35:39,871 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 28
+[INFO] 2021-07-09 16:35:39,871 [run_pretraining.py:  558]:	worker_index: 1, step: 28, cost: 9.744331, mlm loss: 9.744331, speed: 0.908321 steps/s, speed: 7.266567 samples/s, speed: 3720.482078 tokens/s, learning rate: 2.700e-07, loss_scalings: 32768.000000, pp_loss: 9.773355
+[INFO] 2021-07-09 16:35:39,871 [run_pretraining.py:  512]:	********exe.run_28******* 
+[INFO] 2021-07-09 16:35:40,915 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:40,916 [run_pretraining.py:  534]:	loss/total_loss, 9.962554931640625, 29
+[INFO] 2021-07-09 16:35:40,916 [run_pretraining.py:  535]:	loss/mlm_loss, 9.962554931640625, 29
+[INFO] 2021-07-09 16:35:40,916 [run_pretraining.py:  536]:	lr/scheduled_lr, 2.7999999474559445e-07, 29
+[INFO] 2021-07-09 16:35:40,916 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 29
+[INFO] 2021-07-09 16:35:40,916 [run_pretraining.py:  558]:	worker_index: 1, step: 29, cost: 9.962555, mlm loss: 9.962555, speed: 0.957941 steps/s, speed: 7.663529 samples/s, speed: 3923.726825 tokens/s, learning rate: 2.800e-07, loss_scalings: 32768.000000, pp_loss: 9.930488
+[INFO] 2021-07-09 16:35:40,916 [run_pretraining.py:  512]:	********exe.run_29******* 
+[INFO] 2021-07-09 16:35:41,969 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:41,970 [run_pretraining.py:  534]:	loss/total_loss, 9.756457328796387, 30
+[INFO] 2021-07-09 16:35:41,970 [run_pretraining.py:  535]:	loss/mlm_loss, 9.756457328796387, 30
+[INFO] 2021-07-09 16:35:41,970 [run_pretraining.py:  536]:	lr/scheduled_lr, 2.900000026784255e-07, 30
+[INFO] 2021-07-09 16:35:41,970 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 30
+[INFO] 2021-07-09 16:35:41,970 [run_pretraining.py:  558]:	worker_index: 1, step: 30, cost: 9.756457, mlm loss: 9.756457, speed: 0.949448 steps/s, speed: 7.595582 samples/s, speed: 3888.937876 tokens/s, learning rate: 2.900e-07, loss_scalings: 32768.000000, pp_loss: 9.735109
+[INFO] 2021-07-09 16:35:41,970 [run_pretraining.py:  512]:	********exe.run_30******* 
+[INFO] 2021-07-09 16:35:43,016 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:43,017 [run_pretraining.py:  534]:	loss/total_loss, 9.649385452270508, 31
+[INFO] 2021-07-09 16:35:43,017 [run_pretraining.py:  535]:	loss/mlm_loss, 9.649385452270508, 31
+[INFO] 2021-07-09 16:35:43,017 [run_pretraining.py:  536]:	lr/scheduled_lr, 2.9999998218954715e-07, 31
+[INFO] 2021-07-09 16:35:43,017 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 31
+[INFO] 2021-07-09 16:35:43,017 [run_pretraining.py:  558]:	worker_index: 1, step: 31, cost: 9.649385, mlm loss: 9.649385, speed: 0.955600 steps/s, speed: 7.644803 samples/s, speed: 3914.139169 tokens/s, learning rate: 3.000e-07, loss_scalings: 32768.000000, pp_loss: 9.759576
+[INFO] 2021-07-09 16:35:43,017 [run_pretraining.py:  512]:	********exe.run_31******* 
+[INFO] 2021-07-09 16:35:44,061 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:44,062 [run_pretraining.py:  534]:	loss/total_loss, 9.603935241699219, 32
+[INFO] 2021-07-09 16:35:44,062 [run_pretraining.py:  535]:	loss/mlm_loss, 9.603935241699219, 32
+[INFO] 2021-07-09 16:35:44,062 [run_pretraining.py:  536]:	lr/scheduled_lr, 3.099999901223782e-07, 32
+[INFO] 2021-07-09 16:35:44,062 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 32
+[INFO] 2021-07-09 16:35:44,062 [run_pretraining.py:  558]:	worker_index: 1, step: 32, cost: 9.603935, mlm loss: 9.603935, speed: 0.957639 steps/s, speed: 7.661114 samples/s, speed: 3922.490537 tokens/s, learning rate: 3.100e-07, loss_scalings: 32768.000000, pp_loss: 9.702056
+[INFO] 2021-07-09 16:35:44,062 [run_pretraining.py:  512]:	********exe.run_32******* 
+[INFO] 2021-07-09 16:35:45,107 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:45,107 [run_pretraining.py:  534]:	loss/total_loss, 9.686312675476074, 33
+[INFO] 2021-07-09 16:35:45,107 [run_pretraining.py:  535]:	loss/mlm_loss, 9.686312675476074, 33
+[INFO] 2021-07-09 16:35:45,108 [run_pretraining.py:  536]:	lr/scheduled_lr, 3.1999996963349986e-07, 33
+[INFO] 2021-07-09 16:35:45,108 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 33
+[INFO] 2021-07-09 16:35:45,108 [run_pretraining.py:  558]:	worker_index: 1, step: 33, cost: 9.686313, mlm loss: 9.686313, speed: 0.957034 steps/s, speed: 7.656270 samples/s, speed: 3920.010456 tokens/s, learning rate: 3.200e-07, loss_scalings: 32768.000000, pp_loss: 9.720422
+[INFO] 2021-07-09 16:35:45,108 [run_pretraining.py:  512]:	********exe.run_33******* 
+[INFO] 2021-07-09 16:35:46,189 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:46,194 [run_pretraining.py:  534]:	loss/total_loss, 9.52257251739502, 34
+[INFO] 2021-07-09 16:35:46,199 [run_pretraining.py:  535]:	loss/mlm_loss, 9.52257251739502, 34
+[INFO] 2021-07-09 16:35:46,205 [run_pretraining.py:  536]:	lr/scheduled_lr, 3.2999997756633093e-07, 34
+[INFO] 2021-07-09 16:35:46,210 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 34
+[INFO] 2021-07-09 16:35:46,214 [run_pretraining.py:  558]:	worker_index: 1, step: 34, cost: 9.522573, mlm loss: 9.522573, speed: 0.920729 steps/s, speed: 7.365829 samples/s, speed: 3771.304671 tokens/s, learning rate: 3.300e-07, loss_scalings: 32768.000000, pp_loss: 9.619562
+[INFO] 2021-07-09 16:35:46,215 [run_pretraining.py:  512]:	********exe.run_34******* 
+[INFO] 2021-07-09 16:35:47,317 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:47,317 [run_pretraining.py:  534]:	loss/total_loss, 9.601395606994629, 35
+[INFO] 2021-07-09 16:35:47,318 [run_pretraining.py:  535]:	loss/mlm_loss, 9.601395606994629, 35
+[INFO] 2021-07-09 16:35:47,318 [run_pretraining.py:  536]:	lr/scheduled_lr, 3.39999985499162e-07, 35
+[INFO] 2021-07-09 16:35:47,318 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 35
+[INFO] 2021-07-09 16:35:47,318 [run_pretraining.py:  558]:	worker_index: 1, step: 35, cost: 9.601396, mlm loss: 9.601396, speed: 0.907599 steps/s, speed: 7.260791 samples/s, speed: 3717.525058 tokens/s, learning rate: 3.400e-07, loss_scalings: 32768.000000, pp_loss: 9.670673
+[INFO] 2021-07-09 16:35:47,318 [run_pretraining.py:  512]:	********exe.run_35******* 
+[INFO] 2021-07-09 16:35:48,362 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:48,362 [run_pretraining.py:  534]:	loss/total_loss, 9.542336463928223, 36
+[INFO] 2021-07-09 16:35:48,362 [run_pretraining.py:  535]:	loss/mlm_loss, 9.542336463928223, 36
+[INFO] 2021-07-09 16:35:48,362 [run_pretraining.py:  536]:	lr/scheduled_lr, 3.4999999343199306e-07, 36
+[INFO] 2021-07-09 16:35:48,362 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 36
+[INFO] 2021-07-09 16:35:48,363 [run_pretraining.py:  558]:	worker_index: 1, step: 36, cost: 9.542336, mlm loss: 9.542336, speed: 0.957912 steps/s, speed: 7.663296 samples/s, speed: 3923.607642 tokens/s, learning rate: 3.500e-07, loss_scalings: 32768.000000, pp_loss: 9.521932
+[INFO] 2021-07-09 16:35:48,363 [run_pretraining.py:  512]:	********exe.run_36******* 
+[INFO] 2021-07-09 16:35:49,404 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:49,404 [run_pretraining.py:  534]:	loss/total_loss, 9.483888626098633, 37
+[INFO] 2021-07-09 16:35:49,404 [run_pretraining.py:  535]:	loss/mlm_loss, 9.483888626098633, 37
+[INFO] 2021-07-09 16:35:49,405 [run_pretraining.py:  536]:	lr/scheduled_lr, 3.599999729431147e-07, 37
+[INFO] 2021-07-09 16:35:49,405 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 37
+[INFO] 2021-07-09 16:35:49,405 [run_pretraining.py:  558]:	worker_index: 1, step: 37, cost: 9.483889, mlm loss: 9.483889, speed: 0.960159 steps/s, speed: 7.681274 samples/s, speed: 3932.812308 tokens/s, learning rate: 3.600e-07, loss_scalings: 32768.000000, pp_loss: 9.481913
+[INFO] 2021-07-09 16:35:49,405 [run_pretraining.py:  512]:	********exe.run_37******* 
+[INFO] 2021-07-09 16:35:50,469 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:50,470 [run_pretraining.py:  534]:	loss/total_loss, 9.430176734924316, 38
+[INFO] 2021-07-09 16:35:50,470 [run_pretraining.py:  535]:	loss/mlm_loss, 9.430176734924316, 38
+[INFO] 2021-07-09 16:35:50,470 [run_pretraining.py:  536]:	lr/scheduled_lr, 3.6999998087594577e-07, 38
+[INFO] 2021-07-09 16:35:50,470 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 38
+[INFO] 2021-07-09 16:35:50,470 [run_pretraining.py:  558]:	worker_index: 1, step: 38, cost: 9.430177, mlm loss: 9.430177, speed: 0.939345 steps/s, speed: 7.514760 samples/s, speed: 3847.557014 tokens/s, learning rate: 3.700e-07, loss_scalings: 32768.000000, pp_loss: 9.507441
+[INFO] 2021-07-09 16:35:50,470 [run_pretraining.py:  512]:	********exe.run_38******* 
+[INFO] 2021-07-09 16:35:51,521 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:51,521 [run_pretraining.py:  534]:	loss/total_loss, 9.712740898132324, 39
+[INFO] 2021-07-09 16:35:51,521 [run_pretraining.py:  535]:	loss/mlm_loss, 9.712740898132324, 39
+[INFO] 2021-07-09 16:35:51,521 [run_pretraining.py:  536]:	lr/scheduled_lr, 3.7999998880877683e-07, 39
+[INFO] 2021-07-09 16:35:51,522 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 39
+[INFO] 2021-07-09 16:35:51,522 [run_pretraining.py:  558]:	worker_index: 1, step: 39, cost: 9.712741, mlm loss: 9.712741, speed: 0.951619 steps/s, speed: 7.612949 samples/s, speed: 3897.830059 tokens/s, learning rate: 3.800e-07, loss_scalings: 32768.000000, pp_loss: 9.496663
+[INFO] 2021-07-09 16:35:51,522 [run_pretraining.py:  512]:	********exe.run_39******* 
+[INFO] 2021-07-09 16:35:52,559 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:52,560 [run_pretraining.py:  534]:	loss/total_loss, 9.27662467956543, 40
+[INFO] 2021-07-09 16:35:52,560 [run_pretraining.py:  535]:	loss/mlm_loss, 9.27662467956543, 40
+[INFO] 2021-07-09 16:35:52,560 [run_pretraining.py:  536]:	lr/scheduled_lr, 3.8999996831989847e-07, 40
+[INFO] 2021-07-09 16:35:52,560 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 40
+[INFO] 2021-07-09 16:35:52,560 [run_pretraining.py:  558]:	worker_index: 1, step: 40, cost: 9.276625, mlm loss: 9.276625, speed: 0.963790 steps/s, speed: 7.710318 samples/s, speed: 3947.682737 tokens/s, learning rate: 3.900e-07, loss_scalings: 32768.000000, pp_loss: 9.320822
+[INFO] 2021-07-09 16:35:52,560 [run_pretraining.py:  512]:	********exe.run_40******* 
+[INFO] 2021-07-09 16:35:53,614 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:53,614 [run_pretraining.py:  534]:	loss/total_loss, 9.197074890136719, 41
+[INFO] 2021-07-09 16:35:53,614 [run_pretraining.py:  535]:	loss/mlm_loss, 9.197074890136719, 41
+[INFO] 2021-07-09 16:35:53,614 [run_pretraining.py:  536]:	lr/scheduled_lr, 4.0000000467443897e-07, 41
+[INFO] 2021-07-09 16:35:53,614 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 41
+[INFO] 2021-07-09 16:35:53,615 [run_pretraining.py:  558]:	worker_index: 1, step: 41, cost: 9.197075, mlm loss: 9.197075, speed: 0.948927 steps/s, speed: 7.591416 samples/s, speed: 3886.805143 tokens/s, learning rate: 4.000e-07, loss_scalings: 32768.000000, pp_loss: 9.228948
+[INFO] 2021-07-09 16:35:53,615 [run_pretraining.py:  512]:	********exe.run_41******* 
+[INFO] 2021-07-09 16:35:54,658 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:54,659 [run_pretraining.py:  534]:	loss/total_loss, 9.159566879272461, 42
+[INFO] 2021-07-09 16:35:54,659 [run_pretraining.py:  535]:	loss/mlm_loss, 9.159566879272461, 42
+[INFO] 2021-07-09 16:35:54,659 [run_pretraining.py:  536]:	lr/scheduled_lr, 4.099999841855606e-07, 42
+[INFO] 2021-07-09 16:35:54,659 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 42
+[INFO] 2021-07-09 16:35:54,659 [run_pretraining.py:  558]:	worker_index: 1, step: 42, cost: 9.159567, mlm loss: 9.159567, speed: 0.957904 steps/s, speed: 7.663231 samples/s, speed: 3923.574487 tokens/s, learning rate: 4.100e-07, loss_scalings: 32768.000000, pp_loss: 9.239668
+[INFO] 2021-07-09 16:35:54,659 [run_pretraining.py:  512]:	********exe.run_42******* 
+[INFO] 2021-07-09 16:35:55,700 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:55,701 [run_pretraining.py:  534]:	loss/total_loss, 9.292559623718262, 43
+[INFO] 2021-07-09 16:35:55,701 [run_pretraining.py:  535]:	loss/mlm_loss, 9.292559623718262, 43
+[INFO] 2021-07-09 16:35:55,701 [run_pretraining.py:  536]:	lr/scheduled_lr, 4.1999996369668224e-07, 43
+[INFO] 2021-07-09 16:35:55,701 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 43
+[INFO] 2021-07-09 16:35:55,701 [run_pretraining.py:  558]:	worker_index: 1, step: 43, cost: 9.292560, mlm loss: 9.292560, speed: 0.960279 steps/s, speed: 7.682229 samples/s, speed: 3933.301231 tokens/s, learning rate: 4.200e-07, loss_scalings: 32768.000000, pp_loss: 9.226957
+[INFO] 2021-07-09 16:35:55,701 [run_pretraining.py:  512]:	********exe.run_43******* 
+[INFO] 2021-07-09 16:35:56,743 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:56,743 [run_pretraining.py:  534]:	loss/total_loss, 9.258893966674805, 44
+[INFO] 2021-07-09 16:35:56,743 [run_pretraining.py:  535]:	loss/mlm_loss, 9.258893966674805, 44
+[INFO] 2021-07-09 16:35:56,744 [run_pretraining.py:  536]:	lr/scheduled_lr, 4.3000000005122274e-07, 44
+[INFO] 2021-07-09 16:35:56,744 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 44
+[INFO] 2021-07-09 16:35:56,744 [run_pretraining.py:  558]:	worker_index: 1, step: 44, cost: 9.258894, mlm loss: 9.258894, speed: 0.959987 steps/s, speed: 7.679899 samples/s, speed: 3932.108401 tokens/s, learning rate: 4.300e-07, loss_scalings: 32768.000000, pp_loss: 9.186874
+[INFO] 2021-07-09 16:35:56,744 [run_pretraining.py:  512]:	********exe.run_44******* 
+[INFO] 2021-07-09 16:35:57,799 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:57,800 [run_pretraining.py:  534]:	loss/total_loss, 9.086860656738281, 45
+[INFO] 2021-07-09 16:35:57,800 [run_pretraining.py:  535]:	loss/mlm_loss, 9.086860656738281, 45
+[INFO] 2021-07-09 16:35:57,800 [run_pretraining.py:  536]:	lr/scheduled_lr, 4.399999795623444e-07, 45
+[INFO] 2021-07-09 16:35:57,800 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 45
+[INFO] 2021-07-09 16:35:57,800 [run_pretraining.py:  558]:	worker_index: 1, step: 45, cost: 9.086861, mlm loss: 9.086861, speed: 0.947419 steps/s, speed: 7.579351 samples/s, speed: 3880.627814 tokens/s, learning rate: 4.400e-07, loss_scalings: 32768.000000, pp_loss: 9.135361
+[INFO] 2021-07-09 16:35:57,800 [run_pretraining.py:  512]:	********exe.run_45******* 
+[INFO] 2021-07-09 16:35:58,841 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:58,841 [run_pretraining.py:  534]:	loss/total_loss, 8.93694019317627, 46
+[INFO] 2021-07-09 16:35:58,841 [run_pretraining.py:  535]:	loss/mlm_loss, 8.93694019317627, 46
+[INFO] 2021-07-09 16:35:58,841 [run_pretraining.py:  536]:	lr/scheduled_lr, 4.49999959073466e-07, 46
+[INFO] 2021-07-09 16:35:58,842 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 46
+[INFO] 2021-07-09 16:35:58,842 [run_pretraining.py:  558]:	worker_index: 1, step: 46, cost: 8.936940, mlm loss: 8.936940, speed: 0.960672 steps/s, speed: 7.685379 samples/s, speed: 3934.913827 tokens/s, learning rate: 4.500e-07, loss_scalings: 32768.000000, pp_loss: 9.047647
+[INFO] 2021-07-09 16:35:58,842 [run_pretraining.py:  512]:	********exe.run_46******* 
+[INFO] 2021-07-09 16:35:59,894 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:35:59,895 [run_pretraining.py:  534]:	loss/total_loss, 8.960943222045898, 47
+[INFO] 2021-07-09 16:35:59,895 [run_pretraining.py:  535]:	loss/mlm_loss, 8.960943222045898, 47
+[INFO] 2021-07-09 16:35:59,895 [run_pretraining.py:  536]:	lr/scheduled_lr, 4.599999954280065e-07, 47
+[INFO] 2021-07-09 16:35:59,895 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 47
+[INFO] 2021-07-09 16:35:59,895 [run_pretraining.py:  558]:	worker_index: 1, step: 47, cost: 8.960943, mlm loss: 8.960943, speed: 0.949832 steps/s, speed: 7.598652 samples/s, speed: 3890.509888 tokens/s, learning rate: 4.600e-07, loss_scalings: 32768.000000, pp_loss: 8.990037
+[INFO] 2021-07-09 16:35:59,895 [run_pretraining.py:  512]:	********exe.run_47******* 
+[INFO] 2021-07-09 16:36:00,946 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:00,946 [run_pretraining.py:  534]:	loss/total_loss, 8.873865127563477, 48
+[INFO] 2021-07-09 16:36:00,946 [run_pretraining.py:  535]:	loss/mlm_loss, 8.873865127563477, 48
+[INFO] 2021-07-09 16:36:00,946 [run_pretraining.py:  536]:	lr/scheduled_lr, 4.6999997493912815e-07, 48
+[INFO] 2021-07-09 16:36:00,946 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 48
+[INFO] 2021-07-09 16:36:00,947 [run_pretraining.py:  558]:	worker_index: 1, step: 48, cost: 8.873865, mlm loss: 8.873865, speed: 0.951858 steps/s, speed: 7.614864 samples/s, speed: 3898.810169 tokens/s, learning rate: 4.700e-07, loss_scalings: 32768.000000, pp_loss: 8.912348
+[INFO] 2021-07-09 16:36:00,947 [run_pretraining.py:  512]:	********exe.run_48******* 
+[INFO] 2021-07-09 16:36:02,018 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:02,019 [run_pretraining.py:  534]:	loss/total_loss, 8.987372398376465, 49
+[INFO] 2021-07-09 16:36:02,019 [run_pretraining.py:  535]:	loss/mlm_loss, 8.987372398376465, 49
+[INFO] 2021-07-09 16:36:02,019 [run_pretraining.py:  536]:	lr/scheduled_lr, 4.799999828719592e-07, 49
+[INFO] 2021-07-09 16:36:02,019 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 49
+[INFO] 2021-07-09 16:36:02,019 [run_pretraining.py:  558]:	worker_index: 1, step: 49, cost: 8.987372, mlm loss: 8.987372, speed: 0.932805 steps/s, speed: 7.462439 samples/s, speed: 3820.768813 tokens/s, learning rate: 4.800e-07, loss_scalings: 32768.000000, pp_loss: 8.932025
+[INFO] 2021-07-09 16:36:02,019 [run_pretraining.py:  512]:	********exe.run_49******* 
+[INFO] 2021-07-09 16:36:03,062 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:03,063 [run_pretraining.py:  534]:	loss/total_loss, 8.782548904418945, 50
+[INFO] 2021-07-09 16:36:03,063 [run_pretraining.py:  535]:	loss/mlm_loss, 8.782548904418945, 50
+[INFO] 2021-07-09 16:36:03,063 [run_pretraining.py:  536]:	lr/scheduled_lr, 4.899999908047903e-07, 50
+[INFO] 2021-07-09 16:36:03,063 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 50
+[INFO] 2021-07-09 16:36:03,063 [run_pretraining.py:  558]:	worker_index: 1, step: 50, cost: 8.782549, mlm loss: 8.782549, speed: 0.958722 steps/s, speed: 7.669772 samples/s, speed: 3926.923283 tokens/s, learning rate: 4.900e-07, loss_scalings: 32768.000000, pp_loss: 8.821661
+[INFO] 2021-07-09 16:36:03,063 [run_pretraining.py:  512]:	********exe.run_50******* 
+[INFO] 2021-07-09 16:36:04,110 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:04,111 [run_pretraining.py:  534]:	loss/total_loss, 8.773880004882812, 51
+[INFO] 2021-07-09 16:36:04,111 [run_pretraining.py:  535]:	loss/mlm_loss, 8.773880004882812, 51
+[INFO] 2021-07-09 16:36:04,111 [run_pretraining.py:  536]:	lr/scheduled_lr, 4.999999987376214e-07, 51
+[INFO] 2021-07-09 16:36:04,111 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 51
+[INFO] 2021-07-09 16:36:04,111 [run_pretraining.py:  558]:	worker_index: 1, step: 51, cost: 8.773880, mlm loss: 8.773880, speed: 0.954680 steps/s, speed: 7.637441 samples/s, speed: 3910.369725 tokens/s, learning rate: 5.000e-07, loss_scalings: 32768.000000, pp_loss: 8.744009
+[INFO] 2021-07-09 16:36:04,111 [run_pretraining.py:  512]:	********exe.run_51******* 
+[INFO] 2021-07-09 16:36:05,212 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:05,213 [run_pretraining.py:  534]:	loss/total_loss, 8.606884956359863, 52
+[INFO] 2021-07-09 16:36:05,213 [run_pretraining.py:  535]:	loss/mlm_loss, 8.606884956359863, 52
+[INFO] 2021-07-09 16:36:05,213 [run_pretraining.py:  536]:	lr/scheduled_lr, 5.100000066704524e-07, 52
+[INFO] 2021-07-09 16:36:05,213 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 52
+[INFO] 2021-07-09 16:36:05,213 [run_pretraining.py:  558]:	worker_index: 1, step: 52, cost: 8.606885, mlm loss: 8.606885, speed: 0.908198 steps/s, speed: 7.265583 samples/s, speed: 3719.978577 tokens/s, learning rate: 5.100e-07, loss_scalings: 32768.000000, pp_loss: 8.600224
+[INFO] 2021-07-09 16:36:05,213 [run_pretraining.py:  512]:	********exe.run_52******* 
+[INFO] 2021-07-09 16:36:06,264 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:06,265 [run_pretraining.py:  534]:	loss/total_loss, 8.51294994354248, 53
+[INFO] 2021-07-09 16:36:06,265 [run_pretraining.py:  535]:	loss/mlm_loss, 8.51294994354248, 53
+[INFO] 2021-07-09 16:36:06,265 [run_pretraining.py:  536]:	lr/scheduled_lr, 5.200000146032835e-07, 53
+[INFO] 2021-07-09 16:36:06,265 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 53
+[INFO] 2021-07-09 16:36:06,265 [run_pretraining.py:  558]:	worker_index: 1, step: 53, cost: 8.512950, mlm loss: 8.512950, speed: 0.951257 steps/s, speed: 7.610057 samples/s, speed: 3896.349330 tokens/s, learning rate: 5.200e-07, loss_scalings: 32768.000000, pp_loss: 8.571283
+[INFO] 2021-07-09 16:36:06,265 [run_pretraining.py:  512]:	********exe.run_53******* 
+[INFO] 2021-07-09 16:36:07,314 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:07,315 [run_pretraining.py:  534]:	loss/total_loss, 8.870914459228516, 54
+[INFO] 2021-07-09 16:36:07,315 [run_pretraining.py:  535]:	loss/mlm_loss, 8.870914459228516, 54
+[INFO] 2021-07-09 16:36:07,315 [run_pretraining.py:  536]:	lr/scheduled_lr, 5.299999656926957e-07, 54
+[INFO] 2021-07-09 16:36:07,315 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 54
+[INFO] 2021-07-09 16:36:07,315 [run_pretraining.py:  558]:	worker_index: 1, step: 54, cost: 8.870914, mlm loss: 8.870914, speed: 0.953175 steps/s, speed: 7.625399 samples/s, speed: 3904.204275 tokens/s, learning rate: 5.300e-07, loss_scalings: 32768.000000, pp_loss: 8.692045
+[INFO] 2021-07-09 16:36:07,315 [run_pretraining.py:  512]:	********exe.run_54******* 
+[INFO] 2021-07-09 16:36:08,405 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:08,406 [run_pretraining.py:  534]:	loss/total_loss, 8.46530818939209, 55
+[INFO] 2021-07-09 16:36:08,406 [run_pretraining.py:  535]:	loss/mlm_loss, 8.46530818939209, 55
+[INFO] 2021-07-09 16:36:08,406 [run_pretraining.py:  536]:	lr/scheduled_lr, 5.399999736255268e-07, 55
+[INFO] 2021-07-09 16:36:08,406 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 55
+[INFO] 2021-07-09 16:36:08,406 [run_pretraining.py:  558]:	worker_index: 1, step: 55, cost: 8.465308, mlm loss: 8.465308, speed: 0.916917 steps/s, speed: 7.335335 samples/s, speed: 3755.691333 tokens/s, learning rate: 5.400e-07, loss_scalings: 32768.000000, pp_loss: 8.635524
+[INFO] 2021-07-09 16:36:08,406 [run_pretraining.py:  512]:	********exe.run_55******* 
+[INFO] 2021-07-09 16:36:09,466 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:09,467 [run_pretraining.py:  534]:	loss/total_loss, 8.439729690551758, 56
+[INFO] 2021-07-09 16:36:09,467 [run_pretraining.py:  535]:	loss/mlm_loss, 8.439729690551758, 56
+[INFO] 2021-07-09 16:36:09,467 [run_pretraining.py:  536]:	lr/scheduled_lr, 5.499999815583578e-07, 56
+[INFO] 2021-07-09 16:36:09,467 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 56
+[INFO] 2021-07-09 16:36:09,467 [run_pretraining.py:  558]:	worker_index: 1, step: 56, cost: 8.439730, mlm loss: 8.439730, speed: 0.943366 steps/s, speed: 7.546929 samples/s, speed: 3864.027738 tokens/s, learning rate: 5.500e-07, loss_scalings: 32768.000000, pp_loss: 8.462296
+[INFO] 2021-07-09 16:36:09,467 [run_pretraining.py:  512]:	********exe.run_56******* 
+[INFO] 2021-07-09 16:36:10,502 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:10,502 [run_pretraining.py:  534]:	loss/total_loss, 8.211169242858887, 57
+[INFO] 2021-07-09 16:36:10,503 [run_pretraining.py:  535]:	loss/mlm_loss, 8.211169242858887, 57
+[INFO] 2021-07-09 16:36:10,503 [run_pretraining.py:  536]:	lr/scheduled_lr, 5.599999894911889e-07, 57
+[INFO] 2021-07-09 16:36:10,503 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 57
+[INFO] 2021-07-09 16:36:10,503 [run_pretraining.py:  558]:	worker_index: 1, step: 57, cost: 8.211169, mlm loss: 8.211169, speed: 0.966168 steps/s, speed: 7.729347 samples/s, speed: 3957.425605 tokens/s, learning rate: 5.600e-07, loss_scalings: 32768.000000, pp_loss: 8.415825
+[INFO] 2021-07-09 16:36:10,503 [run_pretraining.py:  512]:	********exe.run_57******* 
+[INFO] 2021-07-09 16:36:11,540 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:11,540 [run_pretraining.py:  534]:	loss/total_loss, 8.702109336853027, 58
+[INFO] 2021-07-09 16:36:11,540 [run_pretraining.py:  535]:	loss/mlm_loss, 8.702109336853027, 58
+[INFO] 2021-07-09 16:36:11,541 [run_pretraining.py:  536]:	lr/scheduled_lr, 5.6999999742402e-07, 58
+[INFO] 2021-07-09 16:36:11,541 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 58
+[INFO] 2021-07-09 16:36:11,541 [run_pretraining.py:  558]:	worker_index: 1, step: 58, cost: 8.702109, mlm loss: 8.702109, speed: 0.964095 steps/s, speed: 7.712764 samples/s, speed: 3948.934960 tokens/s, learning rate: 5.700e-07, loss_scalings: 32768.000000, pp_loss: 8.530160
+[INFO] 2021-07-09 16:36:11,541 [run_pretraining.py:  512]:	********exe.run_58******* 
+[INFO] 2021-07-09 16:36:12,585 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:12,585 [run_pretraining.py:  534]:	loss/total_loss, 8.265618324279785, 59
+[INFO] 2021-07-09 16:36:12,585 [run_pretraining.py:  535]:	loss/mlm_loss, 8.265618324279785, 59
+[INFO] 2021-07-09 16:36:12,585 [run_pretraining.py:  536]:	lr/scheduled_lr, 5.80000005356851e-07, 59
+[INFO] 2021-07-09 16:36:12,585 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 59
+[INFO] 2021-07-09 16:36:12,586 [run_pretraining.py:  558]:	worker_index: 1, step: 59, cost: 8.265618, mlm loss: 8.265618, speed: 0.957869 steps/s, speed: 7.662955 samples/s, speed: 3923.432912 tokens/s, learning rate: 5.800e-07, loss_scalings: 32768.000000, pp_loss: 8.144836
+[INFO] 2021-07-09 16:36:12,586 [run_pretraining.py:  512]:	********exe.run_59******* 
+[INFO] 2021-07-09 16:36:13,625 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:13,626 [run_pretraining.py:  534]:	loss/total_loss, 8.07817554473877, 60
+[INFO] 2021-07-09 16:36:13,626 [run_pretraining.py:  535]:	loss/mlm_loss, 8.07817554473877, 60
+[INFO] 2021-07-09 16:36:13,626 [run_pretraining.py:  536]:	lr/scheduled_lr, 5.900000132896821e-07, 60
+[INFO] 2021-07-09 16:36:13,626 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 60
+[INFO] 2021-07-09 16:36:13,627 [run_pretraining.py:  558]:	worker_index: 1, step: 60, cost: 8.078176, mlm loss: 8.078176, speed: 0.961347 steps/s, speed: 7.690774 samples/s, speed: 3937.676328 tokens/s, learning rate: 5.900e-07, loss_scalings: 32768.000000, pp_loss: 8.214946
+[INFO] 2021-07-09 16:36:13,627 [run_pretraining.py:  512]:	********exe.run_60******* 
+[INFO] 2021-07-09 16:36:14,730 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:14,731 [run_pretraining.py:  534]:	loss/total_loss, 7.973045349121094, 61
+[INFO] 2021-07-09 16:36:14,731 [run_pretraining.py:  535]:	loss/mlm_loss, 7.973045349121094, 61
+[INFO] 2021-07-09 16:36:14,731 [run_pretraining.py:  536]:	lr/scheduled_lr, 5.999999643790943e-07, 61
+[INFO] 2021-07-09 16:36:14,731 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 61
+[INFO] 2021-07-09 16:36:14,731 [run_pretraining.py:  558]:	worker_index: 1, step: 61, cost: 7.973045, mlm loss: 7.973045, speed: 0.905760 steps/s, speed: 7.246079 samples/s, speed: 3709.992391 tokens/s, learning rate: 6.000e-07, loss_scalings: 32768.000000, pp_loss: 8.126934
+[INFO] 2021-07-09 16:36:14,731 [run_pretraining.py:  512]:	********exe.run_61******* 
+[INFO] 2021-07-09 16:36:15,770 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:15,770 [run_pretraining.py:  534]:	loss/total_loss, 7.906214714050293, 62
+[INFO] 2021-07-09 16:36:15,770 [run_pretraining.py:  535]:	loss/mlm_loss, 7.906214714050293, 62
+[INFO] 2021-07-09 16:36:15,771 [run_pretraining.py:  536]:	lr/scheduled_lr, 6.099999723119254e-07, 62
+[INFO] 2021-07-09 16:36:15,771 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 62
+[INFO] 2021-07-09 16:36:15,771 [run_pretraining.py:  558]:	worker_index: 1, step: 62, cost: 7.906215, mlm loss: 7.906215, speed: 0.962687 steps/s, speed: 7.701496 samples/s, speed: 3943.165919 tokens/s, learning rate: 6.100e-07, loss_scalings: 32768.000000, pp_loss: 8.146436
+[INFO] 2021-07-09 16:36:15,771 [run_pretraining.py:  512]:	********exe.run_62******* 
+[INFO] 2021-07-09 16:36:16,807 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:16,808 [run_pretraining.py:  534]:	loss/total_loss, 7.71059513092041, 63
+[INFO] 2021-07-09 16:36:16,808 [run_pretraining.py:  535]:	loss/mlm_loss, 7.71059513092041, 63
+[INFO] 2021-07-09 16:36:16,808 [run_pretraining.py:  536]:	lr/scheduled_lr, 6.199999802447564e-07, 63
+[INFO] 2021-07-09 16:36:16,808 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 63
+[INFO] 2021-07-09 16:36:16,808 [run_pretraining.py:  558]:	worker_index: 1, step: 63, cost: 7.710595, mlm loss: 7.710595, speed: 0.964457 steps/s, speed: 7.715653 samples/s, speed: 3950.414149 tokens/s, learning rate: 6.200e-07, loss_scalings: 32768.000000, pp_loss: 7.921621
+[INFO] 2021-07-09 16:36:16,808 [run_pretraining.py:  512]:	********exe.run_63******* 
+[INFO] 2021-07-09 16:36:17,843 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:17,844 [run_pretraining.py:  534]:	loss/total_loss, 7.797637939453125, 64
+[INFO] 2021-07-09 16:36:17,844 [run_pretraining.py:  535]:	loss/mlm_loss, 7.797637939453125, 64
+[INFO] 2021-07-09 16:36:17,844 [run_pretraining.py:  536]:	lr/scheduled_lr, 6.299999881775875e-07, 64
+[INFO] 2021-07-09 16:36:17,844 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 64
+[INFO] 2021-07-09 16:36:17,844 [run_pretraining.py:  558]:	worker_index: 1, step: 64, cost: 7.797638, mlm loss: 7.797638, speed: 0.965822 steps/s, speed: 7.726572 samples/s, speed: 3956.004926 tokens/s, learning rate: 6.300e-07, loss_scalings: 32768.000000, pp_loss: 7.826270
+[INFO] 2021-07-09 16:36:17,845 [run_pretraining.py:  512]:	********exe.run_64******* 
+[INFO] 2021-07-09 16:36:18,881 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:18,882 [run_pretraining.py:  534]:	loss/total_loss, 7.670991897583008, 65
+[INFO] 2021-07-09 16:36:18,882 [run_pretraining.py:  535]:	loss/mlm_loss, 7.670991897583008, 65
+[INFO] 2021-07-09 16:36:18,882 [run_pretraining.py:  536]:	lr/scheduled_lr, 6.399999392669997e-07, 65
+[INFO] 2021-07-09 16:36:18,882 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 65
+[INFO] 2021-07-09 16:36:18,882 [run_pretraining.py:  558]:	worker_index: 1, step: 65, cost: 7.670992, mlm loss: 7.670992, speed: 0.964244 steps/s, speed: 7.713953 samples/s, speed: 3949.544117 tokens/s, learning rate: 6.400e-07, loss_scalings: 32768.000000, pp_loss: 7.968577
+[INFO] 2021-07-09 16:36:18,882 [run_pretraining.py:  512]:	********exe.run_65******* 
+[INFO] 2021-07-09 16:36:19,936 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:19,937 [run_pretraining.py:  534]:	loss/total_loss, 7.525971412658691, 66
+[INFO] 2021-07-09 16:36:19,937 [run_pretraining.py:  535]:	loss/mlm_loss, 7.525971412658691, 66
+[INFO] 2021-07-09 16:36:19,937 [run_pretraining.py:  536]:	lr/scheduled_lr, 6.500000040432496e-07, 66
+[INFO] 2021-07-09 16:36:19,937 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 66
+[INFO] 2021-07-09 16:36:19,937 [run_pretraining.py:  558]:	worker_index: 1, step: 66, cost: 7.525971, mlm loss: 7.525971, speed: 0.948369 steps/s, speed: 7.586948 samples/s, speed: 3884.517521 tokens/s, learning rate: 6.500e-07, loss_scalings: 32768.000000, pp_loss: 7.806774
+[INFO] 2021-07-09 16:36:19,938 [run_pretraining.py:  512]:	********exe.run_66******* 
+[INFO] 2021-07-09 16:36:20,971 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:20,971 [run_pretraining.py:  534]:	loss/total_loss, 7.51593017578125, 67
+[INFO] 2021-07-09 16:36:20,971 [run_pretraining.py:  535]:	loss/mlm_loss, 7.51593017578125, 67
+[INFO] 2021-07-09 16:36:20,971 [run_pretraining.py:  536]:	lr/scheduled_lr, 6.599999551326619e-07, 67
+[INFO] 2021-07-09 16:36:20,971 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 67
+[INFO] 2021-07-09 16:36:20,972 [run_pretraining.py:  558]:	worker_index: 1, step: 67, cost: 7.515930, mlm loss: 7.515930, speed: 0.967707 steps/s, speed: 7.741655 samples/s, speed: 3963.727507 tokens/s, learning rate: 6.600e-07, loss_scalings: 32768.000000, pp_loss: 7.603603
+[INFO] 2021-07-09 16:36:20,972 [run_pretraining.py:  512]:	********exe.run_67******* 
+[INFO] 2021-07-09 16:36:22,005 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:22,006 [run_pretraining.py:  534]:	loss/total_loss, 7.7275238037109375, 68
+[INFO] 2021-07-09 16:36:22,006 [run_pretraining.py:  535]:	loss/mlm_loss, 7.7275238037109375, 68
+[INFO] 2021-07-09 16:36:22,006 [run_pretraining.py:  536]:	lr/scheduled_lr, 6.699999630654929e-07, 68
+[INFO] 2021-07-09 16:36:22,006 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 68
+[INFO] 2021-07-09 16:36:22,006 [run_pretraining.py:  558]:	worker_index: 1, step: 68, cost: 7.727524, mlm loss: 7.727524, speed: 0.967427 steps/s, speed: 7.739420 samples/s, speed: 3962.582873 tokens/s, learning rate: 6.700e-07, loss_scalings: 32768.000000, pp_loss: 7.527009
+[INFO] 2021-07-09 16:36:22,006 [run_pretraining.py:  512]:	********exe.run_68******* 
+[INFO] 2021-07-09 16:36:23,055 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:23,056 [run_pretraining.py:  534]:	loss/total_loss, 7.419186592102051, 69
+[INFO] 2021-07-09 16:36:23,056 [run_pretraining.py:  535]:	loss/mlm_loss, 7.419186592102051, 69
+[INFO] 2021-07-09 16:36:23,056 [run_pretraining.py:  536]:	lr/scheduled_lr, 6.79999970998324e-07, 69
+[INFO] 2021-07-09 16:36:23,056 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 69
+[INFO] 2021-07-09 16:36:23,056 [run_pretraining.py:  558]:	worker_index: 1, step: 69, cost: 7.419187, mlm loss: 7.419187, speed: 0.952945 steps/s, speed: 7.623557 samples/s, speed: 3903.261357 tokens/s, learning rate: 6.800e-07, loss_scalings: 32768.000000, pp_loss: 7.438526
+[INFO] 2021-07-09 16:36:23,056 [run_pretraining.py:  512]:	********exe.run_69******* 
+[INFO] 2021-07-09 16:36:24,114 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:24,115 [run_pretraining.py:  534]:	loss/total_loss, 7.304020881652832, 70
+[INFO] 2021-07-09 16:36:24,115 [run_pretraining.py:  535]:	loss/mlm_loss, 7.304020881652832, 70
+[INFO] 2021-07-09 16:36:24,115 [run_pretraining.py:  536]:	lr/scheduled_lr, 6.899999789311551e-07, 70
+[INFO] 2021-07-09 16:36:24,115 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 70
+[INFO] 2021-07-09 16:36:24,115 [run_pretraining.py:  558]:	worker_index: 1, step: 70, cost: 7.304021, mlm loss: 7.304021, speed: 0.944973 steps/s, speed: 7.559780 samples/s, speed: 3870.607443 tokens/s, learning rate: 6.900e-07, loss_scalings: 32768.000000, pp_loss: 7.337371
+[INFO] 2021-07-09 16:36:24,115 [run_pretraining.py:  512]:	********exe.run_70******* 
+[INFO] 2021-07-09 16:36:25,153 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:25,154 [run_pretraining.py:  534]:	loss/total_loss, 7.295233249664307, 71
+[INFO] 2021-07-09 16:36:25,154 [run_pretraining.py:  535]:	loss/mlm_loss, 7.295233249664307, 71
+[INFO] 2021-07-09 16:36:25,154 [run_pretraining.py:  536]:	lr/scheduled_lr, 6.999999868639861e-07, 71
+[INFO] 2021-07-09 16:36:25,154 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 71
+[INFO] 2021-07-09 16:36:25,154 [run_pretraining.py:  558]:	worker_index: 1, step: 71, cost: 7.295233, mlm loss: 7.295233, speed: 0.963130 steps/s, speed: 7.705036 samples/s, speed: 3944.978652 tokens/s, learning rate: 7.000e-07, loss_scalings: 32768.000000, pp_loss: 7.377766
+[INFO] 2021-07-09 16:36:25,154 [run_pretraining.py:  512]:	********exe.run_71******* 
+[INFO] 2021-07-09 16:36:26,193 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:26,194 [run_pretraining.py:  534]:	loss/total_loss, 7.882327079772949, 72
+[INFO] 2021-07-09 16:36:26,194 [run_pretraining.py:  535]:	loss/mlm_loss, 7.882327079772949, 72
+[INFO] 2021-07-09 16:36:26,194 [run_pretraining.py:  536]:	lr/scheduled_lr, 7.099999947968172e-07, 72
+[INFO] 2021-07-09 16:36:26,194 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 72
+[INFO] 2021-07-09 16:36:26,194 [run_pretraining.py:  558]:	worker_index: 1, step: 72, cost: 7.882327, mlm loss: 7.882327, speed: 0.961879 steps/s, speed: 7.695030 samples/s, speed: 3939.855331 tokens/s, learning rate: 7.100e-07, loss_scalings: 32768.000000, pp_loss: 7.234437
+[INFO] 2021-07-09 16:36:26,194 [run_pretraining.py:  512]:	********exe.run_72******* 
+[INFO] 2021-07-09 16:36:27,253 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:27,253 [run_pretraining.py:  534]:	loss/total_loss, 7.152426242828369, 73
+[INFO] 2021-07-09 16:36:27,253 [run_pretraining.py:  535]:	loss/mlm_loss, 7.152426242828369, 73
+[INFO] 2021-07-09 16:36:27,254 [run_pretraining.py:  536]:	lr/scheduled_lr, 7.199999458862294e-07, 73
+[INFO] 2021-07-09 16:36:27,254 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 73
+[INFO] 2021-07-09 16:36:27,254 [run_pretraining.py:  558]:	worker_index: 1, step: 73, cost: 7.152426, mlm loss: 7.152426, speed: 0.944604 steps/s, speed: 7.556830 samples/s, speed: 3869.096781 tokens/s, learning rate: 7.200e-07, loss_scalings: 32768.000000, pp_loss: 7.190284
+[INFO] 2021-07-09 16:36:27,254 [run_pretraining.py:  512]:	********exe.run_73******* 
+[INFO] 2021-07-09 16:36:28,292 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:28,293 [run_pretraining.py:  534]:	loss/total_loss, 7.009978294372559, 74
+[INFO] 2021-07-09 16:36:28,293 [run_pretraining.py:  535]:	loss/mlm_loss, 7.009978294372559, 74
+[INFO] 2021-07-09 16:36:28,293 [run_pretraining.py:  536]:	lr/scheduled_lr, 7.300000106624793e-07, 74
+[INFO] 2021-07-09 16:36:28,293 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 74
+[INFO] 2021-07-09 16:36:28,293 [run_pretraining.py:  558]:	worker_index: 1, step: 74, cost: 7.009978, mlm loss: 7.009978, speed: 0.962778 steps/s, speed: 7.702223 samples/s, speed: 3943.537928 tokens/s, learning rate: 7.300e-07, loss_scalings: 32768.000000, pp_loss: 7.044941
+[INFO] 2021-07-09 16:36:28,293 [run_pretraining.py:  512]:	********exe.run_74******* 
+[INFO] 2021-07-09 16:36:29,366 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:29,367 [run_pretraining.py:  534]:	loss/total_loss, 6.924191951751709, 75
+[INFO] 2021-07-09 16:36:29,367 [run_pretraining.py:  535]:	loss/mlm_loss, 6.924191951751709, 75
+[INFO] 2021-07-09 16:36:29,367 [run_pretraining.py:  536]:	lr/scheduled_lr, 7.399999617518915e-07, 75
+[INFO] 2021-07-09 16:36:29,367 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 75
+[INFO] 2021-07-09 16:36:29,367 [run_pretraining.py:  558]:	worker_index: 1, step: 75, cost: 6.924192, mlm loss: 6.924192, speed: 0.931660 steps/s, speed: 7.453278 samples/s, speed: 3816.078113 tokens/s, learning rate: 7.400e-07, loss_scalings: 32768.000000, pp_loss: 6.925202
+[INFO] 2021-07-09 16:36:29,367 [run_pretraining.py:  512]:	********exe.run_75******* 
+[INFO] 2021-07-09 16:36:30,410 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:30,411 [run_pretraining.py:  534]:	loss/total_loss, 6.918215751647949, 76
+[INFO] 2021-07-09 16:36:30,411 [run_pretraining.py:  535]:	loss/mlm_loss, 6.918215751647949, 76
+[INFO] 2021-07-09 16:36:30,411 [run_pretraining.py:  536]:	lr/scheduled_lr, 7.499999696847226e-07, 76
+[INFO] 2021-07-09 16:36:30,411 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 76
+[INFO] 2021-07-09 16:36:30,411 [run_pretraining.py:  558]:	worker_index: 1, step: 76, cost: 6.918216, mlm loss: 6.918216, speed: 0.958588 steps/s, speed: 7.668705 samples/s, speed: 3926.376718 tokens/s, learning rate: 7.500e-07, loss_scalings: 32768.000000, pp_loss: 6.958148
+[INFO] 2021-07-09 16:36:30,411 [run_pretraining.py:  512]:	********exe.run_76******* 
+[INFO] 2021-07-09 16:36:31,453 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:31,454 [run_pretraining.py:  534]:	loss/total_loss, 6.864090919494629, 77
+[INFO] 2021-07-09 16:36:31,454 [run_pretraining.py:  535]:	loss/mlm_loss, 6.864090919494629, 77
+[INFO] 2021-07-09 16:36:31,454 [run_pretraining.py:  536]:	lr/scheduled_lr, 7.599999776175537e-07, 77
+[INFO] 2021-07-09 16:36:31,454 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 77
+[INFO] 2021-07-09 16:36:31,454 [run_pretraining.py:  558]:	worker_index: 1, step: 77, cost: 6.864091, mlm loss: 6.864091, speed: 0.959381 steps/s, speed: 7.675051 samples/s, speed: 3929.626034 tokens/s, learning rate: 7.600e-07, loss_scalings: 32768.000000, pp_loss: 6.745357
+[INFO] 2021-07-09 16:36:31,454 [run_pretraining.py:  512]:	********exe.run_77******* 
+[INFO] 2021-07-09 16:36:32,494 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:32,494 [run_pretraining.py:  534]:	loss/total_loss, 6.717687606811523, 78
+[INFO] 2021-07-09 16:36:32,494 [run_pretraining.py:  535]:	loss/mlm_loss, 6.717687606811523, 78
+[INFO] 2021-07-09 16:36:32,494 [run_pretraining.py:  536]:	lr/scheduled_lr, 7.699999855503847e-07, 78
+[INFO] 2021-07-09 16:36:32,495 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 78
+[INFO] 2021-07-09 16:36:32,495 [run_pretraining.py:  558]:	worker_index: 1, step: 78, cost: 6.717688, mlm loss: 6.717688, speed: 0.961768 steps/s, speed: 7.694148 samples/s, speed: 3939.403619 tokens/s, learning rate: 7.700e-07, loss_scalings: 32768.000000, pp_loss: 6.685924
+[INFO] 2021-07-09 16:36:32,495 [run_pretraining.py:  512]:	********exe.run_78******* 
+[INFO] 2021-07-09 16:36:33,549 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:33,550 [run_pretraining.py:  534]:	loss/total_loss, 6.5626726150512695, 79
+[INFO] 2021-07-09 16:36:33,550 [run_pretraining.py:  535]:	loss/mlm_loss, 6.5626726150512695, 79
+[INFO] 2021-07-09 16:36:33,550 [run_pretraining.py:  536]:	lr/scheduled_lr, 7.799999366397969e-07, 79
+[INFO] 2021-07-09 16:36:33,550 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 79
+[INFO] 2021-07-09 16:36:33,550 [run_pretraining.py:  558]:	worker_index: 1, step: 79, cost: 6.562673, mlm loss: 6.562673, speed: 0.948221 steps/s, speed: 7.585765 samples/s, speed: 3883.911573 tokens/s, learning rate: 7.800e-07, loss_scalings: 32768.000000, pp_loss: 6.734455
+[INFO] 2021-07-09 16:36:33,550 [run_pretraining.py:  512]:	********exe.run_79******* 
+[INFO] 2021-07-09 16:36:34,589 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:34,589 [run_pretraining.py:  534]:	loss/total_loss, 6.532641410827637, 80
+[INFO] 2021-07-09 16:36:34,589 [run_pretraining.py:  535]:	loss/mlm_loss, 6.532641410827637, 80
+[INFO] 2021-07-09 16:36:34,589 [run_pretraining.py:  536]:	lr/scheduled_lr, 7.89999944572628e-07, 80
+[INFO] 2021-07-09 16:36:34,589 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 80
+[INFO] 2021-07-09 16:36:34,589 [run_pretraining.py:  558]:	worker_index: 1, step: 80, cost: 6.532641, mlm loss: 6.532641, speed: 0.962604 steps/s, speed: 7.700830 samples/s, speed: 3942.824747 tokens/s, learning rate: 7.900e-07, loss_scalings: 32768.000000, pp_loss: 6.642396
+[INFO] 2021-07-09 16:36:34,590 [run_pretraining.py:  512]:	********exe.run_80******* 
+[INFO] 2021-07-09 16:36:35,631 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:35,632 [run_pretraining.py:  534]:	loss/total_loss, 6.362978935241699, 81
+[INFO] 2021-07-09 16:36:35,632 [run_pretraining.py:  535]:	loss/mlm_loss, 6.362978935241699, 81
+[INFO] 2021-07-09 16:36:35,632 [run_pretraining.py:  536]:	lr/scheduled_lr, 8.000000093488779e-07, 81
+[INFO] 2021-07-09 16:36:35,632 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 81
+[INFO] 2021-07-09 16:36:35,632 [run_pretraining.py:  558]:	worker_index: 1, step: 81, cost: 6.362979, mlm loss: 6.362979, speed: 0.959948 steps/s, speed: 7.679585 samples/s, speed: 3931.947312 tokens/s, learning rate: 8.000e-07, loss_scalings: 32768.000000, pp_loss: 6.607761
+[INFO] 2021-07-09 16:36:35,632 [run_pretraining.py:  512]:	********exe.run_81******* 
+[INFO] 2021-07-09 16:36:36,669 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:36,669 [run_pretraining.py:  534]:	loss/total_loss, 7.243624687194824, 82
+[INFO] 2021-07-09 16:36:36,669 [run_pretraining.py:  535]:	loss/mlm_loss, 7.243624687194824, 82
+[INFO] 2021-07-09 16:36:36,670 [run_pretraining.py:  536]:	lr/scheduled_lr, 8.10000017281709e-07, 82
+[INFO] 2021-07-09 16:36:36,670 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 82
+[INFO] 2021-07-09 16:36:36,670 [run_pretraining.py:  558]:	worker_index: 1, step: 82, cost: 7.243625, mlm loss: 7.243625, speed: 0.964247 steps/s, speed: 7.713975 samples/s, speed: 3949.555013 tokens/s, learning rate: 8.100e-07, loss_scalings: 32768.000000, pp_loss: 6.428837
+[INFO] 2021-07-09 16:36:36,670 [run_pretraining.py:  512]:	********exe.run_82******* 
+[INFO] 2021-07-09 16:36:37,706 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:37,707 [run_pretraining.py:  534]:	loss/total_loss, 6.216922283172607, 83
+[INFO] 2021-07-09 16:36:37,707 [run_pretraining.py:  535]:	loss/mlm_loss, 6.216922283172607, 83
+[INFO] 2021-07-09 16:36:37,707 [run_pretraining.py:  536]:	lr/scheduled_lr, 8.199999683711212e-07, 83
+[INFO] 2021-07-09 16:36:37,707 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 83
+[INFO] 2021-07-09 16:36:37,707 [run_pretraining.py:  558]:	worker_index: 1, step: 83, cost: 6.216922, mlm loss: 6.216922, speed: 0.964635 steps/s, speed: 7.717083 samples/s, speed: 3951.146435 tokens/s, learning rate: 8.200e-07, loss_scalings: 32768.000000, pp_loss: 6.474144
+[INFO] 2021-07-09 16:36:37,707 [run_pretraining.py:  512]:	********exe.run_83******* 
+[INFO] 2021-07-09 16:36:38,887 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:38,887 [run_pretraining.py:  534]:	loss/total_loss, 6.102811813354492, 84
+[INFO] 2021-07-09 16:36:38,888 [run_pretraining.py:  535]:	loss/mlm_loss, 6.102811813354492, 84
+[INFO] 2021-07-09 16:36:38,888 [run_pretraining.py:  536]:	lr/scheduled_lr, 8.299999763039523e-07, 84
+[INFO] 2021-07-09 16:36:38,888 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 84
+[INFO] 2021-07-09 16:36:38,888 [run_pretraining.py:  558]:	worker_index: 1, step: 84, cost: 6.102812, mlm loss: 6.102812, speed: 0.847465 steps/s, speed: 6.779718 samples/s, speed: 3471.215701 tokens/s, learning rate: 8.300e-07, loss_scalings: 32768.000000, pp_loss: 6.264605
+[INFO] 2021-07-09 16:36:38,888 [run_pretraining.py:  512]:	********exe.run_84******* 
+[INFO] 2021-07-09 16:36:40,057 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:40,057 [run_pretraining.py:  534]:	loss/total_loss, 6.619946002960205, 85
+[INFO] 2021-07-09 16:36:40,058 [run_pretraining.py:  535]:	loss/mlm_loss, 6.619946002960205, 85
+[INFO] 2021-07-09 16:36:40,058 [run_pretraining.py:  536]:	lr/scheduled_lr, 8.399999273933645e-07, 85
+[INFO] 2021-07-09 16:36:40,058 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 85
+[INFO] 2021-07-09 16:36:40,058 [run_pretraining.py:  558]:	worker_index: 1, step: 85, cost: 6.619946, mlm loss: 6.619946, speed: 0.855289 steps/s, speed: 6.842314 samples/s, speed: 3503.264542 tokens/s, learning rate: 8.400e-07, loss_scalings: 32768.000000, pp_loss: 6.138878
+[INFO] 2021-07-09 16:36:40,058 [run_pretraining.py:  512]:	********exe.run_85******* 
+[INFO] 2021-07-09 16:36:41,106 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:41,107 [run_pretraining.py:  534]:	loss/total_loss, 6.467983722686768, 86
+[INFO] 2021-07-09 16:36:41,107 [run_pretraining.py:  535]:	loss/mlm_loss, 6.467983722686768, 86
+[INFO] 2021-07-09 16:36:41,107 [run_pretraining.py:  536]:	lr/scheduled_lr, 8.500000490130333e-07, 86
+[INFO] 2021-07-09 16:36:41,107 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 86
+[INFO] 2021-07-09 16:36:41,107 [run_pretraining.py:  558]:	worker_index: 1, step: 86, cost: 6.467984, mlm loss: 6.467984, speed: 0.953497 steps/s, speed: 7.627973 samples/s, speed: 3905.522283 tokens/s, learning rate: 8.500e-07, loss_scalings: 32768.000000, pp_loss: 6.031526
+[INFO] 2021-07-09 16:36:41,107 [run_pretraining.py:  512]:	********exe.run_86******* 
+[INFO] 2021-07-09 16:36:42,195 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:42,196 [run_pretraining.py:  534]:	loss/total_loss, 6.007455825805664, 87
+[INFO] 2021-07-09 16:36:42,197 [run_pretraining.py:  535]:	loss/mlm_loss, 6.007455825805664, 87
+[INFO] 2021-07-09 16:36:42,197 [run_pretraining.py:  536]:	lr/scheduled_lr, 8.600000001024455e-07, 87
+[INFO] 2021-07-09 16:36:42,198 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 87
+[INFO] 2021-07-09 16:36:42,199 [run_pretraining.py:  558]:	worker_index: 1, step: 87, cost: 6.007456, mlm loss: 6.007456, speed: 0.918800 steps/s, speed: 7.350402 samples/s, speed: 3763.405962 tokens/s, learning rate: 8.600e-07, loss_scalings: 32768.000000, pp_loss: 5.922616
+[INFO] 2021-07-09 16:36:42,201 [run_pretraining.py:  512]:	********exe.run_87******* 
+[INFO] 2021-07-09 16:36:43,252 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:43,253 [run_pretraining.py:  534]:	loss/total_loss, 5.825599670410156, 88
+[INFO] 2021-07-09 16:36:43,253 [run_pretraining.py:  535]:	loss/mlm_loss, 5.825599670410156, 88
+[INFO] 2021-07-09 16:36:43,253 [run_pretraining.py:  536]:	lr/scheduled_lr, 8.700000080352766e-07, 88
+[INFO] 2021-07-09 16:36:43,253 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 88
+[INFO] 2021-07-09 16:36:43,253 [run_pretraining.py:  558]:	worker_index: 1, step: 88, cost: 5.825600, mlm loss: 5.825600, speed: 0.950984 steps/s, speed: 7.607873 samples/s, speed: 3895.230910 tokens/s, learning rate: 8.700e-07, loss_scalings: 32768.000000, pp_loss: 5.897984
+[INFO] 2021-07-09 16:36:43,253 [run_pretraining.py:  512]:	********exe.run_88******* 
+[INFO] 2021-07-09 16:36:44,294 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:44,294 [run_pretraining.py:  534]:	loss/total_loss, 5.67302131652832, 89
+[INFO] 2021-07-09 16:36:44,295 [run_pretraining.py:  535]:	loss/mlm_loss, 5.67302131652832, 89
+[INFO] 2021-07-09 16:36:44,295 [run_pretraining.py:  536]:	lr/scheduled_lr, 8.799999591246888e-07, 89
+[INFO] 2021-07-09 16:36:44,295 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 89
+[INFO] 2021-07-09 16:36:44,295 [run_pretraining.py:  558]:	worker_index: 1, step: 89, cost: 5.673021, mlm loss: 5.673021, speed: 0.960742 steps/s, speed: 7.685937 samples/s, speed: 3935.199548 tokens/s, learning rate: 8.800e-07, loss_scalings: 32768.000000, pp_loss: 5.833068
+[INFO] 2021-07-09 16:36:44,295 [run_pretraining.py:  512]:	********exe.run_89******* 
+[INFO] 2021-07-09 16:36:45,339 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:45,339 [run_pretraining.py:  534]:	loss/total_loss, 6.747600555419922, 90
+[INFO] 2021-07-09 16:36:45,339 [run_pretraining.py:  535]:	loss/mlm_loss, 6.747600555419922, 90
+[INFO] 2021-07-09 16:36:45,339 [run_pretraining.py:  536]:	lr/scheduled_lr, 8.899999670575198e-07, 90
+[INFO] 2021-07-09 16:36:45,340 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 90
+[INFO] 2021-07-09 16:36:45,340 [run_pretraining.py:  558]:	worker_index: 1, step: 90, cost: 6.747601, mlm loss: 6.747601, speed: 0.957762 steps/s, speed: 7.662096 samples/s, speed: 3922.993021 tokens/s, learning rate: 8.900e-07, loss_scalings: 32768.000000, pp_loss: 5.981503
+[INFO] 2021-07-09 16:36:45,340 [run_pretraining.py:  512]:	********exe.run_90******* 
+[INFO] 2021-07-09 16:36:46,504 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:46,504 [run_pretraining.py:  534]:	loss/total_loss, 5.543161392211914, 91
+[INFO] 2021-07-09 16:36:46,504 [run_pretraining.py:  535]:	loss/mlm_loss, 5.543161392211914, 91
+[INFO] 2021-07-09 16:36:46,505 [run_pretraining.py:  536]:	lr/scheduled_lr, 8.99999918146932e-07, 91
+[INFO] 2021-07-09 16:36:46,505 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 91
+[INFO] 2021-07-09 16:36:46,505 [run_pretraining.py:  558]:	worker_index: 1, step: 91, cost: 5.543161, mlm loss: 5.543161, speed: 0.858855 steps/s, speed: 6.870837 samples/s, speed: 3517.868406 tokens/s, learning rate: 9.000e-07, loss_scalings: 32768.000000, pp_loss: 5.749479
+[INFO] 2021-07-09 16:36:46,505 [run_pretraining.py:  512]:	********exe.run_91******* 
+[INFO] 2021-07-09 16:36:47,563 [run_pretraining.py:  514]:	*******exe .run .end ******
+[INFO] 2021-07-09 16:36:47,564 [run_pretraining.py:  534]:	loss/total_loss, 5.527015686035156, 92
+[INFO] 2021-07-09 16:36:47,564 [run_pretraining.py:  535]:	loss/mlm_loss, 5.527015686035156, 92
+[INFO] 2021-07-09 16:36:47,564 [run_pretraining.py:  536]:	lr/scheduled_lr, 9.100000397666008e-07, 92
+[INFO] 2021-07-09 16:36:47,564 [run_pretraining.py:  539]:	lr/loss_scaling, 32768.0, 92
+[INFO] 2021-07-09 16:36:47,564 [run_pretraining.py:  558]:	worker_index: 1, step: 92, cost: 5.527016, mlm loss: 5.527016, speed: 0.944350 steps/s, speed: 7.554798 samples/s, speed: 3868.056652 tokens/s, learning rate: 9.100e-07, loss_scalings: 32768.000000, pp_loss: 5.578723
+[INFO] 2021-07-09 16:36:47,564 [run_pretraining.py:  512]:	********exe.run_92******* 
+/home/gongwb/.local/lib/python3.7/multiprocessing/semaphore_tracker.py:144: UserWarning: semaphore_tracker: There appear to be 91 leaked semaphores to clean up at shutdown
+  len(cache))
