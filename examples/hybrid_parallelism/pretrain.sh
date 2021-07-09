@@ -15,30 +15,29 @@ export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/:$LD_LIBRARY_PATH
 rm -rf *.prototxt
 rm -rf core.*
 
-task_name='newest-single-from-step1-20000steps'
-output_dir=output/${task_name}
+task_name='gpt3-test'
+output_dir=./output/${task_name}
 rm -rf ${output_dir}
-export CUDA_VISIBLE_DEVICES=2 #,2,3,4,5,6,7
-python3.7 -m paddle.distributed.fleet.launch \
-        --gpus="2" \
+
+#--gpus="0,1,2,3"
+python -m paddle.distributed.fleet.launch \
 	--log_dir ${output_dir}/log \
+	--run_mode=collective \
 run_pretraining.py \
 	--global_bsz 8 \
-	--micro_bsz 1 \
+	--micro_bsz 8 \
 	--max_seq_len 512 \
 	--ernie_config_file config/ernie_base_config.json \
 	--learning_rate 1e-4 \
 	--log_steps 1 \
-	--num_train_steps 20000 \
-	--save_steps 5000 \
+	--num_train_steps 11 \
+	--save_steps 10 \
 	--output_dir ${output_dir} \
 	--use_recompute true \
-	--use_sharding false \
-	--num_mp=1 \
+	--use_sharding true \
+	--num_mp=2 \
 	--num_sharding=1 \
-	--num_pp=1 \
+	--num_pp=2 \
 	--num_dp=1 \
-	--debug false \
-        --init_checkpoint output/step_1 \
-		--warmup_steps 8000
-    # --debug false \
+    --debug false \
+
