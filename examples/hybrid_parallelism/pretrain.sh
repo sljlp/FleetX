@@ -2,50 +2,43 @@ set -x
 
 export PYTHONPATH=./atarashi/:$PYTHONPATH
 
-export PADDLE_WITH_GLOO=0
+# export PYTHONPATH=/code_lp/paddle/Paddle/build/develop/python/:$PYTHONPATH
+# export PYTHONPATH=/code_lp/paddle/Paddle/build/develop/python:$PYTHONPATH
+export PYTHONPATH=/code_lp/paddle/Paddle/build/fix_pp_precise_1f1b/python:$PYTHONPATH
+
 export GLOG_v=1
+# export GLOG_vmodule="matmul_v2_op=3"
 export NCCL_DEBUG=INFO
 export FLAGS_call_stack_level=2
 export FLAGS_allocator_strategy=naive_best_fit
+export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/:$LD_LIBRARY_PATH
+rm -rf *.prototxt
+rm -rf core.*
 
-export PYTHONPATH=/code_lp/paddle/Paddle/build/python:$PYTHONPATH
-# export PYTHONPATH=/code_lp/paddle/paddle_2.1/Paddle/build/python:$PYTHONPATH
-
-PP=1
-DP=1
-MP=2
-
-MS=64
-BS=64
-
-# task_name='gpt3-230B-'${PP}pp${DP}dp${MP}mp
-task_name='continue-gpu'
-
-
+task_name='newest-single-from-step1-20000steps'
 output_dir=output/${task_name}
-# rm -rf ${output_dir}
-
-export CUDA_VISIBLE_DEVICES=6,7 
-
+rm -rf ${output_dir}
+export CUDA_VISIBLE_DEVICES=2 #,2,3,4,5,6,7
 python3.7 -m paddle.distributed.fleet.launch \
+        --gpus="2" \
 	--log_dir ${output_dir}/log \
 run_pretraining.py \
-	--global_bsz 64 \
-	--micro_bsz 64 \
+	--global_bsz 8 \
+	--micro_bsz 1 \
 	--max_seq_len 512 \
 	--ernie_config_file config/ernie_base_config.json \
 	--learning_rate 1e-4 \
 	--log_steps 1 \
-	--num_train_steps 600 \
-	--save_steps 500 \
+	--num_train_steps 20000 \
+	--save_steps 5000 \
 	--output_dir ${output_dir} \
 	--use_recompute true \
-	--use_sharding true \
-	--use_sop false \
-	--num_mp=2 \
+	--use_sharding false \
+	--num_mp=1 \
 	--num_sharding=1 \
-	--num_pp=$PP \
-	--num_dp=$DP \
-         --init_checkpoint output/gpt3-230B-1pp1dp2mp/step_1000
-
-
+	--num_pp=1 \
+	--num_dp=1 \
+	--debug false \
+        --init_checkpoint output/step_1 \
+		--warmup_steps 8000
+    # --debug false \
