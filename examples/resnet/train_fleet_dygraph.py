@@ -24,11 +24,14 @@ base_lr = 0.1
 momentum_rate = 0.9
 l2_decay = 1e-4
 
-epoch = 10
+epoch = 1
 batch_num = 100
 batch_size = 32
 class_dim = 102
 
+show_info_interval = 1
+
+paddle.seed(1024)
 # define a random dataset
 class RandomDataset(Dataset):
     def __init__(self, num_samples):
@@ -63,9 +66,9 @@ def train_resnet():
     dataset = RandomDataset(batch_num * batch_size)
     train_loader = DataLoader(dataset,
                     batch_size=batch_size,
-                    shuffle=True,
+                    shuffle=False,
                     drop_last=True,
-                    num_workers=2)
+                    num_workers=0)
     t1 = time.time()
     for eop in range(epoch):
         resnet.train()
@@ -84,9 +87,9 @@ def train_resnet():
             optimizer.step()
             resnet.clear_gradients()
 
-            if (batch_id+1) % 5 == 0:
+            if (batch_id+1) % show_info_interval == 0:
                 t2 = time.time()
-                print("[Epoch %d, batch %d] loss: %.5f, acc1: %.5f, acc5: %.5f, speed: %.2f samples/s" % (eop, batch_id, avg_loss, acc_top1, acc_top5, (5*32/(t2 - t1))))
+                print("[Epoch %d, batch %d] loss: %.5f, acc1: %.5f, acc5: %.5f, speed: %.2f samples/s" % (eop, batch_id, avg_loss, acc_top1, acc_top5, (show_info_interval*32/(t2 - t1))))
                 t1 = time.time()
 
 if __name__ == '__main__':
