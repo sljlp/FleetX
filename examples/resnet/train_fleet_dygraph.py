@@ -19,6 +19,10 @@ from paddle.vision.models import ResNet
 from paddle.vision.models.resnet import BottleneckBlock
 from paddle.io import Dataset, BatchSampler, DataLoader
 import time
+import os
+
+output_dir="saved_model"
+load_from_file=True
 
 base_lr = 0.1
 momentum_rate = 0.9
@@ -31,7 +35,8 @@ class_dim = 102
 
 show_info_interval = 1
 
-paddle.seed(1024)
+paddle.seed(1020)
+
 # define a random dataset
 class RandomDataset(Dataset):
     def __init__(self, num_samples):
@@ -70,6 +75,13 @@ def train_resnet():
                     drop_last=True,
                     num_workers=0)
     t1 = time.time()
+
+    if load_from_file and os.path.exists(output_dir):
+        model = paddle.load(output_dir + "/model.pdparams")
+        # opt = paddle.load(os.path.join(output_dir, "model_state.pdopt"))
+        resnet.set_state_dict(model)
+        # optimizer.set_state_dict(opt)
+
     for eop in range(epoch):
         resnet.train()
         
@@ -91,6 +103,17 @@ def train_resnet():
                 t2 = time.time()
                 print("[Epoch %d, batch %d] loss: %.5f, acc1: %.5f, acc5: %.5f, speed: %.2f samples/s" % (eop, batch_id, avg_loss, acc_top1, acc_top5, (show_info_interval*32/(t2 - t1))))
                 t1 = time.time()
+    if fleet.worker_index() == 0:
+        
+        if not os.path.exists(output_dir):
+            os.mkdir(output_dir)
+
+        model_to_save = resnet._layers if isinstance(
+                                resnet, paddle.DataParallel) else resnet
+        # paddle.save(model_to_save.state_dict(), output_dir+"/model.pdparams")
+        # paddle.save(
+        #     optimizer.state_dict(),
+        #     os.path.join(output_dir, "opt_state.pdopt"))
 
 if __name__ == '__main__':
     train_resnet()

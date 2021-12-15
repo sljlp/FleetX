@@ -1,4 +1,3 @@
-export PYTHONPATH=/code_lp/paddle/Paddle/build/python/:
 export FLAGS_cudnn_deterministic=True
 export CUDA_VISIBLE_DEVICES=4
 LOG=${LOG:-log}
