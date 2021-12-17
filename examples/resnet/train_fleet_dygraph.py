@@ -20,7 +20,7 @@ from paddle.vision.models.resnet import BottleneckBlock
 from paddle.io import Dataset, BatchSampler, DataLoader
 import time
 import os
-
+#paddle.set_device("cpu")
 output_dir="saved_model"
 load_from_file=True
 
@@ -28,25 +28,45 @@ base_lr = 0.1
 momentum_rate = 0.9
 l2_decay = 1e-4
 
-epoch = 1
+epoch = 10000
 batch_num = 100
 batch_size = 32
 class_dim = 102
 
-show_info_interval = 1
+img_path="/code_lp/imgnet/val"
+
+show_info_interval = 10
 
 paddle.seed(1020)
-
+import cv2
 # define a random dataset
 class RandomDataset(Dataset):
     def __init__(self, num_samples):
         self.num_samples = num_samples
         np.random.seed(fleet.worker_index()+1000)
+        import os
+        self.labels = os.listdir(img_path)
+        self.labels.sort()
+        assert len(self.labels) == class_dim
+        self.label_id_dict = dict()
+        for i, l in enumerate(self.labels):
+            self.label_id_dict[l] = i
+        self.img_paths = []
+        self.img_paths = os.popen(f"find {img_path} -type f").readlines()
+        self.img_paths = [ path.strip() for path in self.img_paths ]
+        self.img_paths.sort()
 
     def __getitem__(self, idx):
-        image = np.random.random([3, 224, 224]).astype('float32')
-        label = np.random.randint(0, class_dim - 1, (1, )).astype('int64')
-        return image, label
+        img_idx = np.random.randint(len(self.img_paths))
+        image = cv2.imread(self.img_paths[img_idx]).astype("float32")
+        img2 = cv2.resize(image, (224,224))
+        img3 = np.transpose(img2, (2, 0, 1)) / 128.0 - 1.0
+        label_str = self.img_paths[img_idx].split("/")[-2]
+        assert label_str in self.label_id_dict
+
+        # image = np.random.random([3, 224, 224]).astype('float32')
+        # label = np.random.randint(0, class_dim - 1, (1, )).astype('int64')
+        return img3, np.array([self.label_id_dict[label_str]]).astype("int64")
 
     def __len__(self):
         return self.num_samples
