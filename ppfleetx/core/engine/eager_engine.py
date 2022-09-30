@@ -45,7 +45,7 @@ class EagerEngine(BasicEngine):
     training, validation and test. Only used in eager dygraph mode.
     """
 
-    def __init__(self, configs, module, optimizer=None, lr=None, mode='train'):
+    def __init__(self, configs, module, optimizer=None, lr=None, mode='train', template = None):
         """
         Initialize an engine depending on the user-defined module and configs.
 
@@ -91,6 +91,7 @@ class EagerEngine(BasicEngine):
         version_check()
 
         self.mode = mode
+        
 
         if not isinstance(module, BasicModule):
             raise TypeError(
@@ -98,6 +99,7 @@ class EagerEngine(BasicEngine):
             )
 
         self._module = module
+        self._template = template
 
         if module.model and not isinstance(
                 module.model, nn.Layer) and not callable(module.model):
@@ -601,6 +603,12 @@ class EagerEngine(BasicEngine):
             save_dir = "{}/mp_{:0>2d}_sharding_{:0>2d}_pp_{:0>2d}".format(
                 output_dir, self._mp_rank, self._sharding_rank,
                 self._pp_rank) if self._distributed else output_dir
+            if hasattr(self._module.model, "_layers"):
+                from .wrap_save import get_wrapped_state_dict, save_param_attr
+                tmp_dict = get_wrapped_state_dict(self._module.model, self._template.model)
+                paddle.save(tmp_dict,
+                            os.path.join(save_dir, "serial_model.pdparams"))
+                save_param_attr(tmp_dict, os.path.join(save_dir, "serial_model.pdattr"))
 
             if self._sharding_stage == 3:
                 self._module.model.get_all_parameters(convert2cpu=False)

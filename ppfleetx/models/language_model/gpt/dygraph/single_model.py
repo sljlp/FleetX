@@ -60,7 +60,7 @@ class MultiHeadAttention(nn.Layer):
                  need_weights=False,
                  weight_attr=None,
                  bias_attr=None,
-                 fuse=True,
+                 fuse=False,
                  fused_linear=False,
                  use_recompute=False,
                  recompute_granularity="full"):

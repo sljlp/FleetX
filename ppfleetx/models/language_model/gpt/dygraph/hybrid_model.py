@@ -34,6 +34,8 @@ import sys
 from .sequence_parallel_utils import ScatterOp, GatherOp, \
         all_reduce_gradient_hook, ColumnSequenceParallelLinear, RowSequenceParallelLinear
 
+from ppfleetx.utils.log import logger
+
 
 def get_attr(layer, name):
     if getattr(layer, name, None) is not None:
@@ -86,7 +88,7 @@ class MultiHeadAttention(nn.Layer):
                  need_weights=False,
                  weight_attr=None,
                  bias_attr=None,
-                 fuse=True,
+                 fuse=False,
                  num_partitions=1,
                  fused_linear=False,
                  use_recompute=False,
@@ -117,6 +119,8 @@ class MultiHeadAttention(nn.Layer):
         assert self.num_heads % num_partitions == 0, "num_heads {} must be divisible by num_partitions {}".format(
             self.num_heads, num_partitions)
         self.num_heads = self.num_heads // num_partitions
+
+        print(f"fuse: {self.fuse}")
 
         if self.fuse:
             assert self.kdim == embed_dim
@@ -641,6 +645,7 @@ class GPTModelHybrid(nn.Layer):
                  sequence_parallel=False):
 
         super(GPTModelHybrid, self).__init__()
+        print("init GPTModelHybrid")
 
         self.initializer_range = initializer_range
         self.hidden_size = hidden_size

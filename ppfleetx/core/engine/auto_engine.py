@@ -127,6 +127,6 @@ class AutoEngine(BasicEngine):
     def load(self):
         if self._ckpt_dir and isinstance(self._ckpt_dir, str):
             path = os.path.join(self._ckpt_dir, "auto")
-            self._auto_engine.load(path)
+            self._auto_engine.load(path, load_optimizer=False)
         else:
             logger.warning("`load` requires a valid value of `ckpt_dir`.")

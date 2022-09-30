@@ -37,6 +37,7 @@ class CosineAnnealingWithWarmupDecay(LRScheduler):
             max_lr, last_epoch, verbose)
 
     def get_lr(self):
+        return 0
         if self.warmup_step > 0 and self.last_epoch <= self.warmup_step:
             return float(self.max_lr) * (self.last_epoch) / self.warmup_step
 

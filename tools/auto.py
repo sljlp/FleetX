@@ -45,10 +45,11 @@ if __name__ == "__main__":
     train_data = build_auto_dataset(cfg.Data, "Train")
     eval_data = build_auto_dataset(cfg.Data, "Eval")
 
-    cfg.Optimizer.lr.update({
-        'epochs': cfg.Engine.num_train_epochs,
-        'step_each_epoch': len(train_data)
-    })
+    if isinstance(cfg.Optimizer.lr, dict):
+        cfg.Optimizer.lr.update({
+            'epochs': cfg.Engine.num_train_epochs,
+            'step_each_epoch': len(train_data)
+        })
 
     engine = AutoEngine(configs=cfg, module=module)
 
@@ -58,3 +59,6 @@ if __name__ == "__main__":
     engine.fit(train_dataset=train_data,
                valid_dataset=eval_data,
                epoch=cfg.Engine.num_train_epochs)
+
+    engine.save()
+

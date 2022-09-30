@@ -25,8 +25,11 @@ from ppfleetx.models.language_model.ernie import ErnieModule
 from ppfleetx.models.multimodal_model.multimodal_module import ImagenModule
 
 
-def build_module(config):
+def build_module(config, single_template = False):
     module_name = config.Model.get("module", "BasicModule")
-    module = eval(module_name)(config)
+    if not module_name.endswith("Auto"):
+        module = eval(module_name)(config, single_template)
+    else:
+        module = eval(module_name)(config)
 
     return module
