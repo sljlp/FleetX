@@ -5,7 +5,9 @@ module for save for auto parallen infer
 import paddle.distributed as dist
 import paddle.distributed.fleet as fleet
 import re
+import paddle
 from paddle.distributed.fleet.utils.log_util import logger
+import time
 # logger = get_logger("INFO", "__warp_saver__")
 
 def get_wrapped_state_dict(dist_model, single_model):
@@ -13,16 +15,13 @@ def get_wrapped_state_dict(dist_model, single_model):
     Trasform name to single card name according name mapping 
     """
 
-    # if not name_mapping:
     name_mapping = get_name_mapping(dist_model, single_model)
     wrapped_state_dict = {}
     state_dict = dist_model.state_dict()
-    for k in state_dict:
-        print(k)
-    for k in name_mapping:
-        print(k)
+
     for k, v in state_dict.items():
-        wrapped_state_dict[name_mapping[k]] = v
+        if k in name_mapping:
+            wrapped_state_dict[name_mapping[k]] = v
     return wrapped_state_dict
 
 def check_single_card_model_formmer(single_name, dist_name):
@@ -38,26 +37,71 @@ def check_single_card_model_formmer(single_name, dist_name):
         assert int(idx1) <= int(idx2), f" single-card model must be built before distributed model" \
             f" the single-card name is '{single_name}' while the dist name is '{dist_name}'"
 
+def is_first_used(param):
+    return not (hasattr(param, "is_firstly_shared") and not param.is_firstly_shared)
+
+def is_first_shared(param):
+    return hasattr(param, "is_firstly_shared") and param.is_firstly_shared
+
 def get_name_mapping(dist_model, single_model):
     """
-    ge name mapping
+    get name mapping
     """
+
+    print(type(dist_model))
+    assert isinstance(dist_model._layers, paddle.distributed.fleet.meta_parallel.parallel_layers.pp_layers.PipelineLayer)
+    
+    hcg = fleet.get_hybrid_communicate_group()
+    if hcg:
+        mp_group = hcg.get_model_parallel_group()
+        pp_group = hcg.get_pipe_parallel_group()
     # step one no pipeline parallel
     name_mapping = {}
     print(len(single_model.parameters()))
     print(len(dist_model.parameters()))
-    assert len(single_model.parameters()) == len(dist_model.parameters())
-    print("=================================================")
-    hcg = fleet.get_hybrid_communicate_group()
-    if hcg:
-        mp_group = hcg.get_model_parallel_group()
+    p_size = len(dist_model.parameters())
+    p_size = paddle.to_tensor(p_size)
+    logger.info(p_size)
+    p_sizes = []
+    dist.all_gather(p_sizes, p_size, group = pp_group)
+    print("pp size: ", p_sizes)
+    pp_rank = dist.get_rank(pp_group)
+    acc = 0
+    for i in range(pp_rank):
+        acc += p_sizes[i]
+    dist_parameters = [
+        d for d in dist_model.parameters() if is_first_used(d)
+    ]
 
-    for p, k , dp in zip(single_model.parameters(), dist_model.state_dict().keys(), dist_model.parameters()):
+    dist_state_keys = [
+        k for k, v in dist_model.state_dict().items() if is_first_used(v)
+    ]
+
+    single_parameters = list(single_model.parameters())[acc: len(dist_parameters)]
+
+    for p, k , dp in zip(single_parameters, dist_state_keys , dist_parameters):
+        # if is_first_shared(dp):
+            # for pp_rank in pp_group.ranks:
+            #     process_group += get_all_ranks_of_pp(pp_rank)
+            # process_group = list(set(process_group))
         check_single_card_model_formmer(p.name, dp.name)
         name_mapping[k] = p.name
-        print("key:", k, dp.name, dp.shape, p.shape)
+        print("key:", k, p.name)
         setattr(dp, "dims_mapping", get_dims_mapping(dp, p, mp_group))
     return name_mapping
+
+def get_all_ranks_of_pp(pp_rank):
+    hcg = fleet.get_hybrid_communicate_group()
+    dp_degree = hcg.get_data_parallel_world_size()
+    mp_degree = hcg.get_model_parallel_world_size()
+    pp_degree = hcg.get_pipe_parallel_world_size()
+
+    process_group = []
+    for i in range(dp_degree):
+        for k in range(mp_degree):
+            process_group.append(i * dist.get_world_size() // dp_degree \
+                + pp_rank * dist.get_world_size() // dp_degree // pp_degree + k)
+    return process_group
 
 def save_param_attr(state_dict, path):
     """
@@ -79,13 +123,10 @@ def save_param_attr(state_dict, path):
     except:
         hcg = None
     
-    process_group = []
     pp_rank = dist.get_rank(pp_group)
     pp_rank = 0 if pp_rank <= 0 else pp_rank
-    for i in range(dp_degree):
-        for k in range(mp_degree):
-            process_group.append(i * dist.get_world_size() // dp_degree \
-                + pp_rank * dist.get_world_size() // dp_degree // pp_degree + k)
+
+    process_group = get_all_ranks_of_pp(pp_rank)
     
     attr_dict = {}
     for k, v in state_dict.items():
@@ -103,8 +144,17 @@ def save_param_attr(state_dict, path):
     with open(path, "wb") as f:
         pickle.dump(attr_dict, f)
 
-
 def get_dims_mapping(dist_parameter, single_parameter, mp_group):
+    """
+    Description:
+        return the sliting mapping:
+            {tensor_name: spiting_strategy}
+        Examples:
+            spliting_strategy's format (-1, -1, -1, 0), meaing the dims of  the tennsor is 4 and it is splited along the first strategy axis in mesh
+            mesh examples: (2, 4) may means dp=2, mp=4
+
+    """
+    
     import numpy as np
     dist_shape = np.array(dist_parameter.shape)
     single_shape = np.array(single_parameter.shape)
