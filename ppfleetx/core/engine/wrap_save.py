@@ -14,13 +14,14 @@ def get_wrapped_state_dict(dist_model, single_model):
     """ 
     Trasform name to single card name according name mapping 
     """
-
+    # assert False
     name_mapping = get_name_mapping(dist_model, single_model)
     wrapped_state_dict = {}
     state_dict = dist_model.state_dict()
 
     for k, v in state_dict.items():
         if k in name_mapping:
+            print("saving:", k, "as:", name_mapping[k])
             wrapped_state_dict[name_mapping[k]] = v
     return wrapped_state_dict
 
@@ -66,9 +67,7 @@ def get_name_mapping(dist_model, single_model):
     dist.all_gather(p_sizes, p_size, group = pp_group)
     print("pp size: ", p_sizes)
     pp_rank = dist.get_rank(pp_group)
-    acc = 0
-    for i in range(pp_rank):
-        acc += p_sizes[i]
+    acc = sum(p_sizes[:pp_rank])
     dist_parameters = [
         d for d in dist_model.parameters() if is_first_used(d)
     ]
@@ -77,7 +76,11 @@ def get_name_mapping(dist_model, single_model):
         k for k, v in dist_model.state_dict().items() if is_first_used(v)
     ]
 
-    single_parameters = list(single_model.parameters())[acc: len(dist_parameters)]
+    print("len total single:", len(single_model.parameters()))
+    print("start: ", acc, "end:", acc+len(dist_parameters))
+    single_parameters = list(single_model.parameters())[acc: acc+len(dist_parameters)]
+
+    print("len single:", len(single_parameters), "len dist:", len(dist_parameters), "len dist keys:", dist_state_keys)
 
     for p, k , dp in zip(single_parameters, dist_state_keys , dist_parameters):
         # if is_first_shared(dp):

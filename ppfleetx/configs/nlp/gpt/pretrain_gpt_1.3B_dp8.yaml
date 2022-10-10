@@ -2,8 +2,8 @@ _base_: ./pretrain_gpt_base.yaml
 
 Global:
   global_batch_size: 
-  local_batch_size: 8
-  micro_batch_size: 8
+  local_batch_size: 2
+  micro_batch_size: 2
 
 
 Model:

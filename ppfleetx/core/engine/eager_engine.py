@@ -608,6 +608,9 @@ class EagerEngine(BasicEngine):
                 tmp_dict = get_wrapped_state_dict(self._module.model, self._template.model)
                 paddle.save(tmp_dict,
                             os.path.join(save_dir, "serial_model.pdparams"))
+                print("saving tmp dict:")
+                for k in tmp_dict.keys():
+                    print(k)
                 save_param_attr(tmp_dict, os.path.join(save_dir, "serial_model.pdattr"))
 
             if self._sharding_stage == 3:
