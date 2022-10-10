@@ -48,14 +48,13 @@ def get_name_mapping(dist_model, single_model):
     """
     get name mapping
     """
-
-    print(type(dist_model))
-    assert isinstance(dist_model._layers, paddle.distributed.fleet.meta_parallel.parallel_layers.pp_layers.PipelineLayer)
     
     hcg = fleet.get_hybrid_communicate_group()
     if hcg:
         mp_group = hcg.get_model_parallel_group()
         pp_group = hcg.get_pipe_parallel_group()
+        if pp_group.nranks > 1:
+            assert isinstance(dist_model._layers, paddle.distributed.fleet.meta_parallel.parallel_layers.pp_layers.PipelineLayer)
     # step one no pipeline parallel
     name_mapping = {}
     print(len(single_model.parameters()))
@@ -64,10 +63,14 @@ def get_name_mapping(dist_model, single_model):
     p_size = paddle.to_tensor(p_size)
     logger.info(p_size)
     p_sizes = []
-    dist.all_gather(p_sizes, p_size, group = pp_group)
-    print("pp size: ", p_sizes)
-    pp_rank = dist.get_rank(pp_group)
-    acc = sum(p_sizes[:pp_rank])
+    if pp_group.nranks > 1:
+        dist.all_gather(p_sizes, p_size, group = pp_group)
+        print("pp size: ", p_sizes)
+        pp_rank = dist.get_rank(pp_group)
+        acc = sum(p_sizes[:pp_rank])
+    else:
+        acc = 0
+    
     dist_parameters = [
         d for d in dist_model.parameters() if is_first_used(d)
     ]
@@ -83,13 +86,8 @@ def get_name_mapping(dist_model, single_model):
     print("len single:", len(single_parameters), "len dist:", len(dist_parameters), "len dist keys:", dist_state_keys)
 
     for p, k , dp in zip(single_parameters, dist_state_keys , dist_parameters):
-        # if is_first_shared(dp):
-            # for pp_rank in pp_group.ranks:
-            #     process_group += get_all_ranks_of_pp(pp_rank)
-            # process_group = list(set(process_group))
         check_single_card_model_formmer(p.name, dp.name)
         name_mapping[k] = p.name
-        print("key:", k, p.name)
         setattr(dp, "dims_mapping", get_dims_mapping(dp, p, mp_group))
     return name_mapping
 
