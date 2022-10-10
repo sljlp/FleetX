@@ -606,12 +606,13 @@ class EagerEngine(BasicEngine):
             if hasattr(self._module.model, "_layers"):
                 from .wrap_save import get_wrapped_state_dict, save_param_attr
                 tmp_dict = get_wrapped_state_dict(self._module.model, self._template.model)
+                global_rank = paddle.distributed.get_rank()
                 paddle.save(tmp_dict,
-                            os.path.join(save_dir, "serial_model.pdparams"))
+                            os.path.join(save_dir, f"serial_model_dist{global_rank}.pdparams"))
                 print("saving tmp dict:")
                 for k in tmp_dict.keys():
                     print(k)
-                save_param_attr(tmp_dict, os.path.join(save_dir, "serial_model.pdattr"))
+                save_param_attr(tmp_dict, os.path.join(save_dir, f"serial_model_dist{global_rank}.pdattr"))
 
             if self._sharding_stage == 3:
                 self._module.model.get_all_parameters(convert2cpu=False)
