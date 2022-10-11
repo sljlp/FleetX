@@ -35,8 +35,13 @@ from ppfleetx.utils.tensor_fusion_helper import all_reduce_parameters
 from ppfleetx.utils.version import version_check
 from ppfleetx.utils.export import export_inference_model
 
+from ppfleetx.core.engine.wrap_save import save_for_auto_inference
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+def is_wrapped_module(model):
+    return hasattr(model, "_layer") or hasattr(model, "_layers")
 
 
 class EagerEngine(BasicEngine):
@@ -247,6 +252,7 @@ class EagerEngine(BasicEngine):
             scaler=self._scaler,
             group=self._sharding_group,
             offload=self._sharding_offload)
+        assert is_wrapped_module(self._module.model)
 
     def _wrap_3D_parallel(self):
         self._module.model = fleet.distributed_model(self._module.model)
@@ -594,6 +600,9 @@ class EagerEngine(BasicEngine):
             return
 
         if self._output_dir and isinstance(self._output_dir, str):
+            if self._sharding_stage == 3:
+                self._module.model.get_all_parameters(convert2cpu=False)
+
             output_dir = os.path.join(self._output_dir,
                                       "epoch_%d_step_%d" % (epoch, step))
             if not os.path.exists(output_dir):
@@ -603,23 +612,15 @@ class EagerEngine(BasicEngine):
             save_dir = "{}/mp_{:0>2d}_sharding_{:0>2d}_pp_{:0>2d}".format(
                 output_dir, self._mp_rank, self._sharding_rank,
                 self._pp_rank) if self._distributed else output_dir
-            if hasattr(self._module.model, "_layers"):
-                from .wrap_save import get_wrapped_state_dict, save_param_attr
-                tmp_dict = get_wrapped_state_dict(self._module.model, self._template.model)
-                global_rank = paddle.distributed.get_rank()
-                paddle.save(tmp_dict,
-                            os.path.join(save_dir, f"serial_model_dist{global_rank}.pdparams"))
-                print("saving tmp dict:")
-                for k in tmp_dict.keys():
-                    print(k)
-                save_param_attr(tmp_dict, os.path.join(save_dir, f"serial_model_dist{global_rank}.pdattr"))
-
-            if self._sharding_stage == 3:
-                self._module.model.get_all_parameters(convert2cpu=False)
+            assert is_wrapped_module(self._module.model)
+            
             paddle.save(self._module.model.state_dict(),
                         os.path.join(save_dir, "model.pdparams"))
             paddle.save(self._optimizer.state_dict(),
                         os.path.join(save_dir, "model_state.pdopt"))
+
+            if is_wrapped_module(self._module.model):
+                save_for_auto_inference(os.path.join(save_dir, "inference_model"), self._module.model, self._template, True)
 
             meta_dict = {
                 "epoch": epoch,
