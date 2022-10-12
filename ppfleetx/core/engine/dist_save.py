@@ -25,6 +25,9 @@ import os
 import pickle
 from paddle.distributed.fleet.meta_parallel.sharding.group_sharded_stage3 import GroupShardedStage3
 from paddle.fluid.framework import dygraph_only
+from paddle.optimizer import Optimizer
+from paddle.distributed.fleet.meta_optimizers.dygraph_optimizer.hybrid_parallel_optimizer import HybridParallelOptimizer
+import copy
 
 
 def _is_wrapped_module(model):
@@ -103,7 +106,8 @@ def _is_first_shared(param):
 def _get_name_mapping(dist_model, single_model):
     """
     Description:
-        get name mapping from names in dist model to those in single model
+        1. Get name mapping from names in dist model to those in single model.
+        2. Add new attributes 'dims_mapping' to parameters to specify the dims mappings of parameters. 
     Args:
         dist_model: model in distributed mode
         single_model: model in single mode
@@ -185,11 +189,21 @@ def _get_all_ranks_of_pp(pp_rank):
     return process_group
 
 
-def _save_param_attr(state_dict, path):
+def _save_param_attr(state_dict_, path, dims_mapping_dict=None):
     """
     Description:
         save params' attr dict
     """
+    state_dict = copy.copy(state_dict_)
+    
+    state_dict.pop("master_weights", None)
+    state_dict.pop("LR_Scheduler", None)
+
+    if dims_mapping_dict is not None:
+        assert isinstance(dims_mapping_dict, dict), f"dims_mapping_dict must be an instance of dict"
+        for k in state_dict.keys():
+            assert k in dims_mapping_dict, f"param {k} cannot find dims mapping in dims_mapping_dict"
+
     hcg = fleet.get_hybrid_communicate_group()
     dp_degree = hcg.get_data_parallel_world_size()
     mp_degree = hcg.get_model_parallel_world_size()
@@ -219,9 +233,8 @@ def _save_param_attr(state_dict, path):
         attr_d = {
             "process_shape": [dp_degree, mp_degree] if hcg else [1],
             "process_group": process_group,
-            "dims_mapping": v.dims_mapping
+            "dims_mapping": v.dims_mapping if hasattr(v, "dims_mapping") else dims_mapping_dict[k]
         }
-        print(v.dims_mapping)
         attr_dict[k] = attr_d
 
     with open(path, "wb") as f:
@@ -229,6 +242,56 @@ def _save_param_attr(state_dict, path):
 
 def _set_dims_mapping(dist_param, mp_group, single_param=None):
     setattr(dist_param, "dims_mapping", _get_dims_mapping(dist_param, mp_group, single_param))
+
+def _get_opt_params_dims_mapping(dist_params, opt_state_dict, mp_group):
+    """
+    Decription:
+        Return mapping from opt param name to dims mapping
+    """
+    
+    dist_params_dict = {p.name : p for p in dist_params}
+    dims_mapping_dict = dict()
+    logger.debug(f"{opt_state_dict.keys()}")
+    for k, v in opt_state_dict.items():
+        if k in [ "master_weights", "LR_Scheduler" ]:
+            continue
+        logger.debug(f"processing {k}")
+        matched_pname = re.search("^.*\.(w|b)_[0-9]", k)
+        
+        assert matched_pname, f"cannot find pattern xxx_(w|b)_[num], param name: {k}"
+        logger.debug(f"start: {matched_pname.start()}, end: {matched_pname.end()}")
+        pname = k[matched_pname.start():matched_pname.end()]
+        logger.debug(f"param name: {pname}")
+
+        assert pname in dist_params_dict, \
+            f"Prammeter '{pname}' not in params, please check if the optimzier state is correct."
+
+        param = dist_params_dict[pname]
+
+        assert v.shape == param.shape or (len(v.shape) == 1 and v.shape[0] == 1), \
+            f"Pram {k}'s shape ({v.shape}) is not supported. While its parameter's shape is {param.shape}"
+
+        logger.debug(f"v shape: {v.shape} , p shape: {param.shape}")
+
+        if v.shape == param.shape:
+            if not hasattr(param, "dims_mapping"):
+                logger.debug(f"param {pname} has no dims mapping")
+                _set_dims_mapping(param, mp_group, None)
+            assert hasattr(param, "dims_mapping"), f"Why no dims mapping?" 
+
+            logger.debug(f"set dims mapping")
+            assert hasattr(param, "dims_mapping"), f"Why no dims mapping?"
+            dims_mapping = copy.copy(getattr(param, "dims_mapping"))
+            dims_mapping_dict[k] = dims_mapping
+        else:
+            logger.debug(f"set dims mapping -1 because the shape of {v.name} is (1,)")
+            # setattr(v, "dims_mapping", [-1])
+            dims_mapping_dict[k] = [-1]
+
+    logger.debug(f"unset dims mapping")
+    for p in dist_params:
+        _unset_dims_mapping(p)
+    return dims_mapping_dict
 
 def _unset_dims_mapping(param):
     if hasattr(param, "dims_mapping"):
@@ -269,9 +332,9 @@ def _get_dims_mapping(dist_parameter, mp_group, single_parameter=None):
 
         # only tensor for mp is splited, and the mp axis is 1
         mapping = [-1 if d == 0 else 1 for d in diff]
-    elif re.search("^column_|^row_parallel_linear.+\.w_0$|^vocab_parallel_embedding", dist_parameter.name):
+    elif re.search("^column_|^row_parallel_linear.+\.w_[0-9]+$|^vocab_parallel_embedding", dist_parameter.name):
 
-        assert re.search("^column_parallel_linear|^row_parallel_linear.+\.w_0$|^vocab_parallel_embedding", dist_parameter.name), \
+        assert re.search("^column_parallel_linear|^row_parallel_linear.+\.w_[0-9]+$|^vocab_parallel_embedding", dist_parameter.name), \
             f"Only 'column_parallel_linear', 'row_parallel_linear' and 'vocab_parallel_embedding' are allowed to be distributed, " \
             f"while this parameter({dist_parameter.name}) is distributed now."
         # using parameter name to determine the aixs along which the parameter is splited
@@ -286,7 +349,6 @@ def _get_dims_mapping(dist_parameter, mp_group, single_parameter=None):
             else:
                 mapping[1] = 1
     else:
-        print(f"dir: name: {dist_parameter.name}, {dir(dist_parameter)}")
         mapping = [-1 for _ in dist_shape]
     return mapping
 
@@ -342,6 +404,7 @@ def save_for_auto_inference(path_prefix,
 
     if isinstance(dist_model, GroupShardedStage3):
         dist_model.get_all_parameters(cvt2cpu)
+
     wrapped_dict = _get_wrapped_state_dict(dist_model, original_model)
     global_rank = paddle.distributed.get_rank()
 
@@ -356,21 +419,40 @@ def save_for_auto_inference(path_prefix,
         os.path.join(save_dir, f"{basename_prefix}_dist{global_rank}.pdattr"))
 
     # unset dims mapping after saving attrs
-    for k, dist_param in wrapped_dict.items():
+    for _, dist_param in wrapped_dict.items():
         _unset_dims_mapping(dist_param)
 
 @dygraph_only
-def dist_save(path_prefix, dist_model, for_training=True, cvt2cpu=False):
-    if for_training:
-        _dist_save_optimizer_state(path_prefix, dist_model, cvt2cpu)
-    _dist_save_for_testing(path_prefix, dist_model, cvt2cpu)
+def dist_save(path_prefix, dist_model, optimzier=None, for_training=False, cvt2cpu=False):
+    if for_training and optimzier is not None:
+        assert isinstance(optimzier, (Optimizer, HybridParallelOptimizer)), f"optimizer({type(optimzier)}) is not an instance of paddle.optimizer.Optimizer"
+        _dist_save_optimizer_state(path_prefix, dist_model, optimzier, cvt2cpu)
+    _dist_save_parameters(path_prefix, dist_model, cvt2cpu)
 
+def _dist_save_optimizer_state(path_prefix, dist_model, optimizer, cvt2cpu):
+    fleet.set_log_level("DEBUG")
+    save_dir, basename = _get_abs_saved_prefix(path_prefix)
 
-def _dist_save_optimizer_state(path_prefix, dist_model, cvt2cpu):
-    pass
+    if isinstance(dist_model, GroupShardedStage3):
+        dist_model.get_all_parameters(cvt2cpu)
+    
+    mp_group = fleet.get_hybrid_communicate_group().get_model_parallel_group()
+    global_rank = dist.get_rank()
+    print("saving optimzier parameters")
+    paddle.save(optimizer.state_dict(), os.path.join(save_dir, f"{basename}_dist{global_rank}.pdopt"))
+    
+    print("set optimizer dims mapping")
+    dims_mapping_dict = _get_opt_params_dims_mapping(dist_model.parameters(), optimizer.state_dict(), mp_group)
+    assert "master_weights" in optimizer.state_dict(), f"hooop, you deleted master weights"
 
+    print("saving optimzier attrs")
+    _save_param_attr(optimizer.state_dict(), os.path.join(save_dir, f"{basename}_dist{global_rank}.pdoptattr"), dims_mapping_dict=dims_mapping_dict)
 
-def _dist_save_for_testing(path_prefix, dist_model, cvt2cpu):
+    print("removing optimizer dims mapping")
+    for _, v in optimizer.state_dict().items():
+        _unset_dims_mapping(v)
+
+def _dist_save_parameters(path_prefix, dist_model, cvt2cpu):
     save_dir, basename = _get_abs_saved_prefix(path_prefix)
     global_rank = dist.get_rank()
     paddle.save(dist_model.state_dict(),
