@@ -269,10 +269,10 @@ def _get_dims_mapping(dist_parameter, mp_group, single_parameter=None):
 
         # only tensor for mp is splited, and the mp axis is 1
         mapping = [-1 if d == 0 else 1 for d in diff]
-    elif re.search("^column_|^row_parallel_linear|^vocab_parallel_embedding", dist_parameter.name):
+    elif re.search("^column_|^row_parallel_linear.+\.w_0$|^vocab_parallel_embedding", dist_parameter.name):
 
-        assert re.search("^(column_|^row_parallel_linear|^vocab_parallel_embedding", dist_parameter.name), \
-            f"Only 'column__parallel_linear', 'row__parallel_linear' and 'vocab_parallel_embedding' are allowed to be distributed, " \
+        assert re.search("^column_parallel_linear|^row_parallel_linear.+\.w_0$|^vocab_parallel_embedding", dist_parameter.name), \
+            f"Only 'column_parallel_linear', 'row_parallel_linear' and 'vocab_parallel_embedding' are allowed to be distributed, " \
             f"while this parameter({dist_parameter.name}) is distributed now."
         # using parameter name to determine the aixs along which the parameter is splited
         assert 1 <= len(dist_shape) <= 2, f"Only 1 <= dims <= 2 is supported for distributed parameters, while the paramater's shape is {dist_shape}, name: {dist_parameter.name}"
