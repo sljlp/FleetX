@@ -35,7 +35,7 @@ from ppfleetx.utils.tensor_fusion_helper import all_reduce_parameters
 from ppfleetx.utils.version import version_check
 from ppfleetx.utils.export import export_inference_model
 
-from ppfleetx.core.engine.wrap_save import save_for_auto_inference
+from ppfleetx.core.engine.dist_save import save_for_auto_inference, dist_save
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -621,6 +621,7 @@ class EagerEngine(BasicEngine):
 
             if is_wrapped_module(self._module.model):
                 save_for_auto_inference(os.path.join(save_dir, "inference_model"), self._module.model, self._template, True)
+            dist_save(os.path.join(save_dir, "dist_saved"), self._module.model, False)
 
             meta_dict = {
                 "epoch": epoch,

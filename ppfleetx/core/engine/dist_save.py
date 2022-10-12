@@ -1,5 +1,18 @@
+# Copyright (c) 2022 PaddlePaddle Authors. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 """
-module for saving for auto parallel infer
+module for saving data
 """
 
 import paddle.distributed as dist
@@ -11,12 +24,15 @@ import time
 import os
 import pickle
 from paddle.distributed.fleet.meta_parallel.sharding.group_sharded_stage3 import GroupShardedStage3
+from paddle.fluid.framework import dygraph_only
+
 
 def _is_wrapped_module(model):
     return hasattr(model, "_layer") or hasattr(model, "_layers")
 
+
 def _get_wrapped_state_dict(dist_model, single_model):
-    """ 
+    """
     Trasform dist parameters' names in dist model's state_dict to single-card names
     """
     # Insure the dist model are wrapped with distributed apis and the single model not
@@ -33,17 +49,18 @@ def _get_wrapped_state_dict(dist_model, single_model):
             wrapped_state_dict[name_mapping[k]] = v
     return wrapped_state_dict
 
-# to keep the same parameter name in single models of both dygraph and autoparallel mode, 
+
+# to keep the same parameter name in single models of both dygraph and autoparallel mode,
 # the single model must be created before the dist model
 # Question: Why do we need this?
 #   Answer: to save model for autoparallel,we need to create model twice -- the single mode and the distributed mode.
-#           However, the parameters' name are generated automatically and in a unified order. 
-#           For example, if there are 5 linears, the a parameter's name in the first model may be linear_5 
-#           while the recosponding name in another model may be linear_10, even though they are the samely 
+#           However, the parameters' name are generated automatically and in a unified order.
+#           For example, if there are 5 linears, the a parameter's name in the first model may be linear_5
+#           while the recosponding name in another model may be linear_10, even though they are the samely
 #           located parameters.
 # Question: How to garanetee this?
 #   Answer: To check the indices of common name,
-#          if there is no index of single is greater than the dist models', 
+#          if there is no index of single is greater than the dist models',
 #          we say the single model is created before the dist modle.
 def _check_single_card_model_formmer(single_name, dist_name):
     """
@@ -54,7 +71,7 @@ def _check_single_card_model_formmer(single_name, dist_name):
         dist_name: A parameter's name in a distributed model
     """
 
-    # The names format between splited linear and single model linear are different, so we skip these names and always return True. 
+    # The names format between splited linear and single model linear are different, so we skip these names and always return True.
     if re.search("^(column|row)_parallel_linear", dist_name):
         return True
 
@@ -66,18 +83,22 @@ def _check_single_card_model_formmer(single_name, dist_name):
 
     assert matched1 is not None and matched2 is not None, f"Cannot find the pattern '[name]_[number]'. " \
         f"single name: {single_name}, dist name: {dist_name}"
-    
+
     name1, idx1 = single_name[matched1.start():matched1.end()].split("_")
     name2, idx2 = dist_name[matched2.start():matched2.end()].split("_")
     assert name1 == name2, f"the input parameters are not same, please check. " \
         f"single name: {name1}, dist name: {name2}"
     return int(idx1) <= int(idx2)
-    
+
+
 def _is_first_used(param):
-    return not (hasattr(param, "is_firstly_shared") and not param.is_firstly_shared)
+    return not (hasattr(param, "is_firstly_shared")
+                and not param.is_firstly_shared)
+
 
 def _is_first_shared(param):
     return hasattr(param, "is_firstly_shared") and param.is_firstly_shared
+
 
 def _get_name_mapping(dist_model, single_model):
     """
@@ -89,7 +110,7 @@ def _get_name_mapping(dist_model, single_model):
     Return:
         dict mapping names in two modles
     """
-    
+
     hcg = fleet.get_hybrid_communicate_group()
     mp_group = hcg.get_model_parallel_group()
     pp_group = hcg.get_pipe_parallel_group()
@@ -101,8 +122,10 @@ def _get_name_mapping(dist_model, single_model):
             f" please check what's wrong"
 
     name_mapping = {}
-    logger.info("number of single model: " + str(len(single_model.parameters())))
-    logger.info("number of distributed model: " + str(len(dist_model.parameters())))
+    logger.info("number of single model: " +
+                str(len(single_model.parameters())))
+    logger.info("number of distributed model: " +
+                str(len(dist_model.parameters())))
 
     p_size = len(dist_model.parameters())
     p_size = paddle.to_tensor(p_size)
@@ -111,16 +134,14 @@ def _get_name_mapping(dist_model, single_model):
     # for pp i, we only save parameters from the accumulation before pp i (acc) to acc + len(current dist_model)
     p_sizes = []
     if pp_group.nranks > 1:
-        dist.all_gather(p_sizes, p_size, group = pp_group)
-        logger.debug("pp size: "+ str(p_sizes))
+        dist.all_gather(p_sizes, p_size, group=pp_group)
+        logger.debug("pp size: " + str(p_sizes))
         pp_rank = dist.get_rank(pp_group)
         acc = sum(p_sizes[:pp_rank])
     else:
         acc = 0
-    
-    dist_parameters = [
-        d for d in dist_model.parameters() if _is_first_used(d)
-    ]
+
+    dist_parameters = [d for d in dist_model.parameters() if _is_first_used(d)]
 
     dist_state_keys = [
         k for k, v in dist_model.state_dict().items() if _is_first_used(v)
@@ -128,15 +149,18 @@ def _get_name_mapping(dist_model, single_model):
 
     logger.debug(f"len total single: {len(single_model.parameters())}")
     logger.debug(f"start: {acc}, end: {acc+len(dist_parameters)}")
-    single_parameters = list(single_model.parameters())[acc: acc+len(dist_parameters)]
+    single_parameters = list(single_model.parameters())[acc:acc +
+                                                        len(dist_parameters)]
 
-    logger.debug(f"len single: {len(single_parameters)}, len dist: {len(dist_parameters)}, len dist keys: {dist_state_keys}")
+    logger.debug(
+        f"len single: {len(single_parameters)}, len dist: {len(dist_parameters)}, len dist keys: {dist_state_keys}"
+    )
 
-    for p, k , dp in zip(single_parameters, dist_state_keys , dist_parameters):
+    for p, k, dp in zip(single_parameters, dist_state_keys, dist_parameters):
         assert _check_single_card_model_formmer(p.name, dp.name), f" single-card model must be built before distributed model" \
             f" the single-card name is '{p.name}' while the dist name is '{dp.name}'"
         name_mapping[k] = p.name
-        setattr(dp, "dims_mapping", _get_dims_mapping(dp, p, mp_group))
+        _set_dims_mapping(dp, mp_group, p)
     return name_mapping
 
 def _get_all_ranks_of_pp(pp_rank):
@@ -148,13 +172,18 @@ def _get_all_ranks_of_pp(pp_rank):
     dp_degree = hcg.get_data_parallel_world_size()
     mp_degree = hcg.get_model_parallel_world_size()
     pp_degree = hcg.get_pipe_parallel_world_size()
+    sharding_degree = hcg.get_sharding_parallel_world_size()
 
     process_group = []
+
+    dp_degree = dp_degree * sharding_degree
+
     for i in range(dp_degree):
         for k in range(mp_degree):
             process_group.append(i * dist.get_world_size() // dp_degree \
                 + pp_rank * dist.get_world_size() // dp_degree // pp_degree + k)
     return process_group
+
 
 def _save_param_attr(state_dict, path):
     """
@@ -164,23 +193,25 @@ def _save_param_attr(state_dict, path):
     hcg = fleet.get_hybrid_communicate_group()
     dp_degree = hcg.get_data_parallel_world_size()
     mp_degree = hcg.get_model_parallel_world_size()
-    
+
     dp_group = hcg.get_data_parallel_group()
     mp_group = hcg.get_model_parallel_group()
     pp_group = hcg.get_pipe_parallel_group()
-    
+
+    fleet.set_log_level("DEBUG")
     logger.debug(f"dp group: {dp_group}")
     logger.debug(f"mp group: {mp_group}")
     logger.debug(f"pp group: {pp_group}")
-    
+    logger.debug(f"sharding group: {pp_group}")
+
     pp_rank = dist.get_rank(pp_group)
 
     # Why condition 'pp_rank < 0' exists?
-    # Because if pp_degree = 1, pp_rank is set -1 
+    # Because if pp_degree = 1, pp_rank is set -1
     pp_rank = 0 if pp_rank <= 0 else pp_rank
 
     process_group = _get_all_ranks_of_pp(pp_rank)
-    
+
     attr_dict = {}
     for k, v in state_dict.items():
         dims = len(v.shape)
@@ -196,45 +227,72 @@ def _save_param_attr(state_dict, path):
     with open(path, "wb") as f:
         pickle.dump(attr_dict, f)
 
-def _get_dims_mapping(dist_parameter, single_parameter, mp_group):
+def _set_dims_mapping(dist_param, mp_group, single_param=None):
+    setattr(dist_param, "dims_mapping", _get_dims_mapping(dist_param, mp_group, single_param))
+
+def _unset_dims_mapping(param):
+    if hasattr(param, "dims_mapping"):
+        delattr(param, "dims_mapping")
+
+def _get_dims_mapping(dist_parameter, mp_group, single_parameter=None):
     """
     Description:
         return the sliting mapping:
             {tensor_name: spiting_strategy}
 
     Examples:
-        spliting_strategy's format (-1, -1, -1, 0), meaing the dims 
+        spliting_strategy's format (-1, -1, -1, 0), meaing the dims
         of  the tennsor is 4 and it is splited along the first strategy axis in mesh
 
     Mesh Examples: (2, 4) means dp=2, mp=4
 
     """
-    
+
     import numpy as np
     dist_shape = np.array(dist_parameter.shape)
-    single_shape = np.array(single_parameter.shape)
-    logger.debug(f"single shape: {single_shape}, dist shape: {dist_shape}")
-    assert len(dist_shape) == len(single_shape)
-    diff = dist_shape - single_shape
+    if single_parameter is not None:
+        single_shape = np.array(single_parameter.shape)
+        logger.debug(f"single shape: {single_shape}, dist shape: {dist_shape}")
+        assert len(dist_shape) == len(single_shape)
+        diff = dist_shape - single_shape
 
-    assert (diff <= 0).all(), f"Dist shape is larger than single shape in some axis, please check the shapes. " \
-        f"dist shape: {dist_shape}, single shape: {single_shape}"
-    assert np.min(diff) == np.sum(diff), f"There are more than one axis along which the tensor is splited, which are not allowed now. " \
-         f"dist shape: {dist_shape}, single shape: {single_shape}"
+        assert (diff <= 0).all(), f"Dist shape is larger than single shape in some axis, please check the shapes. " \
+            f"dist shape: {dist_shape}, single shape: {single_shape}"
+        assert np.min(diff) == np.sum(diff), f"There are more than one axis along which the tensor is splited, which are not allowed now. " \
+            f"dist shape: {dist_shape}, single shape: {single_shape}"
 
-    index = np.argsort(diff)[0]
+        index = np.argsort(diff)[0]
 
-    if diff[index] < 0:
-        assert single_shape[index] % dist_shape[index] == 0 \
-            and dist.get_world_size(mp_group) == single_shape[index] // dist_shape[index]
-    
-    # only tensor for mp is splited, and the mp axis is 1
-    mapping = [-1 if d == 0 else 1 for d in diff]
+        if diff[index] < 0:
+            assert single_shape[index] % dist_shape[index] == 0 \
+                and dist.get_world_size(mp_group) == single_shape[index] // dist_shape[index]
+
+        # only tensor for mp is splited, and the mp axis is 1
+        mapping = [-1 if d == 0 else 1 for d in diff]
+    elif re.search("^column_|^row_parallel_linear|^vocab_parallel_embedding", dist_parameter.name):
+
+        assert re.search("^(column_|^row_parallel_linear|^vocab_parallel_embedding", dist_parameter.name), \
+            f"Only 'column__parallel_linear', 'row__parallel_linear' and 'vocab_parallel_embedding' are allowed to be distributed, " \
+            f"while this parameter({dist_parameter.name}) is distributed now."
+        # using parameter name to determine the aixs along which the parameter is splited
+        assert 1 <= len(dist_shape) <= 2, f"Only 1 <= dims <= 2 is supported for distributed parameters, while the paramater's shape is {dist_shape}, name: {dist_parameter.name}"
+        mapping = [-1 for _ in dist_shape]
+
+        if len(dist_shape) == 1:
+            mapping[0] = 1
+        else:
+            if re.search("^(row|vocab)", dist_parameter.name):
+                mapping[0] = 1
+            else:
+                mapping[1] = 1
+    else:
+        print(f"dir: name: {dist_parameter.name}, {dir(dist_parameter)}")
+        mapping = [-1 for _ in dist_shape]
     return mapping
 
 def _get_abs_saved_prefix(path_prefix):
     """
-    Description: 
+    Description:
         Get absolute dir path and basename prefix of path_prefix, with making path_prefix's directories.
         If path_prefix is a directory name, basename is set 'saved_parameters'.
         If path_prefix is a file name, basename is extracted from path_prefix.
@@ -253,38 +311,79 @@ def _get_abs_saved_prefix(path_prefix):
     os.makedirs(save_dir, exist_ok=True)
     return save_dir, basename_prefix
 
-def save_for_auto_inference(path_prefix, dist_model, original_model, cvt2cpu=False):
+
+@dygraph_only
+def save_for_auto_inference(path_prefix,
+                            dist_model,
+                            original_model,
+                            cvt2cpu=False):
     """
     Description：
         Save model parameters for auto parallel inference.
         Supporting dp + mp + pp + sharding(stage1), dp + sharding stage2-3.
-        MoE not sdupported till MoE is supported in auto parallel mode. 
+        MoE not sdupported till MoE is supported in auto parallel mode.
     Args:
         path_prefix: path prefix to save
-                    If `path_preifx` ends with path sepreator, 
-                        the path is processed as a directory and parameters will be saved in it, 
+                    If `path_preifx` ends with path sepreator,
+                        the path is processed as a directory and parameters will be saved in it,
                         automatically named saved_parameters.
-                    Otherwisw, the parameters will be saved with name 
+                    Otherwisw, the parameters will be saved with name
                         path_preifx_dist{global_rank}.pdparams and  path_preifx_dist{global_rank}.pdattrs
-    
-        dist_model: 
+
+        dist_model:
                 model in distributed mode
-        original_model: 
+        original_model:
                 model in single-card mode, with no distributed apis
-        cvt2cpu: wheather to move parameters to CPU when using sharding stage 3. 
-                The var is invalid if not using sharding stage 3. 
+        cvt2cpu: wheather to move parameters to CPU when using sharding stage 3.
+                The var is invalid if not using sharding stage 3.
     """
 
     save_dir, basename_prefix = _get_abs_saved_prefix(path_prefix)
-    
+
     if isinstance(dist_model, GroupShardedStage3):
         dist_model.get_all_parameters(cvt2cpu)
     wrapped_dict = _get_wrapped_state_dict(dist_model, original_model)
     global_rank = paddle.distributed.get_rank()
 
     # save parameters
-    paddle.save(wrapped_dict,
-                os.path.join(save_dir, f"{basename_prefix}_dist{global_rank}.pdparams"))
+    paddle.save(
+        wrapped_dict,
+        os.path.join(save_dir, f"{basename_prefix}_dist{global_rank}.pdparams"))
 
     # save attributes
-    _save_param_attr(wrapped_dict, os.path.join(save_dir, f"{basename_prefix}_dist{global_rank}.pdattr"))
+    _save_param_attr(
+        wrapped_dict,
+        os.path.join(save_dir, f"{basename_prefix}_dist{global_rank}.pdattr"))
+
+    # unset dims mapping after saving attrs
+    for k, dist_param in wrapped_dict.items():
+        _unset_dims_mapping(dist_param)
+
+@dygraph_only
+def dist_save(path_prefix, dist_model, for_training=True, cvt2cpu=False):
+    if for_training:
+        _dist_save_optimizer_state(path_prefix, dist_model, cvt2cpu)
+    _dist_save_for_testing(path_prefix, dist_model, cvt2cpu)
+
+
+def _dist_save_optimizer_state(path_prefix, dist_model, cvt2cpu):
+    pass
+
+
+def _dist_save_for_testing(path_prefix, dist_model, cvt2cpu):
+    save_dir, basename = _get_abs_saved_prefix(path_prefix)
+    global_rank = dist.get_rank()
+    paddle.save(dist_model.state_dict(),
+                        os.path.join(save_dir, f"{basename}_dist{global_rank}.pdparams"))
+    
+    mp_group = fleet.get_hybrid_communicate_group().get_model_parallel_group()
+
+    # set attr for saving attr
+    for _, v in dist_model.state_dict().items():
+        _set_dims_mapping(v, mp_group)
+
+    _save_param_attr(dist_model.state_dict(), os.path.join(save_dir, f"{basename}_dist{global_rank}.pdattr"))
+
+    # unset attr after saving
+    for _, v in dist_model.state_dict().items():
+        _unset_dims_mapping(v)
