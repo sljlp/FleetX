@@ -119,7 +119,7 @@ def _get_name_mapping(dist_model, single_model):
     mp_group = hcg.get_model_parallel_group()
     pp_group = hcg.get_pipe_parallel_group()
 
-    # if pp_degree > 1, the dist_model_layers 's type must be
+    # if pp_degree > 1, the dist_model_layers's type must be PipelineLayer
     if pp_group.nranks > 1:
         assert isinstance(dist_model._layers, paddle.distributed.fleet.meta_parallel.parallel_layers.pp_layers.PipelineLayer), \
             f"the pipleline parallel degree is {pp_group.nranks}(larger than 1), but the _layers are not an instance PipeLineLayer," \
@@ -193,9 +193,19 @@ def _save_param_attr(state_dict_, path, dims_mapping_dict=None):
     """
     Description:
         save params' attr dict
+    Args:
+        state_dict_:
+            state for which to save attrs, when the state is optimzier state, the master and LRScheduler will be reomoved.
+        path:
+            path to save
+        dims_mapping_dict:
+            Dims mapping dict, mapping from parameter name in state_dict_ to dims_mapping.
+            If parameter in state_dict_ has attribute 'dims_mapping', the dims_mapping is ignored.
+            If parameter has no attribute 'dims_mapping', the dims mapping must contains the parameter's name. 
     """
     state_dict = copy.copy(state_dict_)
     
+    # remove master_weights and LRScheduler, which needs no parameter attributes to save
     state_dict.pop("master_weights", None)
     state_dict.pop("LR_Scheduler", None)
 
@@ -333,7 +343,6 @@ def _get_dims_mapping(dist_parameter, mp_group, single_parameter=None):
         # only tensor for mp is splited, and the mp axis is 1
         mapping = [-1 if d == 0 else 1 for d in diff]
     elif re.search("^column_|^row_parallel_linear.+\.w_[0-9]+$|^vocab_parallel_embedding", dist_parameter.name):
-
         assert re.search("^column_parallel_linear|^row_parallel_linear.+\.w_[0-9]+$|^vocab_parallel_embedding", dist_parameter.name), \
             f"Only 'column_parallel_linear', 'row_parallel_linear' and 'vocab_parallel_embedding' are allowed to be distributed, " \
             f"while this parameter({dist_parameter.name}) is distributed now."
