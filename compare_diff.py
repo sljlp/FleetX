@@ -45,13 +45,22 @@ def parse_rank_dygraph(dp, mp, pp):
 
 if __name__ == "__main__":
 
-    model = load_params("output_345/epoch_0_step_0/model.pdparams")
+    attr = load_params("output_345/epoch_0_step_0/pretrained/inference_model_dist0.pdattr")
+    model = load_params("output_345/epoch_0_step_0/pretrained/inference_model_dist0.pdparams")
     saved = load_params("pretrained/PaddleFleetX_GPT_345M_220826/mp_00_sharding_00_pp_00/model.pdparams")
-    for k1, k2 in zip(model.keys(), saved.keys()):
-        print(k1, k2)
-        assert k1 == k2
-        diff = model[k1].astype("float32") - saved[k2]
-        print(np.max(diff), np.min(diff))
-    print(len(model.keys()), len(saved.keys()))
+
+    for k, v in attr.items():
+        print(k, v)
+    for (k, v), (k2, v2) in zip(attr.items(), saved.items()):
+        v1 = model[k].astype("float32")
+        diff = v1 - v2
+        print(f"max: {np.max(diff)}, min: {np.min(diff)}")
+        print(k, v, model[k].shape, v2.shape)
+    # for k1, k2 in zip(model.keys(), saved.keys()):
+    #     print(k1, k2)
+    #     # assert k1 == k2
+    #     diff = model[k1].astype("float32") - saved[k2]
+    #     print(np.max(diff), np.min(diff))
+    # print(len(model.keys()), len(saved.keys()))
 
     # attr = load_params("")

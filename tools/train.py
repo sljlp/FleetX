@@ -36,11 +36,12 @@ if __name__ == "__main__":
     args = config.parse_args()
     cfg = config.get_config(args.config, overrides=args.override, show=False)
 
-    if dist.get_world_size() > 1:
+    if dist.get_world_size() > 1 or True:
         fleet.init(is_collective=True, strategy=env.init_dist_env(cfg))
 
     env.set_seed(cfg.Global.seed)
 
+    single_model = build_module(cfg, single_template=True)
     module = build_module(cfg)
     config.print_config(cfg)
 
@@ -53,11 +54,13 @@ if __name__ == "__main__":
         'total_steps': cfg.Engine.max_steps,
     })
 
-    engine = EagerEngine(configs=cfg, module=module)
+    engine = EagerEngine(configs=cfg, module=module, template = single_model)
 
     if cfg.Engine.save_load.ckpt_dir is not None:
         engine.load()
 
-    engine.fit(train_data_loader=train_data_loader,
-               valid_data_loader=eval_data_loader,
-               epoch=cfg.Engine.num_train_epochs)
+    # engine.fit(train_data_loader=train_data_loader,
+    #            valid_data_loader=eval_data_loader,
+    #            epoch=cfg.Engine.num_train_epochs)
+    if cfg.Engine.save_load.output_dir is not None:
+        engine.save()

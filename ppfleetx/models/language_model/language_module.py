@@ -122,7 +122,8 @@ class LanguageModule(BasicModule):
 
 
 class GPTModule(LanguageModule):
-    def __init__(self, configs):
+    def __init__(self, configs, single_template = False):
+        self.single_template = single_template
         super(GPTModule, self).__init__(configs)
 
     def get_model(self):
@@ -139,8 +140,9 @@ class GPTModule(LanguageModule):
         tokenizer_class, pretrained_name = MODEL_CLASSES[model_name]
         self.tokenizer = tokenizer_class.from_pretrained(pretrained_name)
 
-        if self.nranks == 1:
+        if self.nranks == 1 or self.single_template:
             model_setting.pop("sequence_parallel")
+            model_setting.pop("virtual_pp_degree", None)
             model = gpt.GPTForPretraining(gpt.GPTModel(**model_setting))
         else:
             model_setting[

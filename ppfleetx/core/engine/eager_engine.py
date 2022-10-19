@@ -35,8 +35,13 @@ from ppfleetx.utils.tensor_fusion_helper import all_reduce_parameters
 from ppfleetx.utils.version import version_check
 from ppfleetx.utils.export import export_inference_model
 
+from ppfleetx.core.engine.dist_save import save_for_auto_inference, dist_save
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+def is_wrapped_module(model):
+    return hasattr(model, "_layer") or hasattr(model, "_layers")
 
 
 class EagerEngine(BasicEngine):
@@ -45,7 +50,7 @@ class EagerEngine(BasicEngine):
     training, validation and test. Only used in eager dygraph mode.
     """
 
-    def __init__(self, configs, module, optimizer=None, lr=None, mode='train'):
+    def __init__(self, configs, module, optimizer=None, lr=None, mode='train', template = None):
         """
         Initialize an engine depending on the user-defined module and configs.
 
@@ -91,6 +96,7 @@ class EagerEngine(BasicEngine):
         version_check()
 
         self.mode = mode
+        
 
         if not isinstance(module, BasicModule):
             raise TypeError(
@@ -98,6 +104,7 @@ class EagerEngine(BasicEngine):
             )
 
         self._module = module
+        self._template = template
 
         if module.model and not isinstance(
                 module.model, nn.Layer) and not callable(module.model):
@@ -626,6 +633,9 @@ class EagerEngine(BasicEngine):
             return
 
         if self._output_dir and isinstance(self._output_dir, str):
+            if self._sharding_stage == 3:
+                self._module.model.get_all_parameters(convert2cpu=False)
+
             output_dir = os.path.join(self._output_dir,
                                       "epoch_%d_step_%d" % (epoch, step))
             if not os.path.exists(output_dir):
@@ -635,13 +645,16 @@ class EagerEngine(BasicEngine):
             save_dir = "{}/mp_{:0>2d}_sharding_{:0>2d}_pp_{:0>2d}".format(
                 output_dir, self._mp_rank, self._sharding_rank,
                 self._pp_rank) if self._distributed else output_dir
-
-            if self._sharding_stage == 3:
-                self._module.model.get_all_parameters(convert2cpu=False)
+            # assert is_wrapped_module(self._module.model)
+            
             paddle.save(self._module.model.state_dict(),
                         os.path.join(save_dir, "model.pdparams"))
             paddle.save(self._optimizer.state_dict(),
                         os.path.join(save_dir, "model_state.pdopt"))
+
+            # if is_wrapped_module(self._module.model):
+            save_for_auto_inference(os.path.join(save_dir, "inference_model"), self._module.model, self._template, True)
+            dist_save(os.path.join(save_dir, "dist_saved"), self._module.model, self._optimizer , True)
 
             meta_dict = {
                 "epoch": epoch,
@@ -687,8 +700,9 @@ class EagerEngine(BasicEngine):
                     opt_dict = paddle.load(opt_path)
                     self._optimizer.set_state_dict(opt_dict)
                 else:
-                    raise ValueError(
-                        "No optimizer checkpoint file found in %s." % opt_path)
+                    # raise ValueError(
+                    #     "No optimizer checkpoint file found in %s." % opt_path)
+                    pass
 
                 if os.path.exists(meta_path):
                     meta_dict = paddle.load(meta_path)
@@ -698,8 +712,9 @@ class EagerEngine(BasicEngine):
                         'rng_state': meta_dict['cuda_rng_state']
                     }
                 else:
-                    raise ValueError("No meta checkpoint file found in %s." %
-                                     meta_path)
+                    # raise ValueError("No meta checkpoint file found in %s." %
+                    #                  meta_path)
+                    pass
 
             logger.info("successfully load checkpoints")
         else:
