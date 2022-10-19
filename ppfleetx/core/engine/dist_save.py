@@ -439,6 +439,7 @@ def dist_save(path_prefix, dist_model, optimzier=None, for_training=False, cvt2c
     _dist_save_parameters(path_prefix, dist_model, cvt2cpu)
 
 def _dist_save_optimizer_state(path_prefix, dist_model, optimizer, cvt2cpu):
+    sharding_group = fleet.get_hybrid_communicate_group().get_sharding_parallel_group()
     fleet.set_log_level("DEBUG")
     save_dir, basename = _get_abs_saved_prefix(path_prefix)
 
@@ -449,6 +450,8 @@ def _dist_save_optimizer_state(path_prefix, dist_model, optimizer, cvt2cpu):
     global_rank = dist.get_rank()
     print("saving optimzier parameters")
     paddle.save(optimizer.state_dict(), os.path.join(save_dir, f"{basename}_dist{global_rank}.pdopt"))
+
+    merged_optimizer = _gather_state_dict(optimizer.state_dict(),0, sharding_group)
     
     print("set optimizer dims mapping")
     dims_mapping_dict = _get_opt_params_dims_mapping(dist_model.parameters(), optimizer.state_dict(), mp_group)
@@ -478,3 +481,26 @@ def _dist_save_parameters(path_prefix, dist_model, cvt2cpu):
     # unset attr after saving
     for _, v in dist_model.state_dict().items():
         _unset_dims_mapping(v)
+
+
+def _gather_state_dict(state_dict, dst, group):
+    state_dict_list=[]
+    output_state = dict()
+    state_dict_ = copy.copy(state_dict)
+    if dst != dist.get_rank(group):
+        state_dict_.pop("master_weights", None)
+        state_dict_.pop("LR_Scheduler", None)
+
+    paddle.distributed.all_gather_object(state_dict, state_dict_list, group)
+
+    if dst != dist.get_rank(group):
+        del state_dict_list
+        return None
+    
+    for sd in state_dict_list:
+        state_dict_cpu = dict()
+        for k, v in sd.items():
+            state_dict_cpu[k] = v.to('cpu')
+        output_state.update(state_dict_cpu)
+
+    return output_state

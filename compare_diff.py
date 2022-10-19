@@ -45,7 +45,24 @@ def parse_rank_dygraph(dp, mp, pp):
 
 if __name__ == "__main__":
 
-    model = load_params("output_dp2mp4/epoch_0_step_0/mp_00_sharding_00_pp_00/dist_saved_dist0.pdparams")
-    attr = load_params("output_dp2mp4/epoch_0_step_0/mp_00_sharding_00_pp_00/dist_saved_dist0.pdattr")
+    opts=[]
+    keys = []
+    for i in range(0,4):
+        opts.append(load_params(f"output_dp2sharding4/epoch_0_step_0/mp_00_sharding_0{i}_pp_00/dist_saved_dist{i}.pdopt"))
+        print((len(opts[i].keys()) - 2)  % 4)
+        print((len(opts[i].keys())-2)//4)
 
-    attr = load_params("")
+        opts[i].pop("master_weights", None)
+        opts[i].pop("LR_Scheduler", None)
+
+        keys += list(opts[i].keys())
+
+    print(keys)
+    
+    paramas = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_00_pp_00/dist_saved_dist0.pdparams")
+    optattr = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_00_pp_00/dist_saved_dist0.pdoptattr")
+    attr = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_00_pp_00/dist_saved_dist0.pdattr")
+
+    paramas.pop("StructuredToParameterName@@", None)    
+    print(len(paramas))
+    print((len(keys))//4)
