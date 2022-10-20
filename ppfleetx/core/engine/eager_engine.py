@@ -97,7 +97,6 @@ class EagerEngine(BasicEngine):
 
         self.mode = mode
         
-
         if not isinstance(module, BasicModule):
             raise TypeError(
                 "'module' must be sub classes of `BasicModule`, but got: {model.__class__.__name__}."

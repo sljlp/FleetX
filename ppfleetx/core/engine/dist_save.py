@@ -491,7 +491,7 @@ def _gather_state_dict(state_dict, dst, group):
         state_dict_.pop("master_weights", None)
         state_dict_.pop("LR_Scheduler", None)
 
-    paddle.distributed.all_gather_object(state_dict, state_dict_list, group)
+    paddle.distributed.all_gather_object(state_dict_list, state_dict, group)
 
     if dst != dist.get_rank(group):
         del state_dict_list
