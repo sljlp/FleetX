@@ -56,11 +56,3 @@ if __name__ == "__main__":
         diff = v1 - v2
         print(f"max: {np.max(diff)}, min: {np.min(diff)}")
         print(k, v, model[k].shape, v2.shape)
-    # for k1, k2 in zip(model.keys(), saved.keys()):
-    #     print(k1, k2)
-    #     # assert k1 == k2
-    #     diff = model[k1].astype("float32") - saved[k2]
-    #     print(np.max(diff), np.min(diff))
-    # print(len(model.keys()), len(saved.keys()))
-
-    # attr = load_params("")
