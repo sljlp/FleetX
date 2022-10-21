@@ -453,6 +453,8 @@ def _dist_save_optimizer_state(path_prefix, dist_model, optimizer, cvt2cpu, gath
     if gather_dst is not None:
         assert isinstance(gather_dst, (int, list, tuple)), f"gather_dst's type must be one of (int, list, tuple), while this is {type(gather_dst)}"
         merged_opt_state_dict = _gather_state_dict(optimizer.state_dict(),gather_dst, sharding_group)
+        for k in optimizer.state_dict().keys():
+            print("Opt dict: ", k)
         paddle.save(merged_opt_state_dict, os.path.join(save_dir, f"{basename}.pdopt"))
     else:
         paddle.save(optimizer.state_dict(), os.path.join(save_dir, f"{basename}_dist{global_rank}.pdopt"))
@@ -564,7 +566,12 @@ def _gather_state_dict(state_dict, dst, group, max_size = "3G"):
     print("state np")
     print("start all gather ...")
 
-    output = grouped_gather_data_dict(state_dict_, dst, group, max_size)
+    output_ = grouped_gather_data_dict(state_dict_, dst, group, max_size)
+
+    # to compat exsiting load
+    output = dict()
+    for k, v in output_.items():
+        output[k] = (k, v)
 
     if isinstance(mw, dict):
         masters = grouped_gather_data_dict(mw, dst, group, max_size)

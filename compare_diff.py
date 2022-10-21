@@ -1,6 +1,7 @@
 import pickle
 import numpy as np
 import copy
+import re
 
 def strip(data):
     assert isinstance(data, dict)
@@ -60,21 +61,51 @@ if __name__ == "__main__":
     # print(keys)
 
     # merged = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_00_pp_00/dist_saved_dist0.pdmergedopt")
-    # m1 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_00_pp_00/model_state.pdopt")
-    # # m2 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_01_pp_00/model_state.pdopt")
-    # # m3 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_02_pp_00/model_state.pdopt")
-    # m4 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_03_pp_00/model_state.pdopt")
-    meta1 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_01_pp_00/meta_state.pdopt")
-    meta2 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_02_pp_00/meta_state.pdopt")
+    m1 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_00_pp_00/model_state.pdopt")
+    m2 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_01_pp_00/model_state.pdopt")
+    m3 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_02_pp_00/model_state.pdopt")
+    m4 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_03_pp_00/model_state.pdopt")
+    # meta1 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_01_pp_00/meta_state.pdopt")
+    # meta2 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_02_pp_00/meta_state.pdopt")
+    # dp2 = load_params("output_dp2/epoch_0_step_0/mp_00_sharding_00_pp_00/model_state.pdopt")
+    shdm = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_00_pp_00/dist_saved.pdopt")
+    # shd = load_params("output_dp2sharding4_save/epoch_0_step_0/mp_00_sharding_00_pp_00/dist_saved.pdopt")
+
+    m1.update(m2)
+    m1.update(m3)
+    m1.update(m4)
+
+    assert len(shdm) == len(m1)
+
+    for k, v in m1.items():
+        assert k in shdm, k
+        if isinstance(v, (list, tuple)) and len(v) == 2 and isinstance(v[1], np.ndarray):
+            v2 = shdm[k][1]
+            assert v[1].dtype == v2.dtype, f"{v[1].dtype} vs {v2.dtype}"
+    #     if k not in shd:
+    #         head_match = re.search("^.*\.", k)
+    #         head = k[head_match.start(): head_match.end(0)]
+    #         for k2 in k_list:
+    #             matched = re.search(f"^{head}", k2)
+    #             # assert matched
+    #             if matched:
+    #                 print("matched: ", k2, shd[k2])
+
+    # print("--------")
+    # for k, v in dp2.items():
+    #     if isinstance(v, tuple):
+    #         print(k)
+
+    # print(len(dp2), len(shd))
     # m1.update(m2)
     # m1.update(m3)
     # m1.update(m4)
     # print(m1["LR_Scheduler"])
 
-    for k, v in meta1.items():
-        print(k, v)
-    for k2, v2 in meta2.items():
-        print(k2, v2)
+    # for k, v in meta1.items():
+    #     print(k, v)
+    # for k2, v2 in meta2.items():
+        # print(k2, v2)
     # for k, v in merged.items():
     #     if isinstance(v, np.ndarray):
     #         print(k, v.dtype)

@@ -620,7 +620,11 @@ class EagerEngine(BasicEngine):
 
             if is_wrapped_module(self._module.model):
                 save_for_auto_inference(os.path.join(save_dir, "inference_model"), self._module.model, self._template, True)
-            dist_save(os.path.join(save_dir, "dist_saved"), self._module.model, self._optimizer , True, False, gather_dst_rank=0)
+            for k in self._optimizer.state_dict().keys():
+                print("mode state k :", k)
+            if fleet.get_hybrid_communicate_group().get_sharding_parallel_world_size() > 1:
+                dist_save(os.path.join(save_dir, "dist_saved"), self._module.model, self._optimizer , True, False, gather_dst_rank=0)
+            print("self optimizer: ", type(self._optimizer))
 
             meta_dict = {
                 "epoch": epoch,
@@ -643,7 +647,9 @@ class EagerEngine(BasicEngine):
                 self._ckpt_dir, self._mp_rank, self._sharding_rank,
                 self._pp_rank) if self._distributed else self._ckpt_dir
             model_path = os.path.join(load_dir, "model.pdparams")
-            opt_path = os.path.join(load_dir, "model_state.pdopt")
+            opt_path = os.path.join(load_dir, "dist_saved.pdopt")
+            if not os.path.exists(opt_path):
+                opt_path = os.path.join(load_dir, "model_state.pdopt")
             meta_path = os.path.join(load_dir, "meta_state.pdopt")
 
             if os.path.exists(model_path):
