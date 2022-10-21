@@ -59,37 +59,28 @@ if __name__ == "__main__":
 
     # print(keys)
 
-    merged = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_00_pp_00/dist_saved_dist0.pdmergedopt")
-    m1 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_00_pp_00/model_state.pdopt")
-    # m2 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_01_pp_00/model_state.pdopt")
-    # m3 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_02_pp_00/model_state.pdopt")
-    m4 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_03_pp_00/model_state.pdopt")
+    # merged = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_00_pp_00/dist_saved_dist0.pdmergedopt")
+    # m1 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_00_pp_00/model_state.pdopt")
+    # # m2 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_01_pp_00/model_state.pdopt")
+    # # m3 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_02_pp_00/model_state.pdopt")
+    # m4 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_03_pp_00/model_state.pdopt")
+    meta1 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_01_pp_00/meta_state.pdopt")
+    meta2 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_02_pp_00/meta_state.pdopt")
     # m1.update(m2)
     # m1.update(m3)
     # m1.update(m4)
     # print(m1["LR_Scheduler"])
 
-    for k, v in merged.items():
-        if isinstance(v, np.ndarray):
-            print(k, v.dtype)
-        if k == "master_weights":
-            for k1, v1 in v.items():
-                print(k1, v1.dtype)
+    for k, v in meta1.items():
+        print(k, v)
+    for k2, v2 in meta2.items():
+        print(k2, v2)
+    # for k, v in merged.items():
+    #     if isinstance(v, np.ndarray):
+    #         print(k, v.dtype)
+    #     if k == "master_weights":
+    #         for k1, v1 in v.items():
+    #             print(k1, v1.dtype)
 
-    print(len(merged))
-
-    # print(m4["LR_Scheduler"])
-
-    # for k, v in m1.items():
-    #     if not isinstance(v, np.ndarray):
-    #         if k != "master_weights":
-    #             print(k)
-    # ks = list(merged.keys())
-    # print("len merged:" , len(ks))
-    # print("len m1:", len(m1))
-    # for k in ks[0:]:
-    #     print(k, merged[k], m1[k])
-    #     assert np.allclose(merged[k], m1[k][1])
-    #     assert k in m1, f"{k} not in m1"
-
+    # print(len(merged))
 

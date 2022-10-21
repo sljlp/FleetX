@@ -620,7 +620,7 @@ class EagerEngine(BasicEngine):
 
             if is_wrapped_module(self._module.model):
                 save_for_auto_inference(os.path.join(save_dir, "inference_model"), self._module.model, self._template, True)
-            dist_save(os.path.join(save_dir, "dist_saved"), self._module.model, self._optimizer , True)
+            dist_save(os.path.join(save_dir, "dist_saved"), self._module.model, self._optimizer , True, False, gather_dst_rank=0)
 
             meta_dict = {
                 "epoch": epoch,

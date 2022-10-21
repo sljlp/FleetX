@@ -433,38 +433,40 @@ def save_for_auto_inference(path_prefix,
         _unset_dims_mapping(dist_param)
 
 @dygraph_only
-def dist_save(path_prefix, dist_model, optimzier=None, for_training=False, cvt2cpu=False):
+def dist_save(path_prefix, dist_model, optimzier=None, for_training=False, cvt2cpu=False, gather_dst_rank=0):
     if for_training and optimzier is not None:
         assert isinstance(optimzier, (Optimizer, HybridParallelOptimizer)), f"optimizer({type(optimzier)}) is not an instance of paddle.optimizer.Optimizer"
-        _dist_save_optimizer_state(path_prefix, dist_model, optimzier, cvt2cpu)
+        _dist_save_optimizer_state(path_prefix, dist_model, optimzier, cvt2cpu, gather_dst_rank)
     _dist_save_parameters(path_prefix, dist_model, cvt2cpu)
 
-def _dist_save_optimizer_state(path_prefix, dist_model, optimizer, cvt2cpu):
+def _dist_save_optimizer_state(path_prefix, dist_model, optimizer, cvt2cpu, gather_dst=None):
     sharding_group = fleet.get_hybrid_communicate_group().get_sharding_parallel_group()
     fleet.set_log_level("DEBUG")
     save_dir, basename = _get_abs_saved_prefix(path_prefix)
 
-    if isinstance(dist_model, GroupShardedStage3):
-        dist_model.get_all_parameters(cvt2cpu)
+    # if isinstance(dist_model, GroupShardedStage3):
+    #     dist_model.get_all_parameters(cvt2cpu)
     
     mp_group = fleet.get_hybrid_communicate_group().get_model_parallel_group()
     global_rank = dist.get_rank()
     print("saving optimzier parameters")
-    paddle.save(optimizer.state_dict(), os.path.join(save_dir, f"{basename}_dist{global_rank}.pdopt"))
+    if gather_dst is not None:
+        assert isinstance(gather_dst, (int, list, tuple)), f"gather_dst's type must be one of (int, list, tuple), while this is {type(gather_dst)}"
+        merged_opt_state_dict = _gather_state_dict(optimizer.state_dict(),gather_dst, sharding_group)
+        paddle.save(merged_opt_state_dict, os.path.join(save_dir, f"{basename}.pdopt"))
+    else:
+        paddle.save(optimizer.state_dict(), os.path.join(save_dir, f"{basename}_dist{global_rank}.pdopt"))
+        
+        print("set optimizer dims mapping")
+        dims_mapping_dict = _get_opt_params_dims_mapping(dist_model.parameters(), optimizer.state_dict(), mp_group)
+        assert "master_weights" in optimizer.state_dict(), f"hooop, you deleted master weights"
 
-    merged_opt_state_dict = _gather_state_dict(optimizer.state_dict(),0, sharding_group)
-    paddle.save(merged_opt_state_dict, os.path.join(save_dir, f"{basename}_dist{global_rank}.pdmergedopt"))
-    
-    print("set optimizer dims mapping")
-    dims_mapping_dict = _get_opt_params_dims_mapping(dist_model.parameters(), optimizer.state_dict(), mp_group)
-    assert "master_weights" in optimizer.state_dict(), f"hooop, you deleted master weights"
+        print("saving optimzier attrs")
+        _save_param_attr(optimizer.state_dict(), os.path.join(save_dir, f"{basename}_dist{global_rank}.pdoptattr"), dims_mapping_dict=dims_mapping_dict)
 
-    print("saving optimzier attrs")
-    _save_param_attr(optimizer.state_dict(), os.path.join(save_dir, f"{basename}_dist{global_rank}.pdoptattr"), dims_mapping_dict=dims_mapping_dict)
-
-    print("removing optimizer dims mapping")
-    for _, v in optimizer.state_dict().items():
-        _unset_dims_mapping(v)
+        print("removing optimizer dims mapping")
+        for _, v in optimizer.state_dict().items():
+            _unset_dims_mapping(v)
 
 def _dist_save_parameters(path_prefix, dist_model, cvt2cpu):
     save_dir, basename = _get_abs_saved_prefix(path_prefix)
