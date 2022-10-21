@@ -29,6 +29,7 @@ from paddle.optimizer import Optimizer
 from paddle.distributed.fleet.meta_optimizers.dygraph_optimizer.hybrid_parallel_optimizer import HybridParallelOptimizer
 import copy
 import sys
+import numpy as np
 
 def _is_wrapped_module(model):
     return hasattr(model, "_layer") or hasattr(model, "_layers")
@@ -525,9 +526,17 @@ def all_empty(dict_list):
             return False
     return True
 
+def gather_params_dict(param_dict, dst, group, max_size):
+    pass
+
 def _gather_state_dict(state_dict, dst, group, max_size = "3G"):
+
+    assert isinstance(dst, (list, tuple, int)), "dst' type must be one of int, list and tuple"
+    if isinstance(dst, int):
+        dst = [dst]
+
     if isinstance(max_size, str):
-        assert re.search("^[0-9]*[GMK]$", max_size), f"max_step 's unit must be G/M/K"
+        assert re.search("^[0-9]*[GMK]$", max_size), f"max_size 's unit must be G/M/K"
         num=int(max_size[:-1])
         if max_size[-1] == "G":
             max_size = num * 1024 ** 3
@@ -536,36 +545,61 @@ def _gather_state_dict(state_dict, dst, group, max_size = "3G"):
         else:
             max_size = num * 1024
     max_size //= dist.get_world_size(group)
+
     print("len state_dict: ", len(state_dict))
     
     state_dict_ = copy.copy(state_dict)
-    
-    mw = state_dict_.pop("master_weights", None)
-    lr = state_dict_.pop("LR_Scheduler", None)
-    
-    state_dict_np = dict()
-    print("len state_tict_ : ", len(state_dict_))
-    for k, v in state_dict_.items():
-        state_dict_np[k] = v.numpy()
+    mw = None
+    has_mw = False
+    has_lr = False
+    if "master_weights" in state_dict_:
+        mw = state_dict_.pop("master_weights", None)
+        has_mw = True
+    if "LR_Scheduler" in state_dict_:
+        lr = state_dict_.pop("LR_Scheduler", None)
+        has_lr = True
 
     print("state np")
     print("start all gather ...")
 
-    gloo_group = group
+    output = grouped_gather_data_dict(state_dict_, dst, group, max_size)
 
+    if isinstance(mw, dict):
+        masters = grouped_gather_data_dict(mw, dst, group, max_size)
+    else:
+        assert mw is None, f"Wrong type of master weights . type: {type(mw)}"
+
+    if has_mw:
+        output["master_weights"] = masters
+    if has_lr:
+        output["LR_Scheduler"] = lr
+    return output
+    
+def grouped_gather_data_dict(data_dict, dst, group, max_size):
+    state_dict_np = dict()
+    print("len state_tict_ : ", len(data_dict))
+    for k, v in data_dict.items():
+        try:
+            state_dict_np[k] = v.numpy()
+        except:
+            raise TypeError(f"the object (type of {type(v)}) of '{k}' is not tensor nor parameter")
+    
+    numpy_dict = state_dict_np
+
+    gloo_group = group
     total = 0
     output_state = dict()
-    for state in state_dict_groups(state_dict_np, max_size):
+    for state in state_dict_groups(numpy_dict, max_size):
         s_list = []
         total += len(state)
-        print("gen to gather:", total , "/", len(state_dict_np))
+        print("gen to gather:", total , "/", len(numpy_dict))
         gloo_gather_state_dict(s_list, state, gloo_group)
-        if dist.get_rank(group) == dst:
+        if dist.get_rank(group) in dst:
             for s in s_list:
                 for k, v in s.items():
                     print(f"gathered: {k}, {v.shape}")
                 output_state.update(s)
-        # exit()
+
         print("s list size:", sum(len(s) for s in s_list), "output:", len(output_state))
     while True:
         s_list = []
@@ -574,7 +608,7 @@ def _gather_state_dict(state_dict, dst, group, max_size = "3G"):
         gloo_gather_state_dict(s_list, state, gloo_group)
         if all_empty(s_list):
             break
-        if dist.get_rank(group) == dst:
+        if dist.get_rank(group) in dst:
             for s in s_list:
                 for k, v in s.items():
                     print(f"gathered: {k}, {v.shape}")
