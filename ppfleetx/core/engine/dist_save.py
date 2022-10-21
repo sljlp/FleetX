@@ -28,7 +28,7 @@ from paddle.fluid.framework import dygraph_only
 from paddle.optimizer import Optimizer
 from paddle.distributed.fleet.meta_optimizers.dygraph_optimizer.hybrid_parallel_optimizer import HybridParallelOptimizer
 import copy
-
+import sys
 
 def _is_wrapped_module(model):
     return hasattr(model, "_layer") or hasattr(model, "_layers")
@@ -451,7 +451,8 @@ def _dist_save_optimizer_state(path_prefix, dist_model, optimizer, cvt2cpu):
     print("saving optimzier parameters")
     paddle.save(optimizer.state_dict(), os.path.join(save_dir, f"{basename}_dist{global_rank}.pdopt"))
 
-    merged_optimizer = _gather_state_dict(optimizer.state_dict(),0, sharding_group)
+    merged_opt_state_dict = _gather_state_dict(optimizer.state_dict(),0, sharding_group)
+    paddle.save(merged_opt_state_dict, os.path.join(save_dir, f"{basename}_dist{global_rank}.pdmergedopt"))
     
     print("set optimizer dims mapping")
     dims_mapping_dict = _get_opt_params_dims_mapping(dist_model.parameters(), optimizer.state_dict(), mp_group)
@@ -482,25 +483,107 @@ def _dist_save_parameters(path_prefix, dist_model, cvt2cpu):
     for _, v in dist_model.state_dict().items():
         _unset_dims_mapping(v)
 
-
-def _gather_state_dict(state_dict, dst, group):
-    state_dict_list=[]
-    output_state = dict()
-    state_dict_ = copy.copy(state_dict)
-    if dst != dist.get_rank(group):
-        state_dict_.pop("master_weights", None)
-        state_dict_.pop("LR_Scheduler", None)
-
-    paddle.distributed.all_gather_object(state_dict_list, state_dict, group)
-
-    if dst != dist.get_rank(group):
-        del state_dict_list
-        return None
+def state_dict_groups(state_dict, max_size):
     
-    for sd in state_dict_list:
-        state_dict_cpu = dict()
-        for k, v in sd.items():
-            state_dict_cpu[k] = v.to('cpu')
-        output_state.update(state_dict_cpu)
+    max_tensor_size = 0
+    for k, v in state_dict.items():
+        if max_tensor_size < sys.getsizeof(v) + sys.getsizeof(k):
+            max_tensor_size = sys.getsizeof(v) + sys.getsizeof(k)
+    
+    max_size = max(max_size, max_tensor_size)
+    print("max tensor size:", max_size)
+
+    state_group = dict()
+    bits = 0
+    k_list = list(state_dict.keys())
+    index = 0
+    
+    while index < len(k_list):
+        bsize = sys.getsizeof(state_dict[k_list[index]]) + sys.getsizeof(k_list[index])
+        if bits + bsize >= max_size:
+            yield state_group
+            state_group=dict()
+            bits = 0
+        state_group[k_list[index]] = state_dict[k_list[index]]
+        index += 1
+        bits += bsize
+        if index == len(k_list) and bits > 0:
+            yield state_group
+
+def gloo_gather_state_dict(state_dict_list, state_dict_np, gloo_group):
+    
+    print(state_dict_list)
+    print(type(state_dict_np))
+    print(gloo_group)
+    # gg = dist.new_group([0,1,2,3,4,5,6,7], backend="gloo")
+    dist.all_gather_object(state_dict_list, state_dict_np, gloo_group)
+    print(state_dict_list)
+
+def all_empty(dict_list):
+    for v in dict_list:
+        if len(v) > 0:
+            return False
+    return True
+
+def _gather_state_dict(state_dict, dst, group, max_size = "3G"):
+    if isinstance(max_size, str):
+        assert re.search("^[0-9]*[GMK]$", max_size), f"max_step 's unit must be G/M/K"
+        num=int(max_size[:-1])
+        if max_size[-1] == "G":
+            max_size = num * 1024 ** 3
+        elif max_size[-1] == "M":
+            max_size = num * 1024 ** 2
+        else:
+            max_size = num * 1024
+    max_size //= dist.get_world_size(group)
+    print("len state_dict: ", len(state_dict))
+    
+    state_dict_ = copy.copy(state_dict)
+    
+    mw = state_dict_.pop("master_weights", None)
+    lr = state_dict_.pop("LR_Scheduler", None)
+    
+    state_dict_np = dict()
+    print("len state_tict_ : ", len(state_dict_))
+    for k, v in state_dict_.items():
+        state_dict_np[k] = v.numpy()
+
+    print("state np")
+    print("start all gather ...")
+
+    gloo_group = group
+
+    total = 0
+    output_state = dict()
+    for state in state_dict_groups(state_dict_np, max_size):
+        s_list = []
+        total += len(state)
+        print("gen to gather:", total , "/", len(state_dict_np))
+        gloo_gather_state_dict(s_list, state, gloo_group)
+        if dist.get_rank(group) == dst:
+            for s in s_list:
+                for k, v in s.items():
+                    print(f"gathered: {k}, {v.shape}")
+                output_state.update(s)
+        # exit()
+        print("s list size:", sum(len(s) for s in s_list), "output:", len(output_state))
+    while True:
+        s_list = []
+        state = {}
+        print("while True")
+        gloo_gather_state_dict(s_list, state, gloo_group)
+        if all_empty(s_list):
+            break
+        if dist.get_rank(group) == dst:
+            for s in s_list:
+                for k, v in s.items():
+                    print(f"gathered: {k}, {v.shape}")
+                output_state.update(s)
+        print("s list size:", sum(len(s) for s in s_list), "output:", len(output_state))
+
+    print("all gathered ...")
+    
+    # output_state["master_weights"] = mw
+    # output_state["LR_Scheduler"] = lr
 
     return output_state

@@ -22,6 +22,7 @@ import copy
 
 from paddle.distributed import fleet
 import paddle.distributed as dist
+import paddle
 
 __dir__ = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.abspath(os.path.join(__dir__, '../')))
@@ -66,5 +67,16 @@ if __name__ == "__main__":
     engine.fit(train_data_loader=train_data_loader,
                valid_data_loader=eval_data_loader,
                epoch=cfg.Engine.num_train_epochs)
+
+    # dev = paddle.get_device()
+    # paddle.set_device("cpu")
+    shd = fleet.get_hybrid_communicate_group().get_sharding_parallel_group()
+    
+    # ggroup = dist.new_group(shd.ranks, backend="gloo")
+    # gathered = []
+    # dist.all_gather_object(gathered, {f"{dist.get_rank()}" : "abc"}, ggroup)
+    # print(gathered)
+    # paddle.set_device(dev)
+    
     if cfg.Engine.save_load.output_dir is not None:
         engine.save()

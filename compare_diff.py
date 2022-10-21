@@ -45,24 +45,35 @@ def parse_rank_dygraph(dp, mp, pp):
 
 if __name__ == "__main__":
 
-    opts=[]
-    keys = []
-    for i in range(0,4):
-        opts.append(load_params(f"output_dp2sharding4/epoch_0_step_0/mp_00_sharding_0{i}_pp_00/dist_saved_dist{i}.pdopt"))
-        print((len(opts[i].keys()) - 2)  % 4)
-        print((len(opts[i].keys())-2)//4)
+    # opts=[]
+    # keys = []
+    # for i in range(0,4):
+    #     opts.append(load_params(f"output_dp2sharding4/epoch_0_step_0/mp_00_sharding_0{i}_pp_00/dist_saved_dist{i}.pdopt"))
+    #     print((len(opts[i].keys()) - 2)  % 4)
+    #     print((len(opts[i].keys())-2)//4)
 
-        opts[i].pop("master_weights", None)
-        opts[i].pop("LR_Scheduler", None)
+    #     opts[i].pop("master_weights", None)
+    #     opts[i].pop("LR_Scheduler", None)
 
-        keys += list(opts[i].keys())
+    #     keys += list(opts[i].keys())
 
-    print(keys)
-    
-    paramas = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_00_pp_00/dist_saved_dist0.pdparams")
-    optattr = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_00_pp_00/dist_saved_dist0.pdoptattr")
-    attr = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_00_pp_00/dist_saved_dist0.pdattr")
+    # print(keys)
 
-    paramas.pop("StructuredToParameterName@@", None)    
-    print(len(paramas))
-    print((len(keys))//4)
+    merged = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_00_pp_00/dist_saved_dist0.pdmergedopt")
+    m1 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_00_pp_00/model_state.pdopt")
+    m2 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_01_pp_00/model_state.pdopt")
+    m3 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_02_pp_00/model_state.pdopt")
+    m4 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_03_pp_00/model_state.pdopt")
+    m1.update(m2)
+    m1.update(m3)
+    m1.update(m4)
+
+    ks = list(merged.keys())
+    print("len merged:" , len(ks))
+    print("len m1:", len(m1))
+    for k in ks[0:10]:
+        print(k, merged[k], m1[k])
+        print(np.allclose(merged[k], m1[k]))
+        assert k in m1, f"{k} not in m1"
+
+
