@@ -3,6 +3,8 @@ import numpy as np
 import copy
 import re
 
+import paddle
+
 def strip(data):
     assert isinstance(data, dict)
     data.pop("StructuredToParameterName@@", None)
@@ -59,29 +61,52 @@ if __name__ == "__main__":
     #     keys += list(opts[i].keys())
 
     # print(keys)
-
+    # paddle.set_device("cpu")
     # merged = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_00_pp_00/dist_saved_dist0.pdmergedopt")
-    m1 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_00_pp_00/model_state.pdopt")
-    m2 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_01_pp_00/model_state.pdopt")
-    m3 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_02_pp_00/model_state.pdopt")
-    m4 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_03_pp_00/model_state.pdopt")
+    # m1 = load_params("output_dp1sharding4/epoch_0_step_0/mp_00_sharding_00_pp_00/model_state.pdopt")
+    # m2 = load_params("output_dp1sharding4/epoch_0_step_0/mp_00_sharding_01_pp_00/model_state.pdopt")
+    # m3 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_02_pp_00/model_state.pdopt")
+    # m4 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_03_pp_00/model_state.pdopt")
     # meta1 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_01_pp_00/meta_state.pdopt")
     # meta2 = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_02_pp_00/meta_state.pdopt")
     # dp2 = load_params("output_dp2/epoch_0_step_0/mp_00_sharding_00_pp_00/model_state.pdopt")
-    shdm = load_params("output_dp2sharding4/epoch_0_step_0/mp_00_sharding_00_pp_00/dist_saved.pdopt")
+    # shdm = load_params("output_dp1sharding4/epoch_0_step_0/mp_00_sharding_00_pp_00/dist_saved.pdopt")
     # shd = load_params("output_dp2sharding4_save/epoch_0_step_0/mp_00_sharding_00_pp_00/dist_saved.pdopt")
 
-    m1.update(m2)
-    m1.update(m3)
-    m1.update(m4)
+    opt1 = paddle.load("output_dp1sharding4/epoch_0_step_0/mp_00_sharding_00_pp_00/model_state.pdopt")
 
-    assert len(shdm) == len(m1)
+    pot2 = paddle.load("output_dp1sharding4/epoch_0_step_0/mp_00_sharding_00_pp_00/dist_saved.pdopt")
 
-    for k, v in m1.items():
-        assert k in shdm, k
-        if isinstance(v, (list, tuple)) and len(v) == 2 and isinstance(v[1], np.ndarray):
-            v2 = shdm[k][1]
-            assert v[1].dtype == v2.dtype, f"{v[1].dtype} vs {v2.dtype}"
+    for k, v in opt1.items():
+        if k in pot2:
+            print(k, v, pot2[k])
+
+
+
+
+    # mas1 = m1["master_weights"]
+    # mas2 = m2["master_weights"]
+
+    # assert len(mas1) == len(mas2), f"{len(mas1)} vs {len(mas2)}"
+    # for k, v in mas1.items():
+    #     assert k in mas2
+    #     assert np.allclose(v, mas2[k])
+
+    # # m1.update(m2)
+    # m1.update(m3)
+    # m1.update(m4)
+
+    # assert len(shdm) == len(m1)
+
+    # for k, v in shdm.items():
+    #     try:
+    #         print(k, ":", v[1].dtype)
+    #     except:
+    #         pass
+        # assert k in shdm, k
+        # if isinstance(v, (list, tuple)) and len(v) == 2 and isinstance(v[1], np.ndarray):
+        #     v2 = shdm[k][1]
+            # assert v[1].dtype == v2.dtype, f"{v[1].dtype} vs {v2.dtype}"
     #     if k not in shd:
     #         head_match = re.search("^.*\.", k)
     #         head = k[head_match.start(): head_match.end(0)]

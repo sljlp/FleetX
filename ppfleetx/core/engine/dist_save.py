@@ -30,6 +30,7 @@ from paddle.distributed.fleet.meta_optimizers.dygraph_optimizer.hybrid_parallel_
 import copy
 import sys
 import numpy as np
+from paddle.fluid import layers
 
 def _is_wrapped_module(model):
     return hasattr(model, "_layer") or hasattr(model, "_layers")
@@ -566,12 +567,12 @@ def _gather_state_dict(state_dict, dst, group, max_size = "3G"):
     print("state np")
     print("start all gather ...")
 
-    output_ = grouped_gather_data_dict(state_dict_, dst, group, max_size)
+    output = grouped_gather_data_dict(state_dict_, dst, group, max_size)
 
     # to compat exsiting load
-    output = dict()
-    for k, v in output_.items():
-        output[k] = (k, v)
+    # output = dict()
+    # for k, v in output_.items():
+    #     output[k] = (k, v)
 
     if isinstance(mw, dict):
         masters = grouped_gather_data_dict(mw, dst, group, max_size)
@@ -588,6 +589,13 @@ def grouped_gather_data_dict(data_dict, dst, group, max_size):
     state_dict_np = dict()
     print("len state_tict_ : ", len(data_dict))
     for k, v in data_dict.items():
+        print("type v:", type(v))
+        try:
+            pickle.dumps(v)
+            print("dumps sucess: ", k)
+        except:
+            print(f"dumps failed:", k)
+
         try:
             state_dict_np[k] = v.numpy()
         except:
@@ -628,5 +636,10 @@ def grouped_gather_data_dict(data_dict, dst, group, max_size):
     
     # output_state["master_weights"] = mw
     # output_state["LR_Scheduler"] = lr
-
+    from paddle.fluid.dygraph.base import to_variable
+    place = paddle.CPUPlace()
+    with paddle.fluid.device_guard("cpu"):
+        for k in output_state.keys():
+            output_state[k] = paddle.to_tensor(output_state[k], place=place)
+            output_state[k].name = k
     return output_state

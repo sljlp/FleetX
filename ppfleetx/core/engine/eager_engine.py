@@ -661,8 +661,20 @@ class EagerEngine(BasicEngine):
 
             if self.mode == 'train':
                 if os.path.exists(opt_path):
-                    opt_dict = paddle.load(opt_path)
+                    # opt_dict = paddle.load(opt_path)
+                    opt_dict = load_with_place(opt_path, "cpu")
+                    print ("======= before load: ======")
+                    for k, v in self._optimizer.state_dict().items():
+                        print(k, v)
+                    print("======= = ============")
+                    print("ste_state_dict code:", self._optimizer.set_state_dict.__code__)
                     self._optimizer.set_state_dict(opt_dict)
+
+                    print ("======= after load: ======")
+                    for k, v in self._optimizer.state_dict().items():
+                        print(k, v)
+                    print("======= = ============")
+
                 else:
                     raise ValueError(
                         "No optimizer checkpoint file found in %s." % opt_path)
@@ -760,3 +772,14 @@ class EagerEngine(BasicEngine):
         logger.info(
             "-------------------------------------------------------------------------------"
         )
+
+
+def load_with_place(path, place=None):
+    if place is None:
+        return paddle.load(path)
+    origin_place = paddle.get_device()
+    paddle.set_device(place)
+    state_dict = paddle.load(path)
+    paddle.set_device(origin_place)
+    return state_dict
+

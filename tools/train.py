@@ -78,5 +78,6 @@ if __name__ == "__main__":
     # print(gathered)
     # paddle.set_device(dev)
     
+    
     if cfg.Engine.save_load.output_dir is not None:
         engine.save()
