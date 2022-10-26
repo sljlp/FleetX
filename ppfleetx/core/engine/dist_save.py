@@ -415,6 +415,21 @@ def save_for_auto_inference(path_prefix,
                 model in single-card mode, with no distributed apis
         cvt2cpu: wheather to move parameters to CPU when using sharding stage 3.
                 The var is invalid if not using sharding stage 3.
+    Returns:
+        None
+    Examples:
+
+        single_model = build_single_model()
+        dist_model = build_distributed_model()
+
+        path_prefix = "path/to/save_infer"
+        
+        save_for_auto_inference(path_prefix, dist_model=dist_model, original_model=single_model, cvt2cpu=False)
+    
+    Outputs:
+        path/to/save_infer_dist0.pdparams path/to/save_infer_dist1.pdparams path/to/save_infer_dist2.pdparams ...
+        path/to/save_infer_dist0.pdattr  path/to/save_infer_dist0.pdattr   path/to/save_infer_dist0.pdattr ...
+
     """
 
     save_dir, basename_prefix = _get_abs_saved_prefix(path_prefix)
