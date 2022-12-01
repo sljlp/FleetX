@@ -1,3 +1,5 @@
+#! /bin/bash
+
 # Copyright (c) 2022 PaddlePaddle Authors. All Rights Reserved.
 # 
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,9 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-unset CUDA_VISIBLE_DEVICES
+log_dir=log_mp8
+rm -rf $log_dir
 
-python -u -m paddle.distributed.fleet.launch \
-    --gpus "0" \
-    --log_dir "log" \
-    projects/ernie/inference.py --model_dir "./output" --mp_degree 1
+python -m paddle.distributed.launch --log_dir $log_dir --devices "0,1,2,3,4,5,6,7" \
+    ./tools/auto_export.py \
+    -c ./ppfleetx/configs/nlp/gpt/auto/generation_gpt_175B_mp8.yaml
