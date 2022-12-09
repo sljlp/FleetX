@@ -27,7 +27,8 @@ python tools/train.py \
     -o Model.hidden_dropout_prob=0 \
     -o Model.attention_probs_dropout_prob=0 \
     -o Model.num_layers=8 \
-    -o Engine.save_load.ckpt_dir="$ckpt"
+    -o Engine.save_load.ckpt_dir="$ckpt" \
+    -o Engine.save_load.load_rng_state=False
     #  -o Engine.save_load.output_dir="$log"
 
     # -o Model.num_attention_heads=12 \
