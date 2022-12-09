@@ -13,6 +13,14 @@ set_dcu_config(){
     gpu=gpu
 }
 
+set_xpu_config(){
+    gpu=xpu
+    export PYTHONPATH=/Paddle/Paddle/build/python/:/Paddle/fleetx/PaddleSlim:$PYTHONPATH
+    export BKCL_PCIE_RING=1
+}
+
+set_xpu_config
+
 nvidia-smi && set_gpu_config
 rocm-smi && set_dcu_config
 
@@ -29,7 +37,3 @@ python tools/train.py \
     -o Model.num_layers=8 \
     -o Engine.save_load.ckpt_dir="$ckpt" \
     -o Engine.save_load.load_rng_state=False
-    #  -o Engine.save_load.output_dir="$log"
-
-    # -o Model.num_attention_heads=12 \
-    
