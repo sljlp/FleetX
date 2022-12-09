@@ -36,4 +36,4 @@ python tools/train.py \
     -o Model.attention_probs_dropout_prob=0 \
     -o Model.num_layers=8 \
     -o Engine.save_load.ckpt_dir="$ckpt" \
-    -o Engine.save_load.load_rng_state=False
+    -o Engine.save_load.load_meta_state=False

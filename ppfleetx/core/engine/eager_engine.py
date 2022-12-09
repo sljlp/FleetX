@@ -28,7 +28,7 @@ from paddle.distributed.fleet.utils.hybrid_parallel_util import fused_allreduce_
 from paddle.profiler import SummaryView
 from paddle.distributed.fleet.meta_parallel import TensorParallel
 
-import paddleslim
+#import paddleslim
 from ppfleetx.distributed.apis import env, sharding
 from ppfleetx.optims import build_lr_scheduler, build_optimizer
 from ppfleetx.utils.log import logger, get_timestamp, convert_timestamp_to_data
@@ -398,6 +398,7 @@ class EagerEngine(BasicEngine):
             except:
                 raise ValueError("Set rng state failed. This may be caused by that the current device resources are different with the"
                 " model's you are loading now. Please Check the cuda device count and specify same CUDA_VISIBLE_DEVICES with the model to load the rng states correctly. ")
+
         for epoch_index in range(start_epoch, epoch):
             train_epoch_start = get_timestamp()
             self._train_one_epoch(epoch_index, train_data_loader,
