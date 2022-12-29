@@ -49,7 +49,7 @@ fp32_dp(){
     micro_batch_size=32 \
     use_recompute=False \
     DEVICES=0,1,2,3 \
-    log=log_fp32 \
+    log=log_fp32_dp \
     use_fp16=False \
     sharding_degree=1 \
     dp_degree=4 \
@@ -61,7 +61,7 @@ fp32_sharding(){
     micro_batch_size=32 \
     use_recompute=False \
     DEVICES=0,1,2,3 \
-    log=log_fp32 \
+    log=log_fp32_sharding \
     use_fp16=False \
     sharding_degree=4 \
     dp_degree=1 \
@@ -74,7 +74,7 @@ fp32_sharding_dp(){
     micro_batch_size=32 \
     use_recompute=False \
     DEVICES=0,1,2,3 \
-    log=log_fp32 \
+    log=log_sharding_dp \
     use_fp16=False \
     sharding_degree=2 \
     dp_degree=2 \
@@ -86,7 +86,7 @@ fp32_sharding_dp_recompute(){
     micro_batch_size=32 \
     use_recompute=True \
     DEVICES=4,5,6,7 \
-    log=log_fp32 \
+    log=log_sharding_dp_rec \
     use_fp16=False \
     sharding_degree=2 \
     dp_degree=2 \
@@ -98,7 +98,7 @@ fp16_sharding_dp_recompute(){
     micro_batch_size=32 \
     use_recompute=True \
     DEVICES=0,1,2,3 \
-    log=log_fp32 \
+    log=log_fp16_sharding_dp_rec \
     use_fp16=True \
     sharding_degree=2 \
     dp_degree=2 \
@@ -113,10 +113,10 @@ export JOB=SST2
 # fp32_sharding
 
 # # 1.32 step/s, total step: 2104 step/epoch *3 epch 4卡
-# fp32_sharding_dp
+fp32_sharding_dp
 
 # 1.31 step/s, total step: 2104 step/epoch *3 epch 4卡
-fp32_sharding_dp_recompute
+# fp32_sharding_dp_recompute
 
 # #4.35 step/s, total step: 2104 step/epoch *3 epch 4卡 
 # fp16_sharding_dp_recompute
