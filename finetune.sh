@@ -39,7 +39,7 @@ finetune_345M_sharding_dp(){
   -o Global.micro_batch_size=${micro_batch_size}
   -o Global.device=${device}
   -o Model.use_recompute=${use_recompute}" \
-  bash projects/gpt/finetune_gpt_345M_single_card.sh $JOB
+  bash projects/gpt/dist_finetune_gpt_345M_single_card.sh $JOB
 }
 
 # default micro_batch_size 32
