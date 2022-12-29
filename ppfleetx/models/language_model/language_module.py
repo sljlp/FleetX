@@ -259,7 +259,7 @@ class GPTFinetuneModule(BasicModule):
         tokenizer_class, pretrained_name = MODEL_CLASSES[model_name]
         self.tokenizer = tokenizer_class.from_pretrained(pretrained_name)
 
-        if self.nranks == 1:
+        if self.nranks == 1 or True:
             model = gpt.GPTForSequenceClassification(
                 gpt.GPTModel(**model_setting), num_classes)
         else:
