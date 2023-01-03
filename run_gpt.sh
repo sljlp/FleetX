@@ -96,6 +96,35 @@ train_345M_pp(){
     -o Global.device=$device
 }
 
+
+train_345M_mp(){
+  # 345M
+  # fp16 4 卡GPU 66天训完 speed: 0.10 step/s
+  # fp32 4 卡GPU 198天训完 speed: 0.03 steps/s, gpu 8卡 0.05 steps/s, xpu 4卡 0.03 steps/s
+  # micro_batch_size: gpu 设置32, xpu设置 16
+  log_dir=log_345M_mp
+  dp_degree=1
+  mp_degree=2
+  pp_degree=1
+  python -u -m paddle.distributed.launch --log_dir $log_dir --devices "0,1" \
+      tools/train.py \
+      -c ./ppfleetx/configs/nlp/gpt/pretrain_gpt_345M_single_card.yaml \
+    -o Global.local_batch_size=16 \
+    -o Global.micro_batch_size=2 \
+    -o Optimizer.weight_decay=0.1 \
+    -o Optimizer.beta1=0.9 \
+    -o Optimizer.beta2=0.95 \
+    -o Opitmizer.lr.max_lr=3.0e-4 \
+    -o Optimizer.lr.min_lr=1.0e-5 \
+    -o Engine.max_steps=10 \
+    -o Model.use_recompute=False \
+    -o Engine.mix_precision.use_pure_fp16=False \
+    -o Distributed.dp_degree=$dp_degree \
+    -o Distributed.mp_degree=$mp_degree \
+    -o Distributed.pp_degree=$pp_degree \
+    -o Global.device=$device
+}
+
 train_345M_sharding(){
   # 345M
   # fp16 4 卡GPU 66天训完 speed: 0.10 step/s
@@ -156,6 +185,6 @@ train6.7B(){
 # 可以只执行一次， 数据下载下来之后可以注释掉
 # prepare_data
 
-train_345M_pp
+train_345M_mp
 # train_345M_sharding
 # train_1_3B
