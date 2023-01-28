@@ -9,11 +9,9 @@ get_data(){
 }
 
 prepare_data(){
-
- get_data gpt_openwebtext_0827_ids.npy
- get_data gpt_openwebtext_0827_idx.npz
-
-  find data -type f |grep -v gpt_openwebtext_0827_ids.npy|grep -v gpt_openwebtext_0827_idx.npz|xargs rm -f
+ get_data gpt_en_dataset_300m_ids.npy
+ get_data gpt_en_dataset_300m_idx.npz
+ find data -type f |grep -v gpt_en_dataset_300m_ids.npy|grep -v gpt_en_dataset_300m_idx.npz|xargs rm -f
 }
 
 
