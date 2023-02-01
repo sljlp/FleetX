@@ -930,9 +930,13 @@ class GPTPretrainingCriterionHybird(nn.Layer):
                 masked_lm_loss = self.parallel_loss_func(
                     prediction_scores, masked_lm_labels.unsqueeze(2))
             else:
+                paddle.device.xpu.synchronize()
+                print("run concat softmax input")
                 prediction_scores = ConcatSoftmaxInput.apply(prediction_scores, group = env.get_hcg().get_model_parallel_group())
                 masked_lm_loss = self.loss_func(prediction_scores,
                                             masked_lm_labels.unsqueeze(2))
+                paddle.device.xpu.synchronize()
+                print("run concat softmax input done")
         else:
             masked_lm_loss = self.loss_func(prediction_scores,
                                             masked_lm_labels.unsqueeze(2))

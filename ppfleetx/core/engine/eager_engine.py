@@ -487,8 +487,11 @@ class EagerEngine(BasicEngine):
             if self._accumulate_steps > 1:
                 # div the loss for backward
                 loss_bw = loss_bw / self._accumulate_steps
-
+            paddle.device.xpu.synchronize()
+            print("forward end and start backward")
             self._module.backward(loss_bw)
+            paddle.device.xpu.synchronize()
+            print("backward end")
 
             detach_loss = loss.detach()
             if final_loss is None:
@@ -515,7 +518,12 @@ class EagerEngine(BasicEngine):
             self._scaler.step(self._optimizer)
             self._scaler.update()
         else:
+            paddle.device.xpu.synchronize()
+            print("optimizer update start")
+            print(f"optimizer type: {type(self._optimizer)}")
             self._optimizer.step()
+            paddle.device.xpu.synchronize()
+            print("update done")
 
     @paddle.no_grad()
     def evaluate(self, epoch=1, valid_data_loader=None):

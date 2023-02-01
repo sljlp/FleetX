@@ -93,6 +93,35 @@ train_345M_sharding(){
     -o Global.device=$device
 }
 
+
+train_345M_mp(){
+  # 345M
+  # fp16 4 卡GPU 66天训完 speed: 0.10 step/s
+  # fp32 4 卡GPU 198天训完 speed: 0.03 steps/s, xpu 4卡 0.01 step/s 
+  # micro_batch_size: gpu : 32, xpu: 16 
+  log_dir=log_345M_mp
+  sharding_degree=1
+  python -m paddle.distributed.launch --log_dir $log_dir --devices "4,5,6,7" \
+      tools/train.py \
+      -c ./ppfleetx/configs/nlp/gpt/pretrain_gpt_345M_single_card.yaml \
+    -o Global.local_batch_size=1 \
+    -o Global.micro_batch_size=1 \
+    -o Optimizer.weight_decay=0.1 \
+    -o Optimizer.beta1=0.9 \
+    -o Optimizer.beta2=0.95 \
+    -o Opitmizer.lr.max_lr=3.0e-4 \
+    -o Optimizer.lr.min_lr=1.0e-5 \
+    -o Engine.max_steps=572000 \
+    -o Model.use_recompute=True \
+    -o Engine.mix_precision.use_pure_fp16=False \
+    -o Distributed.sharding.sharding_degree=${sharding_degree} \
+    -o Distributed.sharding.sharding_stage=1 \
+    -o Distributed.dp_degree=2 \
+    -o Distributed.mp_degree=2 \
+    -o Distributed.pp_degree=1 \
+    -o Global.device=$device
+}
+
 train_1_3B(){
   # 1.3B fp16 GPU 4卡 0.02step/s 训完需要173天
   log_dir=log_1.3B
@@ -150,7 +179,7 @@ train_1_3B_mp(){
   pp_degree=1
   sharding_degree=1
   rm -rf $log_dir
-  python -m paddle.distributed.launch --log_dir $log_dir --devices "0,1,4,5" \
+  python -m paddle.distributed.launch --log_dir $log_dir --devices "0,1,2,3" \
       tools/train.py \
       -c ./ppfleetx/configs/nlp/gpt/pretrain_gpt_1.3B_dp8.yaml \
     -o Optimizer.weight_decay=0.1 \
@@ -185,4 +214,5 @@ train6.7B(){
 export max_step=10
 # train_345M
 # train_345M_sharding
-train_1_3B_mp
+# train_1_3B_mp
+train_345M_mp
