@@ -1681,7 +1681,7 @@ class GPTForGenerationHybrid(nn.Layer):
 def get_triangle_upper_mask(x, mask):
     if mask is not None:
         return mask
-    mask = paddle.full_like(x, -np.inf)
+    mask = paddle.full_like(x, -10000)
     mask.stop_gradient = True
     mask = paddle.triu(mask, diagonal=1)
     mask.stop_gradient = True
